@@ -22,7 +22,7 @@
 
 ### **体系结构**
 
-![Spring的体系结构](http://c.biancheng.net/uploads/allimg/190606/5-1Z606104H1294.gif)
+![Spring的体系结构](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//5-1Z606104H1294.gif)
 
 
 
@@ -58,7 +58,7 @@ Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core �
 
 ## Spring程序开发步骤
 
-![image-20210727165139658](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727165139658.png)
+![image-20210727165139658](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727165139658.png)
 
 1. 导入Spring开发的基本包坐标(Maven)
 2. 编写Dao接口和实现类
@@ -83,7 +83,7 @@ Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core �
 
 2. **编写Dao接口和实现类**
 
-   <img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210728153640652.png" alt="image-20210728153640652" style="zoom:50%;" />
+   <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728153640652.png" alt="image-20210728153640652" style="zoom:50%;" />
 
    ```java
    public interface UserDao {
@@ -282,9 +282,9 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 #### Bean依赖的注入
 
- ![image-20210728165623600](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210728165623600.png)
+ ![image-20210728165623600](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728165623600.png)
 
-![image-20210728165706555](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210728165706555.png)
+![image-20210728165706555](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728165706555.png)
 
 ##### **依赖注入概念**
 
@@ -1212,17 +1212,17 @@ AOP是**OOP**的延续，是软件开发中的一个热点，也是Spring框架�
 
 日志记录、打印功能为一个单独模块
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210811155333084.png" alt="image-20210811155333084" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811155333084.png" alt="image-20210811155333084" style="zoom:50%;" />
 
 业务代码功能为一个单独模块
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210811155428811.png" alt="image-20210811155428811" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811155428811.png" alt="image-20210811155428811" style="zoom:50%;" />
 
 通过配置文件将两个模块关联到一起，单独看它们都是独立的存在，互不影响。
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210811155638418.png" alt="image-20210811155638418" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811155638418.png" alt="image-20210811155638418" style="zoom:50%;" />
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210811155938687.png" alt="image-20210811155938687" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811155938687.png" alt="image-20210811155938687" style="zoom:50%;" />
 
 ##### AOP底层实现
 
@@ -1237,7 +1237,7 @@ AOP是**OOP**的延续，是软件开发中的一个热点，也是Spring框架�
 - JKD代理：基于**接口**的动态代理技术
 - Cglib代理：基于**父类**的动态代理技术
 
-![image-20210811160958882](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210811160958882.png)
+![image-20210811160958882](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811160958882.png)
 
 
 
@@ -1539,7 +1539,7 @@ public class test2 {
    <aop:通知类型 method=“切面类中方法名” pointcut= “切点表达式"> </aop:通知类型>
    ```
 
-   ![image-20210813153444293](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210813153444293.png)
+   ![image-20210813153444293](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210813153444293.png)
 
    ```xml
    <!--    配置织入:告诉Spring框架哪些方法(切点)需要进行增强(通知)-->
@@ -1666,7 +1666,7 @@ public class annoationTest {
 
 **注解通知类型**
 
-![image-20210813164044865](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210813164044865.png)
+![image-20210813164044865](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210813164044865.png)
 
 
 

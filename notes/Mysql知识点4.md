@@ -41,7 +41,7 @@ mysql [options] [database]
 	mysql -u root -p123456 demo_03 -e "select * from tb_book";
 ```
 
-![image-20210517194416105](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517194416105.png)
+![image-20210517194416105](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517194416105.png)
 
 
 
@@ -51,7 +51,7 @@ mysqladmin 是一个执行管理操作的客户端程序。可以用它来检查
 
 可以通过 ： mysqladmin --help  指令查看帮助文档
 
-![image-20210517194557548](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517194557548.png)
+![image-20210517194557548](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517194557548.png)
 
 ```
 示例 ：
@@ -137,16 +137,16 @@ mysqldump [options] --all-databases/-A
 
 ```
 
-![image-20210517200226673](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517200226673.png)
+![image-20210517200226673](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517200226673.png)
 
 ```sql
  mysqldump -u root -p123456  -T /var/lib/mysql-files/  demo_03 tb_book;
 
 ```
 
-![image-20210517201216411](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517201216411.png)
+![image-20210517201216411](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517201216411.png)
 
-![image-20210517201259252](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517201259252.png)
+![image-20210517201259252](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517201259252.png)
 
 
 
@@ -159,7 +159,7 @@ mysqldump [options] --all-databases/-A
 show variables like '%secure_file_priv%';
 ```
 
-![image-20210517201106131](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517201106131.png)
+![image-20210517201106131](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517201106131.png)
 
 
 
@@ -251,7 +251,7 @@ show variables like 'log_error%';
 (Linux版本不同位置可能有差异)
 ```
 
-![image-20210520180643263](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520180643263.png)
+![image-20210520180643263](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520180643263.png)
 
 
 
@@ -261,9 +261,9 @@ show variables like 'log_error%';
 tail -f /usr/data/zhanghui-PC.err 
 ```
 
-![image-20210520183424686](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520183424686.png)
+![image-20210520183424686](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520183424686.png)
 
-![image-20210520183541179](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520183541179.png)
+![image-20210520183541179](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520183541179.png)
 
 
 
@@ -283,7 +283,7 @@ tail -f /usr/data/zhanghui-PC.err
 show variables like 'log_bin%';
 ```
 
-![image-20210520183243107](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520183243107.png)
+![image-20210520183243107](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520183243107.png)
 
 日志存放位置 : 配置时，给定了文件名。
 
@@ -297,7 +297,7 @@ binlog_format=STATEMENT
 
 ```
 
-![image-20210520183353133](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520183353133.png)
+![image-20210520183353133](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520183353133.png)
 
 ##### 2.2.2 日志格式
 
@@ -342,7 +342,7 @@ insert into tb_book values(null,'Lucene','2088-05-01','0');
 
  查看日志文件 ：
 
-![image-20210520183353133](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520183353133.png)
+![image-20210815185350542](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815185350542.png)
 
 mysqlbin.index : 该文件是日志索引文件 ， 记录日志的文件名；
 
@@ -356,7 +356,7 @@ mysqlbinlog mysqlbing.000001；
 
 ```
 
-![image-20210520184022871](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520184022871.png)
+![image-20210520184022871](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520184022871.png)
 
 
 
@@ -380,9 +380,9 @@ binlog_format=ROW
  update tb_book set status = 2 ;
 ```
 
-![image-20210520184516367](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520184516367.png)
+![image-20210520184516367](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520184516367.png)
 
-![image-20210520184416274](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520184416274.png)
+![image-20210520184416274](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520184416274.png)
 
 如果日志格式是 ROW , 直接查看数据 , 是查看不懂的 ; 可以在mysqlbinlog 后面加上参数 -vv  
 
@@ -391,7 +391,7 @@ mysqlbinlog -vv mysqlbin.000002
 
 ```
 
-![image-20210520184709953](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520184709953.png)
+![image-20210520184709953](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520184709953.png)
 
 
 
@@ -405,7 +405,7 @@ mysqlbinlog -vv mysqlbin.000002
 
 查询之前 ，先查询下日志文件 ： 
 
-![image-20210520184836473](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520184836473.png)
+![image-20210520184836473](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520184836473.png)
 
 执行删除日志指令： 
 
@@ -433,7 +433,7 @@ Reset Master
 
 配置如下 ： 
 
-![image-20210520185954204](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520185954204.png)
+![image-20210520185954204](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520185954204.png)
 
 
 
@@ -455,7 +455,7 @@ general_log_file=file_name
 
 在 mysql 的配置文件 /usr/my.cnf 中配置如下内容 ： 
 
-![image-20210520190657179](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520190657179.png)
+![image-20210520190657179](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520190657179.png)
 
 
 
@@ -474,9 +474,9 @@ select * from tb_book where id < 8;
 
 执行完毕之后， 再次来查询日志文件 ： 
 
-![image-20210520190813763](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520190813763.png)
+![image-20210520190813763](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520190813763.png)
 
-![image-20210520190907350](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520190907350.png)
+![image-20210520190907350](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520190907350.png)
 
 #### 2.4 慢查询日志
 
@@ -500,7 +500,7 @@ long_query_time=10
 
 ```
 
-![image-20210520192256187](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192256187.png)
+![image-20210520192256187](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192256187.png)
 
 ##### 2.4.2 日志的读取
 
@@ -512,7 +512,7 @@ long_query_time=10
 show variables like 'long_query_time';
 ```
 
-![image-20210520191538333](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520191538333.png)
+![image-20210520191538333](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520191538333.png)
 
 
 
@@ -522,17 +522,17 @@ show variables like 'long_query_time';
 select count(*) from tb_item;
 ```
 
-![image-20210520191754500](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520191754500.png)
+![image-20210520191754500](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520191754500.png)
 
 由于该语句执行时间很短，为0。38s ， 所以不会记录在慢查询日志中。
 
-![image-20210520192118094](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192118094.png)
+![image-20210520192118094](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192118094.png)
 
 ```
 select * from tb_item;
 ```
 
-![image-20210520191942794](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520191942794.png)
+![image-20210520191942794](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520191942794.png)
 
 该SQL语句 ， 执行时长为 1.19s ，超过1s ， 所以会记录在慢查询日志文件中。
 
@@ -540,19 +540,19 @@ select * from tb_item;
  tail -f slow_query.log 
 ```
 
-![image-20210520192037291](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192037291.png)
+![image-20210520192037291](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192037291.png)
 
 3） 查看慢查询日志文件
 
 直接通过cat 指令查询该日志文件 ： 
 
-![image-20210520192337902](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192337902.png)
+![image-20210520192337902](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192337902.png)
 
 
 
 如果慢查询日志内容很多， 直接查看文件，比较麻烦， 这个时候可以借助于mysql自带的 mysqldumpslow 工具， 来对慢查询日志进行分类汇总。 
 
-![image-20210520192405350](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192405350.png)
+![image-20210520192405350](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192405350.png)
 
 
 
@@ -570,7 +570,7 @@ MySQL支持一台主库同时向多台从库进行复制， 从库同时也可�
 
 MySQL 的主从复制原理如下。
 
-![image-20210520192702000](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210520192702000.png)
+![image-20210520192702000](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192702000.png)
 
 从上层来看，复制分成三步：
 
@@ -652,7 +652,7 @@ show master status;
 
 ```
 
-![1554477759735](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1554477759735.png) 
+![1554477759735](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1554477759735.png)
 
 字段含义：
 
@@ -703,7 +703,7 @@ show slave status;
 
 ```
 
-![1554479387365](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1554479387365.png) 
+![1554479387365](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1554479387365.png)
 
 5） 停止同步操作
 
@@ -756,7 +756,7 @@ insert into user(id,name,sex) values(null,'Dawn','1');
 
 记录系统中的日志信息，可以通过Spring 框架的AOP来实现。具体的请求处理流程，如下：
 
-![1555075760661](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555075760661.png) 
+![1555075760661](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555075760661.png)
 
 
 
@@ -1480,7 +1480,7 @@ public class OperationLogController {
 
 可以通过postman来访问业务系统，再查看数据库中的日志信息，验证能不能将用户的访问日志记录下来。
 
-![1555077276426](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555077276426.png) 
+![1555077276426](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555077276426.png)
 
 
 
@@ -1551,7 +1551,7 @@ create table log_counter(
 
 在进行分页时，一般通过创建覆盖索引，能够比较好的提高性能。一个非常常见，而又非常头疼的分页场景就是 "limit 1000000,10" ，此时MySQL需要搜索出前1000010 条记录后，仅仅需要返回第 1000001 到 1000010 条记录，前1000000 记录会被抛弃，查询代价非常大。 
 
-![1555081714638](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555081714638.png) 
+![1555081714638](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555081714638.png)
 
 当点击比较靠后的页码时，就会出现这个问题，查询效率非常慢。
 
@@ -1598,7 +1598,7 @@ select * from operation_log t , (select id from operation_log order by id limit 
 
 #### 4.9 性能优化 - 索引
 
-![1555152703824](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555152703824.png)
+![1555152703824](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555152703824.png)
 
 当根据操作人进行查询时， 查询的效率很低，耗时比较长。原因就是因为在创建数据库表结构时，并没有针对于 操作人 字段建立索引。
 
@@ -1633,7 +1633,7 @@ CREATE INDEX idx_optlog_cost ON operation_log(cost_time);
 
 在Mysql主从复制的基础上，可以使用读写分离来降低单台Mysql节点的压力，从而来提高访问效率，读写分离的架构如下：
 
-![1555235426739](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555235426739.png) 
+![1555235426739](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555235426739.png)
 
 对于读写分离的实现，可以通过Spring AOP 来进行动态的切换数据源，进行操作 ：
 
@@ -1822,13 +1822,13 @@ show status like 'Innodb_rows_%' ;
 
 ```
 
-![1555235982584](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555235982584.png) 
+![1555235982584](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555235982584.png)
 
 
 
 ##### 4.11.4 原理
 
-![1555235982584](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/aop-datasource.png)
+![1555235982584](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//aop-datasource.png)
 
 
 

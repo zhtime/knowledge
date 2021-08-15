@@ -52,7 +52,7 @@ select id, name , status from tb_book;
 
 通过MySQL的主从复制，实现读写分离，使增删改操作走主节点，查询操作走从节点，从而可以降低单台服务器的读写压力。
 
- ![1](https://gitee.com/yooome/netty-study/raw/main/assets/1.jpg) 
+ ![1](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1.jpg) 
 
 ##### 1.3.2 采用分布式数据库架构
 
@@ -70,7 +70,7 @@ select id, name , status from tb_book;
 
 #### 2.2 操作流程
 
- ![20180919131632347](https://gitee.com/yooome/netty-study/raw/main/assets/20180919131632347.png) 
+ ![20180919131632347](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20180919131632347.png) 
 
 1. 客户端发送一条查询给服务器；
 2. 服务器先会检查查询缓存，如果命中了缓存，则立即返回存储在缓存中的结果。否则进入下一阶段；
@@ -86,7 +86,7 @@ select id, name , status from tb_book;
    SHOW VARIABLES LIKE 'have_query_cache';	
    ```
 
-   ![image-20210515150435082](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515150435082.png)
+   ![image-20210515150435082](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515150435082.png)
 
 2. **Mysql8，已经取消了查询缓存**
 
@@ -96,7 +96,7 @@ select id, name , status from tb_book;
    SHOW VARIABLES LIKE 'query_cache_type';
    ```
 
-   ![image-20210515150757914](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515150757914.png)
+   ![image-20210515150757914](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515150757914.png)
 
 4. 查看查询缓存的占用大小 ：
 
@@ -104,7 +104,7 @@ select id, name , status from tb_book;
    SHOW VARIABLES LIKE 'query_cache_size';
    ```
 
-   ![image-20210515150908056](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515150908056.png)
+   ![image-20210515150908056](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515150908056.png)
 
 ```
 1048567 b(字节)
@@ -112,7 +112,7 @@ select id, name , status from tb_book;
 1 MB
 ```
 
-1. 查看查询缓存的状态变量：![image-20210515151309580](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515151309580.png)
+1. 查看查询缓存的状态变量：![image-20210515151309580](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515151309580.png)
 
    各个变量的含义如下：
 
@@ -139,7 +139,7 @@ MySQL的查询缓存默认是关闭的，需要手动配置参数 query_cache_ty
 
 在 /usr/my.cnf 配置中，增加以下配置 ： 
 
-![image-20210515152901766](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515152901766.png)	
+![image-20210515152901766](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515152901766.png)	
 
 ```
 service mysql restart
@@ -149,9 +149,9 @@ service mysql restart
 
 然后就可以在命令行执行SQL语句进行验证 ，执行一条比较耗时的SQL语句，然后再多执行几次，查看后面几次的执行时间；获取通过查看查询缓存的缓存命中数，来判定是否走查询缓存。
 
-![image-20210515153009063](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515153009063.png)
+![image-20210515153009063](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515153009063.png)
 
-![image-20210515153338677](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210515153338677.png)
+![image-20210515153338677](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515153338677.png)
 
 
 
@@ -447,7 +447,7 @@ select * from tb_book;
 
 ```
 
-![image-20210516141644926](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516141644926.png)
+![image-20210516141644926](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516141644926.png)
 
 可以正常执行 ， 查询出数据。
 
@@ -462,7 +462,7 @@ select * from tb_book;
 
 ```
 
-![image-20210516142423166](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516142423166.png)
+![image-20210516142423166](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516142423166.png)
 
 
 
@@ -475,7 +475,7 @@ select name from tb_user;
 
 ```
 
-![image-20210516142625264](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516142625264.png)
+![image-20210516142625264](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516142625264.png)
 
 
 
@@ -488,7 +488,7 @@ select name from tb_user;
 
 ```
 
-![image-20210516142725388](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516142725388.png)
+![image-20210516142725388](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516142725388.png)
 
 可以正常查询出未锁定的表；
 
@@ -503,7 +503,7 @@ insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 
 ```
 
-![image-20210516142958436](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516142958436.png)
+![image-20210516142958436](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516142958436.png)
 
 执行插入， 直接报错 ， 由于当前tb_book 获得的是 读锁， 不能执行更新操作。
 
@@ -518,13 +518,13 @@ insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 
 ```
 
-![image-20210516143023212](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143023212.png)
+![image-20210516143023212](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143023212.png)
 
 
 
 当在客户端一中释放锁指令 unlock tables  后 ， 客户端二中的 inesrt 语句 ， 立即执行 ；
 
-![image-20210516143056956](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143056956.png)
+![image-20210516143056956](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143056956.png)
 
 ##### 5.2.3 写锁案例
 
@@ -544,7 +544,7 @@ select * from tb_book ;
 
 ```
 
-![image-20210516143308615](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143308615.png)
+![image-20210516143308615](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143308615.png)
 
 查询操作执行成功；
 
@@ -555,7 +555,7 @@ update tb_book set name = 'java编程思想（第二版）' where id = 1;
 
 ```
 
-![image-20210516143345692](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143345692.png)
+![image-20210516143345692](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143345692.png)
 
 更新操作执行成功 ；
 
@@ -570,13 +570,13 @@ select * from tb_book ;
 
 ```
 
-![image-20210516143428760](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143428760.png)
+![image-20210516143428760](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143428760.png)
 
 
 
 当在客户端一中释放锁指令 unlock tables  后 ， 客户端二中的 select 语句 ， 立即执行 ；
 
-![image-20210516143521980](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516143521980.png)
+![image-20210516143521980](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143521980.png)
 
 ##### 5.2.4 结论
 
@@ -605,7 +605,7 @@ show open tables；
 
 ```
 
-!![image-20210516144025584](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516144025584.png)
+!![image-20210516144025584](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516144025584.png)
 
 In_user : 表当前被查询使用的次数。如果该数为零，则表是打开的，但是当前没有被使用。
 
@@ -618,7 +618,7 @@ show status like 'Table_locks%';
 
 ```
 
-![image-20210516144155984](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516144155984.png)
+![image-20210516144155984](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516144155984.png)
 
 Table_locks_immediate ： 指的是能够立即获得表级锁的次数，每立即获取锁，值加1。
 
@@ -686,7 +686,7 @@ show variables like 'tx_isolation';
 
 ```
 
-![image-20210516151416345](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151416345.png)
+![image-20210516151416345](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151416345.png)
 
 
 
@@ -744,13 +744,13 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![image-20210516151618437](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151618437.png)      关闭自动提交功能 | ![image-20210516151725340](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151725340.png) 关闭自动提交功能 |
-| ![image-20210516151834715](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151834715.png)可以正常的查询出全部的数据 | ![image-20210516151913676](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151913676.png)可以正常的查询出全部的数据 |
-| ![image-20210516152038462](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516152038462.png)查询id 为3的数据 ； | ![image-20210516151947249](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516151947249.png)获取id为3的数据 ； |
-| ![image-20210516152528533](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516152528533.png) 更新id为3的数据，但是不提交； | ![image-20210516152509043](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516152509043.png)更新id为3 的数据， 出于等待状态 |
-| ![image-20210516152643796](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516152643796.png) 通过commit， 提交事务 | ![image-20210516152701904](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516152701904.png) 解除阻塞，更新正常进行 |
+| ![image-20210516151618437](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151618437.png)      关闭自动提交功能 | ![image-20210516151725340](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151725340.png) 关闭自动提交功能 |
+| ![image-20210516151834715](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151834715.png)可以正常的查询出全部的数据 | ![image-20210516151913676](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151913676.png)可以正常的查询出全部的数据 |
+| ![image-20210516152038462](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516152038462.png)查询id 为3的数据 ； | ![image-20210516151947249](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516151947249.png)获取id为3的数据 ； |
+| ![image-20210516152528533](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516152528533.png) 更新id为3的数据，但是不提交； | ![image-20210516152509043](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516152509043.png)更新id为3 的数据， 出于等待状态 |
+| ![image-20210516152643796](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516152643796.png) 通过commit， 提交事务 | ![image-20210516152701904](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516152701904.png) 解除阻塞，更新正常进行 |
 | 以上， 操作的都是同一行的数据，接下来，演示不同行的数据 ：   |                                                              |
-| ![image-20210516153310720](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516153310720.png) 更新id为3数据，正常的获取到行锁 ， 执行更新 ； | ![image-20210516153321775](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210516153321775.png) 由于与Session-1 操作不是同一行，获取当前行锁，执行更新； |
+| ![image-20210516153310720](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516153310720.png) 更新id为3数据，正常的获取到行锁 ， 执行更新 ； | ![image-20210516153321775](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516153321775.png) 由于与Session-1 操作不是同一行，获取当前行锁，执行更新； |
 
 
 
@@ -762,14 +762,14 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 查看当前表的索引 ： show  index  from test_innodb_lock ;
 
-![image-20210517182019295](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517182019295.png)
+![image-20210517182019295](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517182019295.png)
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 关闭事务的自动提交![image-20210517182113727](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517182113727.png) | 关闭事务的自动提交![image-20210517182144316](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517182144316.png) |
-| 执行更新语句 ：![image-20210517182908248](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517182908248.png) | 执行更新语句， 但处于阻塞状态：![image-20210517183716611](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517183716611.png) |
-| 提交事务：![image-20210517183734012](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517183734012.png) | 解除阻塞，执行更新成功 ：![image-20210517183745081](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517183745081.png) |
-| 更新的时候行锁变成了表锁，对应上面更新数据不是同一行。![image-20210517183951539](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517183951539.png) | 执行提交操作 ：![image-20210517183824423](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517183824423.png) |
+| 关闭事务的自动提交![image-20210517182113727](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517182113727.png) | 关闭事务的自动提交![image-20210517182144316](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517182144316.png) |
+| 执行更新语句 ：![image-20210517182908248](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517182908248.png) | 执行更新语句， 但处于阻塞状态：![image-20210517183716611](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517183716611.png) |
+| 提交事务：![image-20210517183734012](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517183734012.png) | 解除阻塞，执行更新成功 ：![image-20210517183745081](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517183745081.png) |
+| 更新的时候行锁变成了表锁，对应上面更新数据不是同一行。![image-20210517183951539](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517183951539.png) | 执行提交操作 ：![image-20210517183824423](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517183824423.png) |
 
 由于 执行更新时 ， name字段本来为varchar类型， 我们是作为数组类型使用，存在类型转换，索引失效，最终行锁变为表锁 ；
 
@@ -783,17 +783,17 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 没有id为2的数据
 
-![image-20210517184627059](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517184627059.png)
+![image-20210517184627059](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184627059.png)
 
 示例 ： 
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 关闭事务自动提交 ![image-20210517184808213](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517184808213.png) | 关闭事务自动提交![image-20210517184819363](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517184819363.png) |
-| 根据id范围更新数据![image-20210517184906171](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517184906171.png) |                                                              |
-|                                                              | 插入id为2的记录， 出于阻塞状态![image-20210517185019231](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517185019231.png) |
-| 提交事务 ；![image-20210517185042195](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517185042195.png) |                                                              |
-|                                                              | 解除阻塞 ， 执行插入操作 ：![image-20210517185109180](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517185109180.png) |
+| 关闭事务自动提交 ![image-20210517184808213](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184808213.png) | 关闭事务自动提交![image-20210517184819363](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184819363.png) |
+| 根据id范围更新数据![image-20210517184906171](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184906171.png) |                                                              |
+|                                                              | 插入id为2的记录， 出于阻塞状态![image-20210517185019231](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185019231.png) |
+| 提交事务 ；![image-20210517185042195](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185042195.png) |                                                              |
+|                                                              | 解除阻塞 ， 执行插入操作 ：![image-20210517185109180](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185109180.png) |
 |                                                              | 提交事务 ：                                                  |
 
 
@@ -805,7 +805,7 @@ show  status like 'innodb_row_lock%';
 
 ```
 
-![image-20210517185300637](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210517185300637.png)
+![image-20210815184752223](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815184752223.png)
 
 ```
 Innodb_row_lock_current_waits: 当前正在等待锁定的数量

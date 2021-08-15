@@ -50,7 +50,7 @@ ls: 查询目录中内容
 
 **-rw-r--r--**（十位组成）
 
-![image-20191119140846589](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191119140846589.png)
+![image-20191119140846589](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191119140846589.png)
 
 1. 第一位
 
@@ -130,7 +130,7 @@ ls: 查询目录中内容
 
    **常用目录的作用**
 
-![image-20191119153858913](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191119153858913.png)
+![image-20191119153858913](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191119153858913.png)
 
 1. ​	 根目录：根目录下的bin和sbin，usr目录下的bin和sbin，这四个目录都是用来保存系统命令的。
 2. /bin : 命令保存目录（普通用户就可以读取的命令）
@@ -956,7 +956,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    ios：苹果操作系统
 
-   <img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210808101619636.png" alt="image-20210808101619636" style="zoom: 50%;" />
+   <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210808101619636.png" alt="image-20210808101619636" style="zoom: 50%;" />
 
    | 层级名称   | 特点                                                         | 常见设备   |
    | ---------- | ------------------------------------------------------------ | ---------- |
@@ -983,9 +983,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    #### TCP/IP三次握手
 
-   ![image-20210808131825769](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210808131825769.png)
+   ![image-20210808131825769](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210808131825769.png)
 
-   ![img](http://kwin.xyz/passages/Linux/NetworkManage/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/11.png) ![image-20210808131801940](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210808131801940.png)
+   ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//11.png) ![image-20210808131801940](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210808131801940.png)
 
    
 
@@ -1015,21 +1015,21 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
     IP地址分类
 
-   ![ip地址分类](http://www.bo56.com/wp-content/uploads/2014/11/ip_class.png) ![image-20191210151125990](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191210151125990.png)
+   ![ip地址分类](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//ip_class.png) ![image-20191210151125990](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191210151125990.png)
 
     注：**不同类型的ip地址中对应的不同的网络号和主机号的位数，这是由子网掩码所决定的。**
 
    ip地址和子网掩码必须要在一起查看，不能分开查看。
 
-![image-20210808134923336](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210808134923336.png)
+![image-20210808134923336](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210808134923336.png)
 
 4. **端口的作用**
 
-   ​       TCP包头![fb1a4e4988fa28ce8395d61329ebbd47.png](http://kwin.xyz/passages/Linux/NetworkManage/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/18.png) 
+   ​       TCP包头![fb1a4e4988fa28ce8395d61329ebbd47.png](http://kwin.xyz/passages/Linux/NetworkManage/网络基础/18.png) 
 
    UDP包头
 
-    ![img](http://kwin.xyz/passages/Linux/NetworkManage/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/19.png) 
+    ![img](http://kwin.xyz/passages/Linux/NetworkManage/网络基础/19.png) 
 
    常见端口号
 
@@ -1102,21 +1102,21 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    域名空间结构
 
-   ![image-20191210164754643](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191210164754643.png)
+   ![image-20191210164754643](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191210164754643.png)
 
    组织域
 
-    <img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191210165153406.png" alt="image-20191210165153406" style="zoom:80%;" />
+    <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191210165153406.png" alt="image-20191210165153406" style="zoom:80%;" />
 
    国家或地区域
 
-   ![image-20191210165421920](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191210165421920.png)
+   ![image-20191210165421920](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191210165421920.png)
 
    
 
    DNS查询过程
 
-    ![5be2adb43172d7a969686b7d97802eb3.png](http://kwin.xyz/passages/Linux/NetworkManage/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/22.png)
+    ![5be2adb43172d7a969686b7d97802eb3.png](http://kwin.xyz/passages/Linux/NetworkManage/网络基础/22.png)
 
    
 
@@ -1163,7 +1163,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    /etc/sysconfig/network-scripts/ifcfg-eth0
 
-   ![image-20191212142527194](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212142527194.png)
+   ![image-20191212142527194](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212142527194.png)
 
    
 
@@ -1171,7 +1171,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    vi /etc/sysconfig/network
 
-   ![image-20191212143116587](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212143116587.png)
+   ![image-20191212143116587](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212143116587.png)
 
    
 
@@ -1179,7 +1179,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    vi  /etc/resolv.conf
 
-   ![image-20191212143217302](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212143217302.png)
+   ![image-20191212143217302](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212143217302.png)
 
    
 
@@ -1187,17 +1187,17 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    1.配置LinuxIP地址
 
-   ![image-20191212144837390](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212144837390.png)
+   ![image-20191212144837390](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212144837390.png)
 
    2.启动网卡
 
-   ![image-20191212144901015](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212144901015.png)
+   ![image-20191212144901015](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212144901015.png)
 
    3.修改UUID
 
    修改UUID的目的：首先是进行了克隆操作，复制了一份虚拟机，导致UUID相同，相同的情况就会导致无法上网，因此需要修改UUID。
 
-   ![image-20191212144936720](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212144936720.png)
+   ![image-20191212144936720](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212144936720.png)
 
    4.设置虚拟机网络连接方式
 
@@ -1293,17 +1293,17 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。
 
-   ![image-20191212165506354](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212165506354.png)
+   ![image-20191212165506354](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212165506354.png)
 
    **非对称加密算法**
 
    非对称加密算法，又名"公开密钥加密算法",非对称加密算法需要两个密钥：公开密钥和私有密钥。
 
-   ![image-20191212165935918](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212165935918.png)
+   ![image-20191212165935918](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212165935918.png)
 
    **SSH安全外壳协议**
 
-   ![image-20191212170326217](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191212170326217.png)
+   ![image-20191212170326217](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191212170326217.png)
 
    
 
@@ -1359,9 +1359,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    查看系统中所有进程，使用BSD操作系统格式
 
-   ![image-20191213153451056](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191213153451056.png)
+   ![image-20191213153451056](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191213153451056.png)
 
-   ![image-20191213154033266](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191213154033266.png)
+   ![image-20191213154033266](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191213154033266.png)
 
    ps	-le
 
@@ -1417,7 +1417,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    
 
-   ![image-20191213161404464](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191213161404464.png)
+   ![image-20191213161404464](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191213161404464.png)
 
    第一行信息为**任务队列信息**
 
@@ -1479,7 +1479,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
    查看可用的进程信号
 
-   ![image-20191213172243138](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191213172243138.png)
+   ![image-20191213172243138](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191213172243138.png)
 
    **平滑重启**
 
@@ -1533,7 +1533,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   **PRI**代表**Priority**，**NI**代表**Nice**。这两个值都是优先级，**数字越小**代表该**进程优先级越高**
 
-  ![image-20191216103850062](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191216103850062.png)
+  ![image-20191216103850062](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191216103850062.png)
 
   
 
@@ -1656,7 +1656,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   -vmstat 1 3
 
-  ![image-20191216153124621](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191216153124621.png)
+  ![image-20191216153124621](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191216153124621.png)
 
   procs：进程信息字段：
 
@@ -1871,9 +1871,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
     ***	*	*	*	* **  + 执行的任务
 
-    ![image-20191216180401792](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191216180401792.png)
+    ![image-20191216180401792](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191216180401792.png)
 
-    ![image-20191216180751653](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191216180751653.png)
+    ![image-20191216180751653](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191216180751653.png)
 
     
 
@@ -1903,11 +1903,11 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **anacron配置文件**
 
-    ![image-20191217105612131](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217105612131.png)
+    ![image-20191217105612131](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217105612131.png)
 
   - **cron.daily工作来说明执行过程**
 
-    ![image-20191217110649583](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217110649583.png)
+    ![image-20191217110649583](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217110649583.png)
 
 ​	
 
@@ -1917,7 +1917,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
 - **系统的运行级别**
 
-  ![image-20191217112520073](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217112520073.png)
+  ![image-20191217112520073](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217112520073.png)
 
   - **运行级别命令**
 
@@ -1945,7 +1945,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **什么是服务**
 
-    ![image-20191217142006163](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217142006163.png)
+    ![image-20191217142006163](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217142006163.png)
 
     
 
@@ -1975,7 +1975,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
     概念：如果把IP地址比作一间房子，端口就是出入这间房子的门。真正的房子只有几个门，但是一个IP地址的端口可以有65536个。
 
-    ![image-20191218181025570](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191218181025570.png)
+    ![image-20191218181025570](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191218181025570.png)
 
     
 
@@ -2007,9 +2007,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **服务分类图**
 
-    ![image-20191219102347554](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191219102347554.png)
+    ![image-20191219102347554](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191219102347554.png)
 
-    ![image-20191219102612502](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191219102612502.png)
+    ![image-20191219102612502](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191219102612502.png)
 
      
 
@@ -2048,7 +2048,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
   
 - **xinetd服务的启动**
   
-  ![image-20191219113718758](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191219113718758.png)
+  ![image-20191219113718758](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191219113718758.png)
   
   
   
@@ -2084,7 +2084,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
 - **源码包服务的自启动**
 
-  ![image-20191220105455425](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220105455425.png)
+  ![image-20191220105455425](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220105455425.png)
 
   **RPM包的自启动方式**
 
@@ -2120,15 +2120,15 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   在/etc/init.d/apache中加入图中的两句话
 
-  ![image-20191220110532409](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220110532409.png)
+  ![image-20191220110532409](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220110532409.png)
 
   **启动顺序：是哪个级别就进入哪个目录下**
 
-  ![image-20191220111721862](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220111721862.png)
+  ![image-20191220111721862](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220111721862.png)
 
   **进入目录后：**
 
-  ![image-20191220112003447](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220112003447.png)
+  ![image-20191220112003447](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220112003447.png)
 
   **启动顺序和关闭顺序：选择目录中没有的顺序号**
 
@@ -2144,7 +2144,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
 - 总结图
 
-  ![image-20191220113948540](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220113948540.png)
+  ![image-20191220113948540](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220113948540.png)
 
   
 
@@ -2200,7 +2200,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **RPM包命名原则**
 
-    ![image-20191217153041926](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217153041926.png)
+    ![image-20191217153041926](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217153041926.png)
 
   -  **RPM包依赖性**
 
@@ -2324,9 +2324,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
     ​	-V	校验指定RPM包中的文件（verify）
 
-    ![image-20191217171334495](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217171334495.png)
+    ![image-20191217171334495](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217171334495.png)
 
-    ![image-20191217171848717](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217171848717.png)
+    ![image-20191217171848717](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217171848717.png)
 
     
 
@@ -2358,9 +2358,9 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
 - **yum源文件**
 
-  ![image-20191217174257933](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217174257933.png)
+  ![image-20191217174257933](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217174257933.png)
 
-  ![image-20191217174227479](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191217174227479.png)
+  ![image-20191217174227479](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191217174227479.png)
 
 - **光盘搭建yum源**
 
@@ -2386,7 +2386,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **使光盘yum源生效**
 
-    ![image-20191218093853980](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191218093853980.png)
+    ![image-20191218093853980](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191218093853980.png)
 
     
 
@@ -2580,7 +2580,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
   - **centos.sh脚本分析**
 
-    ![image-20191218154135666](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191218154135666.png)
+    ![image-20191218154135666](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191218154135666.png)
 
     
 
@@ -2596,7 +2596,7 @@ Shell的两种主要语法类型有**Bourne**和**C**，这两种语法彼此不
 
 - **基本权限的修改**
 
-  ![image-20191220143041959](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191220143041959.png)
+  ![image-20191220143041959](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20191220143041959.png)
 
   - **chmod	[选项]	模式	文件名**
 

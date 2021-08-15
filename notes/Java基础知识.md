@@ -2,7 +2,7 @@ Java基础知识
 
 ## Java思维导图(借鉴)
 
-![image-20210407165423891](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407165423891.png)
+![image-20210407165423891](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407165423891.png)
 
 
 
@@ -14,7 +14,7 @@ Java基础知识
 
 ##### JVM（虚拟机）
 
-![image-20210407145303591](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407145303591.png)
+![image-20210407145303591](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407145303591.png)
 
 perObject----->引用地址存放在JVM中的堆中，指向存放在JVM栈中的对象。
 
@@ -22,7 +22,7 @@ new Person()----->对象存放在JVM中的栈中。
 
 访问对象时，不能直接访问。
 
-![image-20210407150314733](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407150314733.png)
+![image-20210407150314733](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407150314733.png)
 
 JVM堆中可以有多个引用变量地址指向同一个栈中的对象。（句柄）
 
@@ -38,7 +38,7 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 
 
-![image-20210407162017168](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407162017168.png)
+![image-20210407162017168](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407162017168.png)
 
 继承中上转型对象不能访问子类中新添加的属性和方法，可以访问继承类(父类)的默认情况下的属性和方法。。
 
@@ -50,9 +50,9 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 条件:
 
-![image-20210407162840878](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407162840878.png)
+![image-20210407162840878](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407162840878.png)
 
-![image-20210407162914273](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407162914273.png)
+![image-20210407162914273](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407162914273.png)
 
 
 
@@ -60,9 +60,9 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 特点:
 
-![image-20210407173031721](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407173031721.png)
+![image-20210407173031721](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407173031721.png)
 
-![image-20210407174351707](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407174351707.png)
+![image-20210407174351707](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407174351707.png)
 
 
 
@@ -70,13 +70,13 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 实现一个非抽象子类选择性的实现抽象父类的方法
 
-![image-20210407175748793](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407175748793.png)
+![image-20210407175748793](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407175748793.png)
 
 
 
 ##### 对象运行时多态
 
-![image-20210407180217491](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407180217491.png)
+![image-20210407180217491](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407180217491.png)
 
 
 
@@ -88,13 +88,13 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 特征：
 
-![image-20210407182647036](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407182647036.png)
+![image-20210407182647036](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407182647036.png)
 
 接口回调含义：根据接口实现类来体现接口中抽象方法的具体实现过程并进行调用。
 
 接口继承
 
-![image-20210407185150749](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210407185150749.png)
+![image-20210407185150749](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210407185150749.png)
 
 
 
@@ -104,13 +104,13 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 - 内部类的作用
 
-  ![image-20210408154351639](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408154351639.png)
+  ![image-20210408154351639](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408154351639.png)
 
 - 内部类的定义和创建
 
-  ![image-20210408154736015](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408154736015.png)
+  ![image-20210408154736015](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408154736015.png)
 
-  ![image-20210408154952538](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408154952538.png)
+  ![image-20210408154952538](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408154952538.png)
 
 - 局部类
 
@@ -118,7 +118,7 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 - 匿名类对象
 
-  ![image-20210408162054995](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408162054995.png)
+  ![image-20210408162054995](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408162054995.png)
 
   
 
@@ -126,7 +126,7 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 与对象无关，随着类的加载而加载
 
-![image-20210408163937939](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408163937939.png)
+![image-20210408163937939](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408163937939.png)
 
  
 
@@ -138,7 +138,7 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 加载过程
 
-![image-20210408171623539](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408171623539.png)
+![image-20210408171623539](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408171623539.png)
 
 
 
@@ -150,19 +150,19 @@ this关键字不允许出现在静态方法中，静态方法中不能直接访�
 
 toString方法
 
- ![image-20210408181457823](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408181457823.png)
+ ![image-20210408181457823](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408181457823.png)
 
 equals方法
 
-![image-20210408182817640](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408182817640.png)
+![image-20210408182817640](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408182817640.png)
 
-![image-20210408182855581](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408182855581.png)
+![image-20210408182855581](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408182855581.png)
 
 
 
 getClass方法
 
-![image-20210408183830812](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408183830812.png)
+![image-20210408183830812](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408183830812.png)
 
 class-->关键字   		Class-->java se中提供的**字节码类型文件**
 
@@ -172,7 +172,7 @@ class-->关键字   		Class-->java se中提供的**字节码类型文件**
 
 hashCode方法
 
-![image-20210408185318735](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408185318735.png)
+![image-20210408185318735](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408185318735.png)
 
 JVM也规定一个对象在不同时期运行hashCode可以不返回相同值，大多数情况下，也该保持同一个对象中哈希表中哈希码值返回相同的int。
 
@@ -180,31 +180,31 @@ JVM也规定一个对象在不同时期运行hashCode可以不返回相同值，
 
 clone方法
 
-![image-20210408190523942](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210408190523942.png)
+![image-20210408190523942](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210408190523942.png)
 
 
 
 ##### Integer包装类
 
-![image-20210410092729845](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410092729845.png)
+![image-20210410092729845](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410092729845.png)
 
 作用
 
-![image-20210410092823733](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410092823733.png)
+![image-20210410092823733](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410092823733.png)
 
-![image-20210410093925543](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410093925543.png)
+![image-20210410093925543](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410093925543.png)
 
-![image-20210410094152179](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410094152179.png)
+![image-20210410094152179](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410094152179.png)
 
-![image-20210410094630265](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410094630265.png)
+![image-20210410094630265](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410094630265.png)
 
-![image-20210410095035428](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410095035428.png)
+![image-20210410095035428](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410095035428.png)
 
 parseInt方法重载
 
-![image-20210410095417953](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410095417953.png)
+![image-20210410095417953](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410095417953.png)
 
-![image-20210410100346868](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410100346868.png)
+![image-20210410100346868](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410100346868.png)
 
 ```java
  //toBinaryString
@@ -218,7 +218,7 @@ parseInt方法重载
 
 
 
-![image-20210410102622876](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410102622876.png)
+![image-20210410102622876](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410102622876.png)
 
 
 
@@ -250,15 +250,15 @@ toString 方法
 
 ##### Character包装类
 
-![image-20210410104918097](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410104918097.png)
+![image-20210410104918097](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410104918097.png)
 
 
 
-![image-20210410104945903](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410104945903.png)
+![image-20210410104945903](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410104945903.png)
 
-![image-20210410105506914](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410105506914.png)
+![image-20210410105506914](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410105506914.png)
 
-![image-20210410110151598](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410110151598.png)
+![image-20210410110151598](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410110151598.png)
 
 ```java
   char[] passwordArr ={'T','5','.','6','a','6','h','O',};
@@ -297,7 +297,7 @@ toString 方法
     }
 ```
 
-![image-20210410132202788](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410132202788.png)
+![image-20210410132202788](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410132202788.png)
 
 
 
@@ -307,37 +307,37 @@ toString 方法
 
 类概述
 
-![image-20210410133306465](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410133306465.png)
+![image-20210410133306465](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410133306465.png)
 
 实用方法
 
-![image-20210410133527143](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410133527143.png)
+![image-20210410133527143](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410133527143.png)
 
-![image-20210410133624583](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410133624583.png)
+![image-20210410133624583](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410133624583.png)
 
-![image-20210410135336180](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410135336180.png)
+![image-20210410135336180](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410135336180.png)
 
 ##### Math计算类
 
-![image-20210410140451035](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410140451035.png)
+![image-20210410140451035](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410140451035.png)
 
-![image-20210410140440613](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410140440613.png)
+![image-20210410140440613](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410140440613.png)
 
-![image-20210410140511176](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410140511176.png)
+![image-20210410140511176](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410140511176.png)
 
 
 
 ##### String类
 
-![image-20210410141553218](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410141553218.png)
+![image-20210410141553218](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410141553218.png)
 
 概述
 
-![image-20210410141631525](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410141631525.png)
+![image-20210410141631525](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410141631525.png)
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410141659371.png" alt="image-20210410141659371" style="zoom:200%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410141659371.png" alt="image-20210410141659371" style="zoom:200%;" />
 
-![image-20210410142610160](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410142610160.png)
+![image-20210410142610160](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410142610160.png)
 
 ```java
   //charAt 方法
@@ -357,7 +357,7 @@ toString 方法
 
 
 
-![image-20210410143827367](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410143827367.png)
+![image-20210410143827367](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410143827367.png)
 
 ```java
 //去掉空格的trim方法
@@ -370,7 +370,7 @@ toString 方法
         System.out.println(index);
 ```
 
-![image-20210410145933893](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410145933893.png)
+![image-20210410145933893](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410145933893.png)
 
 ```java
         //字符串分割方法 split
@@ -396,7 +396,7 @@ toString 方法
         System.out.println("AJDBDS".toLowerCase());
 ```
 
-![image-20210410151721154](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410151721154.png)
+![image-20210410151721154](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410151721154.png)
 
 ```java
  //字符串替换方法
@@ -418,11 +418,11 @@ toString 方法
 
 **StringBuilder和StringBuffer的区别**
 
-![image-20210410153533078](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410153533078.png)
+![image-20210410153533078](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410153533078.png)
 
-![image-20210410153735688](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410153735688.png)
+![image-20210410153735688](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410153735688.png)
 
-![image-20210410155312410](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210410155312410.png)
+![image-20210410155312410](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210410155312410.png)
 
 ```java
 public class StringBuilderTestTest {
@@ -506,11 +506,11 @@ public class StringBuilderManagement {
 
 ##### Date类
 
-![image-20210412121658248](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412121658248.png)
+![image-20210412121658248](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412121658248.png)
 
-![image-20210412121845245](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412121845245.png)
+![image-20210412121845245](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412121845245.png)
 
-![image-20210412122733098](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412122733098.png)
+![image-20210412122733098](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412122733098.png)
 
 ```java
 public class DateTest {
@@ -560,7 +560,7 @@ public class DateTest {
 
 ##### DateFormat类
 
-![image-20210412130530308](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412130530308.png)
+![image-20210412130530308](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412130530308.png)
 
 ```java
    //利用DateFormat 实现对Date对象的格式化输出
@@ -578,7 +578,7 @@ public class DateTest {
 
 ##### SimpleDateFormate类
 
-![image-20210412181131183](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412181131183.png)
+![image-20210412181131183](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412181131183.png)
 
 ```java
    Date d0 = new Date();
@@ -593,11 +593,11 @@ public class DateTest {
 
 
 
-![image-20210412182626384](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412182626384.png)
+![image-20210412182626384](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412182626384.png)
 
-![image-20210412182803072](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412182803072.png)
+![image-20210412182803072](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412182803072.png)
 
-![image-20210412183347300](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412183347300.png)
+![image-20210412183347300](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412183347300.png)
 
 ```java
 public class SimpleDateFormatClass {
@@ -628,19 +628,19 @@ public class SimpleDateFormatClass {
 
 ##### Calendar类
 
-![image-20210412190450145](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412190450145.png)
+![image-20210412190450145](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412190450145.png)
 
-![image-20210412190820699](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412190820699.png)
+![image-20210412190820699](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412190820699.png)
 
-![image-20210412192135010](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412192135010.png)
+![image-20210412192135010](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412192135010.png)
 
-![image-20210412192246802](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412192246802.png)
+![image-20210412192246802](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412192246802.png)
 
-![image-20210412192317864](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412192317864.png)
+![image-20210412192317864](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412192317864.png)
 
-![image-20210412192446994](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412192446994.png)
+![image-20210412192446994](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412192446994.png)
 
-![image-20210412192732171](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210412192732171.png)
+![image-20210412192732171](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210412192732171.png)
 
 
 
@@ -656,13 +656,13 @@ Vector集合类应用(向量)  **多用于多线程**
 
 
 
-![image-20210414135137831](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414135137831.png)
+![image-20210414135137831](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414135137831.png)
 
 List接口下常用方法
 
-![image-20210414135529197](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414135529197.png)
+![image-20210414135529197](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414135529197.png)
 
-![image-20210414140243627](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414140243627.png)
+![image-20210414140243627](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414140243627.png)
 
 Vector 、ArrayList是List接口的实现类
 
@@ -670,7 +670,7 @@ ArrayList是非线程安全
 
 
 
-![image-20210414151928770](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414151928770.png)
+![image-20210414151928770](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414151928770.png)
 
 
 
@@ -678,15 +678,15 @@ ArrayList是非线程安全
 
 Set接口和实现类
 
-![image-20210414155446120](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414155446120.png)
+![image-20210414155446120](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414155446120.png)
 
 TreeSet(红黑树)
 
-![image-20210414155506439](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414155506439.png)
+![image-20210414155506439](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414155506439.png)
 
-![image-20210414155841509](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414155841509.png)
+![image-20210414155841509](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414155841509.png)
 
-![image-20210414155949531](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414155949531.png)
+![image-20210414155949531](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414155949531.png)
 
 
 
@@ -694,15 +694,15 @@ TreeSet(红黑树)
 
 hashSet
 
-![image-20210414160216544](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414160216544.png)
+![image-20210414160216544](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414160216544.png)
 
 
 
  TreeSet
 
-![image-20210414164840662](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414164840662.png)
+![image-20210414164840662](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414164840662.png)
 
-![image-20210414165402962](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414165402962.png)
+![image-20210414165402962](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414165402962.png)
 
  
 
@@ -710,7 +710,7 @@ hashSet
 
 LinkedHashSet集合
 
-![image-20210414174526253](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210414174526253.png)
+![image-20210414174526253](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210414174526253.png)
 
 ```java
     public static void main(String[] args) {
@@ -808,19 +808,19 @@ HashTable集合类应用
 
 TreeMap集合类应用
 
-![image-20210418090835144](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418090835144.png)
+![image-20210418090835144](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418090835144.png)
 
-![image-20210418091351219](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418091351219.png)
+![image-20210418091351219](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418091351219.png)
 
-![image-20210418091951982](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418091951982.png)
+![image-20210418091951982](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418091951982.png)
 
 
 
 HashMap
 
-![image-20210418092238094](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418092238094.png)
+![image-20210418092238094](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418092238094.png)
 
-![image-20210418092438158](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418092438158.png)
+![image-20210418092438158](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418092438158.png)
 
 ```java
    		//keySet 得到Map中所有的键
@@ -840,7 +840,7 @@ HashMap
 
 HashTable
 
-![image-20210418101442360](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418101442360.png)
+![image-20210418101442360](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418101442360.png)
 
 ```java
         //hashtable不允许键值对为空
@@ -854,7 +854,7 @@ HashTable
 
 TreeMap
 
-![image-20210418101955186](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418101955186.png)
+![image-20210418101955186](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418101955186.png)
 
 
 
@@ -862,7 +862,7 @@ TreeMap
 
 ##### 异常处理
 
-![image-20210418103121053](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418103121053.png)
+![image-20210418103121053](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418103121053.png)
 
 **java异常组织结构**
 
@@ -876,7 +876,7 @@ TreeMap
 
 
 
-![image-20210418103834275](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418103834275.png)
+![image-20210418103834275](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418103834275.png)
 
 
 
@@ -886,7 +886,7 @@ TreeMap
 
 **Throwable是JAVA异常继承机构中的顶级父类**
 
-![image-20210418104621695](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418104621695.png)
+![image-20210418104621695](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418104621695.png)
 
 Exception:分为运行时异常、非运行时异常(编译异常)
 
@@ -894,7 +894,7 @@ Error(致命错误):分为虚拟机错误、IO错误
 
 
 
-![image-20210418105252006](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418105252006.png)
+![image-20210418105252006](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418105252006.png)
 
 throw:抛出、抛掷  异常对象
 
@@ -906,9 +906,9 @@ throws：定义异常类型(基本上时编译时异常)
 
 
 
-![image-20210418110359160](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418110359160.png)
+![image-20210418110359160](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418110359160.png)
 
-![image-20210418115124256](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418115124256.png)
+![image-20210418115124256](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418115124256.png)
 
 一个子类的异常永远可以被它的父类处理
 
@@ -933,7 +933,7 @@ throws：定义异常类型(基本上时编译时异常)
 
 自定义异常
 
-![image-20210418132752044](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418132752044.png)
+![image-20210418132752044](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418132752044.png)
 
 ```java
 public static void main(String[] args) {
@@ -963,9 +963,9 @@ public static void main(String[] args) {
 
 ###### File类
 
-![image-20210418134600518](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418134600518.png)
+![image-20210418134600518](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418134600518.png)
 
-![image-20210418134914388](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418134914388.png)
+![image-20210418134914388](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418134914388.png)
 
 ```java
     public static  void main(String[] args){
@@ -993,7 +993,7 @@ public static void main(String[] args) {
 
 
 
-![image-20210418141410251](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418141410251.png)
+![image-20210418141410251](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418141410251.png)
 
 ```java
 public class fileSupport {
@@ -1022,7 +1022,7 @@ public class fileSupport {
 
 ```
 
-![image-20210418142931751](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418142931751.png)
+![image-20210418142931751](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418142931751.png)
 
 ```java
  public static void displayFileMessage(File file) throws IOException {
@@ -1037,7 +1037,7 @@ public class fileSupport {
 
 
 
-![image-20210418143741885](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210418143741885.png)
+![image-20210418143741885](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210418143741885.png)
 
 File:不只是表示文件也可以表示目录
 
@@ -1051,7 +1051,7 @@ listFiles方法只对目录起作用，此方法返回当前目录下的文件�
 
 ###### 文件流分类
 
-![image-20210419181244697](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419181244697.png)
+![image-20210419181244697](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419181244697.png)
 
 **节点流**:针对某一个具体的文件直接建立
 
@@ -1063,15 +1063,15 @@ listFiles方法只对目录起作用，此方法返回当前目录下的文件�
 
 ###### 输入流
 
-![image-20210419181835882](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419181835882.png)
+![image-20210419181835882](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419181835882.png)
 
 
 
 字节输入流
 
-![image-20210419182225729](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419182225729.png)
+![image-20210419182225729](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419182225729.png)
 
-![image-20210419182949552](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419182949552.png)
+![image-20210419182949552](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419182949552.png)
 
 ```java
     public static void testReadStoreToByteArray3(String filePath){
@@ -1157,9 +1157,9 @@ listFiles方法只对目录起作用，此方法返回当前目录下的文件�
 
 字符输入流
 
-![image-20210419193010273](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419193010273.png)
+![image-20210419193010273](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419193010273.png)
 
-![image-20210419193721928](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210419193721928.png)
+![image-20210419193721928](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210419193721928.png)
 
 ```JAVA
     /**
@@ -1248,7 +1248,7 @@ BufferedReader可以实现**按行读取**
 
 字符输出流
 
-![image-20210420183519956](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210420183519956.png)
+![image-20210420183519956](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210420183519956.png)
 
 ```java
     /**
@@ -1379,13 +1379,13 @@ BufferedReader可以实现**按行读取**
 
 ###### 序列化
 
-![image-20210420185840298](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210420185840298.png)
+![image-20210420185840298](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210420185840298.png)
 
 
 
 序列化对象定义
 
-![image-20210420190109641](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210420190109641.png)
+![image-20210420190109641](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210420190109641.png)
 
 
 
@@ -1395,7 +1395,7 @@ BufferedReader可以实现**按行读取**
 
 读取：反序列化
 
-![image-20210420190624464](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210420190624464.png)
+![image-20210420190624464](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210420190624464.png)
 
 ```java
     /**
@@ -1490,13 +1490,13 @@ BufferedReader可以实现**按行读取**
 
 ###### **进程和线程的概念**
 
-![image-20210420200037156](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210420200037156.png)
+![image-20210420200037156](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210420200037156.png)
 
 
 
 ###### 多线程应用
 
-![image-20210421180450107](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421180450107.png)
+![image-20210421180450107](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421180450107.png)
 
 
 
@@ -1504,21 +1504,21 @@ BufferedReader可以实现**按行读取**
 
 ###### **Java多线程概念**
 
-![image-20210421180832495](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421180832495.png)
+![image-20210421180832495](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421180832495.png)
 
 ###### 多线程结构
 
-![](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421181430541.png)
+![](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421181430541.png)
 
 
 
 ###### 线程组件
 
-![image-20210421182241851](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421182241851.png)
+![image-20210421182241851](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421182241851.png)
 
 
 
-![image-20210421182556068](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421182556068.png)
+![image-20210421182556068](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421182556068.png)
 
 Thread和TimerTask都是实现Runnable接口的实现类
 
@@ -1530,25 +1530,25 @@ TimerTask是一个抽象类
 
 ###### **Thread线程类及常用方法**
 
-![image-20210421183205312](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421183205312.png)
+![image-20210421183205312](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421183205312.png)
 
-![image-20210421184156839](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421184156839.png)
+![image-20210421184156839](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421184156839.png)
 
 
 
 ###### **Runnable线程接口**
 
-![image-20210421184414512](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421184414512.png)
+![image-20210421184414512](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421184414512.png)
 
-![image-20210421184600275](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421184600275.png)
+![image-20210421184600275](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421184600275.png)
 
-![image-20210421184657572](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421184657572.png)
+![image-20210421184657572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421184657572.png)
 
 
 
 ###### Thread常用构造器
 
-![image-20210421184729420](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421184729420.png)
+![image-20210421184729420](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421184729420.png)
 
 
 
@@ -1584,37 +1584,37 @@ public class MyRunnable implements Runnable {
 
 ###### 线程的生命周期
 
-![image-20210421190345724](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421190345724.png)
+![image-20210421190345724](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421190345724.png)
 
 
 
 ###### 线程启动和优先级
 
-![image-20210421193634849](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421193634849.png)
+![image-20210421193634849](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421193634849.png)
 
 
 
 ###### 线程状态
 
-![image-20210421194744185](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421194744185.png)
+![image-20210421194744185](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421194744185.png)
 
 
 
 ###### 线程的阻塞和处理
 
-![image-20210421201352178](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421201352178.png)
+![image-20210421201352178](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421201352178.png)
 
 
 
 ###### 线程阻塞的原因
 
-![image-20210421201815713](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421201815713.png)
+![image-20210421201815713](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421201815713.png)
 
 
 
 ###### 线程休眠和唤醒
 
-![image-20210421202256368](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210421202256368.png)
+![image-20210421202256368](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210421202256368.png)
 
 ```java
 /**
@@ -1684,27 +1684,27 @@ public class LadnlordAndFarmerRunnable implements Runnable {
 
 ###### 线程联合
 
-![image-20210422181503958](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422181503958.png)
+![image-20210422181503958](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422181503958.png)
 
-![image-20210422182217205](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422182217205.png)
+![image-20210422182217205](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422182217205.png)
 
-​	![image-20210422182652278](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422182652278.png)
+​	![image-20210422182652278](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422182652278.png)
 
 
 
 ###### 守护线程
 
-![image-20210424134825678](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424134825678.png)
+![image-20210424134825678](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424134825678.png)
 
 
 
 ###### 线程之间的通信(线程安全)
 
-![image-20210422191320453](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422191320453.png)
+![image-20210422191320453](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422191320453.png)
 
 synchronized(线程锁)
 
-![image-20210422191928179](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422191928179.png)
+![image-20210422191928179](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422191928179.png)
 
 ```java
 public class SyncDataSupport  {
@@ -1736,7 +1736,7 @@ public class SyncDataSupport  {
 }
 ```
 
-![image-20210422194124627](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422194124627.png)
+![image-20210422194124627](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422194124627.png)
 
 
 
@@ -1744,21 +1744,21 @@ public class SyncDataSupport  {
 
 **Synchronized作用**
 
-![image-20210422192848867](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422192848867.png)
+![image-20210422192848867](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422192848867.png)
 
 
 
 **Lock(锁)**
 
-![image-20210422193914096](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422193914096.png)
+![image-20210422193914096](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422193914096.png)
 
-![image-20210422194421088](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422194421088.png)
+![image-20210422194421088](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422194421088.png)
 
 
 
 JVM对锁的管理
 
-![image-20210422195037122](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422195037122.png)
+![image-20210422195037122](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422195037122.png)
 
 
 
@@ -1768,15 +1768,15 @@ JVM对锁的管理
 
 房子房间模型
 
-![image-20210422201018788](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422201018788.png)
+![image-20210422201018788](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422201018788.png)
 
-![image-20210422201709357](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210422201709357.png)
+![image-20210422201709357](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210422201709357.png)
 
 
 
 ###### 同步代码块
 
-![image-20210424093005210](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424093005210.png)
+![image-20210424093005210](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424093005210.png)
 
 ```java
     public static void main(String[] args) {
@@ -1841,9 +1841,9 @@ public class SynchronizedRunnable implements Runnable {
 
 概念
 
-![image-20210424100154624](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424100154624.png)
+![image-20210424100154624](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424100154624.png)
 
-![image-20210424100204075](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424100204075.png)
+![image-20210424100204075](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424100204075.png)
 
 重入是独享的，只有当前 获取监视器（持有锁）的线程才能连续重入（自动获取锁），不必等待释放，等待释放，就会造成死锁。
 
@@ -1851,37 +1851,37 @@ public class SynchronizedRunnable implements Runnable {
 
 ###### 同步当前对象（this）
 
-![image-20210424101429927](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424101429927.png)
+![image-20210424101429927](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424101429927.png)
 
-![image-20210424101813972](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424101813972.png)
+![image-20210424101813972](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424101813972.png)
 
 
 
 ###### 同步方法
 
-![image-20210424104910401](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424104910401.png)
+![image-20210424104910401](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424104910401.png)
 
-![image-20210424105243555](D:\Typora\笔记\image-20210424105243555.png)
+![image-20210424105243555](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424105243555.png)
 
 
 
 ###### 同步线程的等待和唤醒
 
-![image-20210424124438051](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424124438051.png)
+![image-20210424124438051](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424124438051.png)
 
 等待命令
 
 wait（）方法**条件**：当前被锁定被监视的对象（正在运行的线程），从代码角度来看:只能位于synchronized中使用。
 
-![image-20210424123544327](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424123544327.png)
+![image-20210424123544327](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424123544327.png)
 
 
 
 
 
-![image-20210424130513221](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424130513221.png)
+![image-20210424130513221](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424130513221.png)
 
-![image-20210424131203109](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424131203109.png)
+![image-20210424131203109](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424131203109.png)
 
 
 
@@ -1961,7 +1961,7 @@ public class ThreadWaitAndNotify implements Runnable {
 
 ###### 死锁
 
-![image-20210424132939387](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210424132939387.png)
+![image-20210424132939387](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210424132939387.png)
 
 
 
@@ -1975,7 +1975,7 @@ public class ThreadWaitAndNotify implements Runnable {
 
 www（万维网）
 
-![image-20210426203715860](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210426203715860.png)
+![image-20210426203715860](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210426203715860.png)
 
 1. **iso/osi七层模型**
 
@@ -1999,9 +1999,9 @@ www（万维网）
 
 2. **TCP/IP四层模型**
 
-   ![image-20210426203504538](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210426203504538.png)
+   ![image-20210426203504538](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210426203504538.png)
 
-   ![img](https://images2018.cnblogs.com/blog/1295451/201803/1295451-20180306155925918-725762113.png) 
+   ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1295451-20180306155925918-725762113.png) 
 
    | 层级名称   | 概念                                                         |
    | ---------- | ------------------------------------------------------------ |
@@ -2021,7 +2021,7 @@ www（万维网）
 
     IP地址分类
 
-   ![ip地址分类](http://www.bo56.com/wp-content/uploads/2014/11/ip_class.png) ![image-20191210151125990](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20191210151125990.png)
+   ![ip地址分类](http://www.bo56.com/wp-content/uploads/2014/11/ip_class.png) ![image-20210815180958681](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815180958681.png)
 
     注：**不同类型的ip地址中对应的不同的网络号和主机号的位数，这是由子网掩码所决定的。**
 
@@ -2055,7 +2055,7 @@ www（万维网）
 
 ###### **TCP和UDP协议**
 
-![image-20210426205027769](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210426205027769.png)
+![image-20210426205027769](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210426205027769.png)
 
 
 
@@ -2063,7 +2063,7 @@ www（万维网）
 
 
 
-![image-20210426205730383](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210426205730383.png)
+![image-20210426205730383](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210426205730383.png)
 
 **TCP三次握手、TCP/IP 四次告别**
 
@@ -2097,39 +2097,39 @@ TCP/IP模型与OSI模型的比较
 
 Socket---->套接字
 
-![image-20210427174825249](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427174825249.png)
+![image-20210427174825249](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427174825249.png)
 
-![image-20210427175026385](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427175026385.png)
+![image-20210427175026385](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427175026385.png)
 
 
 
 ###### **java.net网络组件包**
 
-![image-20210427175554937](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427175554937.png)
+![image-20210427175554937](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427175554937.png)
 
 
 
 URL
 
-![image-20210427175945136](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427175945136.png)
+![image-20210427175945136](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427175945136.png)
 
-![image-20210427181016450](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427181016450.png)
+![image-20210427181016450](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427181016450.png)
 
-![image-20210427181134794](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427181134794.png)
+![image-20210427181134794](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427181134794.png)
 
 
 
 InetAddress/SocketAddress
 
-![image-20210427181733024](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427181733024.png)
+![image-20210427181733024](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427181733024.png)
 
-![image-20210427181914575](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427181914575.png)
+![image-20210427181914575](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427181914575.png)
 
 
 
 构建SocketAddress
 
-![image-20210427182518154](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427182518154.png)
+![image-20210427182518154](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427182518154.png)
 
 
 
@@ -2177,11 +2177,11 @@ public class ServerSystem {
 
 ###### **构建服务器端套接字(SocketServer)**
 
-![image-20210427183951888](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427183951888.png)
+![image-20210427183951888](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427183951888.png)
 
-![image-20210427184123866](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427184123866.png)
+![image-20210427184123866](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427184123866.png)
 
-![image-20210427185210247](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427185210247.png)
+![image-20210427185210247](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427185210247.png)
 
 ```java
 /**
@@ -2317,11 +2317,11 @@ public class ServerSystem {
 
 **Socket**
 
-![image-20210427194519759](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427194519759.png)
+![image-20210427194519759](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427194519759.png)
 
-![image-20210427195046614](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427195046614.png)
+![image-20210427195046614](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427195046614.png)
 
-![image-20210427195814294](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210427195814294.png)
+![image-20210427195814294](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210427195814294.png)
 
 创建一个本地服务器和本地客户端，实行信息的交互。
 
@@ -2480,41 +2480,41 @@ public class ClientSocket {
 
 ###### **基于UDP协议的套接字实现**
 
-![image-20210428172027321](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428172027321.png)
+![image-20210428172027321](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428172027321.png)
 
 
 
 **DatagramPacket**
 
-![image-20210428172306988](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428172306988.png)
+![image-20210428172306988](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428172306988.png)
 
-![image-20210428172508457](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428172508457.png)
+![image-20210428172508457](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428172508457.png)
 
-![image-20210428172843572](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428172843572.png)
+![image-20210428172843572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428172843572.png)
 
 
 
 DatagramPacket 常用API
 
-![image-20210428173428697](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428173428697.png)
+![image-20210428173428697](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428173428697.png)
 
 
 
 **DatagramSocket**
 
-![image-20210428174618357](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428174618357.png)
+![image-20210428174618357](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428174618357.png)
 
-![image-20210428174858172](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428174858172.png)
+![image-20210428174858172](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428174858172.png)
 
 
 
 DatagramSocket 常用API
 
-![image-20210428182029878](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428182029878.png)
+![image-20210428182029878](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428182029878.png)
 
 
 
-![image-20210428182745433](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210428182745433.png)
+![image-20210428182745433](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210428182745433.png)
 
 基于UDP协议创建客户端和服务器端进行信息交互。
 

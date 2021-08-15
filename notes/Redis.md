@@ -58,7 +58,7 @@
 
 **解决方案一(电商场景)**
 
-![image-20210713132608790](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713132608790.png)
+![image-20210713132608790](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713132608790.png)
 
 
 
@@ -144,7 +144,7 @@
   help @组名
   ```
 
-![image-20210713135006738](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713135006738.png)
+![image-20210713135006738](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713135006738.png)
 
 #### 退出
 
@@ -198,7 +198,7 @@ redis自身是一个Map，按照key-value的形式存储数据。
 
 数据类型指的是存储的数据类型，value中的数据类型，而key中的类型永远是String。
 
-![image-20210713140204985](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713140204985.png)
+![image-20210713140204985](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713140204985.png)
 
 ##### String类型
 
@@ -230,7 +230,7 @@ append key value
 
  
 
-![image-20210713141820575](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713141820575.png)
+![image-20210713141820575](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713141820575.png)
 
 小闹钟：发送和返回时间。
 
@@ -295,11 +295,11 @@ psetex key milliseconds value
 
 注意事项
 
-![image-20210713144113836](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713144113836.png)
+![image-20210713144113836](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713144113836.png)
 
 key的设置约定
 
-![image-20210713144710848](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713144710848.png)
+![image-20210713144710848](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713144710848.png)
 
 **tips3**
 
@@ -309,7 +309,7 @@ key的设置约定
 
 ##### Hash类型
 
-![image-20210713145212428](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210713145212428.png)
+![image-20210713145212428](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713145212428.png)
 
 **基本操作**
 
@@ -365,7 +365,7 @@ hdecrby key field increment
 
 电商网站购物车设计
 
-![image-20210715130900678](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715130900678.png)
+![image-20210715130900678](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715130900678.png)
 
 ```java
 127.0.0.1:6379> hmset shop1 sp 10 sp2 1
@@ -384,7 +384,7 @@ OK
 
 
 
-![image-20210715132115181](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715132115181.png)
+![image-20210715132115181](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715132115181.png)
 
 ```java
 127.0.0.1:6379> hmset shop3 sp:name 101 sp:info {.....}
@@ -407,9 +407,9 @@ OK
 - list类型：保存多个数据，底层使用双向链表存储结构实现
 - **元素有序，且可重**
 
-![image-20210715133439471](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715133439471.png)
+![image-20210715133439471](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715133439471.png)
 
-![image-20210715133622532](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715133622532.png)
+![image-20210715133622532](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715133622532.png)
 
 ```java
 //添加修改数据,lpush为从左边添加，rpush为从右边添加
@@ -499,9 +499,9 @@ lrem key count value
 - 需要的存储结构：能够保存大量的数据，高效的内部存储机制，便于查询
 - set类型：**与hash存储结构完成相同，不同之处在于key用来存值，而value不存值（nil）**，并且值是不允许重复的。
 
-![image-20210715141512836](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715141512836.png)
+![image-20210715141512836](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715141512836.png)
 
-![image-20210715141528531](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715141528531.png)
+![image-20210715141528531](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715141528531.png)
 
 **基本操作**
 
@@ -538,7 +538,7 @@ spop key count
 
 **业务场景**
 
-![image-20210715142243834](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715142243834.png)
+![image-20210715142243834](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715142243834.png)
 
 ```java
 127.0.0.1:6379> srandmember users 3
@@ -556,7 +556,7 @@ spop key count
 
 
 
-![image-20210715143054724](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210715143054724.png)
+![image-20210715143054724](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715143054724.png)
 
 ```java
 //求两个集合的交集、并集、差集
@@ -614,7 +614,7 @@ smove source destination key
 - 需要的存储结构：新的存储模型，可以保存**可排序**的数据
 - sorted_set类型：在set的存储结构基础上添加可排序字段
 
-![image-20210716142345635](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210716142345635.png)
+![image-20210716142345635](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716142345635.png)
 
 score关键字是**用来排序，并不是**
 
@@ -847,7 +847,7 @@ time
 6) "4"
 ```
 
-   ![image-20210716154022557](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210716154022557.png)
+   ![image-20210716154022557](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716154022557.png)
 
 ```java
 127.0.0.1:6379> zadd tt 102004 order:id:1
@@ -865,7 +865,7 @@ time
 
 ##### 类型数据实践案列
 
-![image-20210717132642264](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717132642264.png)
+![image-20210717132642264](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717132642264.png)
 
 ```java
 //String类型 
@@ -883,7 +883,7 @@ OK
 (nil)
 ```
 
-![image-20210717133159098](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717133159098.png)
+![image-20210717133159098](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717133159098.png)
 
 ```java
 127.0.0.1:6379> get 415
@@ -921,9 +921,9 @@ OK
 
 模拟微信消息发送时间排序
 
-![image-20210717134415007](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717134415007.png)
+![image-20210717134415007](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134415007.png)
 
-![image-20210717134434609](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717134434609.png)
+![image-20210717134434609](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134434609.png)
 
 ```java
 //List类型
@@ -1062,7 +1062,7 @@ keys pattern
 
 查询模式规则
 
-![image-20210717141459800](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717141459800.png)
+![image-20210717141459800](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717141459800.png)
 
 （**其他操作**）
 
@@ -1084,7 +1084,7 @@ help @generic
 
 **数据库**
 
-![image-20210717143740151](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210717143740151.png)
+![image-20210717143740151](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717143740151.png)
 
 **解决方案**
 
@@ -1195,7 +1195,7 @@ dbsize
 
 **案例要求**
 
-![image-20210718131202763](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210718131202763.png)
+![image-20210718131202763](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718131202763.png)
 
 ```java
 //这里按照s来测试
@@ -1281,7 +1281,7 @@ class Main{
 
 **基于连接池获取链接**
 
-![image-20210718140311964](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210718140311964.png)
+![image-20210718140311964](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718140311964.png)
 
 配置文件
 
@@ -1344,9 +1344,9 @@ public class JedisUtils {
 
 [下载](https://github.com/qishibo/AnotherRedisDesktopManager/releases)
 
-![image-20210718143009622](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210718143009622.png)
+![image-20210718143009622](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718143009622.png)
 
-![image-20210718143018947](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210718143018947.png)
+![image-20210718143018947](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718143018947.png)
 
 
 
@@ -1463,7 +1463,7 @@ redis-cli -h 127.0.0.1 -p 6379
 - 以数据为重点，将数据以二进制形式保存，快照的形式，存储格式简单。**(RDB)**
 - 记录操作数据的过程，日志的形式，存储格式复杂，关注的重点在数据的操作过程。**(AOF)**
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142523.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142523.png)
 
 ##### RDB
 
@@ -1495,7 +1495,7 @@ save
 
 **save指令工作原理**
 
-![image-20210719133407507](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210719133407507.png)
+![image-20210719133407507](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719133407507.png)
 
 
 
@@ -1514,7 +1514,7 @@ bgsave(background save)
 
 **bgsave指令工作原理**
 
-![image-20210719133917825](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210719133917825.png)
+![image-20210719133917825](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719133917825.png)
 
 **bgsave命令**是针对save阻塞问题做的**优化**。Redis内部所有涉及到RDB操作都采用bgsave的方式，save命令可以放弃使用，推荐使用bgsave。
 
@@ -1545,7 +1545,7 @@ save second changes
 
 **工作原理**
 
-![image-20210719140822364](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210719140822364.png)
+![image-20210719140822364](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719140822364.png)
 
 **注意**：
 
@@ -1557,7 +1557,7 @@ save second changes
 
 **二种方法的对比**
 
-![image-20210719140943100](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210719140943100.png)
+![image-20210719140943100](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719140943100.png)
 
 **RDB优缺点**
 
@@ -1586,7 +1586,7 @@ save second changes
 
 **AOF写数据过程**
 
-![image-20210719142015170](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210719142015170.png)
+![image-20210719142015170](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719142015170.png)
 
 **三种策略**
 
@@ -1694,7 +1694,7 @@ bgrewriteaof
 
 **手动重写（bgrewriteaof）原理**
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142657.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142657.png)
 
 
 
@@ -1720,15 +1720,15 @@ bgrewriteaof
 
 - 自动重写触发条件
 
-  ![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142715.png)
+  ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142715.png)
 
 
 
 **工作原理**
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142755.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142755.png)
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142814.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142814.png)
 
 
 
@@ -1736,7 +1736,7 @@ bgrewriteaof
 
 ##### RDB与AOF区别
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608142837.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142837.png)
 
 
 
@@ -1830,7 +1830,7 @@ QUEUED
 
 **工作流程**
 
-![image-20210720150212121](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210720150212121.png)
+![image-20210720150212121](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720150212121.png)
 
 
 
@@ -1925,7 +1925,7 @@ QUEUED
 
 ##### 过期数据
 
-![image-20210721143113932](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210721143113932.png)
+![image-20210721143113932](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210721143113932.png)
 
 
 
@@ -1935,7 +1935,7 @@ QUEUED
 - **惰性删除**
 - **定期删除**
 
-![image-20210721143621331](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210721143621331.png)
+![image-20210721143621331](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210721143621331.png)
 
 **数据删除策略的目标**
 
@@ -1965,7 +1965,7 @@ QUEUED
 
 **定期删除**
 
-![image-20210721150201947](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210721150201947.png)
+![image-20210721150201947](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210721150201947.png)
 
 serverCron():表明每秒执行**server.hz**次的**定期删除操作**
 
@@ -2028,11 +2028,11 @@ activeExpireVCycle():**随机抽取**检查每个**数据的时效性**
 
 
 
- 检测易失数据![image-20210722130758323](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210722130758323.png)
+ 检测易失数据![image-20210722130758323](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722130758323.png)
 
 检测全库数据
 
-![image-20210722131028572](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210722131028572.png)
+![image-20210722131028572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722131028572.png)
 
 这些策略和maxmemory-policy 连用
 
@@ -2048,7 +2048,7 @@ maxmemory-policy volatile-lru
 
 - 使用**INFO命令**输出监控信息，查询缓存 **hit 和 miss** 的次数，根据业务需求调优Redis配置
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143004.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143004.png)
 
 
 
@@ -2190,7 +2190,7 @@ maxmemory-policy volatile-lru
 - 基数是数据集**去重后元素个数**
 - HyperLogLog 是用来做基数统计的，运用了LogLog的算法
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143020.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143020.png)
 
 
 
@@ -2358,7 +2358,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 **多台服务器连接方案**
 
-![image-20210723131642561](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723131642561.png)
+![image-20210723131642561](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723131642561.png)
 
 - 提供数据方：master
   - 主服务器，主节点，主库
@@ -2408,7 +2408,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
   - 数据同步阶段
   - 命令传播阶段
 
-![image-20210723133618394](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723133618394.png)
+![image-20210723133618394](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723133618394.png)
 
 
 
@@ -2416,7 +2416,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 建立slave到master的连接，使master能够识别slave，并保存slave端口号
 
-![image-20210723134123265](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723134123265.png)
+![image-20210723134123265](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723134123265.png)
 
 **主从连接（slave连接master） **
 
@@ -2457,7 +2457,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
   slaveof 127.0.0.1 6379
   ```
 
-  ![image-20210723141532664](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723141532664.png)![image-20210723141613418](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723141613418.png)
+  ![image-20210723141532664](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723141532664.png)![image-20210723141613418](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723141613418.png)
 
 
 
@@ -2510,7 +2510,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 ##### **数据同步阶段(第二阶段)**
 
-![image-20210723143039754](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210723143039754.png)
+![image-20210723143039754](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723143039754.png)
 
 - 全量复制
 
@@ -2542,7 +2542,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 
 
-![image-20210724125114705](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724125114705.png)
+![image-20210724125114705](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724125114705.png)
 
 **数据同步阶段slave说明**
 
@@ -2609,7 +2609,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 - 数据来源：当master接收到主客户端的指令时，除了将指令执行，会将该指令存储到缓冲区中
 
-![image-20210724131221079](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724131221079.png)
+![image-20210724131221079](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724131221079.png)
 
 
 
@@ -2623,7 +2623,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
   - master记录**已发送**的信息对应的offset
   - slave记录**已接收**的信息对应的offset
 
-![image-20210724131739384](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724131739384.png)
+![image-20210724131739384](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724131739384.png)
 
 
 
@@ -2640,7 +2640,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 ##### 数据同步+命令传播阶段工作流程
 
-![image-20210724133356074](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724133356074.png)
+![image-20210724133356074](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724133356074.png)
 
 
 
@@ -2675,31 +2675,31 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 - slave延迟由slave发送**REPLCONF ACK**命令做确认
 
-![image-20210724134245251](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724134245251.png)
+![image-20210724134245251](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724134245251.png)
 
 
 
 ##### 常见问题
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143304.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143304.png)
 
-![image-20210724134554939](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724134554939.png)
+![image-20210724134554939](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724134554939.png)
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143317.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143317.png)
 
 
 
 **网络中断**
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143327.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143327.png)
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200821110907.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200821110907.png)
 
  
 
 **数据不一致**
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143352.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143352.png)
 
 
 
@@ -2709,7 +2709,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 哨兵(sentinel) 是一个**分布式系统**，用于对主从结构中的每台服务器进行**监控**，当出现故障时通过投票机制**选择**新的master并将所有slave连接到新的master。
 
-![image-20210724141347922](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724141347922.png)
+![image-20210724141347922](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724141347922.png)
 
 **作用**
 
@@ -2754,7 +2754,7 @@ sentinel parallel-syncs mymaster 1
 sentinel failover-timeout mymaster 180000
 ```
 
-![image-20210724144152356](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210724144152356.png)
+![image-20210724144152356](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210724144152356.png)
 
 
 
@@ -2780,15 +2780,15 @@ sentinel failover-timeout mymaster 180000
     - master_host、master_port
     - offset
 
-<img src="https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143539.png" alt="img" style="zoom: 67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143539.png" alt="img" style="zoom: 67%;" />
 
-![image-20210725134144092](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725134144092.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725134144092.png" alt="image-20210725134144092" style="zoom: 50%;" />
 
 
 
 **通知阶段（保持联通）**
 
-![image-20210725134317697](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725134317697.png)
+![image-20210725134317697](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725134317697.png)
 
 多个哨兵之间形成自己的通讯，一个哨兵去和主服务器以及从服务器作信息交换，之后多个哨兵之间进行信息同步。
 
@@ -2798,13 +2798,13 @@ sentinel failover-timeout mymaster 180000
 
 
 
-![image-20210725134719772](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725134719772.png)
+![image-20210725134719772](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725134719772.png)
 
 当一个哨兵去ping主服务器发现主服务器没有回应时，会判定主服务器可能宕机了，这只是一个哨兵的判断（**主观下线**），当然一个哨兵可能不足以认定，因此其他的哨兵纷纷去ping主服务器，如果都发现主服务器没有回应，那么多数表决一致（**客观下线**），判定主服务器宕机了。
 
 
 
-![image-20210725135437225](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725135437225.png)
+![image-20210725135437225](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725135437225.png)
 
 发现主服务器宕机了，需要从从服务器中选举出master，这个工作就是由哨兵来，在选举之前，哨兵之间要选举出执行人，它们之间会进行一个竞选过程。
 
@@ -2833,7 +2833,7 @@ sentinel failover-timeout mymaster 180000
 
 - 集群就是使用网络将若干台计算机**联通**起来，并提供**统一的管理方式**，使其对外呈现单机的服务效果
 
-![image-20210725141126715](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725141126715.png)
+![image-20210725141126715](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725141126715.png)
 
 **集群作用**
 
@@ -2841,7 +2841,7 @@ sentinel failover-timeout mymaster 180000
 - 分散单台服务器的存储压力，实现**可扩展性**
 - **降低**单台服务器宕机带来的**业务灾难**
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725141228950.png" alt="image-20210725141228950" style="zoom: 50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725141228950.png" alt="image-20210725141228950" style="zoom: 50%;" />
 
 ##### 结构设计
 
@@ -2853,7 +2853,7 @@ sentinel failover-timeout mymaster 180000
 
 <img src="https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143701.png" alt="img" style="zoom: 67%;" />
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725141650452.png" alt="image-20210725141650452" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725141650452.png" alt="image-20210725141650452" style="zoom:50%;" />
 
 - 增强可扩展性 ——槽
 
@@ -2861,7 +2861,7 @@ sentinel failover-timeout mymaster 180000
 
   将原来各个服务器中一部分槽拿来给的新节点
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725141942025.png" alt="image-20210725141942025" style="zoom: 50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725141942025.png" alt="image-20210725141942025" style="zoom: 50%;" />
 
 
 
@@ -2873,9 +2873,9 @@ sentinel failover-timeout mymaster 180000
 - 一次命中，直接返回
 - 一次未命中，告知具体的位置，key再直接去找对应的库保存数据
 
-![image-20210725142455715](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725142455715.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725142455715.png" alt="image-20210725142455715" style="zoom: 67%;" />
 
-![image-20210725142526718](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725142526718.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725142526718.png" alt="image-20210725142526718" style="zoom:67%;" />
 
 
 
@@ -2928,7 +2928,7 @@ redis-trib.rb  create --replicas 1
 //注意一一对应 ， 3个master 对应 3个slave
 ```
 
-![image-20210725145155534](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725145155534.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725145155534.png" alt="image-20210725145155534" style="zoom: 80%;" />
 
 
 
@@ -2940,7 +2940,7 @@ redis-trib.rb  create --replicas 1
 redis-cli -c
 ```
 
-![image-20210725145939491](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725145939491.png)
+![image-20210725145939491](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725145939491.png)
 
 数据被指定到对应节点的槽上。
 
@@ -2956,11 +2956,11 @@ redis-cli -c
 cluster nodes
 ```
 
-![image-20210725151154787](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725151154787.png)
+![image-20210725151154787](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725151154787.png)
 
 当原来的master重新来链接后，成为了slave服务器
 
-![image-20210725151212406](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210725151212406.png)
+![image-20210725151212406](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725151212406.png)
 
 
 
@@ -3096,7 +3096,7 @@ cluster failover
 
 缓存雪崩就是**瞬间过期数据量太大**，导致对数据库服务器造成压力。如能够**有效避免过期时间集中**，可以有效解决雪崩现象的出现 （约40%），配合其他策略一起使用，并监控服务器的运行数据，根据运行记录做快速调整。
 
-![img](https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200608143749.png)
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143749.png)
 
 
 
@@ -3209,23 +3209,23 @@ cluster failover
 
 性能指标：Performance
 
-![image-20210727160121926](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727160121926.png)
+![image-20210727160121926](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727160121926.png)
 
 内存指标：Memory
 
-![image-20210727160612551](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727160612551.png)
+![image-20210727160612551](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727160612551.png)
 
 基本活动指标：Basic activity
 
-![image-20210727160638194](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727160638194.png)
+![image-20210727160638194](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727160638194.png)
 
 持久性指标：Persistence
 
-![image-20210727160849884](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727160849884.png)
+![image-20210727160849884](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727160849884.png)
 
 
 错误指标：Error
 
 
-![image-20210727160913438](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210727160913438.png)
+![image-20210727160913438](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210727160913438.png)
 

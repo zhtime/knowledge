@@ -1,6 +1,6 @@
 #  SpringMVC
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/9af0bb1f70be4e18a61bed179c8bb204.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0F1Z2Vuc3Rlcm5fUVhM,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//9af0bb1f70be4e18a61bed179c8bb204.png)
 
 ## Spring与Web环境集成
 
@@ -83,7 +83,7 @@ SpringMVC 已经成为目前最主流的MVC框架之一，并且随着Spring3.0 
 
 ##### 开发步骤
 
-![image-20210805162839935](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210805162839935.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170227082.png" alt="image-20210815170227082" style="zoom:80%;" />
 
 ①导入SpringMVC相关坐标
 
@@ -227,7 +227,7 @@ SpringMVC基于Spring容器，所以在进行SpringMVC操作时，需要将Contr
 http://localhost:8081/SpringMVC1_war_exploded/quick
 ```
 
-![image-20210805174821317](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210805174821317.png)
+![image-20210815170313730](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170313730.png)
 
 遇到tomact无法启动的原因
 
@@ -239,9 +239,9 @@ http://localhost:8081/SpringMVC1_war_exploded/quick
 
 ##### SpringMVC流程视图
 
-![image-20210806151015371](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210806151015371.png)
+![image-20210815170406489](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170406489.png)
 
-![image-20210806151232413](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210806151232413.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806151232413.png" alt="image-20210806151232413" style="zoom:67%;" />
 
 1. 服务器启动
 
@@ -261,7 +261,7 @@ http://localhost:8081/SpringMVC1_war_exploded/quick
 
 ## SpringMVC组件解析
 
-![image-20210806152037059](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210806152037059.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806152037059.png" alt="image-20210806152037059" style="zoom:67%;" />
 
 1. **前端控制器：DispatcherServlet**
 
@@ -392,7 +392,7 @@ public class UserController {
         return "redirect:/success.jsp";
 ```
 
-![image-20210807142144661](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210807142144661.png)
+![image-20210807142144661](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210807142144661.png)
 
 地址发生了改变，但是跳转的还是原来的界面。
 
@@ -421,7 +421,7 @@ public class UserController {
 
 - 测试
 
-![image-20210807142634814](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210807142634814.png)
+![image-20210807142634814](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210807142634814.png)
 
 - **通过ModelAndView对象返回**
 
@@ -516,7 +516,7 @@ public class UserController {
       }
   ```
 
-  ![image-20210807181000771](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210807181000771.png)
+  ![image-20210807181000771](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210807181000771.png)
 
 - **导入依赖**
 
@@ -557,9 +557,9 @@ public class UserController {
 
 作为一个参考，我这里确实也是jar包重复问题，在创建SpringMVC时会创建一个lib的目录，我在配置tomact服务器启动时会创建out文件夹，当中的jar都重复了，我这里把lib目录删除之后，接解决了问题。
 
-![image-20210807181407825](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210807181407825.png)
+![image-20210807181407825](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210807181407825.png)
 
-![image-20210807181423754](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210807181423754.png)
+![image-20210807181423754](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210807181423754.png)
 
 
 
@@ -604,7 +604,7 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
   
   ```
 
-  ![image-20210809154155084](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809154155084.png)
+  ![image-20210809154155084](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809154155084.png)
 
   
 
@@ -622,7 +622,7 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
       }
   ```
 
-  ![image-20210809154738921](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809154738921.png)
+  ![image-20210809154738921](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809154738921.png)
 
 - **数组类型参数**
 
@@ -638,7 +638,7 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
       }
   ```
 
-  ![image-20210809155008520](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809155008520.png)
+  ![image-20210809155008520](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809155008520.png)
 
 - **集合类型参数**
 
@@ -701,9 +701,9 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
 
   页面
 
-  ![image-20210809160501342](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809160501342.png)
+  ![image-20210809160501342](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809160501342.png)
 
-  ![image-20210809163400715](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809163400715.png)
+  ![image-20210809163400715](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809163400715.png)
 
    
 
@@ -725,7 +725,7 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
 
 使用post请求时，数据出现乱码
 
-![image-20210809163425037](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809163425037.png)
+![image-20210809163425037](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210809163425037.png)
 
 配置过滤器进行编码的过滤
 
@@ -792,9 +792,9 @@ Restful风格的请求是使用“**url+**请求方式”表示一次请求目�
 
 **DELETE**:用于删除资源
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809165812149.png" alt="image-20210809165812149" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170600206.png" alt="image-20210815170600206" style="zoom:67%;" />
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210809165440577.png" alt="image-20210809165440577" style="zoom: 80%;" />
+![image-20210815170620745](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170620745.png)
 
 ```java
     @RequestMapping(value = "quick13/{userName}")
@@ -926,7 +926,7 @@ request.getHeader(name)@RequestHeader注解的属性如下:
     }
 ```
 
-![image-20210810160311852](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810160311852.png)
+![image-20210810160311852](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210810160311852.png)
 
 ```java
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36
@@ -953,7 +953,7 @@ DCC434A6D72FDDC5204686834566FAB6
 
 - 当form表 单的enctype取值为Mutilpart/form-data时,请求正文内容就变成多部分形式:
 
-![image-20210810161436324](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810161436324.png)
+![image-20210810161436324](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210810161436324.png)
 
 
 
@@ -1029,7 +1029,7 @@ public void save15(@RequestParam("username")String name ,@RequestParam("loadFile
     }
 ```
 
-![image-20210810170222572](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810170222572.png)
+![image-20210810170222572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210810170222572.png)
 
 ![image-20210810171528527](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810171528527.png)
 
@@ -1044,9 +1044,9 @@ public void save15(@RequestParam("username")String name ,@RequestParam("loadFile
 
 解决：
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810170527248.png" alt="image-20210810170527248" style="zoom:67%;" />
+![image-20210815170706416](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170706416.png)
 
-<img src="C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810170544258.png" alt="image-20210810170544258" style="zoom:67%;" />
+![image-20210815170722197](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815170722197.png)
 
 
 
