@@ -1031,7 +1031,7 @@ public void save15(@RequestParam("username")String name ,@RequestParam("loadFile
 
 ![image-20210810170222572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210810170222572.png)
 
-![image-20210810171528527](C:\Users\25246\AppData\Roaming\Typora\typora-user-images\image-20210810171528527.png)
+![image-20210810171528527](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210810171528527.png)
 
 
 
