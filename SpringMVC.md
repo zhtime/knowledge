@@ -1050,5 +1050,325 @@ public void save15(@RequestParam("username")String name ,@RequestParam("loadFile
 
 
 
-·
+## Spring JDBCTemplate基本使用
+
+##### JDBCTemplate概述
+
+它是spring框架中提供的一个对象，是对原始繁琐的JdbcAPI对象的简单封装。spring框架为我们提供了很多的操作模板类。例如:操作关系型数据的JdbcTemplate和HibernateTemplate，操作nosql数据库的RedisTemplate，操作消息队列的JmsTemplate等等。
+
+
+
+##### JDBCTemplate开发步骤
+
+- 导入spring-jdbc和spring-tx(事务)坐标
+
+  ```xml
+    <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-jdbc</artifactId>
+              <version>5.0.5.RELEASE</version>
+          </dependency>
+  
+          <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-tx</artifactId>
+              <version>5.0.5.RELEASE</version>
+    </dependency>
+          <!--        数据库驱动-->
+          <dependency>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <version>5.1.49</version>
+          </dependency>
+  
+          <dependency>
+              <groupId>c3p0</groupId>
+              <artifactId>c3p0</artifactId>
+              <version>0.9.1.2</version>
+          </dependency>
+  
+          <dependency>
+              <groupId>com.alibaba</groupId>
+              <artifactId>druid</artifactId>
+              <version>1.2.1</version>
+          </dependency>
+  ```
+
+- 创建数据库表和实体
+
+  ![image-20210816152034848](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816152034848.png)
+
+  ```java
+  public class Account {
+  
+      private String name;
+      private double money;
+  }
+  ```
+
+- 创建JdbcTemplate对象
+
+  ```java
+    //创建数据源
+          ComboPooledDataSource dataSource = new ComboPooledDataSource();
+          dataSource.setDriverClass("com.mysql.jdbc.Driver");
+          dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/test2");
+          dataSource.setUser("root");
+          dataSource.setPassword("root");
+      JdbcTemplate jdbcTemplate = new JdbcTemplate();
+          //连接数据库，设置数据源
+          jdbcTemplate.setDataSource(dataSource);
+  ```
+
+- 执行数据库操作
+
+  ```java
+   //操作执行
+          jdbcTemplate.update("insert into account values (?,?)","Tom","3000");
+  ```
+
+
+
+##### Spring产生JdbcTemplate对象
+
+xml配置文件
+
+```xml
+<!--    数据源对象配置-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test2"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+```
+
+测试
+
+```java
+@Test
+    public void Test1()   {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean(JdbcTemplate.class);
+        jdbcTemplate.update("insert into account values (?,?)","Jack","7000");
+    }
+```
+
+复习一下：优化
+
+jdbc.properties文件
+
+```properties
+jdbc.driver = com.mysql.jdbc.Driver
+jdbc.url =jdbc:mysql://localhost:3306/test2
+jdbc.user = root
+jdbc.password = root
+```
+
+```xml
+<!--    加载jdbc.properties-->
+        <context:property-placeholder location="jdbc.properties"/>
+
+<!--    数据源对象配置-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+```
+
+
+
+##### JDBC基本操作
+
+CRUD（增删改查）
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext.xml")
+public class jdbcTemplateCRUDTest {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+
+    @Test
+    public void insertTest(){
+        jdbcTemplate.update("insert into account values (?,?)","T1",1111);
+    }
+
+    @Test
+    public void updateTest(){
+        jdbcTemplate.update("update account set money=? where name=?",6000,"Tom");
+    }
+
+    @Test
+    public void selectTest(){
+        List<Account> list = jdbcTemplate.query("select * from account ", new BeanPropertyRowMapper<Account>(Account.class));
+        
+       Account list = jdbcTemplate.queryForObject("select * from account where name = ?  ", new BeanPropertyRowMapper<Account>(Account.class),"Tom");
+        
+        Long list = jdbcTemplate.queryForObject("select count(*) from account where ", Long.class);
+        System.out.println(list);
+    }
+
+}
+```
+
+
+
+## SpringMVC拦截器
+
+##### 拦截器(interceptor)的作用
+
+Spring MVC的**拦截器**类似于Servlet开发中的过滤器Filter，用于对处理器进行**预处理**和**后处理**.
+
+将拦截器按一定的顺序联结成一条链，这条链称为**拦截器链(Interceptor Chain)**。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。拦截器也是AOP思想的具体实现。
+
+
+
+##### 拦截器和过滤器区别
+
+![image-20210816163512883](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816163512883.png)
+
+
+
+##### 拦截器快速入门
+
+自定义拦截器三步骤：
+
+1. **创建拦截器类实现HandlerInterceptor接口**
+
+   ```java
+   public class MyInterceptor implements HandlerInterceptor {
+   
+       //在目标方法执行之前执行
+       public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+           System.out.println("preHandle....");
+           //false:表示到此拦截,后面方法都被拦截了
+           return true;
+       }
+   
+       //在目标方法执行之后 视图对象返回之前执行
+       public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+           System.out.println("postHandle....");
+   
+       }
+   
+       //整个流程都执行完毕后 视图对象已经返回执行
+       public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+           System.out.println("afterCompletion....");
+   
+       }
+   }
+   ```
+
+2. **配置拦截器**
+
+   ```xml
+   <!--    配置拦截器-->
+   
+    <mvc:interceptors>
+           <mvc:interceptor>
+   <!--            对哪些资源执行拦截操作
+               /**:表示对所有目标方法都进行拦截
+                /xx/**:表示xx目录下所有的目标方法   -->
+               <mvc:mapping path="/**"/>
+               <bean class="interceptor.MyInterceptor"/>
+           </mvc:interceptor>
+   </mvc:interceptors>
+   ```
+
+3. **测试拦截器效果**
+
+```java
+@Controller
+public class TargetController {
+	//目标方法
+    @GetMapping(value = "quick2")
+    public ModelAndView save2(){
+        System.out.println("目标方法执行....");
+        /*
+        Model:模型 封装数据
+        View：视图  展示数据
+         */
+        ModelAndView modelAndView = new ModelAndView();
+        //设置模型数据
+        modelAndView.addObject("username","DeMA");
+
+        //设置视图,跳转到对应的success jsp页面
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+}
+```
+
+若自定义方法中的**preHandle()**返回的false，就会出现以下的情况。
+
+![image-20210816165549186](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816165549186.png)
+
+![image-20210816165600914](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816165600914.png)
+
+
+
+
+
+若返回改为**true**
+
+![image-20210816165653976](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816165653976.png)
+
+![image-20210816165722185](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816165722185.png)
+
+
+
+
+
+小拓展
+
+```java
+public class MyInterceptor implements HandlerInterceptor {
+
+    //在目标方法执行之前执行
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("preHandle....");
+
+        //规定请求资源中需要一个request参数
+        String param = request.getParameter("request");
+        if ("111".equals(param)){
+            return true;
+        }else{
+
+            //进行拦截,重定向资源
+            request.getRequestDispatcher("/index.jsp").forward(request,response);
+            return false;
+        }
+
+        //false:表示到此拦截,后面方法都被拦截了,开启拦截
+        //true: 关闭拦截
+//        return true;
+    }
+
+    //在目标方法执行之后 视图对象返回之前执行
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        //对视图进行变动
+        modelAndView.addObject("username","资源发生改变");
+        System.out.println("postHandle....");
+    }
+
+    //整个流程都执行完毕后 视图对象已经返回执行
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion....");
+
+    }
+}
+```
+
+![image-20210816170905524](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816170905524.png)
+
+![image-20210816170915734](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816170915734.png)
 

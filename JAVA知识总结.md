@@ -46,7 +46,7 @@
 
 比如:给出两个模块,模块1和模块2, 如果我想要和模块2做数据的交互,低耦合的设计应该是通过模块1数据与模块2进行交互,而不是模块1直接操作模块2上的数据.
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709093116623.png" alt="image-20210709093116623" style="zoom: 80%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709093116623.png" alt="image-20210709093116623" style="zoom: 80%;" />![image-20210816104154566](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816104154566.png)
 
 
 
@@ -109,77 +109,42 @@
 
 特点:
 
-- 当使用多态方式调用方法时,首先检查父类中是否有该方法,如果没有,则编译错误.如果有,再去调用子类的同名方法.
-- 静态方法特殊,静态方法只能继承,不能覆盖,如果子类和父类有相同的静态方法,只能起到隐藏父类方法的作用,这时候,谁的引用就调用谁的方法.
+- 当使用多态方式调用方法时,**首先检查父类中是否有该方法,如果没有,则编译错误.如果有,再去调用子类的同名方法**.
+- **静态方法特殊,静态方法只能继承,不能覆盖**,如果子类和父类有相同的静态方法,只能起到**隐藏**父类方法的作用,**这时候,谁的引用就调用谁的方法.**
 
 ```java
 public class Father {
 
 
     public void say(){
-
-
         System.out.println("father");
-
-
     }
 
 
     public static void action(){
-
-
         System.out.println("爸爸打儿子！");
-
-
     }
-
-
 }
 
 
 public class Son extends Father{
 
-
     public void say() {
-
-
         System.out.println("son");
-
-
-
     }
 
-
-
    public static void action(){
-
-
         System.out.println("打打！");
-
-
     }
 
 
-    public static void
-main(String[] args) {
-
-
+    public static void main(String[] args) {
         Father f=new Son();
-
-
         f.say();
-
-
         f.action();
 
-
     }
-
-
-
 }
-
-
 
 输出：son
           
@@ -257,18 +222,18 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 ### 重载和重写(覆盖)区别
 
-|            | 重载                     | 重写                                 |
-| ---------- | ------------------------ | ------------------------------------ |
-| 发生范围   | 同一类                   | 子类                                 |
-| 发生阶段   | 编译时期                 | 运行时期                             |
-| 参数列表   | 修改参数(个数,类型,位置) | 必须相同                             |
-| 返回类型   | 可修改                   | 子类方法返回值类型 <= 父类           |
-| 异常       | 可修改                   | 子类方法声明抛出异常类型 <= 父类异常 |
-| 访问修饰符 | 可修改                   | 子类访问修饰符 >= 父类访问权限       |
+|            | 重载                     | 重写                                                   |
+| ---------- | ------------------------ | ------------------------------------------------------ |
+| 发生范围   | 同一类                   | 子类                                                   |
+| 发生阶段   | 编译时期                 | 运行时期                                               |
+| 参数列表   | 修改参数(个数,类型,位置) | 必须相同                                               |
+| 返回类型   | 可修改                   | 子类方法返回值类型 <= 父类(**必须在继承关系的前提下**) |
+| 异常       | 可修改                   | 子类方法声明抛出异常类型 <= 父类异常                   |
+| 访问修饰符 | 可修改                   | 子类访问修饰符 >= 父类访问权限                         |
 
 补充:
 
-重写返回值类型:如果方法的返回类型是void和基本数据类型,则返回值重写时不可修改,但是如果返回类型时引用类型,重写时可以返回该引用类型的子类.
+**重写返回值类型**:如果方法的返回类型是void和基本数据类型,则返回值重写时不可修改,但是如果返回类型时引用类型,重写时可以返回该引用类型的子类.
 
 ------
 
@@ -376,6 +341,7 @@ false
 
 ```java
 public static Integer valueOf(int i) {
+    //IntegerCache类型的缓存
         if(i >= -128 && i <= IntegerCache.high)
             return IntegerCache.cache[i + 128];
         else
@@ -482,7 +448,7 @@ Boolean类中定义了两个静态不可改变的变量
 
  Integer i = new Integer(xxx)和Integer i =xxx;这两种方式的区别。 
 
-1.  第一种方式不会触发自动装箱的过程；而第二种方式会触发； 
+1.  第一种方式不会触发自动装箱的过程；而第二种方式会触发自动装箱(**java编译时会自动调用Integer.valueOf(xxx)**)； 
 2.  在执行效率和资源占用上的区别。第二种方式的执行效率和资源占用在一般性情况下要优于第一种情况（注意这并不是绝对的）。 
 
 
@@ -522,7 +488,7 @@ false
 true
 ```
 
- 当 "=="运算符的两个操作数都是 包装器类型的引用，则是比较指向的是否是同一个对象，而如果其中有一个操作数是表达式（即包含算术运算）则比较的是数值（即会触发自动拆箱的过程） ，对于包装器类型，equals方法并不会进行类型转换 .
+ 当 "=="运算符的两个操作数都是 包装器类型的引用，则是比较指向的是否是同一个对象，而如果其中有一个操作数是表达式（即包含算术运算）则比较的是数值（即会触发自动拆箱的过程） ，对于包装器类型，**equals方法并不会进行类型转换 .**
 
 [java基本数据类型转换](https://www.cnblogs.com/fanweisheng/p/11130515.html)
 
@@ -544,7 +510,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 容量小的类型可自动转换为容量大的数据类型；
 
-byte,short,char → int → long → float → double
+byte,short,char <-----int <----- long <----- float <--- double
 
 byte，short，char之间不会相互转换，他们在计算时首先会转换为int类型。
 
@@ -855,6 +821,10 @@ p1.equals(p4) : false; p1(68545) p4(68545)
 set:[aaa - 200, eee - 100]
 ```
 
+这下，equals()生效了，HashSet中没有重复元素。
+    比较p1和p2，我们发现：它们的hashCode()相等，通过equals()比较它们也返回true。所以，p1和p2被视为相等。
+    比较p1和p4，我们发现：虽然它们的hashCode()相等；但是，通过equals()比较它们返回false。所以，p1和p4被视为不相等。
+
 ------
 
 
@@ -863,7 +833,7 @@ set:[aaa - 200, eee - 100]
 
 ### Java为什么只有值传递
 
-**按值调⽤(call by value)**表示⽅法接收的是调⽤者提供的值，⽽按引⽤调⽤（**call by reference)**表示⽅法**接收的是调⽤者提供的变量地址。**
+**按值调用(call by value)**表示方法接收的是调⽤者提供的值，⽽按引用调用（**call by reference)**表示⽅法**接收的是调用者提供的变量地址。**
 
  java中只有值传递，只不过引用类型的变量里的值是个内存地址罢了，都是复制一份做赋值操作 。
 
@@ -919,7 +889,7 @@ arr指向堆中的数组对象，change方法中array是数组对象引用的拷
 
 
 
-Java 程序设计语⾔对对象采⽤的不是引⽤调⽤，实际上，对象引⽤是按 值传递的。 
+Java 程序设计语⾔对对象采⽤的不是引⽤调⽤，实际上，对象引⽤是按值传递的。 
 
 下⾯再总结⼀下 Java 中⽅法参数的使⽤情况： 
 
@@ -971,7 +941,7 @@ Java 程序设计语⾔对对象采⽤的不是引⽤调⽤，实际上，对象
 
 2. Exception 又 有 两 个 分 支 ， 一 个 是 运 行 时 异 常 RuntimeException ， 一 个 是 CheckedException。 
 
-**RuntimeException** 如 ： NullPointerException 、 ClassCastException ； 一 个 是 检 查 异 常 CheckedException，如 I/O 错误导致的 IOException、SQLException。 RuntimeException 是 那些可能在 Java 虚拟机正常运行期间抛出的异常的超类。 如果出现 RuntimeException，那么一 定是程序员的错误.
+**RuntimeException** 如 ： NullPointerException 、 ClassCastException ； 一 个 是 检 查 异 常 CheckedException，如 I/O 错误导致的 IOException、SQLException。 RuntimeException 是 那些可能在 Java 虚拟机正常运行期间抛出的异常的超类。 如果出现 RuntimeException，那么一 定是程序员的错误（想想空指针问题、数组越界的问题）.
 
 
 
@@ -1003,7 +973,7 @@ catch(){
 try{
 return  							//finally块前（try/catch）中有return,finally块中也有
 									//return会先执行前面return语句
-        							//并保存下来，再执行finally块中的return，覆盖掉之前的结果，返										回。
+        							//并保存下来，再执行finally块中的return，覆盖掉之前的结果，返回。
 }
 catch(){
     
@@ -2251,6 +2221,16 @@ public class StudentTest {
 
     private static void comparator(List<Student> students) {
         System.out.printf("未排序前的顺序,%s\n", students);
+        /*
+        lemd表达式：Collections.sort(students, (Comparator<Student>)(o1,o2)-> {
+        	 if (o1.getAge() > o2.getAge()){
+                    return 1;
+                }else if (o1.getAge() < o2.getAge()){
+                    return -1;
+                }
+                return 0;
+        }
+        */
         Collections.sort(students, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
