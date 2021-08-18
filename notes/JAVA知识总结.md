@@ -913,6 +913,21 @@ Java 程序设计语⾔对对象采⽤的不是引⽤调⽤，实际上，对象
 
 ​			被修饰的引用类型，保证了引用类型变量所指向的地址不改变，而不能保证所引用的对象不改变。
 
+补充：
+
+```java
+byte b1 = 1, b2 = 2, b3 ,b4
+final byte b5 =4,b6=6;
+
+//试问,下面哪里编译错误？
+1. b3 = b5 + b6;
+2. b4 = b1 + b2;
+
+//答案：2编译错误
+/*原因：基本数据类型:byte、char、short在做运算时，都会自动进行转换成int、b1 + b2最后的结果时int， b4确是byte类型，类型不匹配。而b3 = b5 + b6;编译成功，b3 = 10,因为final关键字修饰后，b5和b6都是常量类型byte，最后10也是btye类型因此编译成功。
+*/
+```
+
 方法：不可以被继承的子类所重写（覆盖）。
 
 ​			效率原因，早期final方法为内嵌调用，如果方法过于庞大，并不能得到提升。
@@ -982,6 +997,12 @@ catch(){
 }
 ```
 
+补充：在tyr、catch语句中，catch语句块允许有多个，若出现父子类型的异常，需要把子类型的异常放在前面，父类型的异常放在后面。
+
+比如：Exception是所有异常的父类，若将它放在首位，那么就没有办法定位到具体的异常类型，不知道具体的异常，只知道有异常，不好检查。
+
+
+
 finally不会被执行情况
 
 ```
@@ -1038,26 +1059,21 @@ throw和throws区别
 
 编译时类型由声明的类型决定，运行时类型由实际赋予的对象类型决定。
 
-```
+```java
 Person p=new Student();
 编译类型：Person   运行类型:Student
+//引用类型Person是定义的，new Student()是在运行时创建的对象    
 ```
 
 
 
-
-
-当程序处于运行时从外部传入新的对象，该对象的编译时类型为Object，但程序运行时需要调用该对象的运行时类型的方法，当编译时无法获取对象和类属于哪些类时，为了获取在运行时该对象的具体类型的方法，此时就要用到反射。
-
-
-
-
+当程序处于运行时从外部传入新的对象，该对象的编译时类型为Object，但程序运行时需要调用该对象的运行时类型方法，在编译时无法获取对象属于哪些类时，为了在运行时获取该对象的具体类型的方法，此时就要用到反射。
 
  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//2019042011494188.png" alt="img" style="zoom: 200%;" /> 
 
  反射API
 
-- Class 类：位于java.lang包下，反射的核心类，可以获取类的属性，方法等信息。 
+- Class 类：位于java.lang包下，反射的核心类，可以获取类的属性，方法、构造方法等信息。 
 - Field 类：Java.lang.reflec 包中的类，表示类的成员变量，可以用来获取和设置类之中的属性值。 
 - Method 类： Java.lang.reflec 包中的类，表示类的方法，它可以用来获取类中的方法信息或者执行方法。
 - Constructor 类： Java.lang.reflec 包中的类，表示类的构造方法。
@@ -1075,7 +1091,7 @@ Person p=new Person();
 Class clazz=p.getClass();
 ```
 
-- 通过类名获取：类名.class
+- 通过类名获取：类名.class(字节码文件)
 
 ```
 Class clazz=Person.class;
@@ -1093,7 +1109,7 @@ Class clazz=Class.forName("类的全路径"); (最常用)
 
 **Class对象的newInstance()**
 
-使用Class对象的newInstance()方法创建该Class对象对应类的实列，这种方法要求该Class对象对应的类由默认的空构造器。
+使用Class对象的newInstance()方法创建该Class对象对应类的实列，这种方法要求该Class对象对应的类有默认的空构造器。
 
 **调用Constructor对象的newInstance()**
 
@@ -1122,9 +1138,17 @@ Class clazz=Class.forName("类的全路径"); (最常用)
 
  [(7条消息) java注解-最通俗易懂的讲解_Tanyboye的博客-CSDN博客_java 注解](https://blog.csdn.net/qq1404510094/article/details/80577555) 
 
+在正真对注解进行理论上的学习之前，可以对注解进行形象化方便理解。
+
+可以把注解想象成标签，标签是干什么的呢，表明名称、属性、作用的，类似一种说明，反映事物的特性的。
+
+标签是对事物行为的评价与解释，注解的作用类似于标签。
+
+
+
 概念：
 
-Annotation（注解）是一个接口，程序可以通过反射来获取指定程序中元素的 Annotation对象，然后通过该 Annotation 对象来获取注解中的元数据信息。 （接触的少，专业语言太过抽象看不懂）
+Annotation（注解）是一个接口，程序可以通过反射来获取指定程序中元素的 Annotation对象，然后通过该 Annotation 对象来获取注解中的元数据信息。 
 
 注解定义：
 
@@ -1150,6 +1174,10 @@ public class Test {
 
 负责注解其他注解， 作用在注解中，方便我们使用注解实现想要的功能。元注解分别有@Retention、 @Target、 @Document、 @Inherited和@Repeatable（JDK1.8加入）五种。 
 
+元注解负责**解释定义**注解的属性、范围、功能的。
+
+
+
 **@Retention**
 
 Retention 的英文意为保留期的意思。当 @Retention 应用到一个注解上的时候，它解释说明了这个注解的的存活时间。
@@ -1161,6 +1189,7 @@ Retention 的英文意为保留期的意思。当 @Retention 应用到一个注�
 - RetentionPolicy.RUNTIME 注解可以保留到程序运行的时候，它会被加载进入到 JVM 中，所以在程序运行时可以获取到它们。
 
 ```java
+//元注解
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TestAnnotation {
 }
@@ -1303,7 +1332,7 @@ public class Hero {
         System.out.println("I have a dream!");
     }
 }
-//say()方法被标注为过失
+//say()方法被标注为过时
 ```
 
 @**Override**
@@ -1373,6 +1402,27 @@ public class Test {
 //msg:Hi
 ```
 
+
+
+注解同样无法改变代码本身，注解只是某些工具的的工具。
+
+**注解的应用实例**
+
+JUnit 这个是一个测试框架，典型使用方法如下：
+
+```java
+public class ExampleUnitTest {
+    @Test
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
+    }
+}
+```
+
+自定义的注解为了实现某个目的而定义注解，比如要实现单元测试，可以自定义一个类似于@Test的注解，来完成单元测试达到目的。
+
+
+
 注解有许多用处，主要如下：
 
 - 提供信息给编译器： 编译器可以利用注解来探测错误和警告信息
@@ -1382,13 +1432,15 @@ public class Test {
 
 
 
+
+
 总结
 
-- 如果注解难于理解，你就把它类同于标签，标签为了解释事物，注解为了解释代码。
+- 如果注解难于理解，你就把它类同于标签，标签为了**解释事物**，注解为了**解释代码**。
 - 注解的基本语法，创建如同接口，但是多了个 @ 符号。
 - 注解的元注解。
 - 注解的属性。
-- 注解主要给编译器及工具类型的软件用的。
+- 注解主要给**编译器**及工具类型的软件用的。
 - 注解的提取需要借助于 Java 的反射技术，反射比较慢，所以注解使用时也需要谨慎计较时间成本
 
 ------
@@ -1401,7 +1453,7 @@ public class Test {
 
 Java 类中不仅可以定义变量和方法，还可以定义类，这样定义在类内部的类就被称为内部类。根 
 
-据定义的方式不同，内部类分为静态内部类，成员内部类，局部内部类，匿名内部类四种。
+据定义的方式不同，内部类分为**静态内部类，成员内部类，局部内部类，匿名内部类**四种。
 
 
 
@@ -1432,10 +1484,11 @@ public class innerClass {
     }
 }
 /*
-1. 静态内部类可以访问外部类所有的静态变量和方法，即使是 private 的也一样。
-2. 静态内部类和一般类一致，可以定义静态变量、方法，构造方法等。
-3. 其它类使用静态内部类需要使用“外部类.静态内部类”方式，如下所示：Out.Inner inner = 
-new Out.Inner();inner.print();
+1. 静态内部类可以访问外部类所有的静态变量和方法，即使是 private 的也一样。不能访问非静态变量和方法
+2. 静态内部类和一般类一致，可以定义静态变量和非静态变量、方法，构造方法等。
+3. 其它类使用静态内部类需要使用“外部类.静态内部类”方式，如下所示：
+Out.Inner inner = new Out.Inner();
+inner.print();
 */
 ```
 
@@ -1568,7 +1621,7 @@ public class Test {
 
 应用：
 
-泛型类
+**泛型类**
 
 ```java
 public class Demo {
@@ -1631,7 +1684,7 @@ Point<Integer, Integer> p1 = new Point<Integer, Integer>();
 
 
 
-泛型方法
+**泛型方法**
 
 ```java
 public class Demo {
@@ -1681,6 +1734,44 @@ class Point<T1, T2>{
 
 
 
+**泛型接口**
+
+```java
+public class Demo {
+    public static void main(String arsg[]) {
+        Info<String> obj = new InfoImp<String>("www.weixueyuan.net");
+        System.out.println("Length Of String: " + obj.getVar().length());
+    }
+}
+
+//定义泛型接口
+interface Info<T> {
+    public T getVar();
+}
+
+//实现接口
+class InfoImp<T> implements Info<T> {
+    private T var;
+
+    // 定义泛型构造方法
+    public InfoImp(T var) {
+        this.setVar(var);
+    }
+
+    public void setVar(T var) {
+        this.var = var;
+    }
+
+    public T getVar() {
+        return this.var;
+    }
+}
+```
+
+
+
+
+
 
 
 通配符 **？**
@@ -1688,12 +1779,12 @@ class Point<T1, T2>{
  **通配符的出现是为了指定泛型中的类型范围**。 
 
 - <?>被称作无限定的通配符。
-- <? extends T>表示该通配符所代表的类型是 T 类型的子类。 
-- <? super T>表示该通配符所代表的类型是 T 类型的父类。 
+- <? extends T>表示该通配符所代表的类型是 T 类型及其子类。 
+- <? super T>表示该通配符所代表的类型是 T 类型及其父类。 
 
 
 
-类型擦除
+**类型擦除**
 
  Java中的泛型基本上都是在编译器这个层次来实现的。在生成的Java字节码中是不包含泛型中的类型信息的。使用泛型的时候加上的类型参数，会在编译器在编译的时候去掉。这个过程就称为类型擦除。 
 
@@ -1706,7 +1797,7 @@ List<Integer> l2 = new ArrayList<Integer>();
 		
 System.out.println(l1.getClass() == l2.getClass());
 
-结果:true
+结果:true List.class
 ```
 
 ​	List<String>和List<Integer>在编译阶段 泛型类型String和Integer都被擦除掉，但是到了JVM中字节码文件中它们都变成了原始类型List，通过反射获取运行时期的信息时，它们是一样的因此是true。
@@ -1719,13 +1810,118 @@ JVM如何获取具体的类型呢？
 
 
 
+**String和Integer怎么办？**
+
+答案：**泛型转义**
+
+```java
+public class Erasure <T>{
+	T object;
+
+	public Erasure(T object) {
+		this.object = object;
+	}
+	
+}
+```
+
+定义一个Erasure泛型类，同反射看看它在运行时信息
+
+```java
+Erasure<String> erasure = new Erasure<String>("hello");
+Class eclz = erasure.getClass();
+System.out.println("erasure class is:"+eclz.getName());
+
+//结果：erasure class is: com.frank.test.Erasure
+```
+
+通过Class对象发现并不是**Erasure<T>**的泛型类，只是普通类Erasure
+
+
+
+```java
+Field[] fs = eclz.getDeclaredFields();
+for ( Field f:fs) {
+	System.out.println("Field name "+f.getName()+" type:"+f.getType().getName());
+}
+//结果：Field name object type:java.lang.Object
+```
+
+原本定义的类型参数T被擦除后，对应类型变成了Object类型（顶级父类），**是不是所有类型参数都会转换成Object类型呢？**
+
+**答案是否定的**
+
+配上通配符，指定类型参数的范围
+
+```java
+//String类型的子类
+public class Erasure <T extends String>{
+//	public class Erasure <T>{
+	T object;
+
+	public Erasure(T object) {
+		this.object = object;
+	}
+	
+}
+
+```
+
+再来看看对应T擦除后的类型
+
+```java
+Field name object type:java.lang.String
+```
+
+**结论**：在泛型类被类型擦除的时候，之前泛型类中的类型参数部分如果没有指定上限，如 `<T>`则会被转译成普通的 Object 类型，如果指定了上限如 `<T extends String>`则类型参数就被替换成类型上限。
+
+
+
+增加一个add()泛型方法
+
+```java
+public class Erasure <T>{
+	T object;
+
+	public Erasure(T object) {
+		this.object = object;
+	}
+	
+	public void add(T object){
+		
+	}
+	
+}
+```
+
+add方法中类型参数没有指定具体类型，最后应该是被转义成Object类型。
+
+```java
+Erasure<String> erasure = new Erasure<String>("hello");
+Class eclz = erasure.getClass();
+System.out.println("erasure class is:"+eclz.getName());
+
+Method[] methods = eclz.getDeclaredMethods();
+for ( Method m:methods ){
+	System.out.println(" method:"+m.toString());
+}
+// method:public void com.frank.test.Erasure.add(java.lang.Object)
+```
+
+如果通过反射来获取add方法，应该调用 `getDeclaredMethod("add",Object.class)`，在泛型类中类型参数T被擦除后，转义成了Object类型。
+
+
+
 ```java
 public class Test2{  
     public static void main(String[] args) {  
+        /*
+        Number类是java.lang包下的一个抽象类，提供了将包装类型拆箱成基本类型的方法，所有基本类型（数据类型）的包装类型都继承了该抽象类，并且是final声明不可继承改变
+        */
         /**不指定泛型的时候*/  
         int i=Test2.add(1, 2); //这两个参数都是Integer，所以T为Integer类型  
         Number f=Test2.add(1, 1.2);//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Number  
-        Object o=Test2.add(1, "asd");//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Object  
+        Object o=Test2.add(1, "asd");//这两个参数一个是Integer，以风格是String，所以取同一父类的最小级，为Object  
   
                 /**指定泛型的时候*/  
         int a=Test2.<Integer>add(1, 2);//指定了Integer，所以只能为Integer类型或者其子类  
@@ -1742,6 +1938,83 @@ public class Test2{
 
 类型擦除的基本过程也比较简单，首先是找到用来替换类型参数的具体类。这个具体类一般是 Object。如果指定了类型参数的上界的话，则使用这个上界。把代码中的类型参数都替换成具体的类。
 
+
+
+
+
+**类型擦除的局限性**
+
+泛型擦除，是泛型能够与之前的java版本代码兼容共存原因，但也因此抹除了很多继承相关的特性。
+
+
+
+通过泛型擦除的原理可以结合反射技术绕过被限制的操作。
+
+例如：List<E>接口，实现类ArrayList
+
+```java
+public interface List<E> extends Collection<E>{
+	
+	 boolean add(E e);
+}
+```
+
+通过反射调用add方法查看，会发现add方法中类型参数E已经转义成了Object类型
+
+```java
+boolean add(Object obj);
+```
+
+绕过编译器，利用反射，非正常操作
+
+```java
+public class ToolTest {
+
+
+	public static void main(String[] args) {
+		List<Integer> ls = new ArrayList<>();
+		ls.add(23);
+//		ls.add("text");
+		try {
+			Method method = ls.getClass().getDeclaredMethod("add",Object.class);
+			
+			
+			method.invoke(ls,"test");
+			method.invoke(ls,42.9f);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for ( Object o: ls){
+			System.out.println(o);
+		}
+	
+	}
+
+}
+
+/*
+23
+test
+42.9
+*/
+```
+
+发现可以在数组中添加字符，不可思议，正常情况下不允许的。
+
 ------
 
 
@@ -1750,7 +2023,7 @@ public class Test2{
 
 **保存对象及其状态到内存或磁盘中**
 
-java平台允许在内存中创建可复用的对象，一般情况下，JVM在运行时对象才可能存在，对象的声明周期 <= JVM的生命周期。希望在JVM生命周期结束后，对象也能够存在，并且能偶在未来被重新使用。
+java平台允许在内存中创建可复用的对象，一般情况下，JVM在运行时对象才可能存在，对象的声明周期 <= JVM的生命周期。希望在JVM生命周期结束后，对象也能够存在，并且能够在未来被重新使用。
 
 
 
@@ -1778,13 +2051,13 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 
 
-**序列化** **ID（private static final long serialVersionUID**
+**序列化** **ID（private static final long serialVersionUID)**
 
 情境：两个客户端 A 和 B 试图通过网络传递对象数据，A 端将对象 C 序列化为二进制数据再传给 B，B 反序列化得到 C。
 
 问题：C 对象的全类路径假设为 com.inout.Test，在 A 和 B 端都有这么一个类文件，功能代码完全一致。也都实现了 Serializable 接口，但是反序列化时总是提示不成功。
 
-虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，一个非常重要的一点是两个 
+虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，非常重要的一点是两个 
 
 类的序列化 ID 是否一致。
 
@@ -1824,13 +2097,13 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 **直接赋值**
 
-在 Java 中，A a1 = a2，我们需要理解的是这实际上复制的是引用，也就是说 a1 和 a2 指向的是同一个对象。因此，当 a1 变化的时候，a2 里面的成员变量也会跟着变化。
+在 Java 中，A a1 = a2，A为对象，我们需要理解的是这实际上把a2所指向的对象的引用的拷贝赋值给a1，也就是说 a1 和 a2 指向的是同一个对象。因此，当 a1 变化的时候，a2 里面的成员变量也会跟着变化。
 
 
 
 **浅拷贝（复制引用但不复制引用的对象）**
 
-对基本数据类型进⾏值传递，对引⽤数据类型进⾏引⽤传递般的拷⻉，
+对基本数据类型进⾏值传递，对引⽤类型进⾏引⽤类型的拷⻉。
 
 
 
@@ -1866,9 +2139,9 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 先来说说Collection接口中的集合
 
-#### **List**（(对付顺序的好帮⼿）
+#### **List**（对付顺序的好帮手）
 
-Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Java List 一共三个实现类： 
+Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Java List 最常见的实现类： 
 
 分别是 ArrayList、Vector 和 LinkedList。 
 
@@ -1983,7 +2256,7 @@ private void ensureCapacityInternal(int minCapacity) {
 
 //此时minCapacity = 1，而DEFAULT_CAPACITY =10，因此最后minCapacity = 10
 private static int calculateCapacity(Object[] elementData, int minCapacity) {
-    
+    //此时elementData 为空
     if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
         //通过比较默认容量(10)和最小扩容量，选取较大的一方，作为扩容的标准
         return Math.max(DEFAULT_CAPACITY, minCapacity);
@@ -2087,15 +2360,15 @@ Vector 与 ArrayList 一样，也是通过数组实现的，不同的是它支�
 
 
 
-#### **Set(注重独⼀⽆⼆的性质)**
+#### **Set(注重独一无二的性质)**
 
 集合用于存储无序(存入和取出的顺序不一定相同)元素，值不能重复。对象的相等性本质是对象 hashCode 值（java 是依据对象的内存地址计算出的此序号）判断的**，如果想要让两个不同的对象视为相等的，就必须覆盖 Object 的 hashCode 方法和 equals 方法。**
 
 
 
-**HashSet（Hash表⽆序，唯⼀）**
+**HashSet（Hash表无序，唯⼀）**
 
-哈希表边存放的是哈希值。HashSet 存储元素的顺序并不是按照存入时的顺序（和 List 显然不 
+哈希表中存放的是哈希值。HashSet 存储元素的顺序并不是按照存入时的顺序（和 List 显然不 
 
 同） 而是按照哈希值来存的所以取数据也是按照哈希值取得。元素的哈希值是通过元素的 
 
@@ -2107,9 +2380,9 @@ equals 方法 如果 equls 结果为 true ，HashSet 就视为同一个元素。
 
 哈希值相同 equals 为 false 的元素是怎么存储呢,就是在同样的哈希值下顺延（可以认为哈希值相 
 
-同的元素放在一个哈希桶中）。也就是哈希一样的存一列。如图 1 表示 hashCode 值不相同的情 
+同的元素放在一个哈希桶中）。也就是哈希一样的存一列。下图表示 hashCode 值不相同的情 
 
-况；图 2 表示 hashCode 值相同，但 equals 不相同的情况。
+况；表示 hashCode 值相同，但 equals 不相同的情况。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711161502112.png" alt="image-20210711161502112" style="zoom:67%;" />
 
@@ -2121,7 +2394,7 @@ HashSet 通过 hashCode 值来确定元素在内存中的位置。一个 hashCod
 
 **TreeSet（二叉树）（有序，唯⼀）**
 
-TreeSet()是使用二叉树的原理对新 add()的对象按照指定的顺序排序（升序、降序），每增加一个对象都会进行排序，将对象插入的二叉树指定的位置。 
+TreeSet()是使用**红黑树**的原理对新 add()的对象按照指定的顺序排序（升序、降序），每增加一个对象都会进行排序，将对象插入的二叉树指定的位置。 
 
 Integer 和 String 对象都可以进行默认的 TreeSet 排序(**Integer，String类都实现了Compareable接口**)，而自定义类的对象是不可以的，自己定义的类必须实现 Comparable 接口，并且覆写相应的 compareTo()函数，才可以正常使用。
 
@@ -2297,7 +2570,9 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 
 
-**红黑树**：简单说一下自己的理解，说实话，我看不懂左旋转和右旋转，直接把我人整蒙了！
+[红黑树)](https://juejin.cn/post/6844903519632228365#comment)
+
+**红黑树**：简单说一下自己的理解，说实话
 
 了解红黑树之前需要先了解一下**二叉搜索树**。
 
@@ -2313,15 +2588,127 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 
 
+二叉搜索树有缺点：
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6013c9aafc5~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+上面是一个二叉搜索树，我要加入3、4、5、6、7这四个结点，会变成如下情况
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6014331f371~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:50%;" />
+
+这样的结构导致查找的性能大大折扣，递归的过程变成的冗长。
+
+红黑树就是在这里情况诞生出来的，解决这样的问题。
+
+
+
+红黑树是一种**自平衡**的二叉搜索树。
+
 红黑树是在二叉搜索树的基础上，多了一些特性：（有黑色和红色节点）
 
-- 根节点是黑色节点
-- 所有的叶子节点是黑色节点（NULL空节点）
-- 节点是黑色或红色节点
-- 若节点是红色节点那么，它的子节点都为黑色节点(不存在连续的红色节点)
-- 任意一节点到它每个叶子节点的路径上的黑色节点的数目相同
+1. 根节点是黑色节点
+2. 所有的叶子节点是黑色节点（NULL空节点）
+3. 节点是黑色或红色节点
+4. 若节点是红色节点那么，它的子节点都为黑色节点(不存在连续的红色节点)
+5. 任意一节点到它每个叶子节点的路径上的黑色节点的数目相同
 
-保持红黑树的平衡方法：变色或旋转
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6016e143cf3~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+
+不满足上面的特性都会导致红黑树失衡。
+
+
+
+保持红黑树的平衡方法：**变色或旋转**
+
+**变色**
+
+以上面的那个图为例子，去当中的一部分来说明一下变色
+
+加入一个新的节点21，此节点是红色，不满足红黑树条件，下面通过变色
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b60192dd75db~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+
+
+
+将节点22变成黑色，虽然满足了不连续为红色节点的条件，这样的变色还不能满足红黑树的条件，破坏了最后一个条件，黑色节点数目不一致。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602995465b0~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+
+
+
+将25节点变成红色节点，条件4无法满足
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6021ca38237~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+接着将27节点变成黑色节点
+
+
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602acf13b5d~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+
+
+
+
+
+
+
+**旋转**
+
+**左旋转**
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210818144322447.png" alt="image-20210818144322447" style="zoom: 67%;" />
+
+**右旋转**
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210818145238345.png" alt="image-20210818145238345" style="zoom: 67%;" />
+
+了解完旋转后，根据上面变色后的内容接着说，整个红黑树如何保证平衡的。
+
+变色后，如下图，发现17和25节点破坏了**条件4**，先想想使用变色？
+
+把17变成黑色？好像不太行，破坏了**条件5**。
+
+把17变成黑色，把13变成红色？也不行，破坏了条件2。
+
+到这里说明相通过变色来保持平衡已经行不通，接下来就轮到旋转登场，大展身手。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6027c291aee~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+
+
+注意了：这里以17为中心节点，和13节点做**左旋转运行**，想想上面的左旋，
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6028ba39c59~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+结果如下：17成为了根节点，13成为了17的左子节点，15成为了13的右子节点，其他保持不变。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602854a3f9a~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+把17节点变色成黑色
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b60056ab~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+观察是否平衡，发现 17 -> 8 -> 6 ->比其他的要多一个节点，不行，变色能解决吗？好像不行，还是通过旋转来吧。
+
+接下来通过右旋转，想想右旋转：以8为中心，和13做**右旋**运动
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602bcfa03b3~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+结果如下：13成为了8的右节点，8成为了13的根节点，11节点成为了13节点的左子节
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b7308278~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+
+再进行一次变色，11节点变成黑色。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b45e1d3c~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+
+观察是否平衡？
+
+终于平衡，几经波折，最终平衡。
+
+这里把红黑树搞懂了，下面说hashMap岂不是游刃有余。
+
+
 
 
 
@@ -2331,9 +2718,9 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 在java1.8之前，HashMap采用的是**数组+链表**的形式存储键值对，而在java1.8之后，HashMap中增加了红黑树，变成了**数组+链表+红黑树**的数据结构。
 
-![image-20210712133612262](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133612262.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133612262.png" alt="image-20210712133612262" style="zoom:67%;" />
 
-![image-20210712133622884](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133622884.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133622884.png" alt="image-20210712133622884" style="zoom: 67%;" />
 
 先从HashMap的源码开始
 
@@ -2385,7 +2772,7 @@ final float loadFactor;
 
 
 
-Node<k,v>[] table字段，是HashMap最主体的部分，它就是哈希桶数组。
+Node<k,v>[] table字段，是HashMap最主体的部分，它就是哈希表数组。
 
 ```java
 static class Node<K,V> implements Map.Entry<K,V> {
@@ -2443,34 +2830,13 @@ HashMap使用哈希表来存储数据，这样的存储结构也会因为多个�
 
 如果想要哈希冲突发生的概率降低，一般通过扩容机制和提升Hash函数的功能。
 
-在说扩容之前，说一说一些重要的参数。
-
-```java
-  	int threshold;             // 所能容纳的key-value对极限 
-     final float loadFactor;    // 负载因子
-     int modCount;  
-     int size;
-
-/*
-threshold:临界值（阈值）
-当数组实际大小（容量 * 填充因子，即：threshold = capacity * loadFactor）超过临界值时，会进行扩容。
-也是HashMap进行扩容的一个重要的判断依据
-
-loadFactor：负载因子（默认为0.75）
-
-size：是HashMap中实际存在的键值对数量
-
-modCount：记录HashMap内部结构发生变化的次数，主要用于迭代的快速失败
-*/
-```
-
 
 
 [参考](https://zhuanlan.zhihu.com/p/21673805)
 
 先说一说Hash函数（扰动函数）
 
-**确定哈希桶数组索引位置**
+**确定哈希表数组索引位置**
 
 对HashMap做添加、删除、查询操作时候，首先第一步就是查询位置，而HashMap查询位置的步骤分为三部。
 
@@ -2504,7 +2870,7 @@ static int indexFor(int h, int length) {  //jdk1.7的源码，jdk1.8没有这个
 ```java
  //length:数组的长度 , hash :hash值 
 //计算位于数组的索引的位置
- hash & (length-1) 和 hash% length
+ hash & (length-1) 和 hash % length
 ```
 
 HashMap底层数组长度总是保持2的幂次(后面介绍原因)，取余（%）等价于（length-1）&的操作前提是**length是2的幂次**，其次是&比%具有更高的效率。
@@ -2525,7 +2891,21 @@ HashMap长度为2的幂次作用主要体现在：确定数据在哈希表中的
 
 下面举一个例子来说明：
 
-如果length长度不是2的次幂，比如是奇数，调用取模方法（hash & (length-1)），最后得到二进制结果最后一位一定是0，那么对于十进制来说，只能定位到偶数，而奇数无法定位到。数组中可能有一半的空间别浪费掉。
+如果length长度不是2的次幂，比如是奇数，调用取模方法（hash & (length-1)），最后得到二进制结果最后一位一定是0，
+
+```java
+ length = 5;
+ length - 1 = 4 ;                       
+  1111
+ &0100  = 0100 =4 
+ 
+  length = 7;
+ length - 1 = 6 ;
+  1111
+ &0110  = 0110 =6
+```
+
+那么对于十进制来说，只能定位到偶数，而奇数无法定位到。数组中可能有一半的空间别浪费掉。
 
 如果length长度是偶数，调用取模方法（hash & (length-1)），取一个length = 6的树， 那参与&运算的就是5
 的二进制  00000000 00000000 00000000 00000101 ，和5与二进制第二位始终为0，对应到数组索引2或3取不到。虽然2的幂次可能取不到所有的位置，但是相比于奇数来说，2的幂次范围更广，更适合。
@@ -2589,22 +2969,101 @@ static final int tableSizeFor(int cap) {
 
 HashMap中put方法
 
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//58e67eae921e4b431782c07444af824e_r.jpg" style="zoom: 50%;" />
 
+1. 加入新的数据判断table是否为空或者为null，为空执行**resize()**进行扩容
+2. 根据键值key计算hash值位于哈希桶数组的位置，如果当前table[i]为空，直接建立新节点条件，跳转到步骤6，如果table[i]不为空，跳转到步骤3
+3. 判断table[i]的首位key是否和传入的key一致，若一致(hashCode和equals)直接覆盖value，否则跳转到步骤4，
+4. 判断table[i]是否为treeNode(**红黑树**)，若是则将键值对插入到红黑树中，若不是则跳转步骤5
+5. 遍历table[i],判断当前链表的长度，若长度**大于8**，**将链表树化成红黑树**，在红黑树中插入键值对，否则在链表中插入键值对，判断链表中是否存在和key一致的数据，有就直接覆盖value。
+6. 插入成功后，判断sieze(键值对数目)是否大于**阈值(threshold)**,若大于进行扩容
 
-![](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//58e67eae921e4b431782c07444af824e_r.jpg)
+```java
+ 1 public V put(K key, V value) {
+ 2     // 对key的hashCode()做hash
+ 3     return putVal(hash(key), key, value, false, true);
+ 4 }
+ 5 
+ 6 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+ 7                boolean evict) {
+ 8     Node<K,V>[] tab; Node<K,V> p; int n, i;
+ 9     // 步骤①：tab为空则创建
+10     if ((tab = table) == null || (n = tab.length) == 0)
+11         n = (tab = resize()).length;
+12     // 步骤②：计算index，并对null做处理 
+13     if ((p = tab[i = (n - 1) & hash]) == null) 
+14         tab[i] = newNode(hash, key, value, null);
+15     else {
+16         Node<K,V> e; K k;
+17         // 步骤③：节点key存在，直接覆盖value
+18         if (p.hash == hash &&
+19             ((k = p.key) == key || (key != null && key.equals(k))))
+20             e = p;
+21         // 步骤④：判断该链为红黑树
+22         else if (p instanceof TreeNode)
+23             e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+24         // 步骤⑤：该链为链表
+25         else {
+26             for (int binCount = 0; ; ++binCount) {
+27                 if ((e = p.next) == null) {
+28                     p.next = newNode(hash, key,value,null);
+                        //链表长度大于8转换为红黑树进行处理
+29                     if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st  
+30                         treeifyBin(tab, hash);
+31                     break;
+32                 }
+                    // key已经存在直接覆盖value
+33                 if (e.hash == hash &&
+34                     ((k = e.key) == key || (key != null && key.equals(k))))                                          break;
+36                 p = e;
+37             }
+38         }
+39         
+40         if (e != null) { // existing mapping for key
+41             V oldValue = e.value;
+42             if (!onlyIfAbsent || oldValue == null)
+43                 e.value = value;
+44             afterNodeAccess(e);
+45             return oldValue;
+46         }
+47     }
 
-put加入新对象
-
-- 先判断table是否为空，如果为空，就对数组进行扩容
-- 根据对象的key得到hashCode，计算除它在数组中的索引位置
-- 如果当前索引位置为空，那么直接加入新对象，判断下一下对象是否能够加入到数组中，如果容量超过了阈值，就对数组进行扩容。
-- 如果当前索引位置不为空说明有其他的对象已经加入到数组中，判断此时table[i]中首个元素的key是否是相同，如果是相同，那么直接覆盖value。如果不同，判断table[i]中后续的存储类型，如果是红黑树，那么直接将键值对存入；如果是链表，判断当前链表长度是否大于8，如果大于8，将链表用红黑树替换，将键值对存入，如果小于8，将键值对存入链表中。判断下一下对象是否能够加入到数组中，如果容量超过了阈值，就对数组进行扩容。
+48     ++modCount;
+49     // 步骤⑥：超过最大容量 就扩容
+50     if (++size > threshold)
+51         resize();
+52     afterNodeInsertion(evict);
+53     return null;
+54 }
+```
 
 
 
 **扩容机制**
 
+- 当put时发现table未初始化时，进行初始化扩容
+- 当put加入节点后，发现size（键值对数量）>threshold时，进行扩容
 
+在说扩容之前，说一说一些重要的参数。
+
+```java
+  	int threshold;             // 所能容纳的key-value对极限 
+     final float loadFactor;    // 负载因子
+     int modCount;  
+     int size;
+
+/*
+threshold:临界值（阈值）
+当数组实际大小（容量 * 加载因子，即：threshold = capacity * loadFactor）超过临界值时，会进行扩容。
+也是HashMap进行扩容的一个重要的判断依据
+
+loadFactor：加载因子（默认为0.75）
+
+size：是HashMap中实际存在的键值对数量
+
+modCount：记录HashMap内部结构发生变化的次数，主要用于迭代的快速失败
+*/
+```
 
 
 
@@ -2625,7 +3084,7 @@ put加入新对象
 12     threshold = (int)(newCapacity * loadFactor);//修改阈值
 13 }
 
-
+//将原有Entry数组的元素拷贝到新的Entry数组里。
  1 void transfer(Entry[] newTable) {
  2     Entry[] src = table;                   //src引用了旧的Entry数组
  3     int newCapacity = newTable.length;
@@ -2633,9 +3092,11 @@ put加入新对象
  5         Entry<K,V> e = src[j];             //取得旧Entry数组的每个元素
  6         if (e != null) {
  7             src[j] = null;//释放旧Entry数组的对象引用（for循环后，旧的Entry数组不再引用任何对象）
+     			//获取当前哈希桶数组中位于同一链表中的元素，
  8             do {
+     				//拿到下一个元素
  9                 Entry<K,V> next = e.next;
-10                 int i = indexFor(e.hash, newCapacity); //！！重新计算每个元素在数组中的位置
+10                 int i = indexFor(e.hash, newCapacity); //！！重新计算每个元素在新数组中的位置
 11                 e.next = newTable[i]; //标记[1]
 12                 newTable[i] = e;      //将元素放在数组上
 13                 e = next;             //访问下一个Entry链上的元素
@@ -2647,9 +3108,13 @@ put加入新对象
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712163350709.png" alt="image-20210712163350709" style="zoom: 80%;" />
 
+jdk1.7每次扩容，都是将原数组中的数据放入到扩容后的新数组中，每次都要重新计算数据在新数组中的位置Hash函数(扰动函数)，jdk1.8的优势就是在于**扩容后不需要再重新计算数据在新数组中的位置**，节省了时间，数据在新数组的位置只有两种情况：**一种原来的位置，另一种是在原来位置的基础上+扩容后的大小**。这也是为什么在jdk1.8后HashMap的扩展都是2的幂次方的原因之一。
+
 在没有指定初始容量时，HashMap默认16，每次扩容成原来的2倍。
 
 如果指定了初始容量，HashMap会扩充为2的幂次方大小。
+
+
 
 
 
@@ -2924,6 +3389,8 @@ java堆从GC的角度，将堆分为：**新生代和老年代**。
 **永久代（PermGen)**
 
 主要存放 **Class** 和 **Meta（元数据）**的信息,Class 在被加载的时候被放入永久区域，它和和存放实例的区域不同,GC 不会在主程序运行期对永久区域进行清理。**是方法区的实现**
+
+**永久代溢出:** 动态加载了大量java类而导致溢出。
 
 
 
@@ -5328,6 +5795,19 @@ CyclicBarrier中最重要的方法就是**await()**
 
 1. public int await():该方法让线程处于barrier，等待其他线程也到达这个状态，当所有的线程都位于这个状态时让它们在同时运行。
 2. public int await(long timeout, TimeUnit unit):设定线程等待的时间，若超过这个时间让已经处于barrier状态的线程先执行。
+
+```java
+public int await() throws InterruptedException, BrokenBarrierException{
+		try{
+			return dowait(false,0L);
+        }catch(TimeoutException toe){
+            throw new Error(toe);;
+        }
+}
+/*
+CyclicBarrier 多用于多个线程同时执行的情况，让他们位于Barrier状态等待，对于同步失败，CyclicBarrier使用一种要么全部要么全不的破坏模式，如果因为终端、失败或者超时等原因，导致线程过早地离开了屏障点，那么在该屏障点等待的其他线程通过BrokenBarrierException(如果所有的线程都被同时中断，则用InterruptedException)以反常的方式离开
+*/
+```
 
 应用场景：处理6个文件，让6个文件都先准备好，方便一起处理，这样的过程再来一遍(**重复使用CyclicBarrier**)
 

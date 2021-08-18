@@ -139,7 +139,7 @@ SpringMVC 已经成为目前最主流的MVC框架之一，并且随着Spring3.0 
 ②在web.xml配置SpringMVC的核心控制器 **DispatcherServlet**
 
 ```xml
-<!--   -->
+<!--  SpringMVC的前端控制器 -->
 <servlet>
     <servlet-name>DispatcherServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
@@ -1268,6 +1268,14 @@ Spring MVC的**拦截器**类似于Servlet开发中的过滤器Filter，用于�
    }
    ```
 
+    
+
+   ![image-20210817154519313](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210817154519313.png)
+
+   
+
+   
+
 2. **配置拦截器**
 
    ```xml
@@ -1371,4 +1379,75 @@ public class MyInterceptor implements HandlerInterceptor {
 ![image-20210816170905524](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816170905524.png)
 
 ![image-20210816170915734](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816170915734.png)
+
+
+
+**应用场景**
+
+用户登录拦截
+
+```java
+/**
+ * 模拟一个用户登录拦截的业务
+ */
+public class UserLoginInterceptor implements HandlerInterceptor {
+
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //判断用户是否登录过，没有登录进行地址重定向
+       HttpSession session = request.getSession();
+       //模拟用户：1 表示已经登录，2表示没有登录跳转页面
+        User user = (User) session.getAttribute("user");
+
+        if (user == null){
+            response.sendRedirect(request.getContextPath()+"/userLogin.jsp");
+            return false;
+        }
+
+        return true;
+    }
+}
+//别忘了xml中拦截器的配置
+```
+
+```xml
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--            对于login路径请求不进行拦截-->
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="interceptor.UserLoginInterceptor"/>
+        </mvc:interceptor>
+```
+
+
+
+
+
+## SpringMVC异常处理机制
+
+##### 异常处理的思路
+
+系统中异常包括两类∶**预期异常**和**运行时异常**RuntimeException，前者通过捕获异常从而
+
+获取异常信息，后者主要通过规范代码开发、测试等手段减少运行时异常的发生。
+
+
+
+系统的**Dao、Service、Controller**出现都通过throws Exception向上抛出，最后由
+
+SpringMVC**前端控制器**交由异常处理器进行异常处理，如下图:
+
+![image-20210817163522545](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210817163522545.png)
+
+
+
+##### 异常处理的两种方式
+
+使用Spring MVC提供的简单异常处理器**SimpleMappingExceptionResolver**实现
+
+
+
+
+
+Spring的异常处理接口**HandlerExceptionResolver**自定义自己的异常处理器
+公
 
