@@ -1,8 +1,6 @@
-
-
 # JAVA知识总结
 
-### 面向对象和面向过程的区别
+## 面向对象和面向过程的区别
 
 面向过程：
 
@@ -70,7 +68,7 @@
 
 
 
-### Java语言特点
+## Java语言特点
 
 1. 简单易学
 2. 面向对象
@@ -94,6 +92,8 @@
 - 子类拥有父类中所有的属性和方法,但子类只能访问非私有属性和方法.
 - 子类可用拥有自己的属性和方法,对本身进行扩展
 - 子类可以对父类方法进行重写(**子类不能覆写父类中的静态方法.在子类中定义与父类完全相同的静态方法,父类的会被隐藏)**
+
+补充：子类不可以**继承父类的构造方法**，子类实例化之前都需要调用父类的构造方法，一般子类构造方法中，首行是super关键字调用父类构造方法，若没有显示调用父类构造方法，子类就会去调用父类的无参构造方法，若父类不存在无参构造方法(**父类中定义了有参构造方法，默认的无参构造方法就不存在了，需要自己在父类中定义无参构造**)，抛出异常。
 
 
 
@@ -179,7 +179,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 
 
-###  类和对象的区别 
+##  类和对象的区别 
 
  　　1，类是一个抽象的概念，它不存在于现实中的时间/空间里，类只是为所有的对象定义了抽象的属性与行为。就好像“Person（人）”这个类，它虽然可以包含很多个体，但它本身不存在于现实世界上。
 　　2，对象是类的一个具体。它是一个实实在在存在的东西。
@@ -192,7 +192,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 
 
-### 字符串常量和字符型常量的区别
+## 字符串常量和字符型常量的区别
 
 形式上: 
 
@@ -220,7 +220,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 
 
-### 重载和重写(覆盖)区别
+## 重载和重写(覆盖)区别
 
 |            | 重载                     | 重写                                                   |
 | ---------- | ------------------------ | ------------------------------------------------------ |
@@ -241,7 +241,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 
 
-### String为什么不可变,String,StringBuffer,StringBuilder区别
+## String为什么不可变,String,StringBuffer,StringBuilder区别
 
 String类实现用字符数组(char value[])存储字符串,String类被final关键字所修饰,因此String类不可变.
 
@@ -275,8 +275,11 @@ StringBuffer中对方法或调用方法加同步锁,线程安全
 
 String对象的两种创建方式
 
-1. String   str 1 ="aa";  在字符串常量池中获取地址,"aa"存放在字符串常量池中;
-2. String  str 2 =new String("aa"),一共会创建两个对象,一个对象存放在常量池中,另一个对象存放在堆中.
+1. String   str 1 ="aa"; 
+
+   这种方式声明的String对象，在编译时期就已**字面量**的形式存在于class文件常量池中，到来运行期间，class常量池会被加载到“运行时常量池中”，包括String的字面量，但同时会将“**aa**”的一个引用存放到字符串常量池中，“**aa**”本体还是和所有对象一样在堆上创建。若进行比较会先在字符串常量池中寻找引用。
+
+2. String  str 2 =new String("aa"),调用的是String的构造函数，在类型加载完成后，进行对象加载在运行期间才能够确定，此"aa"是位于堆内存中。
 
 
 
@@ -298,7 +301,7 @@ StringBuffer和StringBuilder每次更改时都是对自身进行操作,比如方
 
 
 
-### 自动装箱和拆箱
+## 自动装箱和拆箱
 
 [自动装箱和拆箱](https://www.cnblogs.com/dolphin0520/p/3780005.html)
 
@@ -446,6 +449,38 @@ Boolean类中定义了两个静态不可改变的变量
 
 
 
+
+
+```java
+		Integer a = 6 ;
+		Integer a1 = new Integer(6);
+        Integer b = new Integer(1);
+        Integer c = new Integer(2);
+        Integer e = 3 ;
+        Integer f = 3 ;
+        Integer d = new Integer(1);
+		Integer g = 6 ;
+
+        System.out.println(e.equals(b+c));
+        System.out.println(b.equals(d));
+        System.out.println(a.equals(e+f));
+ 		System.out.println(a == a1);
+		System.out.println(a == g);
+/*
+true
+true
+true
+false
+true
+
+Integer包装类重写了equals方法，因此比较的是值，==若都是包装类比较的是地址，若是基本数据类型，包装类会进行自动拆箱转换成基本类型，比较的是值。
+
+Integer g = 6 ;能够自动装箱相当于 Integer g = Integer.ValueOf(6);在Integer常量池中寻找6的引用
+*/
+```
+
+
+
  Integer i = new Integer(xxx)和Integer i =xxx;这两种方式的区别。 
 
 1.  第一种方式不会触发自动装箱的过程；而第二种方式会触发自动装箱(**java编译时会自动调用Integer.valueOf(xxx)**)； 
@@ -482,10 +517,10 @@ public class Main {
 true
 false
 true  先进行a+b运算的拆箱,转换成基本数据类型,最后比较的是数值是否相等
-true  先进行a+b的拆箱(intValue),然后再自动装箱(valueOf),最后比较的是是否是同一地址
+true  先进行a+b的拆箱(intValue),比较的是值是否相等
 true  拆箱后基本数据转换成long类型(向上类型转换)
-false
-true
+false a+b拆箱(intValue),g进行拆箱，equals不会进行类型给转换，因此long和int类型不符合
+true a+h拆箱进行运算，a为int、h为long a+h结果为long类型，最后比较的是值类型
 ```
 
  当 "=="运算符的两个操作数都是 包装器类型的引用，则是比较指向的是否是同一个对象，而如果其中有一个操作数是表达式（即包含算术运算）则比较的是数值（即会触发自动拆箱的过程） ，对于包装器类型，**equals方法并不会进行类型转换 .**
@@ -530,7 +565,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### 静态方法调用一个非静态方法是非法的
+## 静态方法调用一个非静态方法是非法的
 
 静态方法属于类而不属于对象,通过类去调用静态方法,静态方法不可以调用和访问非静态变量.
 
@@ -540,7 +575,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### java中无参构造函数作用
+## java中无参构造函数作用
 
 如果一个类实例化时,没有定义构造函数,会默认提供一个无参构造函数.
 
@@ -552,7 +587,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### 接口和抽象类的区别
+## 接口和抽象类的区别
 
 抽象类:在java中被abstract关键字修饰的类.
 
@@ -587,7 +622,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### 成员变量与局部变量区别
+## 成员变量与局部变量区别
 
 从语法形式上:成员变量属于类,局部变量属于方法内部或方法的参数,成员变量可以被public,protect,private,static等修饰,而局部变量只能被final关键字修饰.
 
@@ -603,7 +638,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### java中创建对象的几种方式
+## java中创建对象的几种方式
 
 1.  new 关键字(调用构造函数)
 2. Class类的 newInstance方法(调用构造函数) ,java反射机制
@@ -613,7 +648,7 @@ boolean 类型是不可以转换为其他基本数据类型。
 
 
 
-### ==与equals
+## ==与equals
 
 ==:如果比较的是基本数据类型,判断的是两个数值是否相等,如果比较的是引用数据类型,判断是否指向同一内存地址.
 
@@ -625,7 +660,7 @@ equals:Object类中的equals方法与"=="作用相同,如果重写了equals方�
 
 
 
-### hashCode() 与 equals
+## hashCode() 与 equals
 
 hashCode()方法作用:获取对象的哈希码,哈希码又称为(散列码).
 
@@ -831,7 +866,7 @@ set:[aaa - 200, eee - 100]
 
 
 
-### Java为什么只有值传递
+## Java为什么只有值传递
 
 **按值调用(call by value)**表示方法接收的是调⽤者提供的值，⽽按引用调用（**call by reference)**表示⽅法**接收的是调用者提供的变量地址。**
 
@@ -905,7 +940,7 @@ Java 程序设计语⾔对对象采⽤的不是引⽤调⽤，实际上，对象
 
 
 
-### final关键字
+## final关键字
 
 主要引用范围：变量，方法，类
 
@@ -940,7 +975,7 @@ final byte b5 =4,b6=6;
 
 
 
-### Java异常
+## Java异常
 
 ![image-20210710095851862](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210710095851862.png)
 
@@ -1033,7 +1068,7 @@ throw和throws区别
 
 
 
-### Java反射
+## Java反射
 
 特点：
 
@@ -1134,7 +1169,7 @@ Class clazz=Class.forName("类的全路径"); (最常用)
 
 
 
-### JAVA注解
+## JAVA注解
 
  [(7条消息) java注解-最通俗易懂的讲解_Tanyboye的博客-CSDN博客_java 注解](https://blog.csdn.net/qq1404510094/article/details/80577555) 
 
@@ -1449,7 +1484,7 @@ public class ExampleUnitTest {
 
 
 
-### Java内部类
+## Java内部类
 
 Java 类中不仅可以定义变量和方法，还可以定义类，这样定义在类内部的类就被称为内部类。根 
 
@@ -1569,6 +1604,10 @@ public class innerClass {
 
 用。 
 
+
+
+补充:**由于构造器的名字必须与类名相同，而匿名内部类没有类名**
+
  
 
 ```java
@@ -1607,7 +1646,7 @@ public class Test {
 
 
 
-### Java泛型
+## Java泛型
 
  [Java泛型详解，通俗易懂只需5分钟 - 会偷袭的猫 - 博客园 (cnblogs.com)](https://www.cnblogs.com/cat520/p/9353291.html) 
 
@@ -1948,6 +1987,10 @@ public class Test2{
 
 
 
+
+
+
+
 通过泛型擦除的原理可以结合反射技术绕过被限制的操作。
 
 例如：List<E>接口，实现类ArrayList
@@ -2019,7 +2062,7 @@ test
 
 
 
-### Java序列化
+## Java序列化
 
 **保存对象及其状态到内存或磁盘中**
 
@@ -2085,7 +2128,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 
 
-### Java复制
+## Java复制
 
 将一个对象的引用复制给另一个对象，一共有三种方式。
 
@@ -2123,7 +2166,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 
 
-### Java集合
+## Java集合
 
 集合类存放于 Java.util 包中，主要有 3 种：**set(集）**、**list(列表包含 Queue）和 map(映射)**。
 
@@ -2139,7 +2182,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 先来说说Collection接口中的集合
 
-#### **List**（对付顺序的好帮手）
+### **List**（对付顺序的好帮手）
 
 Java 的 List 是非常常用的数据类型。List 是有序的 Collection。Java List 最常见的实现类： 
 
@@ -2342,9 +2385,24 @@ RandomAccess接口
 ```java
 public interface RandomAccess {
 }
-//上 RandomAccess 接⼝中什么都没有定义。所以，在我看来
+// RandomAccess 接⼝中什么都没有定义。所以，在我看来
 //RandomAccess 接⼝不过是⼀个标识罢了。标识什么？ 标识实现这个接⼝的类具有随机访问功能
+/*
+ArrayList 实现了 RandomAccess 接⼝， ⽽ LinkedList 没有实现。为什么呢？我觉得还是
+和底层数据结构有关！ ArrayList 底层是数组，⽽ LinkedList 底层是链表。数组天然⽀持随机
+访问，时间复杂度为 O（1），所以称为快速随机访问。链表需要遍历到特定位置才能访问特定位置的
+元素，时间复杂度为 O（n），所以不⽀持快速随机访问。 ArrayList 实现了 RandomAccess 接
+⼝，就表明了他具有快速随机访问功能。
+*/
 ```
+
+**总结⼀下** **list** **的遍历方式选择：**
+
+实现了 RandomAccess 接⼝的list，优先选择普通 for 循环 ，其次 foreach
+
+未实现 RandomAccess 接⼝的list，优先选择iterator遍历（foreach遍历底层也是通过iterator实现的,），⼤size的数据，千万不要使⽤普通for循环
+
+
 
 
 
@@ -2360,7 +2418,7 @@ Vector 与 ArrayList 一样，也是通过数组实现的，不同的是它支�
 
 
 
-#### **Set(注重独一无二的性质)**
+### **Set(注重独一无二的性质)**
 
 集合用于存储无序(存入和取出的顺序不一定相同)元素，值不能重复。对象的相等性本质是对象 hashCode 值（java 是依据对象的内存地址计算出的此序号）判断的**，如果想要让两个不同的对象视为相等的，就必须覆盖 Object 的 hashCode 方法和 equals 方法。**
 
@@ -2550,7 +2608,7 @@ LinkedHashSet 底层使用 LinkedHashMap 来保存所有元素，它继承与 Ha
 
 
 
-#### **Map(⽤Key来搜索的专家)**
+### **Map(⽤Key来搜索的专家)**
 
 形式：key-value  键值对
 
@@ -2590,11 +2648,11 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 二叉搜索树有缺点：
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6013c9aafc5~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821191952651.png" alt="image-20210821191952651" style="zoom:67%;" />
 
 上面是一个二叉搜索树，我要加入3、4、5、6、7这四个结点，会变成如下情况
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6014331f371~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:50%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192031866.png" alt="image-20210821192031866" style="zoom:67%;" />
 
 这样的结构导致查找的性能大大折扣，递归的过程变成的冗长。
 
@@ -2612,7 +2670,7 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 4. 若节点是红色节点那么，它的子节点都为黑色节点(不存在连续的红色节点)
 5. 任意一节点到它每个叶子节点的路径上的黑色节点的数目相同
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6016e143cf3~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192115360.png" alt="image-20210821192115360" style="zoom:67%;" />
 
 不满足上面的特性都会导致红黑树失衡。
 
@@ -2632,19 +2690,19 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 将节点22变成黑色，虽然满足了不连续为红色节点的条件，这样的变色还不能满足红黑树的条件，破坏了最后一个条件，黑色节点数目不一致。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602995465b0~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192144835.png" alt="image-20210821192144835" style="zoom:67%;" />
 
 
 
 将25节点变成红色节点，条件4无法满足
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6021ca38237~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192202495.png" alt="image-20210821192202495" style="zoom:67%;" />
 
 接着将27节点变成黑色节点
 
 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602acf13b5d~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192230765.png" alt="image-20210821192230765" style="zoom:67%;" />
 
 
 
@@ -2672,21 +2730,21 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 到这里说明相通过变色来保持平衡已经行不通，接下来就轮到旋转登场，大展身手。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6027c291aee~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192253226.png" alt="image-20210821192253226" style="zoom:67%;" />
 
 
 
 注意了：这里以17为中心节点，和13节点做**左旋转运行**，想想上面的左旋，
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b6028ba39c59~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192722043.png" alt="image-20210821192722043" style="zoom:67%;" />
 
 结果如下：17成为了根节点，13成为了17的左子节点，15成为了13的右子节点，其他保持不变。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602854a3f9a~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192750840.png" alt="image-20210821192750840" style="zoom:67%;" />
 
 把17节点变色成黑色
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b60056ab~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192819800.png" alt="image-20210821192819800" style="zoom:67%;" />
 
 观察是否平衡，发现 17 -> 8 -> 6 ->比其他的要多一个节点，不行，变色能解决吗？好像不行，还是通过旋转来吧。
 
@@ -2696,7 +2754,7 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 结果如下：13成为了8的右节点，8成为了13的根节点，11节点成为了13节点的左子节
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b7308278~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192849408.png" alt="image-20210821192849408" style="zoom:67%;" />
 
 再进行一次变色，11节点变成黑色。
 
@@ -3126,8 +3184,7 @@ java7中，
 
 - ConcurrentHashMap是由一个个Segment数组组成的，每个Segment中包含一个HashEntry数组，每个HashEntry本质上是一个链表。
 - Segment 实现了 ReentrantLock,所以 Segment 是⼀种**可重⼊锁**，扮演锁的⻆⾊。HashEntry ⽤于存储键值对数据。
-- 每个 
-- Segment 守护着⼀个HashEntry数组⾥的元素，当对 HashEntry 数组的数据进⾏修改时，必须⾸先获得 对应的 Segment的锁。
+- 每个Segment 守护着⼀个HashEntry数组⾥的元素，当对 HashEntry 数组的数据进⾏修改时，必须⾸先获得 对应的 Segment的锁。
 - 每次加锁操作都是锁定一个Segment，这样只要保证每个 Segment 是线程安全的，也就实现了全局的线程安全。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712203423167.png" alt="image-20210712203423167" style="zoom:67%;" />
@@ -3144,7 +3201,7 @@ java8
 
 ConcurrentHashMap取消了Segment分段锁，采⽤**CAS和synchronized**来保证并发安全。数据结构跟 
 
-HashMap1.8的结构类似，**数组+链表/红⿊⼆叉树**。
+HashMap1.8的结构类似，**数组+链表/红黑二叉树**。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712203919062.png" alt="image-20210712203919062" style="zoom:67%;" />
 
@@ -3187,7 +3244,7 @@ LinkedHashMap 继承⾃ HashMap ，所以它的底层仍然是基于拉链式散
 
 
 
-### JVM
+## JVM
 
 基本概念
 
@@ -3214,13 +3271,9 @@ JVM的结构图
 
 
 
-#### **JVM内存区域(运⾏时数据区）** 
+### **JVM内存区域(运行时数据区）** 
 
 运行时：线程在JVM中执行的过程。
-
-线程：
-
-这里的线程指的是程序执行过程中的一个线程实体，JVM允许一个程序并发执行多个线程。
 
 ![image-20210713152558456](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713152558456.png)
 
@@ -3252,7 +3305,7 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
   - **程序计数器**
 
-    一块较小的内存空间, 是当**前线程所执行的字节码的行号指示器**，每条线程都拥有一个。
+    一块较小的内存空间, 是当**前线程所执行的字节码的信号指示器**，每条线程都拥有一个。
 
     JVM通过解释器解释字节码文件，通过改变程序计数器的值来选取下一条需要执行的字节码指令，实现代码流程的控制。
 
@@ -3266,6 +3319,8 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
     **栈帧**：是用来存储数据和部分过程结果的数据结构，同时也被用来处理动态链接 (Dynamic Linking)、 方法返回值和异常分派（ Dispatch Exception）。
 
+    **动态链接**： **常量池**中会存储**方法的符号引用**，而每个**栈帧**中都会存储**一个引用**，用于**指向常量池中该方法对应的符号引用**，字节码指令中方法的调用就以方法对应的符号引用为参数来进行，在类加载阶段的解析步骤中，部分符号引用会被解析为直接引用，称为静态解析，在方法的运行过程中，另一部分符号引用会被实时的解析为直接引用，称为**动态连接**。
+
     **tip:   **
 
     **出现的错误**
@@ -3276,7 +3331,7 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
   - **本地方法栈**
 
-    和虚拟机栈很类似，也是描述方法执行，不过本地方法栈是用来描述**JVM**使用的Native方法的执行过程，也是栈帧的创建到入栈再到出栈。在 HotSpot 虚拟机中和 Java虚拟机栈合⼆为⼀。 
+    和虚拟机栈很类似，也是描述方法执行，不过本地方法栈是用来描述**JVM**使用的Native方法的执行过程，也是栈帧的创建从入栈再到出栈。在 HotSpot 虚拟机中和 Java虚拟机栈合⼆为⼀。 
 
     **tip:**
 
@@ -3290,7 +3345,7 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
   - **方法区(永久代)**
 
-    用来存储**被JVM加载的类的信息，常量，静态变量，即时编译器编译后的代码**等数据。
+    用来存储**被JVM加载的类的结构信息：运行时常量池、字段和方法数据、构造函数和普通方法的字节码内容，还包含类、实例、接口初始化时用到的特殊方法**。
 
     方法区在**java虚拟机规范中**被定义为堆的一部分(**逻辑上的**)，本身并不是堆的一部分。
 
@@ -3298,31 +3353,190 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
     方法区又被成为**永久代**。**永久代与方法区的关系**？
 
-    在JAVA虚拟机规范中仅仅只定义方法区的概念和作用，并没有真正实现它，**⽽永久代就是HotSpot 虚拟机对虚拟机规范中方法区的⼀种实现⽅式**。相当于：方法区是接口，而永久代是接口的实现类。**其他的虚拟机实现并没有永久代这⼀说法。**
+    在JAVA虚拟机规范中仅仅只定义方法区的概念和作用，并没有真正实现它，**⽽永久代就是HotSpot 虚拟机对虚拟机规范中方法区的⼀种实现方式**。相当于：方法区是接口，而永久代是接口的实现类。**其他的虚拟机实现并没有永久代这⼀说法。**
 
+    
+
+    [彻底弄懂java中的常量池 - 云+社区 - 腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1450501)
+
+    **Class文件常量池**
+
+    Class文件是以字节为单位的二级制数据流，将java源代码通过编译器生成.class文件。
+
+    Class文件常量池就是其中的一部分。
+  
+    编写一个JavaBean类
+
+    ```java
+    class JavaBean{
+        private int value = 1;
+        public String s = "abc";
+        public final static int f = 0x101;
+    
+        public void setValue(int v){
+            final int temp = 3;
+            this.value = temp + v;
+        }
+    
+        public int getValue(){
+            return value;
+        }
+    }
+    ```
+  
+    这里就不把字节码文件放出来了，感兴趣看上文链接。我选了一些我认为重要的部分，用来描述下面**字面量和符号引用的知识**
+  
+    Class文件中包含类的**版本号**、**常量池**、**其他的信息**。
+  
+    Class文件常量池中存放两大常量：**字面量和符号引用**
+  
+    
+  
+    **字面量：**
+  
+    - **文本字符串**
+  
+      上面类中定义的
+  
+      ```java
+      public String s = "abc";
+      ```
+  
+      这就是一个典型的字面量。
+  
+      ```java
+       #9 = Utf8               s
+       #3 = String             #31            // abc
+       #31 = Utf8              abc
+      ```
+  
+      在字节码文件中可以看到字符串“**abc**”
+  
+    - **用final修饰的成员变量**，包含：**静态变量、实例变量和局部变量**
+  
+      再来看看
+  
+      ```java
+      public final static int f = 0x101;
+      ```
+  
+      对应字节码
+  
+      ```java
+      #11 = Utf8               f
+       #12 = Utf8               ConstantValue
+       #13 = Integer            257
+      ```
+  
+       这里有一点需要注意：**所谓的常量池中的字面量，指的是数据的值，就如上面所说的字符串s = "abc", f = 0x101,都能在字节码中找到对应的值**。
+  
+      **对应的基本数据类型，也就是上面的private int value = 1;常量池中只保留了他的的字段描述符I和字段的名称value，他们的字面量不会存在于class文件常量池。**
+  
+      
+  
+    **符号引用**
+  
+    - **类和接口的完全限定名**
+  
+      例如：String类，在java源码中它表示如下：
+  
+      ```java
+      import java.lang.String;
+      ```
+  
+       在字节码文件中
+  
+      ```java
+        #10 = Utf8               Ljava/lang/String;
+      ```
+  
+      主要用于在运行时解析得到类的直接引用
+  
+      
+  
+    - **字段的名称和描述符**
+  
+      表示类或接口中定义变量
+  
+      ```java
+          private int value = 1;
+          public String s = "abc";
+          public final static int f = 0x101;
+      ```
+  
+       对应字节码文件中
+  
+      ```java
+       #7 = Utf8               value
+         #8 = Utf8               I
+         #9 = Utf8               s
+        #10 = Utf8               Ljava/lang/String;
+        #11 = Utf8               f
+      ```
+  
+    - **方法中的名称和描述符**
+  
+      表示类中定义的方法名和方法中的参数、返回值以及局部变量
+  
+      ```java
+      public void setValue(int v){
+          final int temp = 3;
+          this.value = temp + v;
+      }
+      
+      public int getValue(){
+          return value;
+      }
+      ```
+  
+       对应字节码文件
+  
+      ```java
+        #21 = Utf8               setValue
+        #22 = Utf8               (I)V
+            
+            //v和temp是方法setvalue中局部变量只是在常量池中保存了它们的符号引用，它们真正的字面量不在常量池中
+        #23 = Utf8               v
+        #24 = Utf8               temp
+        #25 = Utf8               getValue
+        #26 = Utf8               ()I
+      ```
+  
+      
+  
+      **class字节流代表的静态存储结构转化为方法区的运行时数据结构，其中就包含了class文件常量池进入运行时常量池的过程**
+  
     - **运行时常量池**
-
-      是方法区的一部分，Class ⽂件中除了有类的版本、字段、⽅法、接⼝等描述信息外，还有常量池表（⽤于存放**编译期**⽣成的各种**字⾯量和符号引⽤**）
-
+  
+      是方法区的一部分，Class ⽂件中除了有类的版本、字段、⽅法、接⼝等描述信息外，还有(**Class文件常量池**)常量池表（⽤于存放**编译期**⽣成的各种**字面量和符号引用**）上面已经解释过了
+  
       ![image-20210713165250106](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713165250106.png)
-
+  
+      运行时常量池的**作用**是存储java **class文件常量池**中的**符号信息**，运行时常量池中保存着一些class文件中描述的**符号引用**，同时在**类的解析阶**段还会将这些**符号引用翻译出直接引用**（直接指向实例对象的指针，内存地址），翻译出来的直接引用也是存储在运行时常量池中。
+  
+      
+      
       **随着jdk的更新，常量池的位置也发生了改变。**
-
+      
       - JDK1.7之前，**运行时常量池**包含**字符串常量池**位于方法区
-      - JDK1.7，**运行时常量池剩下的东西**还位于方法区中，而**字符串常量池**，被放入了堆中。
-      - JDK1.8，永久代被移除，取而代之是**元空间**，元空间位于直接内存中。 **字符串常量池还在堆**, **运行时常量池还在方法区** 。
-
+      
+      - JDK1.7，原本位于永久代的**字符串常量池和静态变量**被移出，放入到了java堆中，
+      
+      - JDK1.8，永久代被移除，取而代之是**元空间**，元空间位于直接内存中。方法区的实现虽然改变了，但是方法区并没有改变，变动的只是实现存放内容的物理地址。**字符串常量池和运行时常量池**被放到了堆中。无论物理存放上如何变化，在逻辑上它们永远都属于方法区。
+      
+        
+  
   - **直接内存**
-
-    **直接内存并不是虚拟机运⾏时数据区的⼀部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使⽤。⽽且也可能导致** **OutOfMemoryError** **错误出现。**
-
+  
+    **直接内存并不是虚拟机运行时数据区的⼀部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使⽤。而且也可能导致** **OutOfMemoryError** **错误出现。**
+  
     ------
 
 
 
 
 
-#### JVM运行时内存
+### JVM运行时内存
 
 java堆从GC的角度，将堆分为：**新生代和老年代**。
 
@@ -3388,9 +3602,9 @@ java堆从GC的角度，将堆分为：**新生代和老年代**。
 
 **永久代（PermGen)**
 
-主要存放 **Class** 和 **Meta（元数据）**的信息,Class 在被加载的时候被放入永久区域，它和和存放实例的区域不同,GC 不会在主程序运行期对永久区域进行清理。**是方法区的实现**
+主要存放 **Class** 和 **Meta（元数据）**的信息,类在被加载的时候被放入永久区域，它和存放实例的java堆不同,GC 不会在主程序运行期对永久区域进行清理。**是方法区的实现**
 
-**永久代溢出:** 动态加载了大量java类而导致溢出。
+**永久代溢出:** 动态**加载了大量java类**而导致溢出。
 
 
 
@@ -3403,7 +3617,7 @@ java堆从GC的角度，将堆分为：**新生代和老年代**。
 
 
 
-#### 垃圾回收与算法
+### 垃圾回收与算法
 
 ![image-20210715110149559](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715110149559.png)
 
@@ -3466,17 +3680,17 @@ Object类中**finalize**方法
 
 - 强引用（Strong Reference）
 
-  java中最常见的引用就是强引用，例如：一个对象的引用就是一个强引用，此时的对象时可达性对象，只要引用不为null，该对象就会被一直引用，因此它永远可达，永远不会被GC，因此会造成**内存溢出**。
+  java中最常见的引用就是强引用，例如：一个对象的引用就是一个强引用，此时的对象是可达性对象，只要引用不为null，该对象就会被一直引用，因此它永远可达，永远不会被GC，因此会造成**内存溢出**。
 
 - 软引用（SoftReference）
 
-  需要引用SoftReferencel 类来实现。如果对象只有软引用时，当系统内存足够时，该对象不会被回收，一旦系统的内存不足时，它就会被回收。它通常**应用于内存敏感的程序**。
+  需要引用（SoftReference）类来实现。如果对象只有软引用时，当系统内存足够时，该对象不会被回收，一旦系统的内存不足时，它就会被回收。它通常**应用于内存敏感的程序**。
 
 - 弱引用（Weak Reference）
 
   弱引用相比于软引用，它的生命周期更短。如果对象只有弱引用，无论系统内存是否充足，它都会被GC。
 
-  **垃圾回收机制(垃圾回收器是一个优先级很低的线程)**，
+  **垃圾回收机制(垃圾回收器是一个优先级很低的线程)**
 
 - 虚引用（Phantom Reference）
 
@@ -3605,11 +3819,11 @@ Object类中**finalize**方法
 
 
 
-#### GC垃圾收集器
+### GC垃圾收集器
 
 **收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现**
 
-**是根据具体应⽤场景选择适合的垃圾收集器**
+**是根据具体应用场景选择适合的垃圾收集器**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717103948570.png" alt="image-20210717103948570" style="zoom:67%;" />
 
@@ -3707,7 +3921,7 @@ CMS工作的阶段分为4个：（**三个标记一个清除**）
 
 - **初始标记**
 
-  标记也GC ROOTS直接相连，速度很快，但是任然需要**STW**
+  标记与GC ROOTS直接相连的对象，速度很快，但是任然需要**STW**
 
 - **并发标记**
 
@@ -3719,9 +3933,9 @@ CMS工作的阶段分为4个：（**三个标记一个清除**）
 
 - **并发清除**
 
-  清除GC ROOTS不可大对象，和用户线程一起工作，不需要停止线程。
+  清除GC ROOTS不可达对象，和用户线程一起工作，不需要停止线程。
 
-这4个阶段中耗时最长的是**并发标记和并发清除**阶段，这两个阶段中用户线程可以一起工作，总体上来说CMS收集器的内存回收和用户线程是一起并发执行的。
+这4个阶段中耗时最长的是**并发标记和并发清除**阶段，这两个阶段中用户线程可以一起工作，**总体上来说CMS收集器的内存回收和用户线程是一起并发执行的。**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717164557404.png" alt="image-20210717164557404" style="zoom:67%;" />
 
@@ -3731,9 +3945,13 @@ CMS工作的阶段分为4个：（**三个标记一个清除**）
 
 **G1(Grabage-first)**
 
+面向服务器的垃圾收集器
+
 G1除了追求**低停顿垃圾回收时间**之外，还实现了可以**精确控制停顿时间**，可以设定⼀个⻓度为 M 毫秒的时间⽚段。**低停顿时间的同时保持高吞吐量**。
 
 G1采用了**标记整理**算法，因此内存碎片化问题就得到了解决。
+
+G1可以独立掌管整个GC堆(新生代和老年代)，还是采用了分代的概念
 
 G1的**运行阶段**
 
@@ -3744,11 +3962,13 @@ G1的**运行阶段**
 
 G1避免进行全域的垃圾回收，将堆分为几个大小固定的独立区域，跟踪这些区域中垃圾回收的进度，同时在后台维护一个优先级列表，每次根据所允许的时间，优先回收垃圾最多的区域。
 
-区域的划分和优先级收集机制，缺报G1在有限的时间内获得最高的垃圾回收效率。
+区域的划分和优先级收集机制，确保G1在有限的时间内获得最高的垃圾回收效率。
+
+------
 
 
 
-### JAVA IO/NIO
+## JAVA BIO/NIO
 
 **同步**
 
@@ -3786,7 +4006,7 @@ G1避免进行全域的垃圾回收，将堆分为几个大小固定的独立区
 
 典型的同步阻塞IO模型：data = socket.read();
 
-当应用程序发出请求时，先去判断内核中的数据是否准备完成，如果没有准备完成，该应用程序就会被阻塞(**让出cpu资源**)，等到内核数据准备完成，将数据拷贝给应用程序，应用程序接触**block状态**。
+当应用程序发出请求时，先去判断内核中的数据是否准备完成，如果没有准备完成，该应用程序就会被阻塞(**让出cpu资源**)，等到内核数据准备完成，将数据拷贝给应用程序，应用程序解除**block状态**。
 
 
 
@@ -3812,7 +4032,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 **Channel**
 
-- Channel和Stream是同一个级别的，区别在于：Stream是单向的，而Channel是双向的，既可以用来读也可以用来写操作。
+- Channel和Stream（**流**）是同一个级别的，区别在于：Stream是单向的，而Channel是双向的，既可以用来读也可以用来写操作。
 
 - Channel的主要实现：
 
@@ -3847,13 +4067,13 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 **多路复用IO模型**
 
-此模型的本质还是NIO模型，NIO中的通过Selector实现在一个线程轮询多个通道的数据，需要先将用户线程中需要轮询的socket注册到Selector中，有Selector去轮询多个socketChannel是否有请求到达，一旦请求到达，Selector.select返回，最后完成I/O数据的传输这个过程用户线程是处于阻塞状态的。注意：socket配置也是非阻塞的。
+此模型的本质还是NIO模型，在NIO中的通过Selector实现在一个线程轮询多个通道的数据，需要先将用户线程中需要轮询的socket注册到Selector中，用Selector去轮询多个socketChannel是否有请求到达，一旦请求到达，Selector.select返回，最后完成I/O数据的传输这个过程用户线程是处于阻塞状态的。注意：socket配置也是非阻塞的。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719164029022.png" alt="image-20210719164029022" style="zoom:50%;" />
 
 
 
-相比于NIO，多路复用IO用户线程需要首先在Reactor中注册一个事件处理器，然后Reactor（相当于上文提到的selector）负责轮询各个通道是否有新的数据到来，当有新的数据到来时，Reactor通过先前注册的事件处理器通知用户线程有数据可读，此时用户线程向内核发起读取IO数据的请求，用户线程阻塞直至数据读取完成。
+相比于NIO，多路复用IO用户线程首先需要在Reactor中注册一个事件处理器，然后Reactor（相当于上文提到的selector）负责轮询各个通道是否有新的数据到来，当有新的数据到来时，Reactor通过先前注册的事件处理器通知用户线程有数据可读，此时用户线程向内核发起读取IO数据的请求，用户线程阻塞直至数据读取完成。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719164038684.png" alt="image-20210719164038684" style="zoom:50%;" />
 
@@ -3869,7 +4089,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 **异步IO模型**
 
-该模型是最理想模型。它实现的流程：当用户线程发器read操作之后，就去做它自己的事情了，内核接收到用户线程的请求后，立刻返回，表明该请求已经受理，这个过程不会对用户线程造成任何阻塞。因为内核在完成数据准备后就将数据拷贝给用户线程，返回用户线程信息表明数据已经传输完毕，read操作已经完成，不需要用户线程再去调用IO操作。**只需要先发起一个请求，当接收内核返回的成功信号时表示 IO 操作已经完成，可以直接去使用数据了。**
+该模型是最理想模型。它实现的流程：当用户线程发起read操作之后，就去做它自己的事情了，内核接收到用户线程的请求后，立刻返回，表明该请求已经受理，这个过程不会对用户线程造成任何阻塞。因为内核在完成数据准备后就将数据拷贝给用户线程，返回用户线程信息表明数据已经传输完毕，read操作已经完成，不需要用户线程再去调用IO操作。**只需要先发起一个请求，当接收内核返回的成功信号时表示 IO 操作已经完成，可以直接去使用数据了。**
 
 和信号驱动模型的差别就在这里，信号驱动模型在内核完成数据准备之后，告诉用户线程数据已经准备完毕，需要你自己来调用IO操作拿到数据。
 
@@ -3879,7 +4099,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 
 
-### **Java IO**
+## **Java IO**
 
 ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20140814122633546)
 
@@ -3903,17 +4123,118 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 
 
-### JVM类加载机制
+## JVM类加载机制
+
+Java程序运行时，必须经过编译和运行两个步骤。首先将后缀名为.java的源文件进行编译，最终生成后缀名为.class的字节码文件。然后Java虚拟机将编译好的字节码文件加载到内存（这个过程被称为类加载，是由加载器完成的），然后虚拟机针对加载到内存的java类进行解释执行，显示结果。
+
 
 JVM类加载大致分为三个过程：**加载、连接、初始化**。
 
-连接的过程在细分为：**验证、准备、解析**
+#### **类加载器**
+
+在类加载的过程中，只有加载阶段可以自定义类加载器，而其他阶段由JVM主导。
+
+因此加载的阶段被放到了JVM外部实现，便于让应用程序决定如何获取所需的类。
+
+JVM中提供了三种类加载器：
+
+- **启动类加载器(Bootstrap ClassLoader)**
+
+  最顶层的类加载器，由c++实现。
+
+  负责加载：JAVA_HOME\lib 目录中的jar包或被 -Xbootclasspath 参数指定的路径中的所有类
+
+- **扩展类加载器(Extension ClassLoader)**
+
+  继承自：java.lang.ClassLoader
+
+  负责加载 JAVA_HOME\lib\ext 目录中的，或通过 java.ext.dirs 系统变量指定路径中的类库。
+
+- **应用程序类加载器(Application ClassLoader/ System Class Loader )：**
+
+  (这里的Application ClassLoader 和System Class Loader 是同一个类加载器，只是叫法不同)
+
+  继承自：java.lang.ClassLoader
+
+  ⾯向我们⽤户的加载器，负责加载当前应⽤classpath下的所有jar包和类。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720104224453.png" alt="image-20210720104224453" style="zoom:67%;" />
+
+可以通过继承 java.lang.ClassLoader实现自定义的类加载器，重写findClass方法加载指定路径上的class。
+
+------
+
+
+
+#### 双亲委派模型
+
+每一个类都有对应的类加载器。当类收到一个加载请求时，先去判断这个类是否已经被加载，被加载过的类会直接返回，否则尝试加载。
+
+**加载过程：类本身不会主动去加载，它会将请求委派给父类加载器loadClass（）处理，父类则会委派给父类的父类，因此所有的请求都会传到顶层的类加载器中（Bootstrap ClassLoader），只有当父类中的加载器无法进行加载时，自己才会来处理类加载**。
+
+![image-20210720105501358](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720105501358.png)
+
+注意：类加载器之间的“**⽗⼦**”关系也**不是通过继承**来体现的，是由“**优先级”来决定**
+
+```java
+   //源码
+    private final ClassLoader parent;
+    protected Class<?> loadClass(String name, boolean resolve)
+            throws ClassNotFoundException
+    {
+        synchronized (getClassLoadingLock(name)) {
+            // ⾸先，检查请求的类是否已经被加载过
+            Class<?> c = findLoadedClass(name);
+            if (c == null) {
+                long t0 = System.nanoTime();
+                try {
+                    if (parent != null) {//⽗加载器不为空，调⽤⽗加载loadClass()⽅法处理
+                                c = parent.loadClass(name, false);
+                    } else {//⽗加载器为空，使⽤启动类加载器BootstrapClassLoader 加载
+                        c = findBootstrapClassOrNull(name);
+                    }
+                } catch (ClassNotFoundException e) {
+                    //抛出异常说明⽗类加载器⽆法完成加载请求
+                }
+
+                if (c == null) {
+                    long t1 = System.nanoTime();
+                    //⾃⼰尝试加载
+                    c = findClass(name);
+                    // this is the defining class loader; record the
+                    stats
+
+                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+
+                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                    sun.misc.PerfCounter.getFindClasses().increment();
+                }
+            }
+            if (resolve) {
+                resolveClass(c);
+            }
+            return c;
+        }
+    }
+```
+
+
+
+**好处：避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类）**
+
+比如：加载rs.jar包中的类java.lang.Object,无论加载器加载那个类，最终委派给启动类加载器进行类的加载，保证了不同的类加载器最终得到的是同一个Ojbect对象。
+
+
+
+
+
+**连接**的过程在细分为：**验证、准备、解析**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720092329414.png" alt="image-20210720092329414" style="zoom:67%;" />
 
 - **加载**
 
-  这个阶段会在内存中生成代表该类的**java.lang.Class对象**，作为方法区这个类的各种数据的入口。
+  这个阶段会在内存中生成代表该类的**java.lang.Class对象**(**类对象**)，作为方法区这个类的各种数据的入口。
 
   注意：获取类的过程并不一定要从Class文件中，也可以从jar包或war包中获取，也可以运行时计算生成(**动态代理**)。
 
@@ -3921,7 +4242,7 @@ JVM类加载大致分为三个过程：**加载、连接、初始化**。
 
   - **验证**
 
-    确保Class文件的字节流中的信息符合JVM的要求，不会危害JVM的安全
+    确保class文件的字节流中的信息符合JVM的要求，不会危害JVM的安全
 
   - **准备**
 
@@ -3955,7 +4276,7 @@ JVM类加载大致分为三个过程：**加载、连接、初始化**。
 
       如：在Class文件中它以CONSTANT_Class_info、CONSTANT_Field_info、CONSTANT_Method_info等类型的常量出现。
 
-      在Java中，一个java类将会编译成一个class文件。在编译时，**java类并不知道所引用的类的实际地址**，**因此只能使用符号引用来代替**。比如org.simple.People类引用了org.simple.Language类，在编译时People类并不知道Language类的实际内存地址，因此只能使用符号org.simple.Language。
+      在Java中，一个java类将会编译成一个class文件。在编译时，**java类并不知道所引用的变量（基本数据类型、局部变量、方法等等）实际地址**，**因此只能使用符号引用来代替**。比如org.simple.People类引用了org.simple.Language类，在编译时People类并不知道Language类的实际内存地址，因此只能使用符号org.simple.Language。
 
       各种JVM实现内存的布局可能不同，但是它们识别符号引用是一致的。
 
@@ -3979,105 +4300,11 @@ JVM类加载大致分为三个过程：**加载、连接、初始化**。
 
 初始化阶段是类构造器<client>方法执行的过程,<client>方法是由编译器收集类中的类变量赋值操作和静态代码块合成的，JVM会保证<client>方法执行前其父类的<client>方法已经执行完毕。**如果一个类中没有静态变量、静态语句块，那么编译器可以不为这个类生成<client>方法**。
 
-
-
-##### **类加载器**
-
-在类加载的过程中，只有加载阶段可以自定义类加载器，而其他阶段由JVM主导。
-
-因此加载的阶段被放到了JVM外部实现，便于让应用程序决定如何获取所需的类。
-
-JVM中提供了三种类加载器：
-
-- **启动类加载器(Bootstrap ClassLoader)**
-
-  最顶层的类加载器，由c++实现。
-
-  负责加载：JAVA_HOME\lib 目录中的jar包或被 -Xbootclasspath 参数指定的路径中的所有类
-
-- **扩展类加载器(Extension ClassLoader)**
-
-  继承自：java.lang.ClassLoader
-
-  负责加载 JAVA_HOME\lib\ext 目录中的，或通过 java.ext.dirs 系统变量指定路径中的类库。
-
-- **应用程序类加载器(Application ClassLoader/ System Class Loader )：**
-
-  (这里的Application ClassLoader 和System Class Loader 是同一个类加载器，只是叫法不同)
-
-  继承自：java.lang.ClassLoader
-  
-  ⾯向我们⽤户的加载器，负责加载当前应⽤classpath下的所有jar包和类。
-
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720104224453.png" alt="image-20210720104224453" style="zoom:67%;" />
-
-可以通过继承 java.lang.ClassLoader实现自定义的类加载器，重写findClass方法加载指定路径上的class。
+------
 
 
 
-##### 双亲委派模型
-
-每一个类都有对应的类加载器。当类收到一个加载请求时，先去判断这个类是否已经被加载，被加载过的类会直接返回，否则尝试加载。
-
-**加载过程：类本身不会主动去加载，它会将请求委派给父类加载器loadClass（）处理，父类则会委派给父类的父类，因此所有的请求都会传到顶层的类加载器中（Bootstrap ClassLoader），只有当父类中的加载器无法进行加载时，自己才会来处理类加载**。
-
-![image-20210720105501358](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720105501358.png)
-
-注意：类加载器之间的“**⽗⼦**”关系也**不是通过继承**来体现的，是由“**优先级”来决定**
-
-```java
-   //源码
-    private final ClassLoader parent;
-    protected Class<?> loadClass(String name, boolean resolve)
-            throws ClassNotFoundException
-    {
-        synchronized (getClassLoadingLock(name)) {
-            // ⾸先，检查请求的类是否已经被加载过
-            Class<?> c = findLoadedClass(name);
-            if (c == null) {
-                long t0 = System.nanoTime();
-                try {
-                    if (parent != null) {//⽗加载器不为空，调⽤⽗加载器
-                        loadClass()⽅法处理
-                                c = parent.loadClass(name, false);
-                    } else {//⽗加载器为空，使⽤启动类加载器
-                        BootstrapClassLoader 加载
-                        c = findBootstrapClassOrNull(name);
-                    }
-                } catch (ClassNotFoundException e) {
-                    //抛出异常说明⽗类加载器⽆法完成加载请求
-                }
-
-                if (c == null) {
-                    long t1 = System.nanoTime();
-                    //⾃⼰尝试加载
-                    c = findClass(name);
-                    // this is the defining class loader; record the
-                    stats
-
-                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
-
-                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
-                    sun.misc.PerfCounter.getFindClasses().increment();
-                }
-            }
-            if (resolve) {
-                resolveClass(c);
-            }
-            return c;
-        }
-    }
-```
-
-
-
-**好处：避免类的重复加载（VM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类）**
-
-比如：加载rs.jar包中的类java.lang.Object,无论加载器加载那个类，最终委派给启动类加载器进行类的加载，保证了不同的类加载器最终得到的是同一个Ojbect对象。
-
-
-
-### Java对象创建的过程
+## Java对象创建的过程
 
 对象的创建分为五个过程
 
@@ -4120,7 +4347,7 @@ JVM中提供了三种类加载器：
 
   对象头中的信息包含：
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20170419212953720" alt="这里写图片描述" style="zoom: 80%;" />
+  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20170419212953720" style="zoom: 80%;" />
 
   **markword（标记字段）**
 
@@ -4133,13 +4360,15 @@ JVM中提供了三种类加载器：
   - 对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例
 
   **数组长度（只有数组对象有）**
-  如果对象是一个数组, 那在对象头中还必须有一块数据用于记录数组长度.
+  如果对象是一个数组, 那在对象头中还必须有一块数据用于记录数组长度(例如:int)。
 
-- **执行构造方法方法**
+- **执行构造方法**
 
   从JVM角度来看一个对象已经产生，从java程序角度来看，创建对象才开始，执行构造方法，按照意愿将对象初始化数据之后这个对象才能够真正得到使用。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720160753504.png" alt="image-20210720160753504" style="zoom:150%;" />
+
+图上有点小错误:**分配内存中：采用指针碰撞是复制算法，不是标记整理**
 
 
 
@@ -4201,11 +4430,13 @@ JVM中提供了三种类加载器：
 
 直接指针：访问的速度快于句柄，对象地址发生改变时，引用也要发生改变。
 
+------
 
 
-### Java多线程并发
 
-#### **什么是线程和进程**
+## Java多线程并发
+
+### **什么是线程和进程**
 
 进程
 
@@ -4227,7 +4458,7 @@ JVM中提供了三种类加载器：
 
 
 
-#### **多线程**
+### **多线程**
 
 多线程是多个线程的集合。一个程序（进程）中同时执行一个以上的线程，一个线程不必等待另一个线程执行完毕之后才执行，所有的线程在同一时刻发生。
 
@@ -4239,7 +4470,7 @@ JVM中提供了三种类加载器：
 
 
 
-#### 线程的实现和创建
+### 线程的实现和创建
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815182704130.png" alt="image-20210815182704130" style="zoom:80%;" />
 
@@ -4310,7 +4541,7 @@ public class MyRunnable implements Runnable {
 
 
 
-#### 线程的生命周期
+### 线程的生命周期
 
 线程的生命周期分为：**新建(New)**、**就绪(Runnable)**、**运行(Running)**、**阻塞(Block)**、**死亡(Death)**
 
@@ -4366,7 +4597,14 @@ public class MyRunnable implements Runnable {
 
 ![image-20210722162006343](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722162006343.png)
 
-#### 终止线程的方式
+-   就绪状态--->运行状态：获得处理机资源（分派处理机的时间片） 
+-   运行状态--->就绪状态：1）处于运行状态的进程时间片用完  2）当有更高优先级的进程就绪时 
+-   运行状态--->阻塞状态：1）进程请求资源（外设）使用和分配 2）等待某一事件的发生（IO操作完成） 
+-   阻塞状态--->就绪状态：当进程等待事件到来（IO操作结束或者中断的结束）
+
+
+
+### 终止线程的方式
 
 - **正常结束**
 
@@ -4457,7 +4695,7 @@ public class MyRunnable implements Runnable {
 
 
 
-#### **线程的基本方法**
+### **线程的基本方法**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210730102649764.png" alt="image-20210730102649764" style="zoom:67%;" />
 
@@ -4587,7 +4825,7 @@ public static void main(String[] args){
 
 
 
-#### Java后台线程(守护线程)
+### Java后台线程(守护线程)
 
 - **定义**
 
@@ -4597,7 +4835,7 @@ public static void main(String[] args){
 
 - **优先级**
 
-  守护线程的优先级较低，用于为JVM中其他的对象和线程服务
+  守护线程的优先级较低，用于为JVM中其他的对象和线程服务(**垃圾回收就是一个守护线程**)
 
 - **设置**
 
@@ -4609,11 +4847,11 @@ public static void main(String[] args){
 
 
 
-#### 线程上下文切换
+### 线程上下文切换
 
 **利用时间片轮转的方式**，实现了一个CPU可以为多个线程服务。
 
-CPU个每个线程设定一定的服务时间，当前服务的线程时间到了，就将当前线程的状态保存下来，接着去为下一个线程服务，多个线程轮巡，当下次再遇到这个线程时，加载上一次状态继续服务。这就是**上下文切换过程**。
+CPU个每个线程设置一定的服务时间，当前服务的线程时间到了，就将当前线程的状态保存下来，接着去为下一个线程服务，多个线程轮巡，当下次再遇到这个线程时，加载上一次状态继续服务。这就是**上下文切换过程**。
 
 ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//v2-b93776903a775f5265862124654b6a8e_720w.jpg)
 
@@ -4647,14 +4885,14 @@ CPU 寄存器是 CPU 内置的容量小、但速度极快的内存。
 
 **PCB-"切换帧"**
 
-**进程是由内核来管理和调度，进行的切换只能发生在内核中。**线程的上下文的切换也是在内核(**操作系统的核心**)中，上下文切换中信息内容是保存在**进程控制块中**(**PCB**)的。当再次用到时直接从这里调用。
+**进程是由内核来管理和调度，进程的切换只能发生在内核中。**线程的上下文的切换也是在内核(**操作系统的核心**)中，上下文切换中信息内容是保存在**进程控制块中**(**PCB**)的。当再次用到时直接从这里调用。
 
 
 
 **上下文切换的活动**
 
-- 挂起一个进程，将挂起的进程在CPU中的状态(上下文)存储在内存中
-- 在内存中检索下一个进程的上下文并将在CPU的寄存器中恢复
+- 挂起一个线程，将挂起的线程在CPU中的状态(上下文)存储在内存中
+- 在内存中检索下一个线程的上下文并将在CPU的寄存器中恢复
 - 在程序计数器中找寻上一次执行指令位置，用来进行这次运行的开头。
 
 
@@ -4677,13 +4915,13 @@ CPU 寄存器是 CPU 内置的容量小、但速度极快的内存。
 
 
 
-#### Java锁
+### Java锁
 
 [不可不说的Java“锁”事 - 美团技术团队 (meituan.com)](https://tech.meituan.com/2018/11/15/java-lock.html)
 
 ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20181122101753671.png)
 
-##### **乐观锁**
+#### **乐观锁**
 
 对同一数据进行并发操作，乐观锁在进行操作数据时总是乐观认为不会有别的线程修改数据，因此它不会对资源加锁。当自己在进行数据修改之前它会先进行判断有没有其他线程修改了数据，如果数据没有修改，就写入数据。如果数据被修改了，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。
 
@@ -4691,7 +4929,7 @@ java中乐观锁基本上通过**CAS（Compare And Swap（比较与交换），�
 
 ​		**应用场景：适合读操作多的场景，不加锁的特性让读操作的性能得到很大的提升**
 
-##### **悲观锁**
+#### **悲观锁**
 
 对同一数据进行并发操作，悲观锁总认为别的线程会改写数据，因此在获取资源前它会对资源加锁，确保数据不会被更改。
 
@@ -4699,9 +4937,9 @@ Java中，**synchronized**关键字和**Lock**的实现类都是**悲观锁**。
 
 **应用场景：适合写操作多的场景，加锁的特性确保数据的准确性**
 
-##### **自旋锁**
+#### **自旋锁**
 
-多个线程并发操作同一个资源，发现该资源已经被占用，一般的情况是需要等待该资源的锁被释放之后，其他线程去争夺锁，获得锁的线程执行，等待的过程时线程状态的转换的过程，从**运行态转变为阻塞态**，**这个状态转换的过程需要耗费时间**，**如果说当前占用资源的线程运行的时长比其他线程状态转换时长还要短，那么可以考虑不需要进入阻塞状态，而是让线程等待一会(自旋一会)，如果自旋之后资源已经被释放，那么就不必阻塞直接获取同步资源即可**
+多个线程并发操作同一个资源，发现该资源已经被占用，一般的情况是需要等待该资源的锁被释放之后，其他线程去争夺锁，获得锁的线程执行，其他线程等待(上下文的切换)，从**运行态转变为阻塞态**，**这个状态转换的过程需要耗费时间**，**如果说当前占用资源的线程运行的时长比其他线程状态转换时长还要短，那么可以考虑不需要进入阻塞状态，而是让线程等待一会(自旋一会)，如果自旋之后资源已经被释放，那么就不必阻塞直接获取同步资源即可**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//452a3363.png" alt="img" style="zoom: 50%;" />
 
@@ -4720,13 +4958,13 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 **适应性自旋锁**
 
-1.6之前的自旋锁的次数一定程度是写死的，之后的自适应锁次数不在固定，是**由上一次在同一个锁上的自选时间以及锁的拥有者的状态来决定的**。
+1.6之前的自旋锁的次数一定程度是写死的，之后的自适应锁次数不在固定，是**由上一次在同一个锁上的自旋时间以及锁的拥有者的状态来决定的**。
 
-如果对于同一个锁对象上，自旋等待并且成功在自选周期内获得了锁资源，线程成功执行，那么JVM认为下一次这个自旋的过程很可能成功，因此会把自旋的周期持续相对更长的时间。反之，自旋过程很少获取锁资源，JVM认为这个自旋执行效率可能不高，可能考虑取消自旋进入阻塞状态，避免资源的浪费。
+如果对于同一个锁对象，自旋等待并且成功在自选周期内获得了锁资源，线程成功执行，那么JVM认为下一次这个自旋的过程很可能成功，因此会把自旋的周期持续相对更长的时间。反之，自旋过程很少获取锁资源，JVM认为这个自旋执行效率可能不高，可能考虑取消自旋进入阻塞状态，避免资源的浪费。
 
 
 
-##### **公平锁**
+#### **公平锁**
 
 多个线程**按照顺序**获取锁，需要获取锁的线程进入队列中等待，队列中最先发起请求锁的线程，也就是队列中的第一个线程能够最先获得锁，这就是公平锁。
 
@@ -4740,13 +4978,13 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 
 
-##### **非公平锁**
+#### **非公平锁**
 
 如果当前资源有其他线程正在时候，这个时候又来其他线程也需要这个资源，它并不会马上进入队列中等待，其他线程会尝试去等待锁资源的释放，如果获得了锁直接使用，不会去队列中等待(**插队**)，如果没有获取到锁，它才会去队列中等待。
 
 **好处：减少了线程阻塞到唤醒的过程中的开销，整体吞吐效率提升**
 
-**缺点：位于等待队列中的线程可能要等待很长时间才能获取到锁，甚至可能永远都获取步到**
+**缺点：位于等待队列中的线程可能要等待很长时间才能获取到锁，甚至可能永远都获取不到**
 
 插队打水
 
@@ -4756,9 +4994,9 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 
 
-##### **可重入锁（递归锁）**
+#### **可重入锁（递归锁）**
 
-当一个线程调用同步方法时获取对象锁，执行方法内部的代码，方法内部中又有同步方法，他会自动获取锁（**前提是锁的对象一定是同一个对象或者class**），该线程不会因为已经得到的锁没有释放而阻塞。**Sychronized和ReetrantLock**都是可重入锁。
+当一个线程调用同步方法时获取对象锁，执行方法内部的代码，方法内部中又有同步方法，他会自动获取锁（**前提是锁的对象一定是同一个对象或者类**），该线程不会因为已经得到的锁没有释放而阻塞。**Sychronized和ReentrantLock**都是可重入锁。
 
 例如：
 
@@ -4778,15 +5016,15 @@ public class Widget {
 */
 ```
 
-还是打水问题
+n还是打水问题
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//58fc5bc9.png" alt="img" style="zoom: 50%;" />
 
-村民(线程)需要获取锁才能打水，现在管理员规定，一个锁可以和同一个村民多个水桶绑定，因此第一个水桶和所绑定后打水，接着将锁和第二个水桶绑定打水，所有的水桶中都装满了水，将锁还给管理员，村民能够完成整个打水的流程。
+村民(线程)需要获取锁才能打水，现在管理员规定，一个锁可以和同一个村民多个水桶绑定，因此第一个水桶和锁绑定后打水，接着将锁和第二个水桶绑定打水，所有的水桶中都装满了水，将锁还给管理员，村民能够完成整个打水的流程。
 
 
 
-##### **非可重入锁**
+#### **非可重入锁**
 
 非重入锁修饰的方法，在线程获取对象锁调用doSomething方法需要线程释放当前的锁，重新获取doOthers方法的锁才能执行，然而这两个方法的锁是同一个，锁已经被当前线程所持有，无法释放也无法获取，会造成死锁。
 
@@ -4796,19 +5034,19 @@ public class Widget {
 
 村民（线程）需要获得锁才能打水，管理规定一个锁只能锁定村民的一个水桶，村民将水桶a和锁锁定打水，这个锁无法释放，村民的水桶b没有锁无法打水，导致线程死锁。
 
-##### **独享锁**
+#### **独享锁**
 
 独享锁又叫排它锁，该锁只能被一个线程锁持有，若数据A被某个线程加了独享锁，该数据A不能再被加任何锁。获得独享锁的线程既能够读数据也能够修改数据，其他的线程只能等待。Synchronized和ReentrantLock以独占方式实现的互斥锁。
 
-##### **共享锁**
+#### **共享锁**
 
 允许多个线程同时获取锁，并发访问，共享资源。若数据B被线程加了共享锁，其他线程只能对B加共享锁，不能加排它锁。获得共享锁的线程只能够读数据，不能修改数据。
 
 
 
-##### **Synchronized同步锁**
+#### **Synchronized同步锁**
 
-同步锁可以将任意一个不为null的对象当作锁。它属于**独占式的悲观锁**，同时属于**可重入锁**。
+同步锁可以将任意一个不为null的对象当作锁。它属于**独占式的悲观锁**，同时属于**可重入锁**、**非公平锁**
 
 
 
@@ -4884,20 +5122,6 @@ java中的**对象锁和类锁**：
 
 
 
-
-
-
-**Synchronized核心组件**
-
-1. **Wait Set** ：调用wait方法被阻塞放入的地方
-2. **Contention List(竞争队列)**：多个线程竞争请求锁。
-3. **Entry List**：竞争队列中多个线程中有资格成为候选资源的线程被放入Entry List中。
-4. **OnDeck**：只有一个线程能够获得锁的线程。
-5. **Owner**：已经获取锁资源的线程
-6. **!Owner**：已经释放了锁资源的线程
-
-
-
 **Synchronized底层实现**
 
 ```java
@@ -4924,7 +5148,7 @@ Synchronized**同步代码块的语义底层是基于对象内部的监视器锁
 
 
 
-**monitorexit：**指令在编译为字节码hou插入到同步代码块的结束位置
+**monitorexit：**指令在编译为字节码后插入到同步代码块的结束位置
 
 执行这个指令的线程必须是 objectref 所对应的 monitor 的所有者。执行指令，monitor的进入数减一，如果进入数变为0，则线程退出monitor，不再是monitor的所有者，其他被阻塞的线程尝试获取monitor的所有权。
 
@@ -4942,9 +5166,28 @@ Synchronized同步方法中是用**ACC_SYNCHRONIZED标识符来实现同步的**
 
 相比于普通方法常量池中多了**ACC_SYNCHRONIZED**标识符来实现同步，如果该常量被设置了，**执行线程将先获取monitor**，获取monitor之后才可以执行方法体，执行完后释放monitor。它是一种隐式的同步的实现。
 
+
+
+
+
+**Synchronized核心组件**
+
+1. **Wait Set** ：调用wait方法被阻塞放入的地方
+2. **Contention List(竞争队列)**：多个线程竞争请求锁。
+3. **Entry List**：竞争队列中多个线程中有资格成为候选资源的线程被放入Entry List中。
+4. **OnDeck**：只有一个线程能够获得锁的线程。
+5. **Owner**：已经获取锁资源的线程
+6. **!Owner**：已经释放了锁资源的线程
+
+
+
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200304230629833.png" alt="在这里插入图片描述" style="zoom:80%;" />
 
-多个线程请求同一资源，如果资源被占用那么，线程被放入**Contention List(竞争队列)**中，在竞争队列中将具有成为候选资源的线程放入到**Entry List**中，在Entry List选取能够成为OnDeck的线程(**能够获取monitor的线程**)，onDeck线程尝试获取资源的monitor，获取到monitor的所有权后进入到Owner，同时将monitor的进入数加1，线程运行。如果在线程运行的时候执行了wait方法，进入阻塞的状态，该线程会释放monitor并将其进入数减一，放入**Wait Set（阻塞队列中）**。 如果线程式正常运行完毕，也会释放monitor，其他线程争夺monitor的所有权。
+多个线程请求同一资源，如果资源被占用那么，线程被放入**Contention List(竞争队列)**中，在竞争队列中将具有成为候选资源的线程放入到**Entry List**中，在Entry List选取能够成为OnDeck的线程(**能够获取monitor的线程**)，onDeck线程尝试获取资源的monitor，获取到monitor的所有权后进入到Owner，同时将monitor的进入数加1，线程运行。如果在线程运行的时候执行了wait方法，进入阻塞的状态，该线程会释放monitor并将其进入数减一，放入**Wait Set（阻塞队列中）**。阻塞队列中的线程和等待队列中的线程一同争夺锁定资源。
+
+ 如果线程式正常运行完毕，也会释放monitor，其他线程争夺monitor的所有权。
+
+
 
 
 
@@ -4980,7 +5223,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728135419630.png" alt="image-20210728135419630" style="zoom: 67%;" />
 
-##### **无锁、偏向锁、轻量级锁、重量级锁**
+#### **无锁、偏向锁、轻量级锁、重量级锁**
 
 - 无锁
 
@@ -4990,7 +5233,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
 - 偏向锁
 
-  偏向锁表示一段同步代码一直被一个线程所访问，该线程会自动获取锁，降低获取锁的代价。实现在只有一个线程执行同步代码时进一步提高性能。
+  偏向锁表示一段同步代码一直被一个线程所访问，该线程会**自动获取锁，降低获取锁的代价**。实现在只有一个线程执行同步代码时进一步提高性能。
 
   引入偏向锁是为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径。因为轻量级锁的获取以及释放需要执行多次的CAS原子指令，而偏向锁只在设置线程ID时执行一次CAS操作。
 
@@ -5005,31 +5248,45 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
   **偏向锁撤销：**
 
-  当偏向锁遇到其他线程尝试竞争时，持有偏向锁的线程才会主动释放锁，线程不会主动去释放偏向锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有字节码正在执行），它会首先暂停拥有偏向锁的线程，判断锁对象是否处于被锁定状态，撤销偏向锁后恢复到未锁定（标志位为“01”）或轻量级锁（标志位为“00”）的状态。
+  当偏向锁遇到其他线程尝试竞争时，持有偏向锁的线程才会主动释放锁，线程不会主动去释放偏向锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有字节码正在执行），它会首先**挂起**拥有偏向锁的线程，判断锁对象是否处于被锁定状态，撤销偏向锁后恢复到未锁定（标志位为“01”）或轻量级锁（标志位为“00”）的状态。**之后在安全点被阻塞的线程继续往下执行同步代码**
 
   **禁用偏向锁（-XX:-UseBiasedLocking）**
 
 - 轻量级锁
 
-  当锁是偏向锁时，有其他的线程尝试争取偏向锁，那么这个偏向锁就会升级为轻量级锁。轻量级锁适用于交替执行同步块的情况，减少线程之间切换带来的性能消耗，通过自旋的方式获取锁，不会产生阻塞，提升性能。注意：**轻量级锁的出现并不是替代重量级锁，在一定条件下，轻量级锁会升级为重量级锁**。
+  当锁是偏向锁时，有其他的线程尝试争取偏向锁，那么这个偏向锁就会升级为轻量级锁。轻量级锁适用于交替执行同步块的情况，减少线程之间切换带来的性能消耗，通过**自旋的方式**获取锁，不会产生**阻塞**，提升性能。注意：**轻量级锁的出现并不是替代重量级锁，在一定条件下，轻量级锁会升级为重量级锁**。
 
   **存放内容：**指向栈中锁记录的指针。
 
   **轻量级锁加锁过程：**
 
-  1. 在进入同步块时，如果同步对象锁状态为：**无锁(锁标志：01，偏向锁为：0)**，JVM会在当前线程中的栈帧中建立一个**锁记录(Lock Record)**,该空间是用来**存储对象头中Mark Word的拷贝**。线程堆栈与对象头的状态图
+  1. 在进入同步块时，如果同步对象锁状态为：**无锁(锁标志：01，偏向锁为：0)**，JVM会在当前线程中的栈帧中建立一个**锁记录(Lock Record)**,该空间是用来**存储对象头中Mark Word的拷贝**。
 
      <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728144857021.png" alt="image-20210728144857021" style="zoom:50%;" />
 
+     ​																	 轻量级锁CAS操作之前堆栈与对象的状态
+
   2. 拷贝对象头中Mark Word复制到锁记录中
 
-  3. 拷贝成功后，JVM使用CAS(Compare And Swap)操作尝试将对象头中的Mark Word指向锁记录，让锁记录中的Owner指向对象头中的Mark Word。若更新成功，执行步骤4，若失败，执行步骤5
+  3. 拷贝成功后，JVM使用CAS(Compare And Swap)操作尝试将对象头中的Mark Word指向锁记录，让锁记录中的**Owner（存放拥有该锁线程唯一标识）**指向对象头中的Mark Word。若更新成功，执行步骤4，若失败，执行步骤5
 
   4. 更新成功，该线程拥有的该对象的锁，对象头中锁标志:00。
 
      <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//820406-20160424105540163-1019388398.png" alt="img" style="zoom: 33%;" />
 
+     ​																	轻量级锁CAS操作之后堆栈与对象的状态
+
   5. 更新失败，JVM会先去检查对象头中Mark Word 是否指向当前线程的栈帧，如果有说明当前线程已经拥有了该对象锁，可以直接进入同步块继续执行，如果没有，说明有多个线程竞争锁，这时轻量级锁就要晋升为重量级锁，锁标志：10，Mark Word中存储的就是**指向重量级锁的指针**，后面等待的线程也要进入阻塞状态了。
+
+  **轻量级锁解锁过程：**
+
+  1. 通过CAS操作尝试把线程中复制的Displaced Mark Word对象替换成当前的Mark Word
+
+     <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210823142051828.png" alt="image-20210823142051828" style="zoom: 50%;" />
+
+  2. 若替换成功，表明当前线程释放锁的过程，没有其他线程请求该锁资源，没有竞争发生。
+
+  3. 若替换失败，说明有其他线程尝试获取该锁(此时锁已经膨胀)，存在着竞争，将轻量级锁升级为重量级锁。
 
 - 重量级锁
 
@@ -5041,7 +5298,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//820406-20160424163618101-624122079.png" alt="img" style="zoom:67%;" />
 
-##### **分段锁**
+#### **分段锁**
 
 ConcurrentHashMap在java7中就采用分段锁的思想，给每一段分别加上对应的一把锁，保证线程安全。
 
@@ -5055,7 +5312,7 @@ ConcurrentHashMap在java7中就采用分段锁的思想，给每一段分别加�
 
 
 
-##### **锁粗化**
+#### **锁粗化**
 
 为了保证并发的有效性，会要求每个线程持有锁的时间尽可能的短，即在使用完资源后，立刻释放锁资源。
 
@@ -5083,11 +5340,11 @@ public class StringBufferTest {
 
 
 
-##### 锁销除
+#### 锁销除
 
 如果发现不可能被共享的对象，则可以消除这些对象的锁操作，删除不必要的加锁操作，发生在**编译器级别**。
 
-java的编译体系一共两次编译阶段，第一次将java源代码通过编译器编译为.class字节码文件。第二次通过JVM解释器转换成二进制机器码。
+java的编译体系公有两次编译阶段，第一次将java源代码通过编译器编译为.class字节码文件。第二次通过JVM解释器转换成二进制机器码。
 
 第二阶段JVM通过解释器将字节码文件解释成对应操作系统的二进制机器码，**传统的解释器功能是逐行读入，逐行解释**，这样执行的效率不高，为了解决这个问题，引入了**JIT（即时编译技术）**。
 
@@ -5096,6 +5353,21 @@ java的编译体系一共两次编译阶段，第一次将java源代码通过编
 JIT优化中最重要的一个就是**逃逸分析**。
 
 逃逸分析：当一个对象被定义在方法中时，该对象是一个局部变量，若它作为参数传递到了其他的方法中时(**被外部方法所引用**)，就称为**方法逃逸**。
+
+
+
+append方法被synchronized锁修饰
+
+```java
+ @Override
+    public synchronized StringBuffer append(String str) {
+        toStringCache = null;
+        super.append(str);
+        return this;
+    }
+```
+
+
 
 ```java
 public static StringBuffer craeteStringBuffer(String s1, String s2) {
@@ -5140,9 +5412,9 @@ public class SynchronizedTest02 {
 
 
 
-##### **ReentrantLock**
+#### **ReentrantLock**
 
-ReentrantLock实现了**Lock接口**中的方法，它是一把**独享锁、悲伤锁、可重入锁**。
+ReentrantLock实现了**Lock接口**中的方法，它是一把**独占锁、悲伤锁、可重入锁、即可以实现公平锁也可以实现非公平锁**
 
 
 
@@ -5296,9 +5568,9 @@ lock中的方法体
 
 **ReentrantLock中的Condition**
 
-在JDK1.5中加入，**用来替代传统Object类的wait()、notify()方法实现线程间的通讯协作**，
+在JDK1.5中加入，**用来替代传统Object类的wait()、notify()方法实现线程间的通讯协作更加安全和高效**，
 
-Condition**是一个接口**，基本的方法是**await()和notify()**,阻塞和唤醒。
+Condition**是一个接口**，基本的方法是**await()和signal()**,阻塞和唤醒。
 
 Condition的实现
 
@@ -5512,7 +5784,6 @@ public class ThreadProAndCon {
 
     }
 
-
 }
 
 
@@ -5579,7 +5850,7 @@ class  Service3 extends Thread{
 
 
 
-##### **Semaphore(信号量)**
+#### **Semaphore(信号量)**
 
 一种**基于计数**的信号量,可以控制同时访问的线程个数。
 
@@ -5601,8 +5872,6 @@ try { // 申请许可
             semp.release();
         }
     } catch (InterruptedException e) {
-	}finally{
-		semp.release();
 	}
 }
 ```
@@ -5611,7 +5880,7 @@ try { // 申请许可
 
 - Semaphore几乎可以完成ReentrankLock所有的功能。Semaphore中acquire()和release()获取资源和释放资源的。
 
-  Semaphore中acquire()和ReentrankLock中lockInterruptibly()方法是一样的，它们都可以向响应中断，调用Thread.interrupt()中断。
+  Semaphore中acquire()和ReentrankLock中lock()方法是一样的，它们都可以向响应中断（**接受中断指令中断了持有锁的线程，但是它并不能立刻unlock解锁，而是机械式执行完所有的操作，在释放锁。**），调用Thread.interrupt()中断。
 
 - Semaphore实现了**可轮询的锁请求与定时锁的功能**，tryAcquire()和ReentrankLock中的tryLock()方法几乎一致。
 
@@ -5619,9 +5888,17 @@ try { // 申请许可
 
 - Semaphore锁的释放也是手动进行，因此需要在finally块中进行锁定释放。
 
-**实现互斥锁(Mutex)**
 
-```
+
+**Semaphore中的release方法**
+
+该方法用于释放信号量，这里需要注意一点的是：若释放的信号量超过了获取的信号量，当前信号量就动态增加了。
+
+例如：获取一个信号量，释放了四个，当前信号量动态增加了4。
+
+下面这个例子更加具体
+
+```java
 //设置信号为1，同时只能有一个线程进程。
 Semaphore semp = new Semaphore(1);
 ```
@@ -5633,12 +5910,15 @@ import java.util.concurrent.Semaphore;
 public class Mutex {
      private Semaphore s = new Semaphore(1);
 
+    //获取锁
      public void acquire() throws InterruptedException {
       s.acquire();
      }
+    //释放锁
     public void release(){
       s.release();
      }
+    //可轮询的锁请求与定时锁的功能
     public boolean attempt(int ms) throws InterruptedException {
       return s.tryAcquire(ms);
      }
@@ -5649,9 +5929,11 @@ public class Mutex {
 public class TestMutex {
     public static void main(String[] args) throws InterruptedException{
         Mutex mutex=new Mutex();
+        //获取一个信号量
         mutex.acquire();
+        //释放两个信号量
         mutex.release();
-        mutex.release();
+        //mutex.release();
         new MyThread(mutex).start();
         new MyThread(mutex).start();
     }
@@ -5688,15 +5970,24 @@ class MyThread extends Thread{
     }
 }
 
-//结果  00 123123 456456 789789
-//互斥的实现，第一个0对应第一个线程执行后睡眠，释放cpu资源不释放锁资源，接着第二个0对应第二个线程执行后睡眠，以此类推，
+/*
+结果  00 123123 456456 789789
+本来是想要实现Mutex互斥，因为多释放了一个信号量，导致Semaphore中premit动态增加变成了2，允许两个线程同时运行导致，没法实现互斥，导致了上述结果
+*/
+/*
+去掉一个mutex.release();就是先了互斥：
+当前线程Thread-0
+0 1 2 3 4 5 6 7 8 9 
+当前线程Thread-1
+0 1 2 3 4 5 6 7 8 9 
+*/
 ```
 
 
 
-##### CountDownLatch
+#### CountDownLatch
 
-CountDownLatch 类位于 java.util.concurrent 包下，可以实现计数器的功能，主要应用的方面是将n个线程阻塞在一个地方，当这n个线程都执行完毕时，才能之后执行其他的。
+CountDownLatch 类位于 java.util.concurrent 包下，可以实现计数器的功能，主要应用的方面是将n个线程阻塞在一个地方，当这n个线程都执行完毕时，才能执行其他的。
 
 **典型应用场景就是启动一个服务时，主线程需要等待多个组件加载完毕，之后再继续执行。**
 
@@ -5757,7 +6048,7 @@ CountDownLatch典型用法：2、实现多个线程开始执行任务的最大�
 
 
 
-##### CyclicBarrier(回环栅栏)
+#### CyclicBarrier(回环栅栏)
 
 [to be top java developer (cnblogs.com)](https://www.cnblogs.com/lovelywcc/p/14004699.html#特别感谢)
 
@@ -5912,7 +6203,7 @@ CyclicBarrier则利用ReentrantLock的Condition来阻塞和通知线程，Countd
 
 
 
-##### **Atmoic(原子)**
+#### **Atmoic(原子)**
 
 在化学中表示构成一般物质的最小单位，不可分割。**在这里表示操作不可中断**。即使在多个线程一起执行时，一个操作一旦开始，就不会被其他的线程干扰。
 
@@ -5946,7 +6237,9 @@ CyclicBarrier则利用ReentrantLock的Condition来阻塞和通知线程，Countd
 
 
 
-##### **ReadWriteLock(读写锁)**
+
+
+#### **ReadWriteLock(读写锁)**
 
 读写锁分为：读锁和写锁。
 
@@ -5970,7 +6263,7 @@ CyclicBarrier则利用ReentrantLock的Condition来阻塞和通知线程，Countd
 
 
 
-#### **死锁**
+### **死锁**
 
 多个线程被同时阻塞，它们当中一个或全部都在等待同一个资源的释放，它们自身可能持有的资源也没有得到释放。
 
@@ -6025,7 +6318,7 @@ Thread 1 waiting get resource2
 */
 ```
 
-非常典型的死锁，线程1获取 resource1，进入Timed-Waiting状态，线程2获取resour2，进入进入Timed-Waiting状态，因为多线程同步的关系并且synchronized是可重入锁，因此线程1不会释放 resource1，一直等待，线程2也持有 resource2不会释放，请求 resource1得不到也一直等待，两个都一直等待，进入死锁。
+非常典型的死锁，线程1获取 resource1，进入Timed-Waiting状态，线程2获取resource2，进入进入Timed-Waiting状态，因为多线程同步的关系并且synchronized是可重入锁，因此线程1不会释放 resource1，一直等待，线程2也持有 resource2不会释放，请求 resource1得不到也一直等待，两个都一直等待，进入死锁。
 
 
 
@@ -6042,11 +6335,13 @@ Thread 1 waiting get resource2
 
 
 
-**破坏死锁：破坏产生死锁的四个条件中的一个即可破坏死锁，互斥条件一般无法破**
+**破坏死锁：破坏产生死锁的四个条件中的一个即可破坏死锁，互斥条件一般无法破坏**
+
+**破坏循环等待条件** ：靠按序申请资源来预防。按某⼀顺序申请资源，释放资源则反序释放。
 
 
 
-#### 线程池
+### 线程池
 
 [你要的线程池来了，还带有10道面试题和答案 (markdowner.net)](https://markdowner.net/article/142328369902858240)
 
@@ -6070,7 +6365,7 @@ Thread 1 waiting get resource2
 
 
 
-##### **ThreadPoolExecutor**
+#### **ThreadPoolExecutor**
 
 例子：
 
@@ -6133,7 +6428,7 @@ ThreadPoolExecutor一共提供了四个构造函数，这里用参数最多构�
 
 其他参数
 
-1. **keepAliveTime：** **默认时非核心线程闲置超时时长**，非核心线程若超过时间就会被销毁。**若设置allowCoreThreadTimeOut = true，则会作用于核心线程**
+1. **keepAliveTime：** **默认是非核心线程闲置超时时长**，非核心线程若超过时间就会被销毁。**若设置allowCoreThreadTimeOut = true，则会作用于核心线程**
 
 2. **TimeUnit unit：**keepAliveTime的时间单位，TimeUnit是一个**枚举类型**
 
@@ -6156,11 +6451,19 @@ ThreadPoolExecutor一共提供了四个构造函数，这里用参数最多构�
 
 两个方法都是将线程放入线程池中，区别在于execute方法没有返回值，submit方法有线程的返回值。
 
+一般情况下是配合**ExecutorService**来使用的，在ExecutorService接口中声明了若干个submit方法的重载版本
+
+```java
+<T> Future<T> submit(Callable<T> task);
+<T> Future<T> submit(Runnable task, T result);
+Future<?> submit(Runnable task);
+
+//经常使用第一个和第二个
+```
+
+
+
 ​		**补充：Callable、Future**
-
-[Java的Future机制详解 - 简书 (jianshu.com)](https://www.jianshu.com/p/43dab9b7c25b)
-
-[JAVA Future类详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/364041672)
 
 常用线程的创建方式是extends Thread 或者 implement Runnable，这两种方法存在的缺陷是：**执行完任务后无法获取执行的结果。**
 
@@ -6182,17 +6485,11 @@ public interface Callable<V> {
 
 泛型结构，根据输入类型返回对应类型结果。
 
-一般情况下是配合**ExecutorService**来使用的，在ExecutorService接口中声明了若干个submit方法的重载版本
-
-```java
-<T> Future<T> submit(Callable<T> task);
-<T> Future<T> submit(Runnable task, T result);
-Future<?> submit(Runnable task);
-
-//经常使用第一个和第二个
-```
 
 
+[Java的Future机制详解 - 简书 (jianshu.com)](https://www.jianshu.com/p/43dab9b7c25b)
+
+[JAVA Future类详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/364041672)
 
 再来看看**Future**，同样Future也是一个接口，Future模式核心思想在于：**能够让主线程将原来需要同步等待的这段时间用来去做其他事情。(异步)**
 
@@ -6212,7 +6509,7 @@ Future接口中定义了5种方法。
 
 
 
-**FutureTask**是RunnableFuture的实现类，RunnableFuture继承了Runnable接口和Future接口，FutureTask既可以作为Runnable被线程执行，又可以作为Future得到Callable的返回值。
+**FutureTask**是RunnableFuture的实现类，RunnableFuture接口继承了Runnable接口和Future接口，FutureTask既可以作为Runnable被线程执行，又可以作为Future得到Callable的返回值。
 
 
 
@@ -6238,7 +6535,7 @@ public FutureTask(Runnable runnable, V result) {
 
 
 
-执行一个异步过程，输入两个数做加法计算，看看时间差。
+执行一个**异步过程**，输入两个数做加法计算，看看时间差。
 
 ```java
 public class futureTaskDemo {
@@ -6319,9 +6616,7 @@ FutureTask作为一个线程单独执行时，会将结果保存到outcome中，
 public void run() {
     //volatile修饰的state字段；表示FutureTask当前所处的状态
         //如果状态不是new，或者runner旧值不为null(已经启动过了)，就结束
-        if (state != NEW ||
-            !UNSAFE.compareAndSwapObject(this, runnerOffset,
-                                         null, Thread.currentThread()))
+        if (state != NEW ||!UNSAFE.compareAndSwapObject(this, runnerOffset, null, Thread.currentThread()))
             return;
         try {
             Callable<V> c = callable; // 这里的callable是从构造方法里面传人的
@@ -6355,7 +6650,7 @@ public void run() {
 
 
 
-##### Executors
+#### Executors
 
 通过Executor框架的**工具类Executors**可以创建4中常见的线程池，这四种线程池都是直接或间接配置ThreadPoolExecutor的参数实现的。
 
@@ -6496,7 +6791,7 @@ class MyThread implements ThreadFactory{
 
 
 
-##### **线程池的工作原理**
+#### **线程池的工作原理**
 
  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//0e411841387d418c992d1f43f37c0dcf~tplv-k3u1fbpfcp-zoom-1.image" alt="img" style="zoom: 67%;" />
 
@@ -6511,31 +6806,33 @@ class MyThread implements ThreadFactory{
 
 
 
-##### **线程池的状态**
+#### **线程池的状态**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//08000847-0a9caed4d6914485b2f56048c668251a.jpg" alt="image" style="zoom: 67%;" />
 
 - Running：初始化线程池，等待新的任务加入执行
 - ShutDown：关闭线程池，线程池不再接受新的任务，处理队列中剩余的任务
-- Stop：关闭线程池，不接受新的任务，不处理队列中剩余的任务，尝试终止正在执行的任务线程
+- Stop（ShutDownNow）：关闭线程池，不接受新的任务，不处理队列中剩余的任务，尝试终止正在执行的任务线程
 - Tidying：线程池自主整理状态，调用terminated()方法进行线程池整理
 - Terminated：线程池终止状态
 
 
 
-##### 线程的复用
+#### 线程的复用
 
 线程池实现了线程的复用，大大减少了线程创建和销毁带来的开销。
 
 一般一个线程是对应一个任务，从线程的创建、运行再到销毁，一个线程只能执行一个任务。线程池将线程和任务分开，不再是一对一，而是一对多，一个线程可以执行很多个任务，这个功能的实现依靠阻塞队列实现。同一个线程可以从阻塞队列中不断获取新的任务来执行，线程实现了复用。
 
-核心原理：线程池中对Thread类进行的封装，每次执行任务的时候不再是创建新的线程抵用Thread.start(),通过JVM调用对应的run方法，而是让线程去做一个循环的过程，循环的对象就是阻塞队列，通过获取任务调用对应任务的run方法，这样就实现了一对多，线程的复用。
+核心原理：每次执行任务的时候不再是创建新的线程调用Thread.start(),而是继承Thread类重写start方法，在start方法中添加循环传递过来的Runnable对象。让线程去做一个循环的过程，循环的对象就是阻塞队列，通过获取任务调用对应任务的run方法，这样就实现了一对多，线程的复用。
 
 
 
-##### **阻塞(等待)队列的原理**
+#### **阻塞(等待)队列的原理**
 
 阻塞队列(**BlockingQueue**)在线程池创建时就设置的一种队列，其主要的作用如下(**类似于消费者生产者的关系**)
+
+线程相当于消费者，阻塞队列相当于生产者存放产品的地方
 
 1. 在队列中没有任务时**阻塞获取任务的线程**，使得线程进入wait状态，释放cpu的资源。
 2. 在队列中有任务进来时唤醒对应的线程取走任务执行。
@@ -6551,21 +6848,37 @@ class MyThread implements ThreadFactory{
 
 
 
-##### **阻塞队列的种类**
+#### **阻塞队列的种类**
 
 ![image-20210801141826630](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210801141826630.png)
 
 1. **ArrayBlockingQueue**(**公平、非公平**) ：由数组结构组成的有界阻塞队列。按照先进先出（FIFO）的原则对元素进行排序。
 
-2. **LinkedBlockingQueue**(**两个独立锁提高并发**) ：由链表结构组成的有界阻塞队列。列按照先进先出（FIFO）的原则对元素进行排序.
+   默认情况下采用公平访问队列，先来先到，位于队列前列的任务优先被线程执行。
+
+   
+
+2. **LinkedBlockingQueue**(**两个独立锁提高并发**) ：由链表结构组成的有界阻塞队列。按照先进先出（FIFO）的原则对元素进行排序.
+
+   两个独立锁分别位于线程端(消费者)，新任务放入阻塞队列端(生产者)，两把锁分别独立，实现并行工作，提高效率。
+
+   
 
 3. **PriorityBlockingQueue** ：支持优先级排序的无界阻塞队列。 默认情况下元素采取自然顺序升序排列。可以自定义实现
 
    compareTo()方法来指定元素进行排序规则
 
-4. **DelayQueue(缓存失效、定时任务)**：使用优先级队列实现的无界阻塞队列。实现 Delayed 接口，在创建元素时可以指定多久才能从队列中获取当前元素
+   
 
-5. **SynchronousQueue(不存储数据、可用于传递数据)**：不存储元素的阻塞队列。队列本身并不存储任何元素，非常适合于传递性场景,比如在一个线程中使用的数据，传递给另 外 一 个 线 程 使 用
+4. **DelayQueue(缓存失效、定时任务)**：**支持延时获取元素的**无界阻塞队列。实现 Delayed 接口，在创建元素时可以指定多久才能从队列中获取当前元素。
+
+   **缓存系统的设计**：可以用 DelayQueue 保存缓存元素的有效期，使用一个线程循环查询DelayQueue，一旦能从 DelayQueue 中获取元素时，表示缓存有效期到了。
+
+   **定时任务调度**：使用 DelayQueue 保存当天将会执行的任务和执行时间，一旦从DelayQueue 中获取到任务就开始执行。
+
+   
+
+5. **SynchronousQueue(不存储数据、可用于传递数据)**：不存储元素的阻塞队列。队列本身并不存储任何元素，非常适合于传递性场景,比如在一个线程中使用的数据，传递给另外一个线程使用
 
 
 
@@ -6573,7 +6886,7 @@ class MyThread implements ThreadFactory{
 
 
 
-#### **volatile关键字**
+### **volatile关键字**
 
 在了解volatile的特性之前，先要补充一点内存方面的知识。
 
@@ -6581,7 +6894,7 @@ class MyThread implements ThreadFactory{
 
 **内存模型**
 
-计算机在运行程序时，执行的是一条条的指令，而指令是在cpu上执行的，这个过程势必有数据的读写过程。程序中运行的临时数据都存放在**主存(物理内存)**中，这时候就存在一个问题，cpu的执行速度是很快的，而从主存中读数据和写数据的速度肯定是远远低于cpu执行的速度，cpu需要等主存的数据， 这样就会导致执行的数据大大降低。**高速缓存的出现解决了这样的问题**。
+计算机在运行程序时，执行的是一条条的指令，而指令是在cpu上执行的，这个过程势必有数据的读写过程。程序中运行的临时数据都存放在**主存(物理内存)**中，这时候就存在一个问题，cpu的执行速度是很快的，而从主存中读数据和写数据的速度肯定是远远低于cpu执行的速度，cpu需要等主存的数据， 这样就会导致执行的速率大大降低。**高速缓存的出现解决了这样的问题**。
 
 高速缓存位于cpu和主存之间，程序在运行时将数据从主存中复制一份放入到高速缓存中，cpu对缓存中的数据进行修改，运行结束后，将缓存中的数据更新到主存中。
 
@@ -6625,7 +6938,7 @@ i = i + 1;
 
    最出名的就是Intel 的MESI协议，希望能够保证操作共享变量时得到的变量的副本是一致的。
 
-   **核心思想：当cpu在做写操作时，发现当前变量时共享变量，并且其他cpu中也存在着这个变量的副本，通知其他cpu将该变量的缓存设置为无效，需要通过访问主存获取该变量，这样保证了使用的是最新修变量的副本**
+   **核心思想：当cpu在做写操作时，发现当前变量为共享变量，并且其他cpu中也存在着这个变量的副本，当前cpu对共享变量做了写操作，通知其他cpu将该变量的缓存设置为无效，需要通过访问主存获取该变量，这样保证了使用的是最新变量的副本**
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210802145644356.png" alt="image-20210802145644356" style="zoom: 50%;" />
 
@@ -6662,7 +6975,7 @@ i = i + 1;
    a = a +3;   //语句3
    r = a*a;    //语句4
    
-   //语句4不可能在语句3之前运行的，语句3也不可能在语句1之前运行
+   //语句4不可能在语句2之前运行的，语句3也不可能在语句1之前运行
    ```
 
    上面说的情况都在单线程的代码顺序块，我们再来看看多线程中的情况。
@@ -6689,9 +7002,13 @@ i = i + 1;
 
 JVM规范定义一种内存模型，该模型提出为了屏蔽各个硬件平台和操作系统之间的差异性，让java程序在各个平台中能够达到一致的内存访问效果，因此有了java内存模型。
 
-java内存模型中没有限制使用寄存器或高速缓存在提升执行速度，也没有线程编译器对执行进行重排序，因此也会产生缓存一致性和指令重排序的问题。
+java内存模型中规定了程序执行的次序。
 
-java内存模型中执行运行过程和上面所说的类似，所有的变量都是存在主存当中（类似于前面说的物理内存），每个线程都有自己的工作内存（类似于前面的高速缓存）。线程对变量的所有操作都必须在工作内存中进行，而不能直接对主存进行操作。
+java内存模型中没有限制使用寄存器或高速缓存来提升执行速度，也没有限制编译器对指令进行重排序。
+
+在java内存模型中也会产生缓存一致性和指令重排序的问题。
+
+java内存模型中执行运行过程和上面所说的计算机操作系统类似，所有的变量都是存在主存当中（类似于前面说的物理内存），每个线程都有自己的工作内存（类似于前面的高速缓存）。线程对变量的所有操作都必须在工作内存中进行，而不能直接对主存进行操作。
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210802152100344.png" alt="image-20210802152100344" style="zoom:67%;" />
 
@@ -6718,15 +7035,51 @@ java内存模型中执行运行过程和上面所说的类似，所有的变量�
 
    java内存模型只保证最基本数据类型的赋值和取读操作的原子性，更大范围的可以通过synchronized和Lock来实现，同一时刻只有一个线程执行该代码块，那么自然就不存在原子性问题了，从而保证了原子性。
 
+   
+
 2. **可见性**
 
-    java中使用**volatile关键字**保证可见性。
+   java中使用**volatile关键字**保证可见性。
 
    将一个共享变量使用volatile关键字修饰后，当变量被一个线程修改之后，变量的值会被强制更新到主存中，其他线程获取它时需要重新到主存中获取，保证缓存的一致性。
 
    通过synchronized和Lock也能够保证可见性，synchronized和Lock能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中。因此可以保证可见性。
 
 3. **有序性**
+
+   **在JMM中，提供了以下三种方式来保证有序性：**
+
+   - **happens-before原则**
+   - **synchronized机制**
+   - **volatile机制**
+
+   
+
+   java内存模型具备**先行发生原则(happens-before)**
+
+   ```
+   《并发编程的艺术》中的定义如下
+   
+   在JMM中，如果一个操作执行的结果需要对另一个操作可见，那么这两个操作之间必须要存在happens- before关系。这里提到的两个操作既可以是在一个线程之内，也可以是在不同线程之间。两个操作之间具有happens-before关系，并不意味着前一个操作必须要在后一个操作之前执行！happens-before仅仅要求前一个操作（执行的结果）对后一个操作可见，且前一个操作按顺序排在第二个操作之前（the f irst is visible toand ordered before the second）
+   ```
+
+   上述这段话我的理解是：后一个操作依赖于前一个操作，因此前一个操作按顺序排在前面
+
+   
+
+   这里主要列举4个规律
+
+   1. **程序次序规律：**一个线程内，按照代码顺序，书写在前面的操作先行发生于书写在后面的操作
+
+      准确来说是**控制流顺序而不是代码顺序**，确保代码最后结果一致。顺序不一定按照写的代码顺序，除了存在依赖关系的操作。
+
+   2. **锁定规律：**一个unlock操作先行发生于后面对同一个锁的lock操作。
+
+   3. **volatile变量规律：**对一个volatile变量的写操作先行发生于后面对这个变量的读操作。
+
+   4. **传递规律：**如果操作A先行发生于操作B，操作B先行发生于操作C，那就可以得出操作A先行发生于操作C的结论。
+
+   
 
    因为运行编译器进行指令的重排序，对于单线程中不会产生影响，对于多线程来说会产生问题。
 
@@ -6737,6 +7090,23 @@ java内存模型中执行运行过程和上面所说的类似，所有的变量�
 
 
 **volatile关键字细说**
+
+```java
+//线程1
+boolean stop = false;
+while(!stop){
+    doSomething();
+}
+ 
+//线程2
+stop = true;
+```
+
+如上代码，这段代码之前也出现过类似的，用来进行线程中断的一种方式，如果这段代码放在单线程中执行，按照顺序能够保证线程的中断，如果这是一个多线程的环境，可能导致线程无法中断。
+
+场景：线程1执行，线程1从主存中将stop变量拷贝到对应的工作内存中(缓存)。线程2也拷贝了一份stop变量到自己的工作内存中，对stop变量做了修改，按理说此时线程1中的while循环应该结束，但是while并没有结束循环。原因线程1中的stop变量还是false，线程1并不知道线程2对stop做了修改，因此会一直执行。
+
+
 
 被volatile关键字修饰的变量(**共享变量:类的静态变量，成员变量**)，具有两种性质
 
@@ -6757,7 +7127,7 @@ java内存模型中执行运行过程和上面所说的类似，所有的变量�
    stop =true;
    ```
 
-    线程1执行完后，执行线程2，stop的值发生了改变，stop被volatile所修饰，因此会让被修改的值立刻在主存中得到更新，同时让线程1中的stop的缓存变成无效，当线程1再次读取时因为缓存失效，必须从主存中获取，保证了线程1得到了最新stop的值。
+    线程1执行完后，执行线程2，stop的值发生了改变，stop被volatile所修饰，因此会让被修改的值立刻在主存中得到更新，同时让线程1中的stop的缓存变成无效，当线程1再次读取时因为缓存失效，必须从主存中获取，保证了线程1得到了最新stop的值，结束了while循环。
 
 2. 禁止指令重排序
 
@@ -6765,20 +7135,27 @@ java内存模型中执行运行过程和上面所说的类似，所有的变量�
 
    1. 当程序运行到当前被volatile修饰的变量时，在该变量之前的操作肯定已经执行完毕，当前运行后的结果也对后续的操作具有可见性，因此之后的操作肯定还有进行。
 
-   2. 在进行指令优化时，不能将被volatile修饰的变量之后的语句放在该变量执行顺序之前，该变量之前的语句也不能放在这之后，**volatile只能保证一定程度上的有序**。
+   2. 在进行指令优化时，不能将被volatile修饰的变量之后的语句放在该变量执行顺序之前，该变量之前的语句也不能放在这之后，
 
+      volatile使用**内存屏障**来保证有序性
+      
+      **内存屏障有两个能力：**
+      
+      - 就像一套栅栏分割前后的代码，阻止栅栏前后的没有数据依赖性的代码进行指令重排序，保证程序在一定程度上的**有序性**。
+      - 强制把写缓冲区/高速缓存中的脏数据等写回主内存，让缓存中相应的数据失效，保证数据的**可见性**。
+      
       ```java
       //x、y为非volatile变量
       //flag为volatile变量
        
       x =2;       //语句1
       y =0;       //语句2
-      flag =true; //语句3
+      volatile flag ; //语句3
       x =4;        //语句4
       y = -1;      //语句5
       ```
-
-      由于flag变量为volatile变量，那么在进行指令重排序的过程的时候，不会将语句3放到语句1、语句2前面，也不会讲语句3放到语句4、语句5后面。但是要注意语句1和语句2的顺序、语句4和语句5的顺序是不作任何保证的。
+      
+      由于flag变量为volatile变量，保证语句3之气的语句1、2不会重排序到语句3之后，同样语句4、5也不会重排序到语句3之前。
 
 
 
@@ -6809,14 +7186,14 @@ i++和 i = i+1**操作都是不具有原子性的**，将这个过程分为三�
 
 2. tmp = i+1  //做加一操作，注意此时i的值还是10，i还没有得到更新，这个中间值被放在寄存器中
 
-3.  i = tmp  //更新 i值，共享变量产生变化，通知其他线程
-```
+3.  i = tmp  //更新 缓存中i的值，
 
-上面三个操作分开来看都是原子操作，但是合在一起就不具有原子操作了。
+4. 插入内存屏障，更新主存中的值，使其他线程中的缓存失效
+```
 
 接下来说一说为什么不具有原子性。
 
-若线程1先执行，将i的值复制一份放入缓存中，此时i =10，接着做加一操作，放入寄存器(tmp)，i的值还是10，到目前为止，i没有发生变化，因此不会通知其他线程，我们先将线程1阻塞了。再来看看线程2，若线程2也执行到了这里，接着执行第三步 更新 i的值，此时i的值为11，发生了变化，先将主存中的i值强制更新为11，要通知其他线程缓存中的值无效了，我们再来看看线程1，唤醒线程1，线程1中缓存值原来为10，但是现在无效了，它要从主存中读取数据更新缓存，此时缓存中i的值更新为11，寄存器中的值tmp =11（这个11是通过 上一次 10+1得到的），因为已经进行过加1的操作了，指令不可能再次执行，接着往下，将i更新，i的值被赋值为11，最后得出的结果也就是11。
+若线程1先执行，将i的值复制一份放入缓存中，此时i =10，接着做加一操作，放入寄存器(tmp)，i的值还是10，到目前为止，i没有发生变化，因此不会通知其他线程，我们先将线程1阻塞了。再来看看线程2，若线程2也执行到了这里，接着执行第三步 更新 i的值，此时i的值为11，发生了变化，(**通过内存屏障**)先将主存中的i值强制更新为11，要通知其他线程缓存中的值无效了，我们再来看看线程1，唤醒线程1，线程1中缓存值原来为10，但是现在无效了，它要从主存中读取数据更新缓存，此时缓存中i的值更新为11，寄存器中的值tmp =11（这个11是通过 上一次 10+1得到的），因为已经进行过加1的操作了，指令不可能再次执行，接着往下，将i更新，i的值被赋值为11，最后得出的结果也就是11。
 
 **补充：**修改volatile变量通知其他线程和强制修改主存中的变量，有一个操作叫**插入内存屏障**，即lock指令。
 
@@ -6824,7 +7201,7 @@ i++和 i = i+1**操作都是不具有原子性的**，将这个过程分为三�
 
 **volatile和synchronized的区别**
 
-**synchronized 关键字和 volatile 关键字是两个互补的存在，⽽不是对立存在**
+**synchronized 关键字和 volatile 关键字是两个互补的存在，而不是对立存在**
 
 1. volatile 是线程同步的轻量级实现，性能高于synchronized。
 
@@ -6836,7 +7213,7 @@ i++和 i = i+1**操作都是不具有原子性的**，将这个过程分为三�
 
    **保证。**
 
-4. **volatile关键字主要用于解决变量在多个线程之间的可⻅性，⽽** **synchronized关键字解决的是**
+4. **volatile关键字主要用于解决变量在多个线程之间的可见性，⽽** **synchronized关键字解决的是**
 
    **多个线程之间访问资源的同步性。**
 
@@ -6844,7 +7221,7 @@ i++和 i = i+1**操作都是不具有原子性的**，将这个过程分为三�
 
 
 
-#### ThreadLocal
+### ThreadLocal
 
 [Java中的ThreadLocal详解 - 夏末秋涼 - 博客园 (cnblogs.com)](https://www.cnblogs.com/fsmly/p/11020641.html)
 
@@ -7132,14 +7509,14 @@ public class TransactionThreadLocal {
 
 
 
-#### java中的线程调度
+### java中的线程调度
 
-##### 抢占式调度
+#### 抢占式调度
 
 1. 线程执行的时间、线程的切换都是由系统来决定调度的
 2. 不会出现一个线程阻塞导致后续的都无法进行
 
-##### 协同式调度
+#### 协同式调度
 
 1. 一个线程执行完毕后通知系统切换到下一个线程继续执行(**如同接力赛一般**)
 2. 线程执行的时间由其本身决定，线程的切换是可预知的，不存在线程同步问题
@@ -7147,9 +7524,11 @@ public class TransactionThreadLocal {
 
 java中线程采用**抢占式调用**，java中线程是按照线程的优先级来分配cpu时间片，优先级越高可能可以获取到更多的时间片，优先级低可能获得少量的时间片，但不会存在得不到时间片的情况。
 
+------
 
 
-#### **CAS(compare and swap/set)**
+
+### **CAS(compare and swap/set)**
 
 [CAS原理解析 CAS底层 - YoungDeng - 博客园 (cnblogs.com)](https://www.cnblogs.com/youngdeng/p/12869037.html)
 
@@ -7194,8 +7573,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
 
     static {
         try {
-            valueOffset = unsafe.objectFieldOffset
-                (AtomicInteger.class.getDeclaredField("value"));
+            valueOffset = unsafe.objectFieldOffset(AtomicInteger.class.getDeclaredField("value"));
         } catch (Exception ex) { throw new Error(ex); }
     }
 
@@ -7221,7 +7599,7 @@ valueOffset:之前提到的内存偏移量
 */
 ```
 
-AtomicInteger类借助Unsafe类完成CAS操作，由此可见**Unsafe是CAS操作的核心类，由于java无法直接访问系统底层，需要通过本地方法(Native)来访问，通过Unsafe类中的方法可以完成对内存数据的定位和操作，如果c语言一样直接操作内存**。
+AtomicInteger类借助Unsafe类完成CAS操作，由此可见**Unsafe是CAS操作的核心类，由于java无法直接访问系统底层，需要通过本地方法(Native)来访问，通过Unsafe类中的方法可以完成对内存数据的定位和操作，和c语言一样直接操作内存**。
 
 我们来看一看Unsafe类的内部
 
@@ -7254,7 +7632,7 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
             //var2:内存偏移量
             //通过getIntVolatile方法拿到主内存中的数据放入工作内存(线程操作变量的地方)
             var5 = this.getIntVolatile(var1, var2);
-            //var4：更新的值
+            //var5从主存中对应数据和compareAndSwapInt方法中var4期望值作比较
         } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4));
         return var5;    
 }
@@ -7264,7 +7642,7 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
 
 这里说一说**getAndIncrement()**方法
 
-从主存中读取数据（**var5**），然后将数据+1(**var5+var4**)进行CAS比较，若返回true，内存值和期望值一致进行更新，若返回false，继续读取主存数据直到成功为止。
+从主存中读取数据（**var5**），然后和期望值进行CAS比较，若返回true，内存值和期望值一致进行更新(**var5+var4**)，若返回false，继续读取主存数据直到成功为止。
 
 上面就是CAS的操作过程，这个过程没有进行加锁操作(**Synchronized**)，在实现了并发性的同时，也保证了数据的一致性。
 
@@ -7293,6 +7671,21 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
 compareAndSet方法直接调用compareAndSwapInt方法，该方法是Unsafe的一个本地方法，方法的实现位于unsafe.cpp中
 
 ```java
+//这里借助CompareAndSwapObject
+UNSAFE_ENTRY(jboolean, Unsafe_CompareAndSwapObject(JNIEnv *env, jobject unsafe, jobject obj, jlong offset, jobject e_h, jobject x_h))
+  UnsafeWrapper("Unsafe_CompareAndSwapObject");
+  oop x = JNIHandles::resolve(x_h); // 新值
+  oop e = JNIHandles::resolve(e_h); // 预期值
+  oop p = JNIHandles::resolve(obj);
+  HeapWord* addr = (HeapWord *)index_oop_from_field_offset_long(p, offset);// 在内存中的具体位置
+  oop res = oopDesc::atomic_compare_exchange_oop(x, addr, e, true);// 调用了另一个方法
+  jboolean success  = (res == e);  // 如果返回的res等于e，则判定满足compare条件（说明res应该为内存中的当前值），但实际上会有ABA的问题
+  if (success) // success为true时，说明此时已经交换成功（调用的是最底层的cmpxchg指令）
+    update_barrier_set((void*)addr, x); // 每次Reference类型数据写操作时，都会产生一个Write Barrier暂时中断操作，配合垃圾收集器
+  return success;
+UNSAFE_END
+
+
 UNSAFE_ENTRY(jboolean, Unsafe_CompareAndSwapInt(JNIEnv *env, jobject unsafe, jobject obj, jlong offset, jint e, jint x))
   UnsafeWrapper("Unsafe_CompareAndSwapInt");
   oop p = JNIHandles::resolve(obj);
@@ -7327,7 +7720,11 @@ inline jint     Atomic::cmpxchg    (jint     exchange_value, volatile jint*     
 
 正如前面介绍的CAS操作调用Unsafe类中的本地方法，本地方法最终转换成一条CPU指令**cmpxchg**(汇编语言)，**它不会被多线程的调度所打断，能够保证CAS操作的原子性**。
 
-由此可知，原子变量(AtomicInteger)提供的原子性来自CAS操作，CAS来自Unsafe的本地方法，由CPU的cmpxchg指令保证。
+由此可知，原子变量(AtomicInteger)提供的原子性来自CAS操作，CAS来自Unsafe的本地(**native**)方法，由CPU的cmpxchg指令保证。
+
+由于CAS仅仅是一条指令，因此它不会被多线程的调度所打断，所以能够保证CAS操作是一个原子操作。
+
+**补充**:当代的很多CPU种类都支持cmpxchg操作，但不是所有CPU都支持，对于不支持的CPU，会自动加锁来保证其操作不会被打断。
 
 
 
@@ -7340,7 +7737,7 @@ cas不加锁的特点，保证原子性过程中需要多次比较
   - 对于一个共享变量操作时，通过CAS循环比较方法保证操作原子性
   - 对于多个共享变量操作时，CAS循环无法保证操作的原子性，可以采用加锁来保证原子性
 - **ABA问题**
-  - 当一个线程进行CAS操作时，它需要 先获取某时刻的主存中的数据，然后获取到后进行比较，然而可能在获取到比较的这个时间段内其他线程对内容进行了修改，例如：A线程获取主存值2，此时B线程也获取了主存值2，主存值进行了更改3，B线程又将其改成了2，线程A进行比较，完成了更新。**这就是ABA问题**，当中可能存在着问题。
+  - 当一个线程进行CAS操作时，它需要先获取某时刻的主存中的数据，然后获取到后进行比较，然而可能在获取到比较的这个时间段内其他线程对内容进行了修改，例如：A线程获取主存值2，此时B线程也获取了主存值2，主存值进行了更改3，B线程又将其改成了2，线程A进行比较，完成了更新。**这就是ABA问题**，当中可能存在着问题。
   - 部分乐观锁采取添加**版本号**(version)的方式来解决，，乐观锁每次在执行数据的修改操作时，都会带上一个版本号，一旦版本号和数据的版本号一致就可以执行修改操作并对版本号执行+1 操作，否则就执行失败。因为每次操作的版本号都会随之增加，所以不会出现 ABA 问题，因为版本号只会增加不会减少。
 
 
@@ -7358,7 +7755,8 @@ cas不加锁的特点，保证原子性过程中需要多次比较
 /*    public static synchronized void request() throws InterruptedException {
         TimeUnit.MILLISECONDS.sleep(5);
         count.getAndIncrement();
-  */  }
+      }
+  */ 
 
     static CountDownLatch countDownLatch = new CountDownLatch(20);
 
@@ -7428,7 +7826,7 @@ count.getAndIncrement();
 
 
 
-#### AQS(抽象的队列同步器)
+### AQS(抽象的队列同步器)
 
 [Java并发之AQS详解 - waterystone - 博客园 (cnblogs.com)](https://www.cnblogs.com/waterystone/p/4920797.html)
 
@@ -7516,7 +7914,7 @@ waitStatus**属性中的几个枚举值**
 
 
 
-##### tryAcquire(int) ------tryRelease(int)
+#### tryAcquire(int) ------tryRelease(int)
 
 
 
@@ -7530,6 +7928,7 @@ waitStatus**属性中的几个枚举值**
    static final class NonfairSync extends Sync {
    	...
    	final void lock() {
+           //期望值0，希望更新的值1，state 设置为1
    		if (compareAndSetState(0, 1))
    			setExclusiveOwnerThread(Thread.currentThread());
    		else
@@ -7543,40 +7942,41 @@ waitStatus**属性中的几个枚举值**
 
    1. **acquire(int)**
 
-       此方法是独占模式下线程获取共享资源的**顶层入口**，如果线程获取到资源，线程直接返回，否则进入等待队列中，知道获取到资源为止，**且整个过程忽略中断的影响**。
+      此方法是独占模式下线程获取共享资源的**顶层入口**，如果线程获取到资源，线程直接返回，否则进入等待队列中，直到获取到资源为止，**且整个过程忽略中断的影响**。
 
       ```java
-       public final void acquire(int arg) {
+      //arg 传入值：1 
+      public final void acquire(int arg) {
            if (!tryAcquire(arg) && acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
                selfInterrupt();
        }
       ```
-
+   
        函数流程：
-
+   
       1. 先去调用**tryAcquire()**方法(**需要自定同步器来实现**)，尝试获取锁，如果成功就直接返回(**体现了非公平锁的特性**，即使等待队列中已经有线程在等待资源，而当前线程不会马上进入等待队列中，而是尝试获取锁)
       2. **addWaiter**()方法将没有获取到锁的线程加入到等待队列中，并标记为独占模式
       3. **acquireQueued**()使线程阻塞在等待队列中，直到获取资源。整个阻塞的过程是否发生过中断，若发生过，返回true，反之false。
       4. 若线程在阻塞的过程中发生了中断，在获取锁资源后调用selfInterrupt()方法，将中断补上。
-
+   
    2. **tryAcquire（）**
-
+   
       源码
-
+   
       ```java
        protected boolean tryAcquire(int arg) {
                throw new UnsupportedOperationException();
        }
       ```
-
+   
        发现该方法中方法体只有一个抛出异常，具体获取锁资源的代码呢？
-
+   
       **前面也说了AQS提供的这些方法是需要自定义同步器自行去实现的**，该方法返回true，说明当前线程获取锁成功，返回false表示失败，就需要加入到等待队列中。
-
+   
    3. **addWaiter()**
-
+   
        通过addWaiter方法将线程加入到等待队列中，当前线程被放入队列的尾部。
-
+   
       ```java
       private Node addWaiter(Node mode) {
           //以给定模式构造结点。mode有两种：EXCLUSIVE（独占）和SHARED（共享）
@@ -7601,13 +8001,13 @@ waitStatus**属性中的几个枚举值**
           return node;
       }
       ```
-
+   
       若pred == null(**说明队列中没有结点**)，或者当前Pred指针和Tail指向的位置不同（说明被别的线程已经修改）
-
+   
       调用enq方法将线程加入到队尾中。
-
+   
       **enq()**
-
+   
       ```java
       private Node enq(final Node node) {
           //CAS"自旋"，直到成功加入队尾
@@ -7627,13 +8027,13 @@ waitStatus**属性中的几个枚举值**
           }
       }
       ```
-
+   
    4. **acquireQueued(Node int)**
-
+   
        前面通过调用tryAcquire和addWaiter方法将没有获取到锁资源的线程放入到等待队列的队尾中。
-
-      这个方法就是让等待队列中的线程不断获取锁，**直到获取成功或者不需要获取(中断)**。现在线程需要做的只有一件事：排队等待。
-
+   
+      这个方法就是让等待队列中的线程不断尝试获取锁，**直到成功获取成功**。现在线程需要做的只有一件事：排队等待。
+   
       ```java
       final boolean acquireQueued(final Node node, int arg) {
           boolean failed = true;//标记是否成功拿到资源
@@ -7661,17 +8061,17 @@ waitStatus**属性中的几个枚举值**
           }
       }
       ```
-
+   
        上述方法的流程
-
+   
       <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806145150447.png" alt="image-20210806145150447" style="zoom:80%;" />
-
+   
       
-
+   
       
-
+   
       **shouldParkAfterFailedAcquire(Node pred, Node node)**
-
+   
       ```java
       // 靠前驱节点判断当前线程是否应该被阻塞
       private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
@@ -7694,18 +8094,18 @@ waitStatus**属性中的几个枚举值**
       	return false;
       }
       ```
-
+   
        **parkAndCheckInterrupt()**     挂起当前线程，阻塞调用栈，返回当前线程的中断状态
-
+   
       ```java
       private final boolean parkAndCheckInterrupt() {
           LockSupport.park(this);
           return Thread.interrupted();
       }
       ```
-
+   
        上述方法流程
-
+   
       <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806145217882.png" alt="image-20210806145217882" style="zoom:80%;" />
 
 总结一下流程
@@ -7720,7 +8120,7 @@ waitStatus**属性中的几个枚举值**
 
 加锁的过程看完了，现在来看看解锁的过程
 
-解锁的过程是调用**release**方法，**该方法时独占模式下线程释放公共资源的顶层入口**。它会释放定量的资源，若释放了全部资源(**state == 0**)，它会唤醒等待队列中其他的线程来获取资源。
+解锁的过程是调用**release**方法，**该方法是独占模式下线程释放公共资源的顶层入口**。它会释放定量的资源，若释放了全部资源(**state == 0**)，它会唤醒等待队列中其他的线程来获取资源。
 
 
 
@@ -7734,7 +8134,7 @@ waitStatus**属性中的几个枚举值**
 
 在独占模式下，和tryAcquire方法一样，需要自定义同步器实现该方法，该方法用来释放资源，那么对应线程肯定已经拿到独占的资源，
 
-直接剪掉相应量的资源(**getState() - arg**)，因为是独占模式，不存在线程安全的问题，**判断当前所持有资源state是否为0，0表示资源已经彻底释放**，根据返回值boolean，0返回true，否则返回false。所以我们可以知道**tryAcquire方法是用来判断资源是否已经释放完毕的**。
+直接剪掉相应量的资源(**getState() - arg**)，因为是独占模式，不存在线程安全的问题，**判断当前所持有资源state是否为0，0表示资源已经彻底释放**，根据返回值boolean，0返回true，否则返回false。所以我们可以知道**tryRelease方法是用来判断资源是否已经释放完毕的**。
 
 回到**release方法中**，源码如下
 
@@ -7787,9 +8187,7 @@ private void unparkSuccessor(Node node) {
 }
 ```
 
-过程不复杂，资源释放完毕后，需要找到队列中请求资源的结点，将其唤醒的过程。**用unpark()唤醒等待队列中最前边的那个未放弃线程S**，这里就和前面acquireQueued()联系起来，唤醒队列中等待获取资源的**S**结点(**当然可能当前结点的前驱结点不一定是头节点**)，通过
-
-（p == head && tryAcquire(arg)）方法判断是否是头节点并且是否获取到资源，若获取到资源，将S结点设置为**标杆节点**表明获取到了资源，成功返回。若没能够获取到资源，**通过shouldParkAfterFailedAcquire（）进行调整，S结点是队列中最前端的未放弃请求资源的结点，经过调整后，S结点最终会成为head的next的结点**,获取到资源能够成为标杆节点，成功返回。
+过程不复杂，资源释放完毕后，需要找到队列中请求资源的结点，将其唤醒的过程。**用unpark()唤醒等待队列中最前边的那个未放弃线程S**，这里就和前面acquireQueued()联系起来，唤醒队列中等待获取资源的**S**结点(**当然可能当前结点的前驱结点不一定是头节点，没关系在获取锁的过程中有处理当前问题的办法，就是通过shouldParkAfterFailedAcquire（）进行调整，S结点是队列中最前端的未放弃请求资源的结点，经过调整后，S结点最终会成为head的next的结点**)，通过（p == head && tryAcquire(arg)）方法判断是否是头节点并且是否获取到资源，若获取到资源，将S结点设置为**标杆节点**表明获取到了资源，成功返回。若没能够获取到资源，**通过当前节点的前驱节点判断是否要阻塞**。
 
 这样就完成了加锁------>解锁----->加锁。。。。的循环
 
@@ -7806,7 +8204,7 @@ private void unparkSuccessor(Node node) {
 
 
 
-##### **tryAcquireShared(int) ------tryReleaseShared(int)**
+#### **tryAcquireShared(int) ------tryReleaseShared(int)**
 
 来看看共享模式下的代码，其实和独占整体上差不多，有一些细节上的差别
 

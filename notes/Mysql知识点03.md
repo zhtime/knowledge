@@ -1,18 +1,18 @@
 # Mysql高级03
 
-### 1. 应用优化
+## 1. 应用优化
 
 前面章节，我们介绍了很多数据库的优化措施。但是在实际生产环境中，由于数据库本身的性能局限，就必须要对前台的应用进行一些优化，来降低数据库的访问压力。
 
-#### 1.1 使用连接池
+### 1.1 使用连接池
 
 对于访问数据库来说，建立连接的代价是比较昂贵的，因为我们频繁的创建关闭连接，是比较耗费资源的，我们有必要建立 数据库连接池，以提高访问的性能。
 
 
 
-#### 1.2 减少对MySQL的访问
+### 1.2 减少对MySQL的访问
 
-##### 1.2.1 避免对数据进行重复检索
+#### 1.2.1 避免对数据进行重复检索
 
 在编写应用代码时，需要能够理清对数据库的访问逻辑。能够一次连接就获取到结果的，就不用两次连接，这样可以大大减少对数据库无用的重复请求。
 
@@ -36,7 +36,7 @@ select id, name , status from tb_book;
 
 
 
-##### 1.2.2 增加cache层
+#### 1.2.2 增加cache层
 
 在应用中，我们可以在应用中增加 缓存 层来达到减轻数据库负担的目的。缓存层有很多种，也有很多实现方式，只要能达到降低数据库的负担又能满足应用需求就可以。
 
@@ -44,17 +44,17 @@ select id, name , status from tb_book;
 
 
 
-#### 1.3 负载均衡 
+### 1.3 负载均衡 
 
 负载均衡是应用中使用非常普遍的一种优化方法，它的机制就是利用某种均衡算法，将固定的负载量分布到不同的服务器上， 以此来降低单台服务器的负载，达到优化的效果。
 
-##### 1.3.1 利用MySQL复制分流查询
+#### 1.3.1 利用MySQL复制分流查询
 
 通过MySQL的主从复制，实现读写分离，使增删改操作走主节点，查询操作走从节点，从而可以降低单台服务器的读写压力。
 
  ![1](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1.jpg) 
 
-##### 1.3.2 采用分布式数据库架构
+#### 1.3.2 采用分布式数据库架构
 
 分布式数据库架构适合大数据量、负载高的情况，它有良好的拓展性和高可用性。通过在多台服务器之间分布数据，可以实现在多台服务器之间的负载均衡，提高访问效率。
 
@@ -62,13 +62,13 @@ select id, name , status from tb_book;
 
 
 
-### 2. Mysql中查询缓存优化
+## 2. Mysql中查询缓存优化
 
-#### 2.1 概述
+### 2.1 概述
 
 开启Mysql的查询缓存，当执行**完全相同的SQL语句**的时候，服务器就会直接从缓存中读取结果，当数据被修改，之前的缓存会失效，修改比较频繁的表不适合做查询缓存。
 
-#### 2.2 操作流程
+### 2.2 操作流程
 
  ![20180919131632347](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20180919131632347.png) 
 
@@ -78,7 +78,7 @@ select id, name , status from tb_book;
 4. MySQL根据优化器生成的执行计划，调用存储引擎的API来执行查询；
 5. 将结果返回给客户端。
 
-#### 2.3 查询缓存配置
+### 2.3 查询缓存配置
 
 1. 查看当前的MySQL数据库是否支持查询缓存：
 
@@ -127,7 +127,7 @@ select id, name , status from tb_book;
    | Qcache_queries_in_cache | 查询缓存中注册的查询数                                       |
    | Qcache_total_blocks     | 查询缓存中的块总数                                           |
 
-#### 2.4 开启查询缓存
+### 2.4 开启查询缓存
 
 MySQL的查询缓存默认是关闭的，需要手动配置参数 query_cache_type ， 来开启查询缓存。query_cache_type 该参数的可取值有三个 ：
 
@@ -155,7 +155,7 @@ service mysql restart
 
 
 
-#### 2.5 查询缓存SELECT选项
+### 2.5 查询缓存SELECT选项
 
 可以在SELECT语句中指定两个与查询缓存相关的选项 ：
 
@@ -172,7 +172,7 @@ SELECT SQL_NO_CACHE id, name FROM customer;
 
 ​	
 
-#### 2.6 查询缓存失效的情况
+### 2.6 查询缓存失效的情况
 
 1） SQL 语句不一致的情况， 要想命中查询缓存，查询的SQL语句必须一致。
 
@@ -211,9 +211,9 @@ select * from information_schema.engines;
 
 
 
-### 3. Mysql内存管理及优化
+## 3. Mysql内存管理及优化
 
-#### 3.1 内存优化原则
+### 3.1 内存优化原则
 
 1） 将尽量多的内存分配给MySQL做缓存，但要给操作系统和其他程序预留足够内存。
 
@@ -223,13 +223,13 @@ select * from information_schema.engines;
 
 
 
-#### 3.2 MyISAM 内存优化
+### 3.2 MyISAM 内存优化
 
 myisam存储引擎使用 key_buffer 缓存索引块，加速myisam索引的读写速度。对于myisam表的数据块，mysql没有特别的缓存机制，完全依赖于操作系统的IO缓存。
 
 
 
-##### key_buffer_size
+#### key_buffer_size
 
 key_buffer_size决定MyISAM索引块缓存区的大小，直接影响到MyISAM表的存取效率。可以在MySQL参数文件中设置key_buffer_size的值，对于一般MyISAM数据库，建议至少将1/4可用内存分配给key_buffer_size。
 
@@ -242,25 +242,25 @@ key_buffer_size=512M
 
 
 
-##### read_buffer_size
+#### read_buffer_size
 
 如果需要经常顺序扫描myisam表，可以通过增大read_buffer_size的值来改善性能。但需要注意的是read_buffer_size是每个session独占的，如果默认值设置太大，就会造成内存浪费。
 
 
 
-##### read_rnd_buffer_size
+#### read_rnd_buffer_size
 
 对于需要做排序的myisam表的查询，如带有order by子句的sql，适当增加 read_rnd_buffer_size 的值，可以改善此类的sql性能。但需要注意的是 read_rnd_buffer_size 是每个session独占的，如果默认值设置太大，就会造成内存浪费。
 
 
 
-#### 3.3 InnoDB 内存优化
+### 3.3 InnoDB 内存优化
 
 innodb用一块内存区做IO缓存池，该缓存池不仅用来缓存innodb的索引块，而且也用来缓存innodb的数据块。
 
 
 
-##### innodb_buffer_pool_size
+#### innodb_buffer_pool_size
 
 该变量决定了 innodb 存储引擎表数据和索引数据的最大缓存区大小。在保证操作系统及其他程序有足够内存可用的情况下，innodb_buffer_pool_size 的值越大，缓存命中率越高，访问InnoDB表需要的磁盘I/O 就越少，性能也就越高。
 
@@ -271,7 +271,7 @@ innodb_buffer_pool_size=512M
 
 
 
-##### innodb_log_buffer_size
+#### innodb_log_buffer_size
 
 决定了innodb重做日志缓存的大小，对于可能产生大量更新记录的大事务，增加innodb_log_buffer_size的大小，可以避免innodb在事务提交前就执行不必要的日志写入磁盘操作。
 
@@ -282,11 +282,11 @@ innodb_log_buffer_size=10M
 
 
 
-### 4. Mysql并发参数调整
+## 4. Mysql并发参数调整
 
 从实现上来说，MySQL Server 是多线程结构，包括后台线程和客户服务线程。多线程可以有效利用服务器资源，提高数据库的并发性能。在Mysql中，控制并发连接和线程的主要参数包括 max_connections、back_log、thread_cache_size、table_open_cahce。
 
-#### 4.1 max_connections
+### 4.1 max_connections
 
 采用max_connections 控制允许连接到MySQL数据库的最大数量，默认值是 151。如果状态变量 connection_errors_max_connections 不为零，并且一直增长，则说明不断有连接请求因数据库连接数已达到允许最大值而失败，这是可以考虑增大max_connections 的值。
 
@@ -294,7 +294,7 @@ Mysql 最大可支持的连接数，取决于很多因素，包括给定操作�
 
 
 
-#### 4.2 back_log
+### 4.2 back_log
 
 back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如果MySql的连接数达到max_connections时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源，将会报错。5.6.6 版本之前默认值为 50 ， 之后的版本默认为 50 + （max_connections / 5）， 但最大不超过900。
 
@@ -302,7 +302,7 @@ back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如
 
 
 
-#### 4.3 table_open_cache
+### 4.3 table_open_cache
 
 该参数用来控制所有SQL语句执行线程可打开表缓存的数量， 而在执行SQL语句时，每一个SQL执行线程至少要打开 1 个表缓存。该参数的值应该根据设置的最大连接数 max_connections 以及每个连接执行关联查询中涉及的表的最大数量来设定 ：
 
@@ -310,21 +310,21 @@ back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如
 
 
 
-#### 4.4 thread_cache_size（线程池）
+### 4.4 thread_cache_size（线程池）
 
 为了加快连接数据库的速度，MySQL 会缓存一定数量的客户服务线程以备重用，通过参数 thread_cache_size 可控制 MySQL 缓存客户服务线程的数量。
 
 
 
-#### 4.5 innodb_lock_wait_timeout
+### 4.5 innodb_lock_wait_timeout
 
 该参数是用来设置InnoDB 事务等待行锁的时间，默认值是50ms ， 可以根据需要进行动态设置。对于需要快速反馈的业务系统来说，可以将行锁的等待时间调小，以避免事务长时间挂起； 对于后台运行的批量处理程序来说， 可以将行锁的等待时间调大， 以避免发生大的回滚操作。
 
 
 
-### 5. Mysql锁问题
+## 5. Mysql锁问题
 
-#### 5.1 锁概述
+### 5.1 锁概述
 
 锁是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。
 
@@ -332,7 +332,7 @@ back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如
 
 
 
-#### 5.2 锁分类
+### 5.2 锁分类
 
 从对数据操作的粒度分 ： 
 
@@ -348,7 +348,7 @@ back_log 参数控制MySQL监听TCP端口时设置的积压请求栈大小。如
 
 
 
-#### 5.3 Mysql 锁
+### 5.3 Mysql 锁
 
 相对其他数据库而言，MySQL的锁机制比较简单，其最显著的特点是不同的存储引擎支持不同的锁机制。下表中罗列出了各存储引擎对锁的支持情况：
 
@@ -372,13 +372,13 @@ MySQL这3种锁的特性可大致归纳如下 ：
 
 
 
-#### 5.2 MyISAM 表锁
+### 5.2 MyISAM 表锁
 
 MyISAM 存储引擎只支持表锁，这也是MySQL开始几个版本中唯一支持的锁类型。
 
 
 
-##### 5.2.1 如何加表锁
+#### 5.2.1 如何加表锁
 
 MyISAM 在执行查询语句（SELECT）前，会自动给涉及的所有表加读锁，在执行更新操作（UPDATE、DELETE、INSERT 等）前，会自动给涉及的表加写锁，这个过程并不需要用户干预，因此，用户一般不需要直接用 LOCK TABLE 命令给 MyISAM 表显式加锁。
 
@@ -393,7 +393,7 @@ MyISAM 在执行查询语句（SELECT）前，会自动给涉及的所有表加�
 
 
 
-##### 5.2.2 读锁案例 
+#### 5.2.2 读锁案例 
 
 准备环境
 
@@ -526,7 +526,7 @@ insert into tb_book values(null,'Mysql高级','2088-01-01','1');
 
 ![image-20210516143056956](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143056956.png)
 
-##### 5.2.3 写锁案例
+#### 5.2.3 写锁案例
 
 客户端 一 :
 
@@ -578,7 +578,7 @@ select * from tb_book ;
 
 ![image-20210516143521980](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210516143521980.png)
 
-##### 5.2.4 结论
+#### 5.2.4 结论
 
 锁模式的相互兼容性如表中所示：
 
@@ -598,7 +598,7 @@ select * from tb_book ;
 
 
 
-##### 5.2.5 查看锁的争用情况
+#### 5.2.5 查看锁的争用情况
 
 ``` 
 show open tables；
@@ -626,9 +626,9 @@ Table_locks_waited ： 指的是不能立即获取表级锁而需要等待的次
 
 
 
-#### 5.3 InnoDB 行锁
+### 5.3 InnoDB 行锁
 
-##### 5.3.1 行锁介绍
+#### 5.3.1 行锁介绍
 
 行锁特点 ：偏向InnoDB 存储引擎，开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。
 
@@ -636,7 +636,7 @@ InnoDB 与 MyISAM 的最大不同有两点：一是支持事务；二是 采用�
 
 
 
-##### 5.3.2 背景知识
+#### 5.3.2 背景知识
 
 **事务及其ACID属性**
 
@@ -690,7 +690,7 @@ show variables like 'tx_isolation';
 
 
 
-##### 5.3.3 InnoDB 的行锁模式
+#### 5.3.3 InnoDB 的行锁模式
 
 InnoDB  实现了以下两种类型的行锁。
 
@@ -714,7 +714,7 @@ InnoDB  实现了以下两种类型的行锁。
 
 
 
-##### 5.3.4 案例准备工作
+#### 5.3.4 案例准备工作
 
 ```sql
 create table test_innodb_lock(
@@ -740,7 +740,7 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 
 
-##### 5.3.5 行锁基本演示
+#### 5.3.5 行锁基本演示
 
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -754,7 +754,7 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 
 
-##### 5.3.6 无索引行锁升级为表锁
+#### 5.3.6 无索引行锁升级为表锁
 
 如果不通过索引条件检索数据，那么InnoDB将对表中的所有记录加锁，实际效果跟表锁一样。
 
@@ -775,7 +775,7 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 
 
-##### 5.3.7 间隙锁危害
+#### 5.3.7 间隙锁危害
 
 当我们用范围条件，而不是使用相等条件检索数据，并请求共享或排他锁时，InnoDB会给符合条件的已有数据进行加锁； 对于键值在条件范围内但并不存在的记录，叫做 "间隙（GAP）" ， InnoDB也会对这个 "间隙" 加锁，这种锁机制就是所谓的 间隙锁（Next-Key锁） 。
 
@@ -798,7 +798,7 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 
 
 
-##### 5.3.8 InnoDB 行锁争用情况
+#### 5.3.8 InnoDB 行锁争用情况
 
 ```sql
 show  status like 'innodb_row_lock%';
@@ -826,7 +826,7 @@ Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
 
 
 
-##### 5.3.9 总结
+#### 5.3.9 总结
 
 InnoDB存储引擎由于实现了行级锁定，虽然在锁定机制的实现方面带来了性能损耗可能比表锁会更高一些，但是在整体并发处理能力方面要远远由于MyISAM的表锁的。当系统并发量较高的时候，InnoDB的整体性能和MyISAM相比就会有比较明显的优势。
 
@@ -844,9 +844,9 @@ InnoDB存储引擎由于实现了行级锁定，虽然在锁定机制的实现�
 
 
 
-### 6. 常用SQL技巧
+## 6. 常用SQL技巧
 
-#### 6.1 SQL执行顺序
+### 6.1 SQL执行顺序
 
 编写顺序
 
@@ -895,7 +895,7 @@ LIMIT		<limit_params>
 
 
 
-#### 6.2 正则表达式使用
+### 6.2 正则表达式使用
 
 正则表达式（Regular Expression）是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。
 
@@ -927,7 +927,7 @@ select * from emp where name regexp '[uvw]';
 
 
 
-#### 6.3 MySQL 常用函数
+### 6.3 MySQL 常用函数
 
 数字函数
 

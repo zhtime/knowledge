@@ -1,6 +1,4 @@
-Mysql高级-day02
-
-### 1. Mysql的体系结构概览
+# 1. Mysql的体系结构概览
 
 ![image-20210508113942036](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508113942036.png)
 
@@ -39,9 +37,9 @@ Mysql高级-day02
 
 
 
-### 2. 存储引擎
+# 2. 存储引擎
 
-#### 2.1 存储引擎概述
+## 2.1 存储引擎概述
 
 ​	和大多数的数据库不同, MySQL中有一个存储引擎的概念, 针对不同的存储需求可以选择最优的存储引擎。
 
@@ -67,7 +65,7 @@ Mysql高级-day02
 
 
 
-#### 2.2 各种存储引擎特性
+## 2.2 各种存储引擎特性
 
 下面重点介绍几种常用的存储引擎， 并对比各个存储引擎之间的区别， 如下表所示 ： 
 
@@ -92,7 +90,7 @@ Mysql高级-day02
 
 
 
-##### 2.2.1 InnoDB
+### 2.2.1 InnoDB
 
 ​	InnoDB存储引擎是Mysql的默认存储引擎。InnoDB存储引擎提供了具有提交、回滚、崩溃恢复能力的事务安全。但是对比MyISAM的存储引擎，InnoDB写的处理效率差一些，并且会占用更多的磁盘空间以保留数据和索引。
 
@@ -234,7 +232,7 @@ InnoDB 存储表和索引有以下两种方式 ：
 
 
 
-##### 2.2.2 MyISAM
+### 2.2.2 MyISAM
 
 ​	MyISAM 不支持事务、也不支持外键，其优势是访问的速度快，对事务的完整性没有要求或者以SELECT、INSERT为主的应用基本上都可以使用这个引擎来创建表 。有以下两个比较重要的特点： 
 
@@ -286,13 +284,13 @@ insert into goods_myisam(id,name) values(null,'Meta21');
 
 
 
-##### 2.2.3 MEMORY
+### 2.2.3 MEMORY
 
 ​	Memory存储引擎将表的数据存放在内存中。每个MEMORY表实际对应一个磁盘文件，格式是.frm ，该文件中只存储表的结构，而其数据文件，都是存储在内存中，这样有利于数据的快速处理，提高整个表的效率。MEMORY 类型的表访问非常地快，因为他的数据是存放在内存中的，并且默认使用HASH索引 ， 但是服务一旦关闭，表中的数据就会丢失。
 
 
 
-##### 2.2.4 MERGE
+### 2.2.4 MERGE
 
 ​	MERGE存储引擎是一组MyISAM表的组合，这些MyISAM表必须结构完全相同，MERGE表本身并没有存储数据，对MERGE类型的表可以进行查询、更新、删除操作，这些操作实际上是对内部的MyISAM表进行的。
 
@@ -372,7 +370,7 @@ insert into order_all values(100,10000.0,'西安')；
 
 
 
-#### 2.3 存储引擎的选择
+## 2.3 存储引擎的选择
 
 ​	在选择存储引擎时，应该根据应用系统的特点选择合适的存储引擎。对于复杂的应用系统，还可以根据实际情况选择多种存储引擎进行组合。以下是几种常用的存储引擎的使用环境。
 
@@ -383,13 +381,13 @@ insert into order_all values(100,10000.0,'西安')；
 
 
 
-### 3. 优化SQL步骤
+# 3. 优化SQL步骤
 
 在应用的的开发过程中，由于初期数据量小，开发人员写 SQL 语句时更重视功能上的实现，但是当应用系统正式上线后，随着生产数据量的急剧增长，很多 SQL 语句开始逐渐显露出性能问题，对生产的影响也越来越大，此时这些有问题的 SQL 语句就成为整个系统性能的瓶颈，因此我们必须要对它们进行优化，本章将详细介绍在 MySQL 中优化 SQL 语句的方法。
 
 当面对一个有 SQL 性能问题的数据库时，我们应该从何处入手来进行系统的分析，使得能够尽快定位问题 SQL 并尽快解决问题。
 
-#### 3.1 查看SQL执行频率
+## 3.1 查看SQL执行频率
 
 MySQL 客户端连接成功后，通过 show [session|global] status 命令可以提供服务器状态信息。show [session|global] status 可以根据需要加上参数“session”或者“global”来显示 session 级（当前连接）的计结果和 global 级（自数据库上次启动至今）的统计结果。如果不写，默认使用参数是“session”。
 
@@ -431,7 +429,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 
 
-#### 3.2 定位低效率执行SQL
+## 3.2 定位低效率执行SQL
 
 可以通过以下两种方式定位执行效率较低的 SQL 语句。
 
@@ -461,7 +459,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 
 
-#### 3.3 explain分析执行计划
+## 3.3 explain分析执行计划
 
 通过以上步骤查询到效率低的 SQL 语句后，可以通过 EXPLAIN或者 DESC命令获取 MySQL如何执行 SELECT 语句的信息，包括在 SELECT 语句执行过程中表如何连接和连接的顺序。
 
@@ -481,7 +479,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 
 
-##### 3.3.1 环境准备
+### 3.3.1 环境准备
 
 ![image-20210508141911629](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508141911629.png)
 
@@ -544,7 +542,7 @@ INSERT INTO user_role(id,user_id,role_id) VALUES(NULL, '1', '5'),(NULL, '1', '7'
 
 
 
-##### 3.3.2 explain 之 id
+### 3.3.2 explain 之 id
 
 id 字段是 select查询的序列号，是一组数字，表示的是查询中执行select子句或者是操作表的顺序。id 情况有三种 ： 
 
@@ -579,7 +577,7 @@ EXPLAIN SELECT * FROM t_role r , (SELECT * FROM user_role ur WHERE ur.`user_id` 
 
 
 
-##### 3.3.3 explain 之 select_type
+### 3.3.3 explain 之 select_type
 
  表示 SELECT 的类型，常见的取值，如下表所示：
 
@@ -594,13 +592,13 @@ EXPLAIN SELECT * FROM t_role r , (SELECT * FROM user_role ur WHERE ur.`user_id` 
 
 
 
-##### 3.3.4 explain 之 table
+### 3.3.4 explain 之 table
 
 展示这一行的数据是关于哪一张表的 
 
 
 
-##### 3.3.5 explain 之 type
+### 3.3.5 explain 之 type
 
 type 显示的是访问类型，是较为重要的一个指标，可取值为： 
 
@@ -629,7 +627,7 @@ system > const > eq_ref > ref > range > index > ALL
 
 
 
-##### 3.3.6 explain 之  key
+### 3.3.6 explain 之  key
 
 ```
 possible_keys : 显示可能应用在这张表的索引， 一个或多个。 
@@ -642,13 +640,13 @@ key_len : 表示索引中使用的字节数， 该值为索引字段最大可能
 
 
 
-##### 3.3.7 explain 之 rows
+### 3.3.7 explain 之 rows
 
 扫描行的数量。
 
 
 
-##### 3.3.8 explain 之 extra
+### 3.3.8 explain 之 extra
 
 其他的额外的执行计划信息，在该列展示 。
 
@@ -660,7 +658,7 @@ key_len : 表示索引中使用的字节数， 该值为索引字段最大可能
 
 
 
-#### 3.4 show profile分析SQL
+## 3.4 show profile分析SQL
 
 Mysql从5.0.37版本开始增加了对 show profiles 和 show profile 语句的支持。show profiles 能够在做SQL优化时帮助我们了解时间都耗费到哪里去了。
 
@@ -724,7 +722,7 @@ TIP ：
 
 
 
-#### 3.5 trace分析优化器执行计划
+## 3.5 trace分析优化器执行计划
 
 MySQL5.6提供了对SQL的跟踪trace, 通过trace文件能够进一步了解为什么优化器选择A计划, 而不是选择B计划。
 
@@ -926,13 +924,13 @@ TRACE: {
 
 
 
-### 4. 索引的使用
+# 4. 索引的使用
 
 索引是数据库优化最常用也是最重要的手段之一, 通过索引通常可以帮助用户解决大多数的MySQL的性能优化问题。
 
 
 
-#### 4.1 验证索引提升查询效率
+## 4.1 验证索引提升查询效率
 
 在我们准备的表结构tb_item 中， 一共存储了497150 记录；
 
@@ -981,9 +979,9 @@ create index idx_item_title on tb_item(title);
 
 ![image-20210508185635333](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185635333.png)
 
-#### 4.2 索引的使用
+## 4.2 索引的使用
 
-##### 4.2.1 准备环境
+### 4.2.1 准备环境
 
 ```sql
 create table `tb_seller` (
@@ -1017,7 +1015,7 @@ create index idx_seller_name_sta_addr on tb_seller(name,status,address);
 
 
 
-##### 4.2.2 避免索引失效
+### 4.2.2 避免索引失效
 
 1).  全值匹配 ，对索引中所有列都指定具体值。
 
@@ -1190,7 +1188,7 @@ create index idx_seller_address on tb_seller(address);
 
 
 
-#### 4.3 查看索引使用情况
+## 4.3 查看索引使用情况
 
 ```sql
 show status like 'Handler_read%';	
@@ -1218,9 +1216,9 @@ Handler_read_rnd_next：在数据文件中读下一行的请求数。如果你�
 
 
 
-### 5. SQL优化
+# 5. SQL优化
 
-#### 5.1 大批量插入数据
+## 5.1 大批量插入数据
 
 环境准备 ： 
 
@@ -1303,7 +1301,7 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 **注意出现**：【LOAD DATA语法上传数据】
 
-#### 具体解法见 【Mysql中出现的问题】 这个笔记
+## 具体解法见 【Mysql中出现的问题】 这个笔记
 
 2） 关闭唯一性校验
 
@@ -1321,7 +1319,7 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 
 
-#### 5.2 优化insert语句
+## 5.2 优化insert语句
 
 当进行数据的insert操作的时候，可以考虑采用以下几种优化方案。
 
@@ -1378,9 +1376,9 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 
 
-#### 5.3 优化order by语句
+## 5.3 优化order by语句
 
-##### 5.3.1 环境准备
+### 5.3.1 环境准备
 
 ```SQL
 CREATE TABLE `emp` (
@@ -1408,7 +1406,7 @@ create index idx_emp_age_salary on emp(age,salary);
 
 ```
 
-##### 5.3.2 两种排序方式
+### 5.3.2 两种排序方式
 
 1). 第一种是通过对返回数据进行排序，也就是通常说的 filesort 排序，所有不是通过索引直接返回排序结果的排序都叫 FileSort 排序。
 
@@ -1432,7 +1430,7 @@ create index idx_emp_age_salary on emp(age,salary);
 
 
 
-##### 5.3.3 Filesort 的优化
+### 5.3.3 Filesort 的优化
 
 通过创建合适的索引，能够减少 Filesort 的出现，但是在某些情况下，条件限制不能让Filesort消失，那就需要加快 Filesort的排序操作。对于Filesort ， MySQL 有两种排序算法：
 
@@ -1453,7 +1451,7 @@ show variables like 'max_length_for_sort_data';
 
 ![image-20210515115344845](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515115344845.png) 
 
-#### 5.4 优化group by 语句
+## 5.4 优化group by 语句
 
 由于GROUP BY 实际上也同样会进行排序操作，而且与ORDER BY 相比，GROUP BY 主要只是多了排序之后的分组操作。当然，如果在分组的时候还使用了其他的一些聚合函数，那么还需要一些聚合函数的计算。所以，在GROUP BY 的实现过程中，与 ORDER BY 一样也可以利用到索引。
 
@@ -1492,7 +1490,7 @@ create index idx_emp_age_salary on emp(age,salary);
 
 
 
-#### 5.5 优化嵌套查询
+## 5.5 优化嵌套查询
 
 Mysql4.1版本之后，开始支持SQL的子查询。这个技术可以使用SELECT语句来创建一个单列的查询结果，然后把这个结果作为过滤条件用在另一个查询中。使用子查询可以一次性的完成很多逻辑上需要多个步骤才能完成的SQL操作，同时也可以避免事务或者表锁死，并且写起来也很容易。但是，有些情况下，子查询是可以被更高效的连接（JOIN）替代。
 
@@ -1524,7 +1522,7 @@ explain select * from t_user u , user_role ur where u.id = ur.user_id;
 
 
 
-#### 5.6 优化OR条件
+## 5.6 优化OR条件
 
 对于包含OR的查询子句，如果要利用索引，则OR之间的每个条件列都必须用到索引 ， 而且不能使用到复合索引； 如果没有索引，则应该考虑增加索引。
 
@@ -1565,13 +1563,13 @@ UNION 语句的 ref 值为 const，OR 语句的 type 值为 null，const 表示�
 
 
 
-#### 5.7 优化分页查询
+## 5.7 优化分页查询
 
 一般分页查询时，通过创建覆盖索引能够比较好地提高性能。一个常见又非常头疼的问题就是 limit 400000,10  ，此时需要MySQL排序前400010 记录，仅仅返回400000- 400010 的记录，其他记录丢弃，查询排序的代价非常大 。
 
 ![image-20210515135624914](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515135624914.png)
 
-##### 5.7.1 优化思路一
+### 5.7.1 优化思路一
 
 在索引上完成排序分页操作，最后根据主键关联回原表查询所需要的其他列内容。
 
@@ -1581,7 +1579,7 @@ UNION 语句的 ref 值为 const，OR 语句的 type 值为 null，const 表示�
 
 ![image-20210515141012324](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515141012324.png)
 
-##### 5.7.2 优化思路二
+### 5.7.2 优化思路二
 
 该方案适用于主键自增的表，可以把Limit 查询转换成某个位置的查询 。
 
@@ -1591,11 +1589,11 @@ UNION 语句的 ref 值为 const，OR 语句的 type 值为 null，const 表示�
 
 
 
-#### 5.8 使用SQL提示
+## 5.8 使用SQL提示
 
 SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQL语句中加入一些人为的提示来达到优化操作的目的。
 
-##### 5.8.1 USE INDEX
+### 5.8.1 USE INDEX
 
 在查询语句中表名的后面，添加 use index 来提供希望MySQL去**参考**的索引列表，就可以让MySQL不再考虑其他可用的索引。
 
@@ -1608,7 +1606,7 @@ SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQ
 
 ![image-20210515143702203](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515143702203.png)
 
-##### 5.8.2 IGNORE INDEX
+### 5.8.2 IGNORE INDEX
 
 如果用户只是单纯的想让MySQL忽略一个或者多个索引，则可以使用 ignore index 作为 hint 。
 
@@ -1619,7 +1617,7 @@ SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQ
 
 ![image-20210515143145037](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515143145037.png)
 
-##### 5.8.3 FORCE INDEX
+### 5.8.3 FORCE INDEX
 
 为**强制**MySQL使用一个特定的索引，可在查询中使用 force index 作为hint 。 
 

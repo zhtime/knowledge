@@ -1,8 +1,8 @@
 # Mysql高级知识点4
 
-### 1. MySql中常用工具
+## 1. MySql中常用工具
 
-#### 1.1 mysql
+### 1.1 mysql
 
 该mysql不是指mysql服务，而是指mysql的客户端工具。
 
@@ -12,7 +12,7 @@
 mysql [options] [database]
 ```
 
-##### 1.1.1 连接选项
+#### 1.1.1 连接选项
 
 ```
 参数 ： 
@@ -28,7 +28,7 @@ mysql [options] [database]
 	
 ```
 
-##### 1.1.2 执行选项
+#### 1.1.2 执行选项
 
 ```
 -e, --execute=name		执行SQL语句并退出
@@ -45,7 +45,7 @@ mysql [options] [database]
 
 
 
-#### 1.2 mysqladmin
+### 1.2 mysqladmin
 
 mysqladmin 是一个执行管理操作的客户端程序。可以用它来检查服务器的配置和当前状态、创建并删除数据库等。
 
@@ -63,7 +63,7 @@ mysqladmin 是一个执行管理操作的客户端程序。可以用它来检查
 
 
 
-#### 1.3 mysqlbinlog
+### 1.3 mysqlbinlog
 
 由于服务器生成的二进制日志文件以二进制格式保存，所以如果想要检查这些文本的文本格式，就会使用到mysqlbinlog 日志管理工具。
 
@@ -89,7 +89,7 @@ mysqlbinlog [options]  log-files1 log-files2 ...
 
 
 
-#### 1.4 mysqldump
+### 1.4 mysqldump
 
 mysqldump 客户端工具用来**备份数据库**或在**不同数据库**之间进行**数据迁移**。**备份内容**包含创建表，及插入表的SQL语句。
 
@@ -103,7 +103,7 @@ mysqldump [options] --database/-B db1 [db2 db3...]
 mysqldump [options] --all-databases/-A
 ```
 
-##### 1.4.1 连接选项
+#### 1.4.1 连接选项
 
 ```
 参数 ： 
@@ -115,7 +115,7 @@ mysqldump [options] --all-databases/-A
 
 
 
-##### 1.4.2 输出内容选项
+#### 1.4.2 输出内容选项
 
 ```
 参数：
@@ -165,7 +165,7 @@ show variables like '%secure_file_priv%';
 
 
 
-#### 1.5 mysqlimport/source
+### 1.5 mysqlimport/source
 
 mysqlimport 是客户端数据导入工具，用来导入mysqldump 加 -T 参数后导出的**文本文件**。
 
@@ -195,7 +195,7 @@ source /var/lib/mysql-files/tb_book.sql;
 
 
 
-#### 1.6 mysqlshow
+### 1.6 mysqlshow
 
 mysqlshow 客户端对象查找工具，用来很快地查找存在哪些数据库、数据库中的表、表中的列或者索引。
 
@@ -234,11 +234,11 @@ mysqlshow -u root -p123456 test book --count
 
 
 
-### 2. Mysql 日志
+## 2. Mysql 日志
 
 在任何一种数据库中，都会有各种各样的日志，记录着数据库工作的方方面面，以帮助数据库管理员追踪数据库曾经发生过的各种事件。MySQL 也不例外，在 MySQL 中，有 4 种不同的日志，分别是错误日志、二进制日志（BINLOG 日志）、查询日志和慢查询日志，这些日志记录着数据库在不同方面的踪迹。
 
-#### 2.1 错误日志
+### 2.1 错误日志
 
 错误日志是 MySQL 中最重要的日志之一，它记录了当 mysqld 启动和停止时，以及服务器在运行过程中发生任何严重错误时的相关信息。当数据库出现任何故障导致无法正常使用时，可以首先查看此日志。
 
@@ -267,9 +267,9 @@ tail -f /usr/data/zhanghui-PC.err
 
 
 
-#### 2.2 二进制日志
+### 2.2 二进制日志
 
-##### 2.2.1概述
+#### 2.2.1概述
 
 二进制日志（BINLOG）记录了所有的 DDL（数据定义语言）语句和 DML（数据操纵语言）语句，但是不包括数据查询语句。此日志对于灾难时的数据恢复起着极其重要的作用，MySQL的主从复制， 就是通过该binlog实现的。
 
@@ -299,7 +299,7 @@ binlog_format=STATEMENT
 
 ![image-20210520183353133](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520183353133.png)
 
-##### 2.2.2 日志格式
+#### 2.2.2 日志格式
 
 **STATEMENT**
 
@@ -319,7 +319,7 @@ binlog_format=STATEMENT
 
 
 
-##### 2.2.3 日志读取
+#### 2.2.3 日志读取
 
 由于日志以二进制方式存储，不能直接读取，需要用mysqlbinlog工具来查看，语法如下 ：
 
@@ -395,7 +395,7 @@ mysqlbinlog -vv mysqlbin.000002
 
 
 
-##### 2.2.4 日志删除
+#### 2.2.4 日志删除
 
 对于比较繁忙的系统，由于每天生成日志量大 ，这些日志如果长时间不清楚，将会占用大量的磁盘空间。下面我们将会讲解几种删除日志的常见方法 ：
 
@@ -437,7 +437,7 @@ Reset Master
 
 
 
-#### 2.3 查询日志
+### 2.3 查询日志
 
 查询日志中记录了客户端的所有操作语句，而二进制日志不包含查询数据的SQL语句。
 
@@ -478,13 +478,13 @@ select * from tb_book where id < 8;
 
 ![image-20210520190907350](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520190907350.png)
 
-#### 2.4 慢查询日志
+### 2.4 慢查询日志
 
 慢查询日志记录了所有执行时间超过参数 long_query_time 设置值并且扫描记录数不小于 min_examined_row_limit 的所有的SQL语句的日志。long_query_time 默认为 10 秒，最小为 0， 精度可以到微秒。
 
 
 
-##### 2.4.1 文件位置和格式
+#### 2.4.1 文件位置和格式
 
 慢查询日志默认是关闭的 。可以通过两个参数来控制慢查询日志 ：
 
@@ -502,7 +502,7 @@ long_query_time=10
 
 ![image-20210520192256187](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210520192256187.png)
 
-##### 2.4.2 日志的读取
+#### 2.4.2 日志的读取
 
 和错误日志、查询日志一样，慢查询日志记录的格式也是纯文本，可以被直接读取。
 
@@ -556,9 +556,9 @@ select * from tb_item;
 
 
 
-### 3. Mysql复制
+## 3. Mysql复制
 
-#### 3.1 复制概述
+### 3.1 复制概述
 
 复制是指将主数据库的DDL 和 DML 操作通过二进制日志传到从库服务器中，然后在从库上对这些日志重新执行（也叫重做），从而使得从库和主库的数据保持同步。
 
@@ -566,7 +566,7 @@ MySQL支持一台主库同时向多台从库进行复制， 从库同时也可�
 
 
 
-#### 3.2 复制原理
+### 3.2 复制原理
 
 MySQL 的主从复制原理如下。
 
@@ -581,7 +581,7 @@ MySQL 的主从复制原理如下。
 
 
 
-#### 3.3 复制优势
+### 3.3 复制优势
 
 MySQL 复制的有点主要包含以下三个方面：
 
@@ -593,9 +593,9 @@ MySQL 复制的有点主要包含以下三个方面：
 
 
 
-#### 3.4 搭建步骤
+### 3.4 搭建步骤
 
-##### 3.4.1 master
+#### 3.4.1 master
 
 1） 在master 的配置文件（/usr/my.cnf）中，配置如下内容：
 
@@ -665,7 +665,7 @@ Binlog_Ignore_DB : 指定不需要同步的数据库
 
 
 
-##### 3.4.2 slave
+#### 3.4.2 slave
 
 1） 在 slave 端配置文件中，配置如下内容：
 
@@ -714,7 +714,7 @@ stop slave;
 
 
 
-##### 3.4.3 验证同步操作
+#### 3.4.3 验证同步操作
 
 1） 在主库中创建数据库，创建表，并插入数据 ：
 
@@ -740,17 +740,17 @@ insert into user(id,name,sex) values(null,'Dawn','1');
 
 在从库中，可以查看到刚才创建的数据库：
 
-![1554544658640](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1554544658640.png) 
+![1554544658640](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1554544658640.png)
 
 在该数据库中，查询user表中的数据：
 
-![1554544679538](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1554544679538.png) 
+![1554544679538](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1554544679538.png)
 
 
 
-### 4. 综合案例
+## 4. 综合案例
 
-#### 4.1 需求分析
+### 4.1 需求分析
 
 在业务系统中，需要记录当前业务系统的访问日志，该访问日志包含：操作人，操作时间，访问类，访问方法，请求参数，请求结果，请求结果类型，请求时长 等信息。记录详细的系统访问日志，主要便于对系统中的用户请求进行追踪，并且在系统 的管理后台可以查看到用户的访问记录。
 
@@ -760,9 +760,9 @@ insert into user(id,name,sex) values(null,'Dawn','1');
 
 
 
-#### 4.2 搭建案例环境
+### 4.2 搭建案例环境
 
-##### 4.2.1 数据库表
+#### 4.2.1 数据库表
 
 ```sql
 CREATE DATABASE mysql_demo DEFAULT CHARACTER SET utf8mb4 ;
@@ -823,7 +823,7 @@ CREATE TABLE `operation_log` (
 
 
 
-##### 4.2.2 pom.xml 
+#### 4.2.2 pom.xml 
 
 ```xml
 <properties>
@@ -980,7 +980,7 @@ CREATE TABLE `operation_log` (
 
 ```
 
-##### 4.2.3 web.xml
+#### 4.2.3 web.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1036,7 +1036,7 @@ CREATE TABLE `operation_log` (
 
 ```
 
-##### 4.2.4 db.properties
+#### 4.2.4 db.properties
 
 ```properties
 jdbc.driver=com.mysql.jdbc.Driver
@@ -1046,7 +1046,7 @@ jdbc.password=itcast
 
 ```
 
-##### 4.2.5 applicationContext.xml
+#### 4.2.5 applicationContext.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1099,7 +1099,7 @@ jdbc.password=itcast
 
 ```
 
-##### 4.2.6 springmvc.xml
+#### 4.2.6 springmvc.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1127,15 +1127,15 @@ jdbc.password=itcast
 
 ```
 
-##### 4.2.7 导入基础工程
+#### 4.2.7 导入基础工程
 
 ![1555076434270](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555076434270.png) 
 
 
 
-#### 4.3 通过AOP记录操作日志
+### 4.3 通过AOP记录操作日志
 
-##### 4.3.1 自定义注解
+#### 4.3.1 自定义注解
 
 通过自定义注解，来标示方法需不需要进行记录日志，如果该方法在访问时需要记录日志，则在该方法上标示该注解既可。
 
@@ -1149,7 +1149,7 @@ public @interface OperateLog {
 
 ```
 
-##### 4.3.2 定义通知类
+#### 4.3.2 定义通知类
 
 ```java
 @Component
@@ -1209,7 +1209,7 @@ public class OperateAdvice {
 
 ```
 
-##### 4.3.3 方法上加注解
+#### 4.3.3 方法上加注解
 
 在需要记录日志的方法上加上注解@OperateLog。
 
@@ -1230,9 +1230,9 @@ public Result insert(@RequestBody Brand brand){
 
 
 
-#### 4.4 日志查询后端代码实现
+### 4.4 日志查询后端代码实现
 
-##### 4.4.1 Mapper接口
+#### 4.4.1 Mapper接口
 
 ```java
 public interface OperationLogMapper {
@@ -1247,7 +1247,7 @@ public interface OperationLogMapper {
 
 ```
 
-##### 4.4.2 Mapper.xml 映射配置文件
+#### 4.4.2 Mapper.xml 映射配置文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1305,7 +1305,7 @@ public interface OperationLogMapper {
 
 ```
 
-##### 4.4.3 Service
+#### 4.4.3 Service
 
 ```java
 @Service
@@ -1362,7 +1362,7 @@ public class OperationLogService {
 
 ```
 
-##### 4.4.4 Controller
+#### 4.4.4 Controller
 
 ```java
 @RestController
@@ -1384,11 +1384,11 @@ public class OperationLogController {
 
 
 
-#### 4.5 日志查询前端代码实现
+### 4.5 日志查询前端代码实现
 
 前端代码使用 BootStrap + AdminLTE 进行布局， 使用Vuejs 进行视图层展示。
 
-##### 4.5.1 js
+#### 4.5.1 js
 
 ```html
 <script>
@@ -1444,7 +1444,7 @@ public class OperationLogController {
 
 ```
 
-##### 4.5.2 列表数据展示
+#### 4.5.2 列表数据展示
 
 ```html
 <tr v-for="item in dataList">
@@ -1476,7 +1476,7 @@ public class OperationLogController {
 
 ```
 
-#### 4.6 联调测试
+### 4.6 联调测试
 
 可以通过postman来访问业务系统，再查看数据库中的日志信息，验证能不能将用户的访问日志记录下来。
 
@@ -1484,7 +1484,7 @@ public class OperationLogController {
 
 
 
-#### 4.7 分析性能问题
+### 4.7 分析性能问题
 
 系统中用户访问日志的数据量，随着时间的推移，这张表的数据量会越来越大，因此我们需要根据业务需求，来对日志查询模块的性能进行优化。
 
@@ -1514,9 +1514,9 @@ B. 查询符合条件的列表数据。--> 分页查询 limit 操作
 
 
 
-#### 4.8 性能优化 - 分页
+### 4.8 性能优化 - 分页
 
-##### 4.8.1 优化count
+#### 4.8.1 优化count
 
 创建一张表用来记录日志表的总数据量：
 
@@ -1547,7 +1547,7 @@ create table log_counter(
 
 
 
-##### 4.8.2 优化 limit
+#### 4.8.2 优化 limit
 
 在进行分页时，一般通过创建覆盖索引，能够比较好的提高性能。一个非常常见，而又非常头疼的分页场景就是 "limit 1000000,10" ，此时MySQL需要搜索出前1000010 条记录后，仅仅需要返回第 1000001 到 1000010 条记录，前1000000 记录会被抛弃，查询代价非常大。 
 
@@ -1596,7 +1596,7 @@ select * from operation_log t , (select id from operation_log order by id limit 
 
 
 
-#### 4.9 性能优化 - 索引
+### 4.9 性能优化 - 索引
 
 ![1555152703824](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555152703824.png)
 
@@ -1621,15 +1621,15 @@ CREATE INDEX idx_optlog_cost ON operation_log(cost_time);
 
 
 
-#### 4.10 性能优化 - 排序
+### 4.10 性能优化 - 排序
 
 在查询数据时，如果业务需求中需要我们对结果内容进行了排序处理 , 这个时候,我们还需要对排序的字段建立适当的索引, 来提高排序的效率 。
 
 
 
-#### 4.11 性能优化 - 读写分离
+### 4.11 性能优化 - 读写分离
 
-##### 4.11.1 概述
+#### 4.11.1 概述
 
 在Mysql主从复制的基础上，可以使用读写分离来降低单台Mysql节点的压力，从而来提高访问效率，读写分离的架构如下：
 
@@ -1637,7 +1637,7 @@ CREATE INDEX idx_optlog_cost ON operation_log(cost_time);
 
 对于读写分离的实现，可以通过Spring AOP 来进行动态的切换数据源，进行操作 ：
 
-##### 4.11.2 实现方式
+#### 4.11.2 实现方式
 
 db.properties
 
@@ -1813,7 +1813,7 @@ public class DataSourceAspect {
 
 
 
-##### 4.11.3 验证
+#### 4.11.3 验证
 
 在主库和从库中，执行如下SQL语句，来查看是否读的时候， 从从库中读取 ； 写入操作的时候，是否写入到主库。
 
@@ -1826,27 +1826,27 @@ show status like 'Innodb_rows_%' ;
 
 
 
-##### 4.11.4 原理
+#### 4.11.4 原理
 
 ![1555235982584](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//aop-datasource.png)
 
 
 
-#### 4.12 性能优化 - 应用优化
+### 4.12 性能优化 - 应用优化
 
-##### 4.12.1 缓存
+#### 4.12.1 缓存
 
 可以在业务系统中使用redis来做缓存，缓存一些基础性的数据，来降低关系型数据库的压力，提高访问效率。
 
 
 
-##### 4.12.2 全文检索
+#### 4.12.2 全文检索
 
 如果业务系统中的数据量比较大（达到千万级别），这个时候，如果再对数据库进行查询，特别是进行分页查询，速度将变得很慢（因为在分页时首先需要count求合计数），为了提高访问效率，这个时候，可以考虑加入Solr 或者 ElasticSearch全文检索服务，来提高访问效率。
 
 
 
-##### 4.13.3 非关系数据库
+#### 4.13.3 非关系数据库
 
 也可以考虑将非核心（重要）数据，存在 MongoDB 中，这样可以提高插入以及查询的效率。
 
