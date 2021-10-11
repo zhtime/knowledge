@@ -1442,12 +1442,116 @@ SpringMVC**前端控制器**交由异常处理器进行异常处理，如下图:
 
 ##### 异常处理的两种方式
 
-使用Spring MVC提供的简单异常处理器**SimpleMappingExceptionResolver**实现
+1. 使用Spring MVC提供的简单异常处理器**SimpleMappingExceptionResolver**实现
 
+    spring-mvc.xml 配置文件
 
+   ```xml
+   <!--    配置映射异常处理器-->
+       <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+   <!--        多种异常类型配置-->
+           <property name="exceptionMappings" >
+   <!--            map形式-->
+               <map>
+   <!--                键值对-->
+   <!--                key对应异常类型，value对应条状的自定义页面，实际开发对应响应的自定义异常页面提高用户体验感-->
+                   <entry key="java.lang.ClassCastException" value="error1"/>
+                   <entry key="java.lang.NullPointerException" value="error3"/>
+                   <entry key="java.lang.ArithmeticException" value="error2"/>
+               </map>
+           </property>
+       </bean>
+   ```
 
+   配置了三种最常见的简单异常类型空指针、算术错误、类不匹配跳转到对应页面。
 
+   
 
-Spring的异常处理接口**HandlerExceptionResolver**自定义自己的异常处理器
-公
+   
 
+   测试
+
+   ```java
+   @Controller
+   @RequestMapping("test")
+   public class DemoController {
+   
+       @Autowired
+       private DemoService demoService;
+   
+       @GetMapping("/exp")
+       public String test(){
+           System.out.println("Running....");
+           //类型转换异常页面
+   //        demoService.show1();
+           //除数异常页面
+   //        demoService.show2();
+           //空指针异常页面
+           demoService.show3();
+           return "index";
+       }
+   }
+   
+   @Component
+   public class DemoServiceImpl implements DemoService{
+       public void show1() {
+           System.out.println("抛出类型转换异常。。。。");
+           Object str = "zhang";
+           Integer num = (Integer) str;
+       }
+   
+       public void show2() {
+           System.out.println("抛出除数为0的异常。。。。");
+           int i = 1 / 0;
+       }
+   
+       public void show3() {
+           String str = null ;
+           str.length();
+           System.out.println("空指针异常。。。。");
+       }
+   
+   
+   }
+   ```
+
+   ![image-20210825161109146](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825161109146.png)  
+
+   ![image-20210825161311363](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825161311363.png) 
+
+   ![image-20210825161425549](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825161425549.png) 
+
+2. Spring的异常处理接口**HandlerExceptionResolver**自定义自己的异常处理器
+   公
+
+   - 创建异常处理类实现HandlerExceptionResolver
+   - 配置异常处理器
+   - 编写异常页面
+   - 测试异常跳转
+
+   ```java
+       /**
+        *
+        * @param request 请求
+        * @param response 响应
+        * @param handler 处理
+        * @param ex 异常对象
+        * @return 跳转到对应错误的视图信息
+        */
+       public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+           ModelAndView modelAndView = new ModelAndView();
+   
+           //模拟对异常类型进行判断
+           if (ex instanceof  MyExceptionResolver){
+               modelAndView.addObject("info","自定义异常");
+           }else  if (ex instanceof ClassCastException){
+               modelAndView.addObject("info","类转换异常");
+           }
+   
+           return modelAndView;
+       }
+   ```
+
+   
+
+ 

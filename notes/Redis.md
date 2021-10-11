@@ -265,7 +265,7 @@ decrby key increment
 
 - String在redis中默认是字符串类型，当遇到**incr**和**decr**操作时，会转换成数值进行计算。(**前提是存入的是数值类型的String**)
 
-- redis所有的操作都是原子性的，采用单线程处理所有的业务，命令是一个一个执行，因此不想需要考虑并发带来的影响。
+- redis所有的操作都是原子性的，采用单线程处理所有的业务，命令是一个一个执行，因此不需要考虑并发带来的影响。
 
   
 
@@ -479,7 +479,7 @@ lrem key count value
 **注意事项**
 
 - list中保存的数据都是string类型的，数据总容量是有限的，最多2^32 - 1 个元素 (4294967295)。
-- list具有索引的概念，但是操作数据时通常以**队列**的形式进行入队出队(rpush, rpop)操作，或以**栈**的形式进行入栈出栈(lpush, lpop)操作
+- list具有索引的概念，但是操作数据时通常以**队列**的形式进行入队出队(rpush, lpop)操作，或以**栈**的形式进行入栈出栈(lpush, lpop)操作
 - 获取全部数据操作结束索引设置为-1 (倒数第一个元素)
 - list可以对数据进行分页操作，通常第一页的信息来自于list，第2页及更多的信息通过数据库的形式加载
 
@@ -616,7 +616,7 @@ smove source destination key
 
 ![image-20210716142345635](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716142345635.png)
 
-score关键字是**用来排序，并不是**
+score关键字是**用来排序，并不是数据**
 
 
 
@@ -688,7 +688,7 @@ zremrangebysocre key min max
 
    注意：min于max用于限定搜索查询的条件
     	start与stop用于限定查询范围，作用于索引，表示开始和结束索引
-    	offset于count用于限定查询范围，作用于查询结果，表示开始位置和数		 据总量
+    	offset于count用于限定查询范围，作用于查询结果，表示开始位置和数据总量
     
     
 //按照从大到小的顺序移除count个值
@@ -707,7 +707,7 @@ zcard key
 //获得元素在范围内的个数
 zcount key min max
 
-//求交集、并集放入destination中, 其中numkey1为要去交集或并集集合的数目,key代表要集合,它们会将集合中相同元素的值相加。
+//求交集、并集放入destination中, 其中numkeys为交集或并集集合的数目,key1，key2代表要集合,它们会将集合中相同元素的值相加。
 zinterstore destination numkeys key1 key2...
 zunionstore destination numkeys key1 key2...
 ```
@@ -921,9 +921,33 @@ OK
 
 模拟微信消息发送时间排序
 
-![image-20210717134415007](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134415007.png)
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901144928816.png" alt="image-20210901144928816" style="zoom: 67%;" />
 
-![image-20210717134434609](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134434609.png)
+
+
+set用来存放置顶的消息
+
+此时 300 用户向100 用户发送消息，需要判断是普通消息还是置顶消息
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901145117114.png" alt="image-20210901145117114" style="zoom: 50%;" />
+
+接下来400，发消息，在100用户中400用户是置顶消息，因此400的消息放到置顶list中
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901145351183.png" alt="image-20210901145351183" style="zoom:50%;" />
+
+200用户连续发送两次消息，都是普通消息，200第一次消息放入普通list，第二次消息放入list前会把之前的200消息去除，再放入，
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901145653669.png" alt="image-20210901145653669" style="zoom:50%;" />
+
+最后300用户又发了一次信息，发现原本list中有300信息，将其去除在加入到list中，放在200之后。
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901145848845.png" alt="image-20210901145848845" style="zoom:50%;" />
+
+最后100拿起手机查看消息，400为置顶位于最前，300消息最近在200之前
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134415007.png" alt="image-20210717134415007" style="zoom:50%;" />
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717134434609.png" alt="image-20210717134434609" style="zoom:50%;" />
 
 ```java
 //List类型
@@ -1579,7 +1603,7 @@ save second changes
 
 **概念**
 
-- AOF(append only file)持久化：以独立日志的方式记录**每次**写命令，重启时再重新执行AOF文件中命令，以达到恢复数据的目的。与RDB相比可以简单描述为改记录数据为记录数据产生的过程
+- AOF(append only file)持久化：以独立日志的方式记录**每次**写命令，重启时再重新执行AOF文件中命令，以达到恢复数据的目的。与RDB相比可以简单描述为记录数据产生的过程
 - AOF的主要作用是解决了数据持久化的实时性，目前已经是Redis持久化的**主流**方式
 
 
@@ -1698,6 +1722,20 @@ bgrewriteaof
 
 
 
+**工作原理**
+
+基于always策略AOF 执行写入指令时，没有对aof文件进行重写
+
+基于everysec策略AOF执行写入指令，相比于always策略多出了aof缓冲区
+
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142755.png)
+
+当everysec开启重写时，在子进程中除了有aof缓冲区，还有一个aof重写缓冲区，在执行重写指令时，根据aof重写缓冲区中的数据进行aof文件重写，将重写完的aof文件替换原来的aof文件
+
+![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142814.png)
+
+
+
 **AOF自动重写**
 
 - 自动重写触发条件设置
@@ -1724,21 +1762,13 @@ bgrewriteaof
 
 
 
-**工作原理**
-
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142755.png)
-
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142814.png)
-
 
 
 
 
 #### RDB与AOF区别
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142837.png)
-
-
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608142837.png" alt="img" style="zoom: 67%;" />
 
 
 
@@ -1904,6 +1934,10 @@ QUEUED
 
 
 
+
+
+场景：当前客户拿到锁之后进行操作，突然出现了问题，导致当前锁无法释放，会导致后续的进行
+
 **分布式锁改良**
 
 - 使用 expire 为锁key添加**时间限定**，到时不释放，放弃锁
@@ -1936,6 +1970,10 @@ QUEUED
 - **定期删除**
 
 ![image-20210721143621331](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210721143621331.png)
+
+expires空间存放数据的时间：数据地址  ---->  过期时间
+
+
 
 **数据删除策略的目标**
 
@@ -1993,7 +2031,7 @@ activeExpireVCycle():**随机抽取**检查每个**数据的时效性**
 
 #### 逐出算法
 
-当redis中存储的数据都是长期有效的或者没有设置有效市场，而删除策略针对的时效性的数据。
+当redis中存储的数据都是长期有效的或者没有设置有效时长，而删除策略针对的时效性的数据。
 
 - Redis使用内存存储数据，在执行每一个命令前，会调用**freeMemoryIfNeeded()**检测内存是否充足。如果内存不满足新加入数据的最低存储要求，redis要临时删除一些数据为当前指令清理存储空间。清理数据的策略称为**逐出算法**
 - **注意**：逐出数据的过程不是100%能够清理出足够的可使用的内存空间，如果不成功则反复执行。当对所有数据尝试完毕后，如果不能达到内存清理的要求，将出现错误信息。
@@ -2030,6 +2068,12 @@ activeExpireVCycle():**随机抽取**检查每个**数据的时效性**
 
  检测易失数据![image-20210722130758323](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722130758323.png)
 
+当前执行了9s，从name、age、addr和gender中选取一个最近最少使用
+
+当前执行了9s，从name、age、addr和gender中选取一个次数使用最少
+
+
+
 检测全库数据
 
 ![image-20210722131028572](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722131028572.png)
@@ -2044,11 +2088,15 @@ maxmemory-policy volatile-lru
 
 
 
+
+
 **数据逐出策略配置依据**
 
 - 使用**INFO命令**输出监控信息，查询缓存 **hit 和 miss** 的次数，根据业务需求调优Redis配置
 
 ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200608143004.png)
+
+
 
 
 
@@ -2136,6 +2184,14 @@ maxmemory-policy volatile-lru
 
 #### Bitmaps
 
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210902150647625.png" alt="image-20210902150647625" style="zoom:50%;" />
+
+按位存储数据，存入某些 数据的状态：性别、是否为党员等等
+
+操作过程也是按照二进制(01)的形式，**相比于原来的基本数据类型，这并不是一个新的数据类型，可以理解为操作原基本数据二进制的形式**
+
+
+
 **基础操作**
 
 - 获取指定key对应偏移量上的bit值
@@ -2160,6 +2216,8 @@ maxmemory-policy volatile-lru
 
 
 
+
+
 **扩展操作**
 
 - 对指定key按位进行交、并、非、异或操作，并将结果**保存到destKey**中
@@ -2180,6 +2238,10 @@ maxmemory-policy volatile-lru
   ```
 
 **应用于信息状态的统计**
+
+例如统计电影网站上各个电影的点击量
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210902151928428.png" alt="image-20210902151928428" style="zoom:50%;" />
 
 
 
@@ -2393,7 +2455,7 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 
 **作用**
 
-- 读写分离额：master写，slave读，提高服务器的读写负载能力
+- 读写分离：master写，slave读，提高服务器的读写负载能力
 - 负载均衡：基于主从结构，配合读写分离，由slave分担master负载，并根据需求的变化，改变slave的数量，通过多个从节点分担数据读取负载，大大提高Redis服务器并发量与数据吞吐量
 - 故障恢复：当master出现问题时，由slave提供服务，实现快速的故障恢复
 - 数据冗余：实现数据热备份，是持久化之外的一种数据冗余方式
@@ -2417,6 +2479,12 @@ georadius key longitude latitude radius m|km|ft|mi [withcoord] [withdist] [withh
 建立slave到master的连接，使master能够识别slave，并保存slave端口号
 
 ![image-20210723134123265](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210723134123265.png)
+
+补充：在建立了socket连接后，建立定时任务是为了保证slave和master之间连接正常
+
+若master服务器设置了密码，在连接时就需要进行身份验证
+
+
 
 **主从连接（slave连接master） **
 

@@ -397,7 +397,7 @@ mysqlbinlog -vv mysqlbin.000002
 
 #### 2.2.4 日志删除
 
-对于比较繁忙的系统，由于每天生成日志量大 ，这些日志如果长时间不清楚，将会占用大量的磁盘空间。下面我们将会讲解几种删除日志的常见方法 ：
+对于比较繁忙的系统，由于每天生成日志量大 ，这些日志如果长时间不清除，将会占用大量的磁盘空间。下面我们将会讲解几种删除日志的常见方法 ：
 
 **方式一** 
 
@@ -692,7 +692,7 @@ change master to master_host= '192.168.192.130', master_user='itcast', master_pa
 
 ```
 
-指定当前从库对应的主库的IP地址，用户名，密码，从哪个日志文件开始的那个位置开始同步推送日志。
+指定当前从库对应的主库的IP地址，用户名，密码，从哪个日志文件开始的哪个位置开始同步推送日志。
 
 4） 开启同步操作
 
@@ -1129,7 +1129,7 @@ jdbc.password=itcast
 
 #### 4.2.7 导入基础工程
 
-![1555076434270](C:/Users/25246/AppData/Local/Temp/HZ$D.631.2465/HZ$D.631.2466/netty-study/assets/1555076434270.png) 
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831140814202.png" alt="image-20210831140814202" style="zoom: 67%;" />
 
 
 

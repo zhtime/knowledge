@@ -225,7 +225,7 @@ select * from information_schema.engines;
 
 ### 3.2 MyISAM 内存优化
 
-myisam存储引擎使用 key_buffer 缓存索引块，加速myisam索引的读写速度。对于myisam表的数据块，mysql没有特别的缓存机制，完全依赖于操作系统的IO缓存。
+myisam存储引擎使用 key_buffer **缓存索引块**，加速myisam索引的读写速度。对于myisam表的数据块，mysql没有特别的缓存机制，完全依赖于操作系统的IO缓存。
 
 
 
@@ -626,6 +626,8 @@ Table_locks_waited ： 指的是不能立即获取表级锁而需要等待的次
 
 
 
+
+
 ### 5.3 InnoDB 行锁
 
 #### 5.3.1 行锁介绍
@@ -647,7 +649,7 @@ InnoDB 与 MyISAM 的最大不同有两点：一是支持事务；二是 采用�
 | ACID属性             | 含义                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | 原子性（Atomicity）  | 事务是一个原子操作单元，其对数据的修改，要么全部成功，要么全部失败。 |
-| 一致性（Consistent） | 在事务开始和完成时，数据都必须保持一致状态。                 |
+| 一致性（Consistent） | 在事务开始和完成时，数据都必须保持一致状态。                                                                                                        举例说明：张三向李四转100元，转账前和转账后的数据是正确的状态，这就叫一致性，如果出现张三转出100元，李四账号没有增加100元这就出现了数据错误，就没有达到一致性。 |
 | 隔离性（Isolation）  | 数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的 “独立” 环境下运行。 |
 | 持久性（Durable）    | 事务完成之后，对于数据的修改是永久的。                       |
 
@@ -668,7 +670,27 @@ InnoDB 与 MyISAM 的最大不同有两点：一是支持事务；二是 采用�
 
 为了解决上述提到的事务并发问题，数据库提供一定的事务隔离机制来解决这个问题。数据库的事务隔离越严格，并发副作用越小，但付出的代价也就越大，因为事务隔离实质上就是使用事务在一定程度上“串行化” 进行，这显然与“并发” 是矛盾的。 
 
-数据库的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、Serializable，这四个级别可以逐个解决脏写、脏读、不可重复读、幻读这几类问题。
+数据库的隔离级别有4个，由低到高依次为Read uncommitted、Read committed、Repeatable read、Serializable，这四个级别可以逐个解决丢失更新、脏读、不可重复读、幻读这几类问题。
+
+
+
+**Read uncommitted**（读未提交）
+
+对于同一个数据行，若一个事务已经开始写操作了，就不允许另一个事务写操作，只允许其读当前的数据，这种方法可以解决**丢失更新**的问题，但是没有办法解决脏读
+
+**Read committed** (读已提交)
+
+只允许事务读取已提交更新或新插入的数据行，没有提交数据行不允许方法，解决脏读。
+
+**Repeatable read**（可重复读）
+
+一个事务只能够读取新插入的数据行，不能够读取修改过的数据行。读事务被禁止执行写操作。
+
+**Serializable**（串行化）
+
+提供严格的事务隔离。它要求事务序列化执行，事务只能一个接着一个地执行，不能并发执行。
+
+
 
 | 隔离级别                | 丢失更新 | 脏读 | 不可重复读 | 幻读 |
 | ----------------------- | -------- | ---- | ---------- | ---- |
@@ -790,11 +812,12 @@ create index idx_test_innodb_lock_name on test_innodb_lock(name);
 | Session-1                                                    | Session-2                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 关闭事务自动提交 ![image-20210517184808213](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184808213.png) | 关闭事务自动提交![image-20210517184819363](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184819363.png) |
-| 根据id范围更新数据![image-20210517184906171](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184906171.png) |                                                              |
-|                                                              | 插入id为2的记录， 出于阻塞状态![image-20210517185019231](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185019231.png) |
+| 根据id范围更新数据，Innodb就会给原本id=2的这一行加上一个所，这个锁就是间隙锁![image-20210517184906171](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517184906171.png) |                                                              |
+|                                                              | 插入id为2的记录， 处于阻塞状态，说明有id为2这行被加上了锁![image-20210517185019231](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185019231.png) |
 | 提交事务 ；![image-20210517185042195](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185042195.png) |                                                              |
 |                                                              | 解除阻塞 ， 执行插入操作 ：![image-20210517185109180](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210517185109180.png) |
-|                                                              | 提交事务 ：                                                  |
+
+避免间隙锁：尽量保证id为连续的或者不适用范围性的更新操作。
 
 
 

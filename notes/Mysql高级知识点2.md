@@ -109,7 +109,7 @@ create table goods_innodb(
 ```
 start transaction;
 
-insert into goods_innodb(id,name)values(null,'Meta20');
+insert into goods_innodb(id,name)values(null,'Meta21');
 
 commit;
 ```
@@ -389,7 +389,7 @@ insert into order_all values(100,10000.0,'西安')；
 
 ## 3.1 查看SQL执行频率
 
-MySQL 客户端连接成功后，通过 show [session|global] status 命令可以提供服务器状态信息。show [session|global] status 可以根据需要加上参数“session”或者“global”来显示 session 级（当前连接）的计结果和 global 级（自数据库上次启动至今）的统计结果。如果不写，默认使用参数是“session”。
+MySQL 客户端连接成功后，通过 show [session|global] status 命令可以提供服务器状态信息。show [session|global] status 可以根据需要加上参数“**session**”或者“global”来显示 session 级（**当前连接**）的统计结果和 global 级（**自数据库上次启动至今**）的统计结果。如果不写，默认使用参数是“**session**”。
 
 下面的命令显示了当前 session 中所有统计参数的值：
 
@@ -654,7 +654,7 @@ key_len : 表示索引中使用的字节数， 该值为索引字段最大可能
 | ---------------- | ------------------------------------------------------------ |
 | using  filesort  | 说明mysql会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取， 称为 “文件排序”, 效率低。 |
 | using  temporary | 使用了临时表保存中间结果，MySQL在对查询结果排序时使用临时表。常见于 order by 和 group by； 效率低 |
-| using  index     | 表示相应的select操作使用了覆盖索引， 避免访问表的数据行， 效率不错。 |
+| using  index     | 表示相应的select操作使用了覆盖索引， 避免访回表的数据行， 效率不错。 |
 
 
 
@@ -1040,6 +1040,8 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 ![image-20210511193942936](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511193942936.png)
 
+补充：根据定义的复合索引(name，status，address)，在where条件中只要name作为最左前缀出现(**索引中最左前缀**)，满足最左前缀法则，它可以排在where条件status的后面。
+
 
 
 违法最左前缀法则 ， 索引失效：
@@ -1074,7 +1076,7 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 ![image-20210511200448006](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511200448006.png)
 
-由于，在查询是，没有对字符串加单引号，MySQL的查询优化器，会自动的进行类型转换，造成索引失效。
+由于，在查询是，没有对字符串加单引号 ，没有走status的索引	  MySQL的查询优化器，会自动的进行类型转换，s 造成索引失效。
 
 
 
@@ -1146,7 +1148,7 @@ explain select name, status from tb_seller where name = '小米科技' or nickna
 
 
 
-11). in 走索引， not in 索引失效。
+11). in 走索引， not in 索引失效。（定义的索引）
 
 ![image-20210515093325977](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515093325977.png)
 
@@ -1424,7 +1426,7 @@ create index idx_emp_age_salary on emp(age,salary);
 
 
 
-了解了MySQL的排序方式，优化目标就清晰了：尽量减少额外的排序，通过索引直接返回有序数据。where 条件和Order by 使用相同的索引，并且Order By 的顺序和索引顺序相同， 并且Order  by 的字段都是升序，或者都是降序。否则肯定需要额外的操作，这样就会出现FileSort。
+了解了MySQL的排序方式，优化目标就清晰了：尽量减少额外的排序，通过索引直接(**Using index**)返回有序数据。where 条件和Order by 使用相同的索引，并且Order By 的顺序和索引顺序相同， 并且Order  by 的字段都是升序，或者都是降序。否则肯定需要额外的操作，这样就会出现FileSort。
 
 ![image-20210515114803025](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515114803025.png)
 
@@ -1555,7 +1557,7 @@ system > const > eq_ref > ref > fulltext > ref_or_null  > index_merge > unique_s
 
 ```
 
-UNION 语句的 type 值为 ref，OR 语句的 type 值为 range，可以看到这是一个很明显的差距
+UNION 语句的 type 值为 const，OR 语句的 type 值为 range，可以看到这是一个很明显的差距
 
 UNION 语句的 ref 值为 const，OR 语句的 type 值为 null，const 表示是常量值引用，非常快
 

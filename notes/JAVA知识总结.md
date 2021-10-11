@@ -218,8 +218,6 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 
 
-
-
 ## 重载和重写(覆盖)区别
 
 |            | 重载                     | 重写                                                   |
@@ -243,7 +241,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 ## String为什么不可变,String,StringBuffer,StringBuilder区别
 
-String类实现用字符数组(char value[])存储字符串,String类被final关键字所修饰,因此String类不可变.
+String类实现用**字符数组(char value[])存储字符串**,**字符数组是被final修饰的,因此无法修改**，所以String类不可以改变
 
 (java9之后,String类改用byte数组存储字符串)
 
@@ -251,11 +249,13 @@ String类实现用字符数组(char value[])存储字符串,String类被final关
 
 StringBuilder 与 StringBuffer 都继承⾃ AbstractStringBuilder 类.
 
-AbstractStringBuilder 中使用字符数组(char value[])保存字符串,没有用final关键字修饰,因此StringBuffer和StringBuilder都是可变的.
+AbstractStringBuilder 中使用**字符数组(char value[])保存字符串,数组没有用final关键字修饰**,因此StringBuffer和StringBuilder都是可变的.
 
 | AbstractStringBuilder                                        | StringBuilder                                                | StringBuffer                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![image-20210709121133846](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121133846.png) | ![image-20210709121205147](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121205147.png) | ![image-20210709121056095](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121056095.png) |
+
+补充：**String、StringBuilder、StringBuffer类都是被final修饰的，都是限制他们所存储的引用地址不可以修改，同时还表示该类无法被继承**。而StringBuilder、StringBuffer的字符数组可以被修改。也就是内容可以被修改
 
 
 
@@ -538,6 +538,10 @@ byte,short,char → int → long → float → double
 byte，short，char之间不会相互转换，他们在计算时首先会转换为int类型。
 
 boolean 类型是不可以转换为其他基本数据类型。
+
+补充：**当long类型转换为float类型时 不需要进行强制类型转换，虽然long类型占8个字节，float占4个字节，float是浮点类型表示的范围比long类型要大。**
+
+
 
 **向下转换**：
 
@@ -1985,12 +1989,6 @@ public class Test2{
 
 泛型擦除，是泛型能够与之前的java版本代码兼容共存原因，但也因此抹除了很多继承相关的特性。
 
-
-
-
-
-
-
 通过泛型擦除的原理可以结合反射技术绕过被限制的操作。
 
 例如：List<E>接口，实现类ArrayList
@@ -2100,9 +2098,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 问题：C 对象的全类路径假设为 com.inout.Test，在 A 和 B 端都有这么一个类文件，功能代码完全一致。也都实现了 Serializable 接口，但是反序列化时总是提示不成功。
 
-虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，非常重要的一点是两个 
-
-类的序列化 ID 是否一致。
+虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，非常重要的一点是两个类的序列化 ID 是否一致。
 
 
 
@@ -2338,7 +2334,7 @@ private void grow(int minCapacity) {
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 
-//此时，minCapacity = 0 ，oldCapacity =elementData.length = 0
+//此时，minCapacity = 10 ，oldCapacity =elementData.length = 0
 //因此newCapacity = 0 ，所以 newCapacity = minCapacity = 10；
 //完成了ArrayList的一次扩容，从0扩容到10 。
 
@@ -2380,6 +2376,297 @@ private void grow(int minCapacity) {
 
 
 
+补充：**LinkedList插入和删除的效率一定比ArrayList高吗**
+
+[面经手册 · 第8篇《LinkedList插入速度比ArrayList快？你确定吗？》 - bugstack虫洞栈](https://bugstack.cn/interview/2020/08/30/面经手册-第8篇-LinkedList插入速度比ArrayList快-你确定吗.html)
+
+答案：**不一定**
+
+**插入**
+
+先从插入的方面来看
+
+LinkedList中有很多插入的方法，这里就用**头插入**、**尾插入**、**中间插入**这三个方法来对比一下ArrayList和LinkedList
+
+的插入效率。
+
+![image-20210917102144692](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917102144692.png)
+
+**头插**
+
+通过下面一张图清楚看到头插的过程
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917102331620.png" alt="image-20210917102331620" style="zoom:67%;" />
+
+1. ArrayList在进行头部插入时，需要把之后的元素都往后位移，如果遇到容量不够时还需要进行扩容
+2. LinkedList在头插时，只需要把元素加入到头部即可，不需要考虑位移和扩容的因素
+
+LinkedList中的头插的源码
+
+```java
+    public void addFirst(E e) {
+        linkFirst(e);
+    }
+
+    /**
+     * Pointer to first node.
+     * Invariant: (first == null && last == null) ||
+     *            (first.prev == null && first.item != null)
+     */
+    transient Node<E> first;
+    /**
+     * Pointer to last node.
+     * Invariant: (first == null && last == null) ||
+     *            (last.next == null && last.item != null)
+     */
+    transient Node<E> last;
+    
+        /**
+     * Links e as first element.
+     */
+    private void linkFirst(E e) {
+        //原链表的头节点
+        final Node<E> f = first;
+        //需要插入的新元素：x
+        final Node<E> newNode = new Node<>(null, e, f);
+        //把新元素作为新节点
+        first = newNode;
+        if (f == null)
+            //不存在则把头插节点作为最后一个节点
+            last = newNode;
+        else
+            //f不为空,将新的头节点和原头节点相连
+            f.prev = newNode;
+        //大小+1
+        size++;
+        //元素数量
+        modCount++;
+    }
+```
+
+
+
+测试：
+
+```java
+    @Test
+    public void testAddFirstLinkedList(){
+        System.out.println("LinkedList");
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        long startTime = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 1000000 ; i++) {
+            linkedList.addFirst(i);
+        }
+
+        System.out.println(String.format("100万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+        long startTime1 = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 10000000 ; i++) {
+            linkedList1.addFirst(i);
+        }
+
+        System.out.println(String.format("1000万消耗时间:" + (System.currentTimeMillis() - startTime1), TimeUnit.SECONDS));
+
+    }
+
+```
+
+```java
+    @Test
+    public void testAddFirstArrayList(){
+        System.out.println("ArrayList");
+        ArrayList<Integer> list = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+
+		//ArrayList这里只测100万，1000万数据太大，效率太慢
+        for (int i = 0; i < 1000000 ; i++) {
+            list.add(0,i);
+        }
+
+        System.out.println(String.format("100万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+    }
+
+
+ArrayList
+100万消耗时间:172858  (单位：毫秒)
+LinkedList
+100万消耗时间:47
+1000万消耗时间:10299
+```
+
+结论：**从上面两个数据测试就可以看出，头插情况下，LinkedList效率远远高于ArrayList效率。**
+
+
+
+
+
+**尾插**
+
+上图
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917104556149.png" alt="image-20210917104556149" style="zoom:67%;" />
+
+1. ArrayList中尾插不需要在移动数据，耗时点在于扩容，需要拷贝迁移
+2. LinkedList中尾插时，耗时点在于对象的创建上
+
+源码：
+
+```java
+    /**
+     * Links e as last element.
+     */
+    void linkLast(E e) {
+        final Node<E> l = last;
+        final Node<E> newNode = new Node<>(l, e, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+        modCount++;
+    }
+```
+
+测试：
+
+```java
+    @Test
+    public void testAddFirstLinkedList(){
+        System.out.println("LinkedList");
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        long startTime = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 1000000 ; i++) {
+            linkedList.addLast(i);
+        }
+
+        System.out.println(String.format("100万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+        long startTime1 = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 10000000 ; i++) {
+            linkedList1.addLast(i);
+        }
+
+        System.out.println(String.format("1000万消耗时间:" + (System.currentTimeMillis() - startTime1), TimeUnit.SECONDS));
+
+    }
+
+```
+
+```java
+    @Test
+    public void testAddFirstArrayList(){
+        System.out.println("ArrayList");
+        ArrayList<Integer> list = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 1000000 ; i++) {
+            list.add(i);
+        }
+
+        System.out.println(String.format("100万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        long startTime1 = System.currentTimeMillis();
+
+        //这里测试一百万和一千万的数据，对比消耗时间
+        for (int i = 0; i < 10000000 ; i++) {
+            list1.add(i);
+        }
+
+        System.out.println(String.format("1000万消耗时间:" + (System.currentTimeMillis() - startTime1), TimeUnit.SECONDS));
+
+    }
+
+LinkedList
+100万消耗时间:41 (单位：毫秒)
+1000万消耗时间:9950
+    
+ArrayList
+100万消耗时间:34
+1000万消耗时间:4886
+```
+
+结论：**在数据比较庞大的情况下，尾插中ArrayList的效率就比LinkedList效率高，因为LinkedList每次都要创建一个新的对象**
+
+
+
+**中间插入**
+
+上图
+
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917105816944.png" alt="image-20210917105816944" style="zoom:67%;" />
+
+1. ArrayList中的中间插入操作，当知道要插入的位置时定位的时间复杂度为O(1),比较耗时的点在于数据位移和扩容
+2. LinkedList的中间插入操作，耗时点在于定位需要插入的位置时间复杂度O(n)
+
+
+
+测试：
+
+```java
+    @Test
+    public void testAddFirstArrayList(){
+        System.out.println("ArrayList");
+        ArrayList<Integer> list = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+
+        //中间插入：1000000
+        for (int i = 0; i < 1000000 ; i++) {
+            list.add(list.size() >> 1 , i);
+        }
+
+        System.out.println(String.format("100万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+
+
+    }
+    
+    ArrayList
+100万消耗时间:60460
+    
+    LinkedList
+100万消耗时间:1527501
+```
+
+```
+    @Test
+    public void testAddFirstLinkedList(){
+        System.out.println("LinkedList");
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        long startTime = System.currentTimeMillis();
+
+        //中间插入：10万
+        for (int i = 0; i < 100000 ; i++) {
+            linkedList.add(linkedList.size(),i);
+        }
+
+        System.out.println(String.format("10万消耗时间:" + (System.currentTimeMillis() - startTime), TimeUnit.SECONDS));
+    }
+```
+
+结论：**在进行中间插入时，ArrayList的效率要高于LinkedList的效率**
+
+
+
+**总结：**
+
+ArrayList和LinkedList都有自己的应用场景，要根据具体的场景选择合适的集合。如果是在集合的首部插入和删除元素，可以选择LinkedList，因为它的效率高于ArrayList，它提供了addFirst、addLast、removeFirst等等这些方法的时间复杂度都是O(1)。
+
+因此不是LinkedList插入和删除的效率就一定比ArrayList高，具体还是要看数据量的大小。
+
+
+
 RandomAccess接口
 
 ```java
@@ -2413,6 +2700,8 @@ Vector 与 ArrayList 一样，也是通过数组实现的，不同的是它支�
 个线程能够写 Vector，避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此， 
 
 访问它比访问 ArrayList 慢。
+
+补充：Stack是Vector的子类，它同样是线程安全的
 
 ------
 
@@ -3033,7 +3322,7 @@ HashMap中put方法
 2. 根据键值key计算hash值位于哈希桶数组的位置，如果当前table[i]为空，直接建立新节点条件，跳转到步骤6，如果table[i]不为空，跳转到步骤3
 3. 判断table[i]的首位key是否和传入的key一致，若一致(hashCode和equals)直接覆盖value，否则跳转到步骤4，
 4. 判断table[i]是否为treeNode(**红黑树**)，若是则将键值对插入到红黑树中，若不是则跳转步骤5
-5. 遍历table[i],判断当前链表的长度，若长度**大于8**，**将链表树化成红黑树**，在红黑树中插入键值对，否则在链表中插入键值对，判断链表中是否存在和key一致的数据，有就直接覆盖value。
+5. 遍历table[i],判断当前链表的长度，若长度**大于8，还要HashMap中的数组长度大于64，将链表树化成红黑树。也就是如果HashMap长度小于64，链表长度大于8是不会转化为红黑树的，而是直接扩容。**，（**补充：避免单条链表过长而影响查询效率，提高查询效率**）在红黑树中插入键值对，否则在链表中插入键值对，判断链表中是否存在和key一致的数据，有就直接覆盖value。
 6. 插入成功后，判断sieze(键值对数目)是否大于**阈值(threshold)**,若大于进行扩容
 
 ```java
@@ -3116,6 +3405,8 @@ threshold:临界值（阈值）
 也是HashMap进行扩容的一个重要的判断依据
 
 loadFactor：加载因子（默认为0.75）
+如果加载因子过高，空间利用率提高，但是会使得哈希冲突的概率增加；如果加载因子过低，会频繁扩容，哈希冲突概率降低，但是会使得空间利用率变低
+
 
 size：是HashMap中实际存在的键值对数量
 
@@ -3542,6 +3833,27 @@ java堆从GC的角度，将堆分为：**新生代和老年代**。
 
 ![image-20210715094813893](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715094813893.png)
 
+补充：
+
+| -Xms              | 初始堆大小。如：-Xms256m                                     |
+| ----------------- | ------------------------------------------------------------ |
+| -Xmx              | 最大堆大小。如：-Xmx512m                                     |
+| -Xmn              | 新生代大小。通常为 Xmx 的 1/3 或 1/4。新生代 = Eden + 2 个 Survivor 空间。 |
+| -XX:SurvivorRatio | 新生代中 Eden 与 Survivor 的比值。默认值为 8。即 Eden 占新生代空间的 8/10，另外两个 Survivor 各占 1/10 |
+
+```
+对于JVM内存配置参数：
+-Xmx 10240m -Xms 10240m -Xmn 5120m -XXSurvivorRatio=3,其最小内存值和Survivor区总大小分别是（）
+
+最小内存:Xms= 10240
+最大堆：Xmx = 10240
+新生代大小: Xmn = 5120
+SurvivorRatio=3 新生代中 Eden 与 Survivor 的比值
+3x+x+x = 5120  x = 1024
+```
+
+
+
 **新生代**
 
 用来存放新创建的对象，占整个堆的1/3，由于对象创建频繁，所以新生代会频繁出发GC,而新生代中使用MinorGC进行垃圾回收。
@@ -3945,7 +4257,7 @@ CMS工作的阶段分为4个：（**三个标记一个清除**）
 
 **G1(Grabage-first)**
 
-面向服务器的垃圾收集器
+面向服务器的垃圾收集器，Hotspot 虚拟机在 **jdk** 8 之后正式（java7处于试验阶段）推出的
 
 G1除了追求**低停顿垃圾回收时间**之外，还实现了可以**精确控制停顿时间**，可以设定⼀个⻓度为 M 毫秒的时间⽚段。**低停顿时间的同时保持高吞吐量**。
 
@@ -4687,6 +4999,44 @@ public class MyRunnable implements Runnable {
 //两个线程争夺cpu，在控制台你可以看到两个线程交替输出
 ```
 
+补充：**如果同一个线程同时调用两次start()方法会怎么样**
+
+```java
+public class TestMain {
+
+    public static void main(String[] args) throws Exception {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("开始运行");
+            }
+        });
+        System.out.println("线程当前的状态为" + thread.getState());
+        thread.start();
+        System.out.println("start后线程当前的状态为" + thread.getState());
+        thread.start();
+    }
+}
+/*结果
+第一次调用start()方法能够有结果，而第二次则报了IllegalThreadStateException异常
+*/
+```
+
+来看一下start()方法的源码
+
+```java
+	//volatile关键字修饰的threadStatus，保证多线程下该变量的可见性，默认为0 表示处于NEW状态
+ private volatile int threadStatus = 0;
+ 
+ public synchronized void start() {
+       //如果线程状态不等于0，说明线程状态已经不是NEW了，不是NEW说明至少已经开始运行了，再走start()方法就没意义了，所以会抛出IllegalThreadStateException异常
+        if (threadStatus != 0)
+            throw new IllegalThreadStateException();
+}
+```
+
+
+
 **run()**
 
 当线程获取cpu时，线程进入运行态，执行run方法中内容，run方法是线程需要完成的工作内容。run方法结束，线程终止。
@@ -4766,9 +5116,9 @@ isInterrupted()方法判断当前线程的中断标志为是否为true，
 
 
 
-**Waiting / Timed-Waiting状态**
+**Waiting(等待) / Timed-Waiting(超时等待)状态**
 
-使用sleep、同步wait、join进入等待状态，当线程处于这种状态时，调用Thread.interrupt()，会抛出对应的InterruptedException异常。注意：**异常抛出后进行处理，此时线程的中断标志位会被清空(true -> false)**，线程提前结果Waiting / Timed-Waiting状态。
+使用sleep、同步wait、join进入等待状态，当线程处于这种状态时，调用Thread.interrupt()，会抛出对应的InterruptedException异常。注意：**异常抛出后进行处理，此时线程的中断标志位会被清空(true -> false)**，线程结果提前Waiting / Timed-Waiting状态。
 
 例如：
 
@@ -4901,15 +5251,9 @@ CPU 寄存器是 CPU 内置的容量小、但速度极快的内存。
 
 1. 在当前线程的cpu时间片用完之后，cpu正常去调用下一个线程。
 2. 多个线程抢占锁资源，获取锁的线程执行，其他线程挂起。
-3. 当前线程遭遇**IO阻塞**，调度器将当前线程挂起，继续执行一下。
+3. 当前线程遭遇**IO阻塞**，调度器将当前线程挂起，继续执行下一个。
 4. 用户代码挂起当前任务，让出cpu时间片
 5. 硬件中断
-
-
-
-
-
-
 
 
 
@@ -5348,6 +5692,8 @@ java的编译体系公有两次编译阶段，第一次将java源代码通过编
 
 第二阶段JVM通过解释器将字节码文件解释成对应操作系统的二进制机器码，**传统的解释器功能是逐行读入，逐行解释**，这样执行的效率不高，为了解决这个问题，引入了**JIT（即时编译技术）**。
 
+<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210903144507676.png" alt="image-20210903144507676" style="zoom: 80%;" />
+
 引入即使编译技术，通过解释器解释，当JVM发现某个方法或代码块运行特别频繁时，就将其认定为**热点代码，JIT**会把部分“热点代码”翻译成本地机器相关的机器码，并进行优化，然后再把翻译后的机器码缓存起来，以备下次使用。
 
 JIT优化中最重要的一个就是**逃逸分析**。
@@ -5497,7 +5843,7 @@ JDK1.6之前，ReentrantLock的性能优于Synchronized的，在JDK1.6中优化�
 
 **lockInterruptibly()**:优先响应中断，也就是若收到中断指令，它会中断持有锁的线程，立刻释放锁资源。
 
-这个方法适合于tryLock()配合使用，中断优先级低的线程，将资源让个优先级高的线程来。
+这个方法适合于tryLock()配合使用，中断优先级低的线程，将资源让给优先级高的线程来。
 
 
 
@@ -6048,6 +6394,200 @@ CountDownLatch典型用法：2、实现多个线程开始执行任务的最大�
 
 
 
+力扣上的一道经典多线程打印问题
+
+[按序打印](https://leetcode-cn.com/problems/print-in-order/)
+
+```java
+我们提供了一个类：
+
+public class Foo {
+  public void first() { print("first"); }
+  public void second() { print("second"); }
+  public void third() { print("third"); }
+}
+三个不同的线程 A、B、C 将会共用一个 Foo 实例。
+
+一个将会调用 first() 方法
+一个将会调用 second() 方法
+还有一个将会调用 third() 方法
+请设计修改程序，以确保 second() 方法在 first() 方法之后被执行，third() 方法在 second() 方法之后被执行。
+```
+
+
+
+```java
+class Foo {
+    ReentrantLock lock = new ReentrantLock();
+    Condition condition1 = lock.newCondition();
+    Condition condition2 = lock.newCondition();
+    boolean con1 = true;
+    boolean con2 = true;
+
+    public Foo() {
+        
+    }
+
+    public void first(Runnable printFirst) throws InterruptedException {
+        lock.lock();
+        try {
+            printFirst.run();
+            con1  = false;
+            condition1.signal();
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        lock.lock();
+        try{
+            while (con1){
+                condition1.await();
+            }
+            printSecond.run();
+            con2 = false;
+            condition2.signal();
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        lock.lock();
+        try{
+            while (con2){
+                condition2.await();
+            }
+            printThird.run();
+        }finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+```java
+class Foo {
+    
+//使用synchronized锁 和wait和notiefy来完成
+
+    Object object = new Object();
+    int  flag = 1;
+    public Foo() {
+        
+    }
+
+    public void first(Runnable printFirst) throws InterruptedException {
+        synchronized (object){
+            while (flag != 1){
+                object.wait();
+            }
+
+            printFirst.run();
+            flag = 2;
+            object.notifyAll();
+        }
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        synchronized (object){
+            while (flag != 2){
+                object.wait();
+            }
+
+            printSecond.run();
+            flag = 3;
+            object.notifyAll();
+        }
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        synchronized (object){
+            while (flag != 3){
+                object.wait();
+            }
+            printThird.run();
+            object.notifyAll();
+        }
+    }
+}
+```
+
+```java
+class Foo {
+    
+    //使用CountDown来完成
+    //计数器初始化为1
+    //两个分别用来控制线程B\C
+    CountDownLatch countDownLatch1 = new CountDownLatch(1);
+    CountDownLatch countDownLatch2 = new CountDownLatch(1);
+    public Foo() {
+        
+    }
+
+        public void first(Runnable printFirst) throws InterruptedException {
+        printFirst.run();
+        //当线程A运行完毕后，线程B才能执行，countDownLatch1用来控制线程B
+        countDownLatch1.countDown();
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        //在countDownLatch1为0之前，都要等待
+        countDownLatch1.await();
+        printSecond.run();
+        //当线程B运行完毕后，线程C才能执行，countDownLatch2用来控制线程C
+        countDownLatch2.countDown();
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        //线程C获取到资源后，执行
+        countDownLatch2.await();
+        printThird.run();
+    }
+}
+```
+
+```java
+class Foo {
+    
+    /**
+     * 使用信号量
+     * 起初初始化时：默认为0 表示没有资源可以调用
+     * 通过两个信号量来控制线程B、线程C的顺序
+     */
+    Semaphore one = new Semaphore(0);
+    Semaphore two = new Semaphore(0);
+    public Foo() {
+        
+    }
+
+        public void first(Runnable printFirst) throws InterruptedException {
+        //first代表线程A 该方法没有被加锁，因此它是第一个执行的，就保证了A在B、C之前运行
+        printFirst.run();
+        //用one这个信号量来控制线程B，线程A运行完之后，通过release方法给one信号量加1，Semaphore中release方法在信号量为0的情况下
+        //Semaphore会动态增加1，此时one信号量为1，表示可以有一个线程运行，线程C是由信号量two控制，此时two为0，C必定在B之后运行
+        one.release();
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        //线程B尝试获取到one信号量资源
+        one.acquire();
+        printSecond.run();
+        //线程B执行完之后，释放信号量two
+        two.release();
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        //线程C获取到资源后，执行
+        two.acquire();
+        printThird.run();
+    }
+}
+```
+
+
+
 #### CyclicBarrier(回环栅栏)
 
 [to be top java developer (cnblogs.com)](https://www.cnblogs.com/lovelywcc/p/14004699.html#特别感谢)
@@ -6357,7 +6897,7 @@ Thread 1 waiting get resource2
 
 
 
-**线程池的创建**
+**线程池的创建**	
 
 在JDK包下的**JUC(java.util.concurrent)**创建线程池的两种方法:**Executor**和**ThreadPoolExecutor**。
 
@@ -6852,7 +7392,7 @@ class MyThread implements ThreadFactory{
 
 ![image-20210801141826630](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210801141826630.png)
 
-1. **ArrayBlockingQueue**(**公平、非公平**) ：由数组结构组成的有界阻塞队列。按照先进先出（FIFO）的原则对元素进行排序。
+1. **ArrayBlockingQueue**(**公平、非公平**) ：由数组结构组成的**有界**阻塞队列。按照先进先出（FIFO）的原则对元素进行排序。
 
    默认情况下采用公平访问队列，先来先到，位于队列前列的任务优先被线程执行。
 
@@ -6864,7 +7404,7 @@ class MyThread implements ThreadFactory{
 
    
 
-3. **PriorityBlockingQueue** ：支持优先级排序的无界阻塞队列。 默认情况下元素采取自然顺序升序排列。可以自定义实现
+3. **PriorityBlockingQueue** ：支持优先级排序的**无界**阻塞队列。 默认情况下元素采取自然顺序升序排列。可以自定义实现
 
    compareTo()方法来指定元素进行排序规则
 
@@ -7155,7 +7695,7 @@ stop = true;
       y = -1;      //语句5
       ```
       
-      由于flag变量为volatile变量，保证语句3之气的语句1、2不会重排序到语句3之后，同样语句4、5也不会重排序到语句3之前。
+      由于flag变量为volatile变量，保证语句3之前的语句1、2不会重排序到语句3之后，同样语句4、5也不会重排序到语句3之前。
 
 
 
@@ -7718,7 +8258,7 @@ inline jint     Atomic::cmpxchg    (jint     exchange_value, volatile jint*     
 */
 ```
 
-正如前面介绍的CAS操作调用Unsafe类中的本地方法，本地方法最终转换成一条CPU指令**cmpxchg**(汇编语言)，**它不会被多线程的调度所打断，能够保证CAS操作的原子性**。
+正如前面介绍的CAS操作调用Unsafe类中的本地方法，本地方法最终转换成一条CPU指令**cmpxchg**(汇编语言)，**它不会被多线程的调度所打断，能够保证CAS操作的原子性，JVM中的CAS的原子性是处理器保障的**。
 
 由此可知，原子变量(AtomicInteger)提供的原子性来自CAS操作，CAS来自Unsafe的本地(**native**)方法，由CPU的cmpxchg指令保证。
 
@@ -7735,10 +8275,11 @@ cas不加锁的特点，保证原子性过程中需要多次比较
 - 循环时间长，开销大(若某个线程在进行CAS比较后没有成功更新，一直执行do while循环，最坏的情况可能导致无线循环)
 - 只能保证一个共享变量操作的原子性
   - 对于一个共享变量操作时，通过CAS循环比较方法保证操作原子性
-  - 对于多个共享变量操作时，CAS循环无法保证操作的原子性，可以采用加锁来保证原子性
+  - 对于多个共享变量操作时，CAS循环无法保证操作的原子性，可以采用加锁来保证原子性,封装成对象类解决
 - **ABA问题**
-  - 当一个线程进行CAS操作时，它需要先获取某时刻的主存中的数据，然后获取到后进行比较，然而可能在获取到比较的这个时间段内其他线程对内容进行了修改，例如：A线程获取主存值2，此时B线程也获取了主存值2，主存值进行了更改3，B线程又将其改成了2，线程A进行比较，完成了更新。**这就是ABA问题**，当中可能存在着问题。
+  - 当一个线程进行CAS操作时，它需要先获取某时刻的主存中的数据，然后获取到后进行比较，然而可能在获取到比较的这个时间段内其他线程对内容进行了修改，例如：A线程获取主存值2，此时B线程也获取了主存值2，主存值进行了更改3，B线程又将其改成了2，线程A进行比较，完成了更新。**这就是ABA问题**，当中可能存在着问题(**但是实际上该值已经被其他线程改变过，这与乐观锁的设计思想不符合**)。
   - 部分乐观锁采取添加**版本号**(version)的方式来解决，，乐观锁每次在执行数据的修改操作时，都会带上一个版本号，一旦版本号和数据的版本号一致就可以执行修改操作并对版本号执行+1 操作，否则就执行失败。因为每次操作的版本号都会随之增加，所以不会出现 ABA 问题，因为版本号只会增加不会减少。
+  - 在JDK的java.util.concurrent.atomic包中提供了**AtomicStampedReference来解决ABA问题**
 
 
 
