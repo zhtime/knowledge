@@ -423,8 +423,6 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO tb_user (id, name) VALUES(NULL,'令狐冲');
 INSERT INTO tb_user (id, name) VALUES(NULL,'田伯光');
-
-
 ```
 
 
@@ -734,7 +732,7 @@ InnoDB  实现了以下两种类型的行锁。
 
 ```
 
-
+​	
 
 #### 5.3.4 案例准备工作
 

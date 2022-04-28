@@ -188,6 +188,10 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 ------
 
+[java中类与类之间的几种关系 - 简书 (jianshu.com)](https://www.jianshu.com/p/eda2cbe51961)
+
+补充：java类之间的关系
+
 
 
 
@@ -3474,7 +3478,7 @@ ConcurrentHashMap和HashMap结构差不多，存放数据的方式也是类似�
 java7中，
 
 - ConcurrentHashMap是由一个个Segment数组组成的，每个Segment中包含一个HashEntry数组，每个HashEntry本质上是一个链表。
-- Segment 实现了 ReentrantLock,所以 Segment 是⼀种**可重⼊锁**，扮演锁的⻆⾊。HashEntry ⽤于存储键值对数据。
+- Segment 实现了 ReentrantLock,所以 Segment 是⼀种**可重入锁**，扮演锁的⻆⾊。HashEntry ⽤于存储键值对数据。
 - 每个Segment 守护着⼀个HashEntry数组⾥的元素，当对 HashEntry 数组的数据进⾏修改时，必须⾸先获得 对应的 Segment的锁。
 - 每次加锁操作都是锁定一个Segment，这样只要保证每个 Segment 是线程安全的，也就实现了全局的线程安全。
 
@@ -3926,6 +3930,7 @@ SurvivorRatio=3 新生代中 Eden 与 Survivor 的比值
 
 - 永久代的大小是受JVM控制的，无法进行调整，元空间使用直接内存，受本地内存大小控制，而本地内存的大小肯定是远远大于JVM的，因此可能产生的内存溢出的概率就大大减小了。
 - 元空间中存放的是**类的元数据**，**字符串池和类的静态变量**放入 java 堆中，这样加载多少类的元数据不再由MaxPermSize 控制，由系统的实际可用空间来控制。
+- 永久代对于GC会带来不必要的复杂性，并且回收效率偏低，在永久代中每进行一次GC当中元数据的位置就会发生变化， hotspot虚拟机每种类型的垃圾回收器都要特殊处理永久代中的元数据。 使用元空间替代了永久代时，简化了整个**Full GC**过程。
 
 
 
@@ -4875,7 +4880,7 @@ public class MyRunnable implements Runnable {
 
 - **阻塞态**
 
-  因为某些原因让出cpu资源，从运行态进入暂时的阻塞状态，当再次获取cpu时，又从阻塞态进入运行态。
+  因为某些原因让出cpu资源，从运行态进入暂时的阻塞状态，当再次获取cpu时，又从阻塞态进入就绪态。
 
   **阻塞情况**
 
@@ -5201,7 +5206,7 @@ public static void main(String[] args){
 
 **利用时间片轮转的方式**，实现了一个CPU可以为多个线程服务。
 
-CPU个每个线程设置一定的服务时间，当前服务的线程时间到了，就将当前线程的状态保存下来，接着去为下一个线程服务，多个线程轮巡，当下次再遇到这个线程时，加载上一次状态继续服务。这就是**上下文切换过程**。
+CPU为每个线程设置一定的服务时间，当前服务的线程时间到了，就将当前线程的状态保存下来，接着去为下一个线程服务，多个线程轮巡，当下次再遇到这个线程时，加载上一次状态继续服务。这就是**上下文切换过程**。
 
 ![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//v2-b93776903a775f5265862124654b6a8e_720w.jpg)
 
@@ -7224,7 +7229,7 @@ public void run() {
   }
   ```
 
-- **ScheduledThreadPool()(固定大小线程池)**
+- **ScheduledThreadPool()(定期线程池)**
 
   - 支持定时及周期性任务执行。
 
@@ -8320,7 +8325,7 @@ cas不加锁的特点，保证原子性过程中需要多次比较
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }finally {
-                        countDownLatch.countDown();
+                        countDownLatch.countDown();，
                     }
                 }
             });
