@@ -1,6 +1,6 @@
 # Spring
 
-### 简介
+## 简介
 
 分层的Java SE/EE应用 full - stack轻量级开源框架。
 
@@ -8,7 +8,7 @@
 
 
 
-###  优势
+##  优势
 
 - 方便解耦，简化开发
 - AOP编程的支持
@@ -20,7 +20,7 @@
 
 
 
-### **体系结构**
+## **体系结构**
 
 ![Spring的体系结构](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//5-1Z606104H1294.gif)
 
@@ -131,13 +131,13 @@ Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core �
 
 ## Spring配置文件
 
-#### Bean标签基本配置
+### Bean标签基本配置
 
 默认情况下它调用的是类中的**无参构造函数**，如果没有无参构造函数则不能创建成功
 
-##### bean
+#### bean
 
-- 类型：**标签**
+- 类型：**标签**·
 - 归属：beans标签
 - 作用：定义spring中的资源，受此标签定义的资源将受到spring控制
 - 格式：
@@ -162,9 +162,9 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-#### Bean标签范围配置
+### Bean标签范围配置
 
-##### scope
+#### scope
 
 - 类型:**属性**
 
@@ -200,15 +200,15 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
   
 
-#### Bean生命周期配置
+### Bean生命周期配置
 
 
 
-##### init-method：
+#### init-method：
 
 **指定类中的初始化方法名称**
 
-##### destroy-method：
+#### destroy-method：
 
 **指定类中的销毁方法名称**
 
@@ -234,7 +234,7 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-#### Bean实例化三种方式
+### Bean实例化三种方式
 
 - **无参构造方法实例化**(重要)
 
@@ -280,13 +280,13 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-#### Bean依赖的注入
+### Bean依赖的注入
 
  ![image-20210728165623600](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728165623600.png)
 
 ![image-20210728165706555](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728165706555.png)
 
-##### **依赖注入概念**
+#### **依赖注入概念**
 
 - **DI（Dependency Injection）依赖注入**，应用程序运行依赖的资源由Spring为其提供，资源进入应用程序的方式称为**注入**。Spring框架核心IOC的具体实现
 - 在编写程序时，通过**控制反转，把对象的创建交给了 Spring**，但是代码中不可能出现没有依赖的情况。IOC 解耦只是降低他们的依赖关系，但不会消除。例如：业务层(Service)仍会调用持久层(Dao)的方法。
@@ -294,12 +294,12 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-##### 依赖注入方式
+#### 依赖注入方式
 
 - 构造方法
 - set方法
 
-###### **set方法注入**
+#### **set方法注入**
 
 - 名称：**property**
 
@@ -316,7 +316,11 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
   ```
 
 ```xml
-<bean id="userDao" class="dao.impl.UserDaoImpl"></bean><bean id="userService" class="service.impl.UserServiceImpl">    <!--    set方法注入 -->    <!--       name对应set方法，例如 setUserDao方法去掉set,之后首字母小写-userDao-->    <!--        ref 将bean 中 id为userDao引入-->    <property name="userDao" ref="userDao" ></property></bean>
+<bean id="userDao" class="dao.impl.UserDaoImpl"></bean>
+<bean id="userService" class="service.impl.UserServiceImpl">   
+    <!--    set方法注入 -->    <!--       name对应set方法，例如 setUserDao方法去掉set,之后首字母小写-userDao-->    <!--        ref 将bean 中 id为userDao引入-->    
+    <property name="userDao" ref="userDao" ></property>
+</bean>
 ```
 
 `name`：对应bean中的属性名，要求该属性**必须提供可访问的set方法**（严格规范为此名称是set方法对应名称）
@@ -327,7 +331,7 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-###### 使用p命名空间简化配置（了解）
+#### 使用p命名空间简化配置（了解）
 
 使用p命令空间需要先开启spring对p命令空间的的支持，在beans标签中添加对应空间支持
 
@@ -345,7 +349,7 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-###### 构造方式注入
+#### 构造方式注入
 
 - 名称：**constructor-arg**
 
@@ -364,7 +368,14 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 例子
 
 ```xml
-<!--    构造方法注入-->    <bean id="userService" class="service.impl.UserServiceImpl"><!--        name指的是构造函数中的参数名userDao--><!--        public UserServiceImpl(UserDao userDao) {--><!--        this.userDao = userDao;--><!--        }--><!--        ref指bean 中 id为userDao引入-->        <constructor-arg name="userDao" ref="userDao"></constructor-arg>    </bean>
+<!--    构造方法注入-->    
+<bean id="userService" class="service.impl.UserServiceImpl">
+    <!--        name指的是构造函数中的参数名userDao-->
+    <!--        public UserServiceImpl(UserDao userDao) {--><!--        this.userDao = userDao;-->
+    <!--        }-->
+    <!--        ref指bean 中 id为userDao引入-->        <
+    constructor-arg name="userDao" ref="userDao"></constructor-arg>   
+</bean>
 ```
 
 `name`：对应bean中的构造方法所携带的参数名
@@ -387,7 +398,7 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 
 
-##### 依赖注入数据类型
+#### 依赖注入数据类型
 
 **之前都是对象数据的引入，接下来介绍基本数据类型的引用**
 
@@ -482,30 +493,50 @@ public class User {
 - **Map类型注入**
 
 ```java
-    private Map<String, User> userMap;    public void setUserMap(Map<String, User> userMap) {        this.userMap = userMap;    }
+   private Map<String, User> userMap;    
+   public void setUserMap(Map<String, User> userMap) {        
+    this.userMap = userMap;    
+}
 ```
 
 对应xml文件中的配置
 
 ```xml
-    <bean id="baseDataDao" class="dao.impl.BaseDataImpl">        <property name="userMap">            <!--        map类型-->            <map>                <entry key="key1" value-ref="user"></entry>                <entry key="key2" value-ref="user1"></entry>            </map>        </property>     </bean>
+    <bean id="baseDataDao" class="dao.impl.BaseDataImpl">        
+        <property name="userMap">            <!--        map类型-->            
+            <map>                
+                <entry key="key1" value-ref="user"></entry>                
+                <entry key="key2" value-ref="user1"></entry>            
+            </map>        
+        </property>     
+    </bean>
 ```
 
 - **Properties注入**
 
 ```java
-    private Properties properties;    public void setProperties(Properties properties) {        this.properties = properties;    }
+    private Properties properties;    
+public void setProperties(Properties properties) {        
+    this.properties = properties;    
+}
 ```
 
 对应xml文件中的配置
 
 ```xml
-    <bean id="baseDataDao" class="dao.impl.BaseDataImpl">        <property name="properties">            <props>                <prop key="p1">北京</prop>                <prop key="p2">南京</prop>            </props>        </property>     </bean>
+    <bean id="baseDataDao" class="dao.impl.BaseDataImpl">        
+        <property name="properties">            
+            <props>               
+                <prop key="p1">北京</prop>               
+                <prop key="p2">南京</prop>            
+            </props>        
+        </property>     
+	</bean>
 ```
 
 
 
-##### 团队开发
+#### 团队开发
 
 import 一般用于团队开发使用，可以将多个 beans.xml 配置文件，导入合并为一个。
 
@@ -543,7 +574,7 @@ import 一般用于团队开发使用，可以将多个 beans.xml 配置文件�
 
 
 
-#### Spring相关API
+### Spring相关API
 
 **applicationContext接口**
 
@@ -575,7 +606,7 @@ getBean(Class) ：当参数的数据类型是Class字节码类型时，表示根
 
 **使用连接池来配置数据源**
 
-#### 数据源(连接池)的作用
+### 数据源(连接池)的作用
 
 - 数据源就是连接池
 - 事先实例化数据源，初始化部分连接资源
@@ -585,7 +616,7 @@ getBean(Class) ：当参数的数据类型是Class字节码类型时，表示根
 
 
 
-#### 数据源的开发步骤
+### 数据源的开发步骤
 
 1. 导入数据源的坐标和数据库驱动坐标
 
@@ -684,7 +715,7 @@ getBean(Class) ：当参数的数据类型是Class字节码类型时，表示根
 
 Spring是轻代码而重配置的框架，配置比较繁重，影响开发效率，所以注解开发是一种趋势，注解代替xml配置文件可以简化配置，提高开发效率。
 
-#### Spring原始注解
+### Spring原始注解
 
 Spring原始注解主要是**替代Bean的配置**
 
@@ -736,7 +767,7 @@ Spring原始注解主要是**替代Bean的配置**
 
 实际开发中，都会使用注解开发
 
-##### Bean定义
+#### Bean定义
 
 - 名称：@Component 
 - 类型：**类注解**
@@ -854,7 +885,7 @@ public class UserDaoImpl implements UserDao {
 
 
 
-##### Bean自动装配
+#### Bean自动装配
 
 1. Spring满足bean依赖的一种方式
 2. Spring会在上下文中自动寻找，并自动给bean装配属性
@@ -901,7 +932,7 @@ public class UserDaoImpl implements UserDao {
 
    **需要保证所有的 bean 的 id 唯一，并且这个 bean 需要和自动注入的属性的 set 方法的值一致！**
 
-3. 通过**byType**来编写配置文件
+3. 通过**byType**来编写配置文件 
 
    ```xml
      <bean id="cat" class="pojo.cat"></bean>
@@ -947,7 +978,7 @@ required
 
 
 
-#### Spring新注解
+### Spring新注解
 
 使用上面的注解还不能全部替代xml配置文件，还需要使用注解替代的配置如下：
 
@@ -1111,9 +1142,9 @@ public class SpringConfiguration {
 
 
 
-#### Spring集成Junit
+### Spring集成Junit
 
-##### 原始Junit测试Spring问题
+#### 原始Junit测试Spring问题
 
 在测试类中，每个测试方法都有以下两行代码：
 
@@ -1131,7 +1162,7 @@ app.getBean("id");
 
 
 
-##### 步骤
+#### 步骤
 
 - 导入spring集成junit的坐标
 
@@ -1192,7 +1223,7 @@ public class SpringJunitTest {
 
 ## Spirng AOP
 
-##### AOP概念
+#### AOP概念
 
 AOP(Aspect Oriented Programming)  **面向切面编程**
 
@@ -1201,7 +1232,7 @@ AOP(Aspect Oriented Programming)  **面向切面编程**
 AOP是**OOP**的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的**耦合度降低**，提高程序的可重用性，同时提高了开发的效率。
 
 
-##### AOP的作用及其优势
+#### AOP的作用及其优势
 
 - 在程序运行期间，在不修改源码的情况下对方法进行功能增强
 - 减少重复代码，提高开发效率，并且便于维护
@@ -1224,13 +1255,13 @@ AOP是**OOP**的延续，是软件开发中的一个热点，也是Spring框架�
 
 <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210811155938687.png" alt="image-20210811155938687" style="zoom:50%;" />
 
-##### AOP底层实现
+#### AOP底层实现
 
 实际上，AOP的底层是通过Spring提供的的**动态代理技术**实现的。在**运行期间**，Spring通过动态代理技术动态的生成**代理对象**，**代理对象方法执行时进行增强功能的介入**，在去**调用目标对象的方法**，从而完成功能的增强。
 
 
 
-##### AOP动态代理技术
+#### AOP动态代理技术
 
 常用动态代理技术
 
@@ -1372,7 +1403,7 @@ public class TargetImpl  implements Target {
 
 
 
-##### AOP相关概念
+#### AOP相关概念
 
 Spring的AOP实现底层就是对上面的动态代理的代码进行了封装，封装后我们只需要对需要关注的部分进行代码编写，并通过配置的方式完成指定目标的方法增强。
 
@@ -1394,7 +1425,7 @@ Spring的AOP实现底层就是对上面的动态代理的代码进行了封装�
 
 
 
-##### AOP开发明确的事项
+#### AOP开发明确的事项
 
 1. **需要编写的内容**
 
@@ -1414,7 +1445,7 @@ Spring的AOP实现底层就是对上面的动态代理的代码进行了封装�
 
 
 
-#### 基于XML的AOP的开发
+### 基于XML的AOP的开发
 
 **快速入门**
 
@@ -1567,7 +1598,7 @@ public class test2 {
 
 
 
-#### 基于注解的AOP开发
+### 基于注解的AOP开发
 
 ①创建目标接口和目标类(内部有切点)
 
@@ -1719,4 +1750,239 @@ public class annoationTest {
 ```
 
 
+
+## Spring事务控制
+
+### 编程式事务控制相关对象
+
+ **PlatformTransactionManager**
+PlatformTransactionManager接口是spring的事务管理器，它里面提供了我们常用的操作事务的方法。
+
+![image-20210825163343154](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825163343154.png)
+
+
+
+**TransactionDefinition**
+TransactionDefinition是事务的定义信息对象，里面有如下方法:
+
+![image-20210825164206105](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825164206105.png)
+
+**事务隔离级别**
+设置隔离级别，可以解决事务并发产生的问题如  **丢失更新、脏读、不可重复读和幻读**。
+
+
+
+**TransactionStatus**
+TransactionStatus接口提供的是事务具体的运行状态，方法介绍如下。
+
+![image-20210825165555073](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210825165555073.png)
+
+
+
+### 基于XML的声明式事务控制
+
+ Spring的声明式事务顾名思义就是采用声明的方式来处理事务。这里所说的声明，就是指在配置文件中声明，用在Spring配置文件中声明式的处理事务来代替代码式的处理事务。
+
+**声明式事务处理的作用**
+
+- 事务管理不侵入开发的组件。具体来说，业务逻辑对象就不会意识到正在事务管理之中，事实上也应该如此，因为事务管理是属于系统层面的服务，而不是业务逻辑的一部分，如果想要改变事务管理策划的话，也只需要在定义文件中重新配置即可
+
+- 在不需要事务管理的时候，只要在设定文件上修改一下，即可移去事务管理服务，无需改变代码重新编译，这样维护起来极其方便
+
+
+
+注意: Spring声明式事务控制底层就是**AOP**。
+
+
+
+**声明式事务控制实现**
+
+- 平台事务管理器配置
+
+  ```xml
+  <!--    配置平台事务管理器-->
+      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <property name="dataSource" ref="dataSource"/>
+      </bean>
+  
+  ```
+
+- 事务通知的配置
+
+  ```xml
+  <!--    事务增强 通知-->
+      <tx:advice id="txAdvice" transaction-manager="transactionManager">
+  <!--        设置事务属性信息-->
+          <tx:attributes>
+  <!--            对应哪些切点(method)增强  "*":任意方法名称 -->
+              <tx:method name="*"/>
+  
+  <!--            isolation:-->
+  <!--            隔离级别:读未提交/读已提交/可重复读/串行化-->
+  <!--            propagation:传播行为-->
+  <!--            timeout:超时时间-->
+  <!--            read-only:是否可读-->
+              <tx:method name="transfer" isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+          </tx:attributes>
+      </tx:advice>
+  ```
+
+  
+
+- 事务aop织入的配置
+
+  ```xml
+  <!--    配置事务AOP织入-->
+      <aop:config>
+          <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.service.impl.*.*(..))"></aop:advisor>
+      </aop:config>
+  ```
+
+整个场景：银行转账
+
+
+
+转账业务
+
+```java
+public class AccountServiceImpl implements AccountService {
+
+    private AccountDao accountDao;
+
+    public void setAccountDao(AccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
+
+    //银行转账
+    public void transfer(String ouMan,String inMan,double money){
+
+        //开启事务
+        //通过事务保证转账成功
+        accountDao.out(ouMan,money);
+        accountDao.in(inMan,money);
+        //关闭事务
+    }
+}
+
+```
+
+
+
+数据库更新操作
+
+```java
+public class AccountDaoImpl implements AccountDao {
+
+    private JdbcTemplate jdbcTemplate;
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void out(String outMan, double money) {
+        jdbcTemplate.update("update account set money = money - ? where name = ?",money,outMan);
+    }
+
+    public void in(String inMan, double money) {
+        jdbcTemplate.update("update account set money = money + ? where name = ?",money,inMan);
+    }
+
+}
+```
+
+
+
+xml配置
+
+```xml
+    <!--    加载jdbc.properties-->
+    <context:property-placeholder location="jdbc.properties"/>
+    <!--    数据源对象配置-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean id="accountDao" class="com.dao.impl.AccountDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+<!--    声明式事务配置-->
+<!--    目标对象 即找到切点-->
+    <bean id="accountService" class="com.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+<!--    配置平台事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    事务增强 通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+<!--        设置事务属性信息-->
+        <tx:attributes>
+<!--            对应哪些切点(method)增强  "*":任意方法名称 -->
+            <tx:method name="*"/>
+
+<!--            isolation:-->
+<!--            隔离级别:读未提交/读已提交/可重复读/串行化-->
+<!--            propagation:传播行为-->
+<!--            timeout:超时时间-->
+<!--            read-only:是否可读-->
+            <tx:method name="transfer" isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+<!--    配置事务AOP织入-->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.service.impl.*.*(..))"></aop:advisor>
+    </aop:config>
+```
+
+
+
+### 基于注解的声明式事务控制
+
+使用注解替代xml配置文件
+
+1. 使用@Transactional在需要进行事务控制的类或是方法上修饰，注解可用的属性同xml配置方式，例如隔离级别、传播行为等。
+2. 注解使用在类上，那么该类下的所有方法都使用同一套注解参数配置。
+3. 使用在方法上，不同的方法可以采用不同的事务参数配置。
+4. Xml配置文件中要开启事务的注解驱动<tx : annotation-driven / >
+
+```java
+@Service("accountService")
+//@Transactional(isolation = Isolation.REPEATABLE_READ)
+public class AccountServiceImpl implements AccountService {
+
+    @Autowired
+    private AccountDao accountDao;
+
+
+    //注解式事务控制
+    //银行转账
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void transfer(String ouMan,String inMan,double money){
+
+        //开启事务
+        //通过事务保证转账成功
+        accountDao.out(ouMan,money);
+        accountDao.in(inMan,money);
+        //关闭事务
+    }
+}
+```
+
+```xml
+<!--    基于注解式事务控制-->
+<!--    事务的注解驱动 启动@Transactional-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+```
 
