@@ -44,7 +44,7 @@
 
 比如:给出两个模块,模块1和模块2, 如果我想要和模块2做数据的交互,低耦合的设计应该是通过模块1数据与模块2进行交互,而不是模块1直接操作模块2上的数据.
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709093116623.png" alt="image-20210709093116623" style="zoom: 80%;" />![image-20210816104154566](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210816104154566.png)
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709093116623.png" alt="image-20210709093116623" style="zoom: 80%;" />![image-20210816104154566](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210816104154566.png)
 
 
 
@@ -54,11 +54,11 @@
 
 低内聚的模块代码,不利于维护和重构,不够健壮.
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709093440360.png" alt="image-20210709093440360" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709093440360.png" alt="image-20210709093440360" style="zoom:80%;" />
 
 ​																					低内聚
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709093552180.png" alt="image-20210709093552180" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709093552180.png" alt="image-20210709093552180" style="zoom: 67%;" />
 
 ​																					高内聚
 
@@ -214,7 +214,7 @@ Java里面一切都是对象，是对象的话，字符串肯定就有长度，�
 
 **个字节**)
 
-![image-20210709104049032](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709104049032.png)
+![image-20210709104049032](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709104049032.png)
 
 
 
@@ -257,7 +257,7 @@ AbstractStringBuilder 中使用**字符数组(char value[])保存字符串,数�
 
 | AbstractStringBuilder                                        | StringBuilder                                                | StringBuffer                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![image-20210709121133846](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121133846.png) | ![image-20210709121205147](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121205147.png) | ![image-20210709121056095](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709121056095.png) |
+| ![image-20210709121133846](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709121133846.png) | ![image-20210709121205147](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709121205147.png) | ![image-20210709121056095](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709121056095.png) |
 
 补充：**String、StringBuilder、StringBuffer类都是被final修饰的，都是限制他们所存储的引用地址不可以修改，同时还表示该类无法被继承**。而StringBuilder、StringBuffer的字符数组可以被修改。也就是内容可以被修改
 
@@ -309,7 +309,7 @@ StringBuffer和StringBuilder每次更改时都是对自身进行操作,比如方
 
 [自动装箱和拆箱](https://www.cnblogs.com/dolphin0520/p/3780005.html)
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210709124851690.png" alt="image-20210709124851690" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210709124851690.png" alt="image-20210709124851690" style="zoom:67%;" />
 
 装箱:自动将基本数据类型转换为包装类型
 
@@ -903,7 +903,7 @@ num1 = 10
 num2 = 20
 ```
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210710093547068.png" alt="image-20210710093547068" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210710093547068.png" alt="image-20210710093547068" style="zoom:50%;" />
 
 num1和num2都是基本数据类型，而传入swap方法中的参数，只是num1和num2的拷贝，因此无论swap方法中参数如何变化，都不会影响num1和num2的数据。
 
@@ -926,7 +926,7 @@ num1和num2都是基本数据类型，而传入swap方法中的参数，只是nu
  0
 ```
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210710093933633.png" alt="image-20210710093933633" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210710093933633.png" alt="image-20210710093933633" style="zoom:67%;" />
 
 arr指向堆中的数组对象，change方法中array是数组对象引用的拷贝，它们指向的都是同一个数组对象，因此方法中通过array[0] = 0 ,指向的就是堆中数据，因此外部对对象引用的改变反映到所对应的对象上。
 
@@ -985,7 +985,7 @@ final byte b5 =4,b6=6;
 
 ## Java异常
 
-![image-20210710095851862](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210710095851862.png)
+![image-20210710095851862](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210710095851862.png)
 
 ​			
 
@@ -1112,7 +1112,7 @@ Person p=new Student();
 
 当程序处于运行时从外部传入新的对象，该对象的编译时类型为Object，但程序运行时需要调用该对象的运行时类型方法，在编译时无法获取对象属于哪些类时，为了在运行时获取该对象的具体类型的方法，此时就要用到反射。
 
- <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//2019042011494188.png" alt="img" style="zoom: 200%;" /> 
+ <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/2019042011494188.png" alt="img" style="zoom: 200%;" /> 
 
  反射API
 
@@ -2154,7 +2154,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 对基本数据类型进⾏值传递，对引⽤数据类型，创建⼀个新的对象，并复制其内容
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711135323031.png" alt="image-20210711135323031" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711135323031.png" alt="image-20210711135323031" style="zoom:67%;" />
 
 **序列化（深 clone 一中实现）** 
 
@@ -2174,7 +2174,7 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 - Iterator：迭代器，可以通过迭代器遍历集合中的数据 
 - Map：是映射表的基础接口
 
-![image-20210711141733071](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711141733071.png)
+![image-20210711141733071](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711141733071.png)
 
  ![img](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs1.knowsky.com%2F20151016%2Fgmnpryqpvw454.png&refer=http%3A%2F%2Fs1.knowsky.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628576130&t=36f4b36880e3c0a0a6783a7d29578d4b) 
 
@@ -2368,15 +2368,15 @@ private void grow(int minCapacity) {
 
 **双向链表：** 包含两个指针，⼀个 prev 指向前⼀个节点，⼀个 next 指向后⼀个节点。
 
-![image-20210711155214913](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711155214913.png)
+![image-20210711155214913](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711155214913.png)
 
-![image-20210711155242130](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711155242130.png)
+![image-20210711155242130](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711155242130.png)
 
 **双向循环链表：** 最后⼀个节点的 next 指向 head，⽽ head 的 prev 指向最后⼀个节点，构成⼀ 
 
 个环。
 
-![image-20210711155314551](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711155314551.png)
+![image-20210711155314551](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711155314551.png)
 
 
 
@@ -2394,13 +2394,13 @@ LinkedList中有很多插入的方法，这里就用**头插入**、**尾插入*
 
 的插入效率。
 
-![image-20210917102144692](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917102144692.png)
+![image-20210917102144692](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210917102144692.png)
 
 **头插**
 
 通过下面一张图清楚看到头插的过程
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917102331620.png" alt="image-20210917102331620" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210917102331620.png" alt="image-20210917102331620" style="zoom:67%;" />
 
 1. ArrayList在进行头部插入时，需要把之后的元素都往后位移，如果遇到容量不够时还需要进行扩容
 2. LinkedList在头插时，只需要把元素加入到头部即可，不需要考虑位移和扩容的因素
@@ -2513,7 +2513,7 @@ LinkedList
 
 上图
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917104556149.png" alt="image-20210917104556149" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210917104556149.png" alt="image-20210917104556149" style="zoom:67%;" />
 
 1. ArrayList中尾插不需要在移动数据，耗时点在于扩容，需要拷贝迁移
 2. LinkedList中尾插时，耗时点在于对象的创建上
@@ -2610,7 +2610,7 @@ ArrayList
 
 上图
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210917105816944.png" alt="image-20210917105816944" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210917105816944.png" alt="image-20210917105816944" style="zoom:67%;" />
 
 1. ArrayList中的中间插入操作，当知道要插入的位置时定位的时间复杂度为O(1),比较耗时的点在于数据位移和扩容
 2. LinkedList的中间插入操作，耗时点在于定位需要插入的位置时间复杂度O(n)
@@ -2735,7 +2735,7 @@ equals 方法 如果 equls 结果为 true ，HashSet 就视为同一个元素。
 
 况；表示 hashCode 值相同，但 equals 不相同的情况。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210711161502112.png" alt="image-20210711161502112" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711161502112.png" alt="image-20210711161502112" style="zoom:67%;" />
 
 HashSet 通过 hashCode 值来确定元素在内存中的位置。一个 hashCode 位置上可以存放多个元 
 
@@ -2941,11 +2941,11 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 二叉搜索树有缺点：
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821191952651.png" alt="image-20210821191952651" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821191952651.png" alt="image-20210821191952651" style="zoom:67%;" />
 
 上面是一个二叉搜索树，我要加入3、4、5、6、7这四个结点，会变成如下情况
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192031866.png" alt="image-20210821192031866" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192031866.png" alt="image-20210821192031866" style="zoom:67%;" />
 
 这样的结构导致查找的性能大大折扣，递归的过程变成的冗长。
 
@@ -2963,7 +2963,7 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 4. 若节点是红色节点那么，它的子节点都为黑色节点(不存在连续的红色节点)
 5. 任意一节点到它每个叶子节点的路径上的黑色节点的数目相同
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192115360.png" alt="image-20210821192115360" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192115360.png" alt="image-20210821192115360" style="zoom:67%;" />
 
 不满足上面的特性都会导致红黑树失衡。
 
@@ -2977,25 +2977,25 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 加入一个新的节点21，此节点是红色，不满足红黑树条件，下面通过变色
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b60192dd75db~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1602b60192dd75db~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom: 67%;" />
 
 
 
 将节点22变成黑色，虽然满足了不连续为红色节点的条件，这样的变色还不能满足红黑树的条件，破坏了最后一个条件，黑色节点数目不一致。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192144835.png" alt="image-20210821192144835" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192144835.png" alt="image-20210821192144835" style="zoom:67%;" />
 
 
 
 将25节点变成红色节点，条件4无法满足
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192202495.png" alt="image-20210821192202495" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192202495.png" alt="image-20210821192202495" style="zoom:67%;" />
 
 接着将27节点变成黑色节点
 
 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192230765.png" alt="image-20210821192230765" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192230765.png" alt="image-20210821192230765" style="zoom:67%;" />
 
 
 
@@ -3007,11 +3007,11 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 **左旋转**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210818144322447.png" alt="image-20210818144322447" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210818144322447.png" alt="image-20210818144322447" style="zoom: 67%;" />
 
 **右旋转**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210818145238345.png" alt="image-20210818145238345" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210818145238345.png" alt="image-20210818145238345" style="zoom: 67%;" />
 
 了解完旋转后，根据上面变色后的内容接着说，整个红黑树如何保证平衡的。
 
@@ -3023,35 +3023,35 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 到这里说明相通过变色来保持平衡已经行不通，接下来就轮到旋转登场，大展身手。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192253226.png" alt="image-20210821192253226" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192253226.png" alt="image-20210821192253226" style="zoom:67%;" />
 
 
 
 注意了：这里以17为中心节点，和13节点做**左旋转运行**，想想上面的左旋，
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192722043.png" alt="image-20210821192722043" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192722043.png" alt="image-20210821192722043" style="zoom:67%;" />
 
 结果如下：17成为了根节点，13成为了17的左子节点，15成为了13的右子节点，其他保持不变。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192750840.png" alt="image-20210821192750840" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192750840.png" alt="image-20210821192750840" style="zoom:67%;" />
 
 把17节点变色成黑色
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192819800.png" alt="image-20210821192819800" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192819800.png" alt="image-20210821192819800" style="zoom:67%;" />
 
 观察是否平衡，发现 17 -> 8 -> 6 ->比其他的要多一个节点，不行，变色能解决吗？好像不行，还是通过旋转来吧。
 
 接下来通过右旋转，想想右旋转：以8为中心，和13做**右旋**运动
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602bcfa03b3~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1602b602bcfa03b3~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
 
 结果如下：13成为了8的右节点，8成为了13的根节点，11节点成为了13节点的左子节
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210821192849408.png" alt="image-20210821192849408" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210821192849408.png" alt="image-20210821192849408" style="zoom:67%;" />
 
 再进行一次变色，11节点变成黑色。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1602b602b45e1d3c~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1602b602b45e1d3c~tplv-t2oaga2asx-watermark.awebp" alt="img" style="zoom:67%;" />
 
 观察是否平衡？
 
@@ -3069,9 +3069,9 @@ HashMap是非线程安全的，在多个线程操作同一个HashMap时会导致
 
 在java1.8之前，HashMap采用的是**数组+链表**的形式存储键值对，而在java1.8之后，HashMap中增加了红黑树，变成了**数组+链表+红黑树**的数据结构。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133612262.png" alt="image-20210712133612262" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712133612262.png" alt="image-20210712133612262" style="zoom:67%;" />
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712133622884.png" alt="image-20210712133622884" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712133622884.png" alt="image-20210712133622884" style="zoom: 67%;" />
 
 先从HashMap的源码开始
 
@@ -3155,7 +3155,7 @@ HashMap使用哈希表来存储数据，这样的存储结构也会因为多个�
 
 这也是为什么HashMap是数组+链表的数据结构。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712140136065.png" alt="image-20210712140136065" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712140136065.png" alt="image-20210712140136065" style="zoom:50%;" />
 
 开放地址法（线性探测法）：
 
@@ -3163,7 +3163,7 @@ HashMap使用哈希表来存储数据，这样的存储结构也会因为多个�
 
 例如冲突的位置，放了小李，那么就向下找一个空位放置小王的信息。所以要求tableSize一定要大于dataSize ，要不然哈希表上就没有空置的位置来存放 冲突的数据了。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712140310392.png" alt="image-20210712140310392" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712140310392.png" alt="image-20210712140310392" style="zoom:50%;" />
 
 
 
@@ -3214,7 +3214,7 @@ static int indexFor(int h, int length) {  //jdk1.7的源码，jdk1.8没有这个
 
 举例说明运算的过程：
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712150456316.png" alt="image-20210712150456316" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712150456316.png" alt="image-20210712150456316" style="zoom:67%;" />
 
 重点说明一下：
 
@@ -3320,7 +3320,7 @@ static final int tableSizeFor(int cap) {
 
 HashMap中put方法
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//58e67eae921e4b431782c07444af824e_r.jpg" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/58e67eae921e4b431782c07444af824e_r.jpg" style="zoom: 50%;" />
 
 1. 加入新的数据判断table是否为空或者为null，为空执行**resize()**进行扩容
 2. 根据键值key计算hash值位于哈希桶数组的位置，如果当前table[i]为空，直接建立新节点条件，跳转到步骤6，如果table[i]不为空，跳转到步骤3
@@ -3459,7 +3459,7 @@ modCount：记录HashMap内部结构发生变化的次数，主要用于迭代�
 17 }
 ```
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712163350709.png" alt="image-20210712163350709" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712163350709.png" alt="image-20210712163350709" style="zoom: 80%;" />
 
 jdk1.7每次扩容，都是将原数组中的数据放入到扩容后的新数组中，每次都要重新计算数据在新数组中的位置Hash函数(扰动函数)，jdk1.8的优势就是在于**扩容后不需要再重新计算数据在新数组中的位置**，节省了时间，数据在新数组的位置只有两种情况：**一种原来的位置，另一种是在原来位置的基础上+扩容后的大小**。这也是为什么在jdk1.8后HashMap的扩展都是2的幂次方的原因之一。
 
@@ -3482,7 +3482,7 @@ java7中，
 - 每个Segment 守护着⼀个HashEntry数组⾥的元素，当对 HashEntry 数组的数据进⾏修改时，必须⾸先获得 对应的 Segment的锁。
 - 每次加锁操作都是锁定一个Segment，这样只要保证每个 Segment 是线程安全的，也就实现了全局的线程安全。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712203423167.png" alt="image-20210712203423167" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712203423167.png" alt="image-20210712203423167" style="zoom:67%;" />
 
 **并行度(默认16)**
 
@@ -3498,7 +3498,7 @@ ConcurrentHashMap取消了Segment分段锁，采⽤**CAS和synchronized**来保�
 
 HashMap1.8的结构类似，**数组+链表/红黑二叉树**。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712203919062.png" alt="image-20210712203919062" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712203919062.png" alt="image-20210712203919062" style="zoom:67%;" />
 
 **HashTable线程安全**
 
@@ -3511,7 +3511,7 @@ HashMap1.8的结构类似，**数组+链表/红黑二叉树**。
 
 **多线程建议是使用ConcurrentHashMap**！！
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210712204711594.png" alt="image-20210712204711594" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210712204711594.png" alt="image-20210712204711594" style="zoom:67%;" />
 
 
 
@@ -3547,7 +3547,7 @@ LinkedHashMap 继承⾃ HashMap ，所以它的底层仍然是基于拉链式散
 
 组成：垃圾回收，栈，堆，方法域，寄存器，一套字节码指令集。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713151204665.png" alt="image-20210713151204665" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210713151204665.png" alt="image-20210713151204665" style="zoom:80%;" />
 
 运行的过程：
 
@@ -3562,7 +3562,7 @@ java语言也是跨平台语言，跨平台语言指的是字节码文件跨平�
 
 JVM的结构图
 
-![](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//21744606-a155004ed63c2a86.png) )
+![](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/21744606-a155004ed63c2a86.png) )
 
 
 
@@ -3570,7 +3570,7 @@ JVM的结构图
 
 运行时：线程在JVM中执行的过程。
 
-![image-20210713152558456](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713152558456.png)
+![image-20210713152558456](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210713152558456.png)
 
  <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Foscimg.oschina.net%2Foscnet%2F466efdc217868409df4da3de2905f70e85b.jpg&refer=http%3A%2F%2Foscimg.oschina.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628753072&t=f32e6255c86a86777263f3b9dbd7d87f" alt="img" style="zoom: 50%;" /> 
 
@@ -3805,7 +3805,7 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
   
       是方法区的一部分，Class ⽂件中除了有类的版本、字段、⽅法、接⼝等描述信息外，还有(**Class文件常量池**)常量池表（⽤于存放**编译期**⽣成的各种**字面量和符号引用**）上面已经解释过了
   
-      ![image-20210713165250106](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210713165250106.png)
+      ![image-20210713165250106](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210713165250106.png)
   
       运行时常量池的**作用**是存储java **class文件常量池**中的**符号信息**，运行时常量池中保存着一些class文件中描述的**符号引用**，同时在**类的解析阶**段还会将这些**符号引用翻译出直接引用**（直接指向实例对象的指针，内存地址），翻译出来的直接引用也是存储在运行时常量池中。
   
@@ -3835,7 +3835,7 @@ JVM内存区域主要分为**线程私有区域**、**线程共享区域**、**�
 
 java堆从GC的角度，将堆分为：**新生代和老年代**。
 
-![image-20210715094813893](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715094813893.png)
+![image-20210715094813893](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210715094813893.png)
 
 补充：
 
@@ -3936,7 +3936,7 @@ SurvivorRatio=3 新生代中 Eden 与 Survivor 的比值
 
 ### 垃圾回收与算法
 
-![image-20210715110149559](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210715110149559.png)
+![image-20210715110149559](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210715110149559.png)
 
 
 
@@ -3944,7 +3944,7 @@ SurvivorRatio=3 新生代中 Eden 与 Survivor 的比值
 
 GC主要关注的在**堆和方法区**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716102147217.png" alt="image-20210716102147217" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210716102147217.png" alt="image-20210716102147217" style="zoom: 80%;" />
 
 **什么时候回收？**
 
@@ -3969,7 +3969,7 @@ GC主要关注的在**堆和方法区**
 
 通过**GC roots**作为对象的起点搜索，搜索走过的路径称为**引用链**。如果一个对象到GC roots没有任何引用链与之相连接，那么这个对象称为**不可达对象**。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716161456801.png" alt="image-20210716161456801" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210716161456801.png" alt="image-20210716161456801" style="zoom:67%;" />
 
 **注意**：不可达对象并不代表是可回收对象。不可达对象成为可回收对象至少经过两次标记过程。如果标记后是可回收对象，方可回收。
 
@@ -4025,7 +4025,7 @@ Object类中**finalize**方法
 
   清除阶段：回收标记的对象
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716165012149.png" alt="image-20210716165012149" style="zoom:67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210716165012149.png" alt="image-20210716165012149" style="zoom:67%;" />
 
   此算法会产生大量的内存碎片，影响后续内存的利用率
 
@@ -4035,7 +4035,7 @@ Object类中**finalize**方法
 
   将内存空间分为大小相等的两块，其中一块用来存储对象，另一块用来存放GC后存活的对象，然后将原来存放对象的内存清空。
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716165402538.png" alt="image-20210716165402538" style="zoom:67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210716165402538.png" alt="image-20210716165402538" style="zoom:67%;" />
 
   虽然解决了内存碎片化的问题，但是最大的问题在于不能够存放大量的对象，如果数据量过多可能导致该算法的效率低下。
 
@@ -4047,7 +4047,7 @@ Object类中**finalize**方法
 
   整理阶段：不是将标记的可回收对象直接进行回收，而是将存活的对象都整理到内存的一端，将端边界以外的内存全部清空。
 
-  ![image-20210716170120456](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210716170120456.png)
+  ![image-20210716170120456](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210716170120456.png)
 
 - **分代收集算法**
 
@@ -4065,7 +4065,7 @@ Object类中**finalize**方法
 
 因为新生代中每次都要回收大量的对象，只有少量的对象存活下来，因此使用复制算法非常符合新生代的特点。这里复制算法并不是将新生代的内存按照**1：1**划分，而是将**Eden区**占据整个内存的绝大部分，将剩下的一小部分划分成**SurvivorFrom区**和**SurvivorTo区**。在进行回收时，将Eden区和SurviviorFrom区中存活的对象放入To区。
 
-![image-20210717094721080](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717094721080.png)
+![image-20210717094721080](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717094721080.png)
 
 **老年代与标记整理算法**
 
@@ -4142,7 +4142,7 @@ Object类中**finalize**方法
 
 **是根据具体应用场景选择适合的垃圾收集器**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717103948570.png" alt="image-20210717103948570" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717103948570.png" alt="image-20210717103948570" style="zoom:67%;" />
 
 **Serial（单线程、复制算法）新生代**
 
@@ -4168,7 +4168,7 @@ serial（连续）垃圾收集器是**最基本的垃圾收集器**，采用**�
 
  [( 并发与并行的区别是什么？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/33515481) 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717155507985.png" alt="image-20210717155507985" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717155507985.png" alt="image-20210717155507985" style="zoom:67%;" />
 
 如上图所示，可以很清楚解释并发和并行。
 
@@ -4208,7 +4208,7 @@ serial（连续）垃圾收集器是**最基本的垃圾收集器**，采用**�
 
 在jkd1.5以前与Parallel Scavenge搭配使用
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717161757921.png" alt="image-20210717161757921" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717161757921.png" alt="image-20210717161757921" style="zoom:67%;" />
 
 这样的搭配**只能保证新生代的高吞吐量，而老年代无法保证**
 
@@ -4216,7 +4216,7 @@ serial（连续）垃圾收集器是**最基本的垃圾收集器**，采用**�
 
 新生代 Serial 与年老代 Serial Old 搭配垃圾收集过程图： 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717161857301.png" alt="image-20210717161857301" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717161857301.png" alt="image-20210717161857301" style="zoom:67%;" />
 
 **Parallel Old（多线程、标记整理算法）老年代**
 
@@ -4224,7 +4224,7 @@ serial（连续）垃圾收集器是**最基本的垃圾收集器**，采用**�
 
 该收集器保证了老年代的高吞吐量，Parallel Old和Parallel Scavenge搭配能够保证新生代和老年代都保持高吞吐量。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717162434704.png" alt="image-20210717162434704" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717162434704.png" alt="image-20210717162434704" style="zoom:67%;" />
 
 **CMS(多线程、标记清除算法)**
 
@@ -4254,7 +4254,7 @@ CMS工作的阶段分为4个：（**三个标记一个清除**）
 
 这4个阶段中耗时最长的是**并发标记和并发清除**阶段，这两个阶段中用户线程可以一起工作，**总体上来说CMS收集器的内存回收和用户线程是一起并发执行的。**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210717164557404.png" alt="image-20210717164557404" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210717164557404.png" alt="image-20210717164557404" style="zoom:67%;" />
 
 优点：并发收集、低停顿
 
@@ -4319,7 +4319,7 @@ G1避免进行全域的垃圾回收，将堆分为几个大小固定的独立区
 
 **BIO(Blocking I/O)（最传统的同步阻塞IO模型）**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718153538501.png" alt="image-20210718153538501" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210718153538501.png" alt="image-20210718153538501" style="zoom:50%;" />
 
 典型的同步阻塞IO模型：data = socket.read();
 
@@ -4337,7 +4337,7 @@ server端要为每一个连接建立一个线程，这样的好处是每个线�
 
 **NIO(Non - Blocking  I/O)(同步非阻塞IO模型)**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210718154121553.png" alt="image-20210718154121553" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210718154121553.png" alt="image-20210718154121553" style="zoom: 50%;" />
 
 当应用程序发出read请求后，不需要等待，它会马上得到来自内核的返回，如果返回的结果是**error(数据没有准备好)**,那么应用程序就继续向内核发出请求，再次去确认，这样不停做循环，一旦内核准好数据同时应用程序发来请求，那么就将数据拷贝给应用程序，返回。
 
@@ -4366,9 +4366,9 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
   Channel提供从文件、网络读取数据的渠道，但是读写操作都必须由Buffer来操作。
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719154353391.png" alt="image-20210719154353391" style="zoom: 67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210719154353391.png" alt="image-20210719154353391" style="zoom: 67%;" />
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719155137722.png" alt="image-20210719155137722" style="zoom:67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210719155137722.png" alt="image-20210719155137722" style="zoom:67%;" />
 
   上面是一个从客户端向服务器端发送数据的过程。
 
@@ -4378,7 +4378,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
   是NIO的核心类，通过Selector去检测多个Channel中是否有数据的发生(**读或写请求**)，如果对应的Channel上有真正的请求发生，那么就去处理该Channel上的请求。Selector本身也是一个线程，设定一个线程专门去管理多个Channel的请求任务，而不需要为每一个Channel去建立对应的线程，避免了多个线程之间的上下文切换，大大减少了系统的开销。
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719160209617.png" alt="image-20210719160209617" style="zoom: 67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210719160209617.png" alt="image-20210719160209617" style="zoom: 67%;" />
 
   
 
@@ -4386,13 +4386,13 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 此模型的本质还是NIO模型，在NIO中的通过Selector实现在一个线程轮询多个通道的数据，需要先将用户线程中需要轮询的socket注册到Selector中，用Selector去轮询多个socketChannel是否有请求到达，一旦请求到达，Selector.select返回，最后完成I/O数据的传输这个过程用户线程是处于阻塞状态的。注意：socket配置也是非阻塞的。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719164029022.png" alt="image-20210719164029022" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210719164029022.png" alt="image-20210719164029022" style="zoom:50%;" />
 
 
 
 相比于NIO，多路复用IO用户线程首先需要在Reactor中注册一个事件处理器，然后Reactor（相当于上文提到的selector）负责轮询各个通道是否有新的数据到来，当有新的数据到来时，Reactor通过先前注册的事件处理器通知用户线程有数据可读，此时用户线程向内核发起读取IO数据的请求，用户线程阻塞直至数据读取完成。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210719164038684.png" alt="image-20210719164038684" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210719164038684.png" alt="image-20210719164038684" style="zoom:50%;" />
 
 多路复用IO模型效率高于NIO模型原因在于：NIO中socket轮询是在用户线程中的，而多路复用是在内核中。
 
@@ -4418,7 +4418,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 ## **Java IO**
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20140814122633546)
+![img](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/20140814122633546)
 
 **IO分类**
 
@@ -4475,7 +4475,7 @@ JVM中提供了三种类加载器：
 
   ⾯向我们⽤户的加载器，负责加载当前应⽤classpath下的所有jar包和类。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720104224453.png" alt="image-20210720104224453" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720104224453.png" alt="image-20210720104224453" style="zoom:67%;" />
 
 可以通过继承 java.lang.ClassLoader实现自定义的类加载器，重写findClass方法加载指定路径上的class。
 
@@ -4489,7 +4489,7 @@ JVM中提供了三种类加载器：
 
 **加载过程：类本身不会主动去加载，它会将请求委派给父类加载器loadClass（）处理，父类则会委派给父类的父类，因此所有的请求都会传到顶层的类加载器中（Bootstrap ClassLoader），只有当父类中的加载器无法进行加载时，自己才会来处理类加载**。
 
-![image-20210720105501358](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720105501358.png)
+![image-20210720105501358](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720105501358.png)
 
 注意：类加载器之间的“**⽗⼦**”关系也**不是通过继承**来体现的，是由“**优先级”来决定**
 
@@ -4547,7 +4547,7 @@ JVM中提供了三种类加载器：
 
 **连接**的过程在细分为：**验证、准备、解析**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720092329414.png" alt="image-20210720092329414" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720092329414.png" alt="image-20210720092329414" style="zoom:67%;" />
 
 - **加载**
 
@@ -4664,7 +4664,7 @@ JVM中提供了三种类加载器：
 
   对象头中的信息包含：
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20170419212953720" style="zoom: 80%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/20170419212953720" style="zoom: 80%;" />
 
   **markword（标记字段）**
 
@@ -4683,7 +4683,7 @@ JVM中提供了三种类加载器：
 
   从JVM角度来看一个对象已经产生，从java程序角度来看，创建对象才开始，执行构造方法，按照意愿将对象初始化数据之后这个对象才能够真正得到使用。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720160753504.png" alt="image-20210720160753504" style="zoom:150%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720160753504.png" alt="image-20210720160753504" style="zoom:150%;" />
 
 图上有点小错误:**分配内存中：采用指针碰撞是复制算法，不是标记整理**
 
@@ -4733,13 +4733,13 @@ JVM中提供了三种类加载器：
 
   在java堆中开辟一块内存用作句柄池，句柄本身是指向对象的实例数据和类型数据，引用是指向句柄。
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720161837763.png" alt="image-20210720161837763" style="zoom:67%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720161837763.png" alt="image-20210720161837763" style="zoom:67%;" />
 
 - 直接指针
 
 通过指针直接指向java堆中对象的地址，堆中对象的布局有所改变，在对象的实例数据中存放指向对象类型数据的地址。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210720162258288.png" alt="image-20210720162258288" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720162258288.png" alt="image-20210720162258288" style="zoom:67%;" />
 
 句柄访问对象的好处就是：当对象的地址改变时，引用的地址不要改变，需要改变的是指向对象的句柄。
 
@@ -4789,7 +4789,7 @@ JVM中提供了三种类加载器：
 
 ### 线程的实现和创建
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210815182704130.png" alt="image-20210815182704130" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210815182704130.png" alt="image-20210815182704130" style="zoom:80%;" />
 
 
 
@@ -4912,7 +4912,7 @@ public class MyRunnable implements Runnable {
 
     线程调用stop方法(**容易产生死锁**)
 
-![image-20210722162006343](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210722162006343.png)
+![image-20210722162006343](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210722162006343.png)
 
 -   就绪状态--->运行状态：获得处理机资源（分派处理机的时间片） 
 -   运行状态--->就绪状态：1）处于运行状态的进程时间片用完  2）当有更高优先级的进程就绪时 
@@ -5052,7 +5052,7 @@ public class TestMain {
 
 ### **线程的基本方法**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210730102649764.png" alt="image-20210730102649764" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210730102649764.png" alt="image-20210730102649764" style="zoom:67%;" />
 
 **线程等待(wait)**
 
@@ -5208,7 +5208,7 @@ public static void main(String[] args){
 
 CPU为每个线程设置一定的服务时间，当前服务的线程时间到了，就将当前线程的状态保存下来，接着去为下一个线程服务，多个线程轮巡，当下次再遇到这个线程时，加载上一次状态继续服务。这就是**上下文切换过程**。
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//v2-b93776903a775f5265862124654b6a8e_720w.jpg)
+![img](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/v2-b93776903a775f5265862124654b6a8e_720w.jpg)
 
 **进程**
 
@@ -5268,7 +5268,7 @@ CPU 寄存器是 CPU 内置的容量小、但速度极快的内存。
 
 [不可不说的Java“锁”事 - 美团技术团队 (meituan.com)](https://tech.meituan.com/2018/11/15/java-lock.html)
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20181122101753671.png)
+![img](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/20181122101753671.png)
 
 #### **乐观锁**
 
@@ -5290,7 +5290,7 @@ Java中，**synchronized**关键字和**Lock**的实现类都是**悲观锁**。
 
 多个线程并发操作同一个资源，发现该资源已经被占用，一般的情况是需要等待该资源的锁被释放之后，其他线程去争夺锁，获得锁的线程执行，其他线程等待(上下文的切换)，从**运行态转变为阻塞态**，**这个状态转换的过程需要耗费时间**，**如果说当前占用资源的线程运行的时长比其他线程状态转换时长还要短，那么可以考虑不需要进入阻塞状态，而是让线程等待一会(自旋一会)，如果自旋之后资源已经被释放，那么就不必阻塞直接获取同步资源即可**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//452a3363.png" alt="img" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/452a3363.png" alt="img" style="zoom: 50%;" />
 
 注意：线程自旋的过程也是要消耗cpu的，因此需要设定一个自旋的时间（**默认是10次，可以使用-XX:PreBlockSpin来更改**），来确保资源能否在规定时间内获取到，如果获取不到，那么线程就从自旋转为阻塞。
 
@@ -5323,7 +5323,7 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 排队按顺序打水
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210725104704513.png" alt="image-20210725104704513" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210725104704513.png" alt="image-20210725104704513" style="zoom: 50%;" />
 
 
 
@@ -5337,7 +5337,7 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 插队打水
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//4499559e.png" alt="img" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/4499559e.png" alt="img" style="zoom: 50%;" />
 
 **非公平锁实际执行的效率要远远超出公平锁，除非程序有特殊需要，否则最常用非公平锁的分配机制。**
 
@@ -5367,7 +5367,7 @@ public class Widget {
 
 n还是打水问题
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//58fc5bc9.png" alt="img" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/58fc5bc9.png" alt="img" style="zoom: 50%;" />
 
 村民(线程)需要获取锁才能打水，现在管理员规定，一个锁可以和同一个村民多个水桶绑定，因此第一个水桶和锁绑定后打水，接着将锁和第二个水桶绑定打水，所有的水桶中都装满了水，将锁还给管理员，村民能够完成整个打水的流程。
 
@@ -5379,7 +5379,7 @@ n还是打水问题
 
 打水问题
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//ea597a0c.png" alt="img" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/ea597a0c.png" alt="img" style="zoom: 50%;" />
 
 村民（线程）需要获得锁才能打水，管理规定一个锁只能锁定村民的一个水桶，村民将水桶a和锁锁定打水，这个锁无法释放，村民的水桶b没有锁无法打水，导致线程死锁。
 
@@ -5511,7 +5511,7 @@ Synchronized同步方法中是用**ACC_SYNCHRONIZED标识符来实现同步的**
 
 反编译：
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//820406-20160418202553429-1642545018.png)
+![img](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/820406-20160418202553429-1642545018.png)
 
 相比于普通方法常量池中多了**ACC_SYNCHRONIZED**标识符来实现同步，如果该常量被设置了，**执行线程将先获取monitor**，获取monitor之后才可以执行方法体，执行完后释放monitor。它是一种隐式的同步的实现。
 
@@ -5530,7 +5530,7 @@ Synchronized同步方法中是用**ACC_SYNCHRONIZED标识符来实现同步的**
 
 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200304230629833.png" alt="在这里插入图片描述" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/20200304230629833.png" alt="在这里插入图片描述" style="zoom:80%;" />
 
 多个线程请求同一资源，如果资源被占用那么，线程被放入**Contention List(竞争队列)**中，在竞争队列中将具有成为候选资源的线程放入到**Entry List**中，在Entry List选取能够成为OnDeck的线程(**能够获取monitor的线程**)，onDeck线程尝试获取资源的monitor，获取到monitor的所有权后进入到Owner，同时将monitor的进入数加1，线程运行。如果在线程运行的时候执行了wait方法，进入阻塞的状态，该线程会释放monitor并将其进入数减一，放入**Wait Set（阻塞队列中）**。阻塞队列中的线程和等待队列中的线程一同争夺锁定资源。
 
@@ -5570,7 +5570,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
 锁的状态有四种：无锁、偏向锁、轻量级锁、 重量级锁，级别从低到高依次是：无锁、偏向锁、轻量级锁和重量级锁。**锁状态只能升级不能降级。**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728135419630.png" alt="image-20210728135419630" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210728135419630.png" alt="image-20210728135419630" style="zoom: 67%;" />
 
 #### **无锁、偏向锁、轻量级锁、重量级锁**
 
@@ -5611,7 +5611,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
   1. 在进入同步块时，如果同步对象锁状态为：**无锁(锁标志：01，偏向锁为：0)**，JVM会在当前线程中的栈帧中建立一个**锁记录(Lock Record)**,该空间是用来**存储对象头中Mark Word的拷贝**。
 
-     <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210728144857021.png" alt="image-20210728144857021" style="zoom:50%;" />
+     <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210728144857021.png" alt="image-20210728144857021" style="zoom:50%;" />
 
      ​																	 轻量级锁CAS操作之前堆栈与对象的状态
 
@@ -5621,7 +5621,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
   4. 更新成功，该线程拥有的该对象的锁，对象头中锁标志:00。
 
-     <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//820406-20160424105540163-1019388398.png" alt="img" style="zoom: 33%;" />
+     <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/820406-20160424105540163-1019388398.png" alt="img" style="zoom: 33%;" />
 
      ​																	轻量级锁CAS操作之后堆栈与对象的状态
 
@@ -5631,7 +5631,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
   1. 通过CAS操作尝试把线程中复制的Displaced Mark Word对象替换成当前的Mark Word
 
-     <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210823142051828.png" alt="image-20210823142051828" style="zoom: 50%;" />
+     <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210823142051828.png" alt="image-20210823142051828" style="zoom: 50%;" />
 
   2. 若替换成功，表明当前线程释放锁的过程，没有其他线程请求该锁资源，没有竞争发生。
 
@@ -5645,7 +5645,7 @@ Monitor是**依赖底层操作系统的Mutex Lock(互斥锁)来实现线程的�
 
 **重量级锁、轻量级锁和偏向锁之间转换**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//820406-20160424163618101-624122079.png" alt="img" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/820406-20160424163618101-624122079.png" alt="img" style="zoom:67%;" />
 
 #### **分段锁**
 
@@ -5697,7 +5697,7 @@ java的编译体系公有两次编译阶段，第一次将java源代码通过编
 
 第二阶段JVM通过解释器将字节码文件解释成对应操作系统的二进制机器码，**传统的解释器功能是逐行读入，逐行解释**，这样执行的效率不高，为了解决这个问题，引入了**JIT（即时编译技术）**。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210903144507676.png" alt="image-20210903144507676" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210903144507676.png" alt="image-20210903144507676" style="zoom: 80%;" />
 
 引入即使编译技术，通过解释器解释，当JVM发现某个方法或代码块运行特别频繁时，就将其认定为**热点代码，JIT**会把部分“热点代码”翻译成本地机器相关的机器码，并进行优化，然后再把翻译后的机器码缓存起来，以备下次使用。
 
@@ -6814,7 +6814,7 @@ CyclicBarrier则利用ReentrantLock的Condition来阻塞和通知线程，Countd
 
 例如：两个线程A、B它们各自获取了一个资源，同时它们又希望获取对方的资源，它们自身也没有对已经持有的资源进行释放，双方都在等待对方释放资源，就会造成永无止尽的等待。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210730152813416.png" alt="image-20210730152813416" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210730152813416.png" alt="image-20210730152813416" style="zoom:50%;" />
 
 
 
@@ -6906,7 +6906,7 @@ Thread 1 waiting get resource2
 
 在JDK包下的**JUC(java.util.concurrent)**创建线程池的两种方法:**Executor**和**ThreadPoolExecutor**。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210731095047995.png" alt="image-20210731095047995" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210731095047995.png" alt="image-20210731095047995" style="zoom:67%;" />
 
 
 
@@ -7042,7 +7042,7 @@ public interface Callable<V> {
 
 
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//v2-435c7e31f57f8f7bbf68b92b724b37a1_720w.jpg" alt="img" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/v2-435c7e31f57f8f7bbf68b92b724b37a1_720w.jpg" alt="img" style="zoom: 80%;" />
 
 Future接口中定义了5种方法。
 
@@ -7338,7 +7338,7 @@ class MyThread implements ThreadFactory{
 
 #### **线程池的工作原理**
 
- <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//0e411841387d418c992d1f43f37c0dcf~tplv-k3u1fbpfcp-zoom-1.image" alt="img" style="zoom: 67%;" />
+ <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/0e411841387d418c992d1f43f37c0dcf~tplv-k3u1fbpfcp-zoom-1.image" alt="img" style="zoom: 67%;" />
 
 - 创建线程池，设置线程池的**核心线程数(运行同时运行线程的数目)**、最大线程数、存活时间、时间单位、等待队列长度、线程工厂、饱和策略。
 - 通过execute方法将线程放入线程池中
@@ -7353,7 +7353,7 @@ class MyThread implements ThreadFactory{
 
 #### **线程池的状态**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//08000847-0a9caed4d6914485b2f56048c668251a.jpg" alt="image" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/08000847-0a9caed4d6914485b2f56048c668251a.jpg" alt="image" style="zoom: 67%;" />
 
 - Running：初始化线程池，等待新的任务加入执行
 - ShutDown：关闭线程池，线程池不再接受新的任务，处理队列中剩余的任务
@@ -7395,7 +7395,7 @@ class MyThread implements ThreadFactory{
 
 #### **阻塞队列的种类**
 
-![image-20210801141826630](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210801141826630.png)
+![image-20210801141826630](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210801141826630.png)
 
 1. **ArrayBlockingQueue**(**公平、非公平**) ：由数组结构组成的**有界**阻塞队列。按照先进先出（FIFO）的原则对元素进行排序。
 
@@ -7443,7 +7443,7 @@ class MyThread implements ThreadFactory{
 
 高速缓存位于cpu和主存之间，程序在运行时将数据从主存中复制一份放入到高速缓存中，cpu对缓存中的数据进行修改，运行结束后，将缓存中的数据更新到主存中。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210802144349185.png" alt="image-20210802144349185" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210802144349185.png" alt="image-20210802144349185" style="zoom:50%;" />
 
 例如：
 
@@ -7485,7 +7485,7 @@ i = i + 1;
 
    **核心思想：当cpu在做写操作时，发现当前变量为共享变量，并且其他cpu中也存在着这个变量的副本，当前cpu对共享变量做了写操作，通知其他cpu将该变量的缓存设置为无效，需要通过访问主存获取该变量，这样保证了使用的是最新变量的副本**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210802145644356.png" alt="image-20210802145644356" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210802145644356.png" alt="image-20210802145644356" style="zoom: 50%;" />
 
 **并发编程中三个概念**
 
@@ -7555,7 +7555,7 @@ java内存模型中没有限制使用寄存器或高速缓存来提升执行速�
 
 java内存模型中执行运行过程和上面所说的计算机操作系统类似，所有的变量都是存在主存当中（类似于前面说的物理内存），每个线程都有自己的工作内存（类似于前面的高速缓存）。线程对变量的所有操作都必须在工作内存中进行，而不能直接对主存进行操作。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210802152100344.png" alt="image-20210802152100344" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210802152100344.png" alt="image-20210802152100344" style="zoom:67%;" />
 
 1. **原子性**
 
@@ -7776,7 +7776,7 @@ ThreadLocal是通过另一种方式来保证线程的安全性，不过不是通
 
 ThreadLocal**叫做线程本地变量，或者线程本地存储，用于提供线程内部的局部变量**。在多线程环境中用来保证各个线程中的变量独立其他线程。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1368768-20190613220434628-1803630402.png" alt="img" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1368768-20190613220434628-1803630402.png" alt="img" style="zoom:67%;" />
 
 ThreadLocal的作用和同步机制：同步机制保证多线程中同一数据的一致性，ThreadLocal保证多线程中同一数据的独立性。
 
@@ -7829,7 +7829,7 @@ main线程中num的值111222
 
 **ThreadLocal的实现原理**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1368768-20190614000329689-872917045.png" alt="img" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1368768-20190614000329689-872917045.png" alt="img" style="zoom:50%;" />
 
 先来看看Thread类
 
@@ -7989,7 +7989,7 @@ ThreadLocal中另一个变量inheritableThreadLocals就是被InheritableThreadLo
 
 从ThreadLocal中静态类ThreadLocalMap来看内存泄漏的问题。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1368768-20190614105112553-1657649661.png" alt="img" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1368768-20190614105112553-1657649661.png" alt="img" style="zoom:50%;" />
 
 ThreadLocal是一个工具类，提供了set、get、remove方法，这些方法实际上都是在操作threadLocals这个变量，这个变量的类型是ThreadLocalMap，而这个类内部实际上是一个Entry类型的数组，键值对形式。
 
@@ -8148,7 +8148,7 @@ AtomicInteger类借助Unsafe类完成CAS操作，由此可见**Unsafe是CAS操�
 
 我们来看一看Unsafe类的内部
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210805130145407.png" alt="image-20210805130145407" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210805130145407.png" alt="image-20210805130145407" style="zoom:67%;" />
 
 可以看到当中方法都是被**Native**关键字所修饰方法，我们接着往下看，下面会介绍上图所示的一些方法。
 
@@ -8388,7 +8388,7 @@ Semaphore/CountDownLatch
 
 **AQS原理框架**
 
-![img](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//721070-20170504110246211-10684485.png)
+![img](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/721070-20170504110246211-10684485.png)
 
 AQS**核心思想：如果被请求的共享资源空闲，就将当前请求资源的线程设置为有效的工作线程，并将共享资源的状态锁定；如果被请求的共享资源空间已经被占用，就需要一些阻塞唤醒机制保证锁资源分配。**
 
@@ -8406,7 +8406,7 @@ AQS**核心思想：如果被请求的共享资源空闲，就将当前请求资
 
 **AQS定义资源共享方式**: **Exclusive(独占方式，只能是一个线程使用)**,**Share（共享方式，多个线程同时使用）**
 
-| <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806110616859.png" alt="image-20210806110616859" style="zoom: 80%;" /> | <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806124124206.png" alt="image-20210806124124206" style="zoom:80%;" /> |
+| <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210806110616859.png" alt="image-20210806110616859" style="zoom: 80%;" /> | <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210806124124206.png" alt="image-20210806124124206" style="zoom:80%;" /> |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 AQS提供了大量用于**自定义同步器实现的Protected方法**,自定义同步器实现时只需要对**state**进行修改来实现独占或共享模式。
@@ -8466,7 +8466,7 @@ waitStatus**属性中的几个枚举值**
 
 以非公平锁为例，这里主要阐述一下非公平锁与AQS之间方法的关联之处
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//b8b53a70984668bc68653efe9531573e78636.png" alt="img" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/b8b53a70984668bc68653efe9531573e78636.png" alt="img" style="zoom:80%;" />
 
 1. 定义非公平锁，尝试通过CAS去修改state的值，若修改成功设置成独占模式,获取到锁的资源。
 
@@ -8610,7 +8610,7 @@ waitStatus**属性中的几个枚举值**
    
        上述方法的流程
    
-      <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806145150447.png" alt="image-20210806145150447" style="zoom:80%;" />
+      <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210806145150447.png" alt="image-20210806145150447" style="zoom:80%;" />
    
       
    
@@ -8652,7 +8652,7 @@ waitStatus**属性中的几个枚举值**
    
        上述方法流程
    
-      <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210806145217882.png" alt="image-20210806145217882" style="zoom:80%;" />
+      <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210806145217882.png" alt="image-20210806145217882" style="zoom:80%;" />
 
 总结一下流程
 

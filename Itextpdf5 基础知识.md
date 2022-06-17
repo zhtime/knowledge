@@ -52,11 +52,11 @@
 }
 ```
 
-![image-20210831160725505](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831160725505.png)
+![image-20210831160725505](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831160725505.png)
 
 再看看内容
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831160748267.png" alt="image-20210831160748267" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831160748267.png" alt="image-20210831160748267" style="zoom:50%;" />
 
 ## 基础知识
 
@@ -98,7 +98,7 @@
    //        writer.setPageEmpty(true);
    ```
 
-    <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831162018900.png" alt="image-20210831162018900" style="zoom: 80%;" />
+    <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831162018900.png" alt="image-20210831162018900" style="zoom: 80%;" />
 
    
 
@@ -164,7 +164,7 @@
 
 该方法用来设计页面属性
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831163514680.png" alt="image-20210831163514680" style="zoom:50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831163514680.png" alt="image-20210831163514680" style="zoom:50%;" />
 
 
 
@@ -185,7 +185,7 @@
         document.add(title);
 ```
 
-![image-20210831164233698](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831164233698.png)
+![image-20210831164233698](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831164233698.png)
 
 
 
@@ -276,7 +276,7 @@ ALIGN_LEFT(居左)， ALIGN_CENTER(居中)、 ALIGN_RIGHT(巨中)， ALIGN_JUSTI
         document.add(image);
 ```
 
-![image-20210831170541971](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831170541971.png)
+![image-20210831170541971](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831170541971.png)
 
 
 
@@ -294,7 +294,7 @@ country.add(dest);java
 document.add(country);
 ```
 
-| <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831171051108.png" alt="image-20210831171051108" style="zoom:50%;" /> | ![](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210831171131710.png) |
+| <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831171051108.png" alt="image-20210831171051108" style="zoom:50%;" /> | ![](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210831171131710.png) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 下面才是用到的最多的，做布局整理的。
@@ -409,7 +409,7 @@ PdfPCell c19 = new PdfPCell(new Paragraph("测试申报",fourFonts));
         document.add(table9);
 ```
 
-![image-20210901161858802](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901161858802.png)
+![image-20210901161858802](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210901161858802.png)
 
 
 
@@ -421,7 +421,7 @@ PdfPCell c19 = new PdfPCell(new Paragraph("测试申报",fourFonts));
 
 网上找了一个非常经典的例子
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//20200106084907294.png" alt="img" style="zoom: 50%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/20200106084907294.png" alt="img" style="zoom: 50%;" />
 
 
 
@@ -483,7 +483,7 @@ PdfContentByte cb = stamp.getUnderContent(1);// 拿到层,可以有页数
         document.close();
 ```
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210901165256288.png" alt="image-20210901165256288" style="zoom: 33%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210901165256288.png" alt="image-20210901165256288" style="zoom: 33%;" />
 
 合并成功
 
@@ -541,11 +541,11 @@ public void addTemplate(PdfTemplate template,
 
 a，b，c，d，e和f是具有**三行三列**的**矩阵**的元素。
 
-![enter image description here](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//Lq3Lb.png)
+![enter image description here](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/Lq3Lb.png)
 
 矩阵来表示二维系统中的转换
 
-![enter image description here](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//6mkoA.png)
+![enter image description here](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/6mkoA.png)
 
 ```
 x' = a * x + c * y + e
@@ -560,7 +560,7 @@ y' = 0 * x + 1 * y + f
 
 **e和f值可用于平移。 a，b，c和d值可用于旋转和/或缩放操作。**这些参数展开如下
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//SMeOc.jpg" alt="enter image description here" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/SMeOc.jpg" alt="enter image description here" style="zoom: 80%;" />
 
 之前使用的合并pdf方法是**addTemplate(template, e, f)**进行平移操作
 
@@ -740,7 +740,7 @@ public void ShowTextAligned(int alignment, String text, float x,float y, float r
         cb.endText();
 ```
 
-![image-20210902195233631](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210902195233631.png)
+![image-20210902195233631](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210902195233631.png)
 
 
 
