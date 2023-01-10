@@ -1,6 +1,6 @@
 # 1. Mysql的体系结构概览
 
-![image-20210508113942036](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508113942036.png)
+![image-20210508113942036](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508113942036.png)
 
 整个MySQL Server由以下组成
 
@@ -51,7 +51,7 @@
 
 可以通过指定 show engines ， 来查询当前数据库支持的存储引擎 ： 
 
-![image-20210508114027626](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508114027626.png)
+![image-20210508114027626](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508114027626.png)
 
 创建新表时如果不指定存储引擎，那么系统就会使用默认的存储引擎，MySQL5.5之前的默认存储引擎是MyISAM，5.5之后就改为了InnoDB。
 
@@ -61,7 +61,7 @@
  show variables like '%storage_engine%' ； 
 ```
 
-![image-20210508123720451](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508123720451.png)	 
+![image-20210508123720451](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508123720451.png)	 
 
 
 
@@ -114,7 +114,7 @@ insert into goods_innodb(id,name)values(null,'Meta21');
 commit;
 ```
 
-![image-20210508124450876](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508124450876.png)
+![image-20210508124450876](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508124450876.png)
 
 测试，发现在InnoDB中是存在事务的 ；
 
@@ -132,19 +132,19 @@ insert into goods_innodb(id,name)values(null,'Meta22');
 
 会出现
 
-![image-20210508132822855](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508132822855.png)
+![image-20210508132822855](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508132822855.png)
 
 
 
-![image-20210508132850566](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508132850566.png)
+![image-20210508132850566](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508132850566.png)
 
 在linux可以查询到新增的信息，而在windows上确无法查看到，这就是InnoDB中事务的存在。
 
 当我们commit；之后结果如下：
 
-![image-20210508133037230](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508133037230.png)
+![image-20210508133037230](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508133037230.png)
 
-![image-20210508133049449](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508133049449.png)
+![image-20210508133049449](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508133049449.png)
 
 
 
@@ -192,17 +192,17 @@ SET NULL 则表示父表在更新或者删除的时候，子表的对应字段�
 
 表中数据如下图所示 ： 
 
-![image-20210508125936533](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508125936533.png)
+![image-20210508125936533](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508125936533.png)
 
 如果尝试删除主表(country_innodb)中的数据,存在与之关联的子表(city_innodb)的数据,是无法删除的。
 
-![image-20210508130227159](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508130227159.png)
+![image-20210508130227159](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508130227159.png)
 
 
 
 如果尝试更新主表数据，与之关联的子表单数据也会改变。
 
-![image-20210508130432389](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508130432389.png)
+![image-20210508130432389](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508130432389.png)
 
 
 
@@ -212,9 +212,9 @@ SET NULL 则表示父表在更新或者删除的时候，子表的对应字段�
 show create table city_innodb ;
 ```
 
-![image-20210508130637558](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508130637558.png)
+![image-20210508130637558](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508130637558.png)
 
-![image-20210508130705679](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508130705679.png)
+![image-20210508130705679](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508130705679.png)
 
 
 
@@ -228,7 +228,7 @@ InnoDB 存储表和索引有以下两种方式 ：
 
 ②. 使用多表空间存储， 这种方式创建的表的表结构仍然存在 .frm 文件中，但是每个表的数据和索引单独保存在 .ibd 中。
 
-![image-20210508131126815](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508131126815.png)
+![image-20210508131126815](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508131126815.png)
 
 
 
@@ -252,7 +252,7 @@ create table goods_myisam(
 insert into goods_myisam(id,name) values(null,'Meta20');
 ```
 
-![image-20210508133501846](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508133501846.png)
+![image-20210508133501846](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508133501846.png)
 
 我们尝试通过开启事务来插入
 
@@ -264,7 +264,7 @@ insert into goods_myisam(id,name) values(null,'Meta21');
 这里我们不做commit;直接去查看windows中数据。
 ```
 
-![image-20210508133718732](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508133718732.png)
+![image-20210508133718732](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508133718732.png)
 
 通过测试，我们发现，在MyISAM存储引擎中，是没有事务控制的 ；
 
@@ -280,7 +280,7 @@ insert into goods_myisam(id,name) values(null,'Meta21');
 
 .MYI(MYIndex , 存储索引)；
 
-![image-20210508134011345](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508134011345.png)
+![image-20210508134011345](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508134011345.png)
 
 
 
@@ -298,7 +298,7 @@ insert into goods_myisam(id,name) values(null,'Meta21');
 
 ​	可以对MERGE表进行DROP操作，但是这个操作只是删除MERGE表的定义，对内部的表是没有任何影响的。
 
-![image-20210508134351816](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508134351816.png)
+![image-20210508134351816](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508134351816.png)
 
 下面是一个创建和使用MERGE表的示例 ： 
 
@@ -347,15 +347,15 @@ insert into order_1991 values(11,200.0,'上海');
 
 order_1990中的数据 ： 
 
-![1551408083254](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551408083254.png)
+![1551408083254](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551408083254.png)
 
 order_1991中的数据 ： 
 
-![1551408133323](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551408133323.png)
+![1551408133323](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551408133323.png)
 
 order_all中的数据 ：
 
-![1551408216185](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551408216185.png)
+![1551408216185](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551408216185.png)
 
 ​	 
 
@@ -366,7 +366,7 @@ insert into order_all values(100,10000.0,'西安')；
 
 ```
 
-![1551408519889](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551408519889.png)
+![1551408519889](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551408519889.png)
 
 
 
@@ -398,14 +398,14 @@ show status like 'Com_______';
 
 ```
 
-![image-20210508135645026](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508135645026.png)
+![image-20210508135645026](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508135645026.png)
 
 ```
 show status like 'Innodb_rows_%';
 
 ```
 
-![image-20210508140058103](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508140058103.png)
+![image-20210508140058103](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508140058103.png)
 
 Com_xxx 表示每个 xxx 语句执行的次数，我们通常比较关心的是以下几个统计参数。
 
@@ -436,7 +436,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 - 慢查询日志 : 通过慢查询日志定位那些执行效率较低的 SQL 语句，用--log-slow-queries[=file_name]选项启动时，mysqld 写一个包含所有执行时间超过 long_query_time 秒的 SQL 语句的日志文件。具体可以查看本书第 26 章中日志管理的相关部分。
 - show processlist  : 慢查询日志在查询结束以后才纪录，所以在应用反映执行效率出现问题的时候查询慢查询日志并不能定位问题，可以使用show processlist命令查看当前MySQL在进行的线程，包括线程的状态、是否锁表等，可以实时地查看 SQL 的执行情况，同时对一些锁表操作进行优化。
 
-![image-20210508140639115](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508140639115.png)
+![image-20210508140639115](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508140639115.png)
 
 ```
 1） id列，用户登录mysql时，系统分配的"connection_id"，可以使用函数connection_id()查看
@@ -463,7 +463,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 通过以上步骤查询到效率低的 SQL 语句后，可以通过 EXPLAIN或者 DESC命令获取 MySQL如何执行 SELECT 语句的信息，包括在 SELECT 语句执行过程中表如何连接和连接的顺序。
 
-查询SQL语句的执行计划 ： ![image-20210508141531916](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508141531916.png)
+查询SQL语句的执行计划 ： ![image-20210508141531916](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508141531916.png)
 
 | 字段          | 含义                                                         |
 | ------------- | ------------------------------------------------------------ |
@@ -481,7 +481,7 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 ### 3.3.1 环境准备
 
-![image-20210508141911629](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508141911629.png)
+![image-20210508141911629](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508141911629.png)
 
 ```sql
 CREATE TABLE `t_role` (
@@ -553,7 +553,7 @@ explain select * from t_role r, t_user u, user_role ur where r.id = ur.role_id a
 
 ```
 
-![image-20210508142900434](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508142900434.png)
+![image-20210508142900434](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508142900434.png)
 
 2） id 不同id值越大，优先级越高，越先被执行。 
 
@@ -562,7 +562,7 @@ EXPLAIN SELECT * FROM t_role WHERE id = (SELECT role_id FROM user_role WHERE use
 
 ```
 
-![image-20210508143135624](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508143135624.png)
+![image-20210508143135624](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508143135624.png)
 
 
 
@@ -573,7 +573,7 @@ EXPLAIN SELECT * FROM t_role r , (SELECT * FROM user_role ur WHERE ur.`user_id` 
 
 ```
 
-![image-20210508143312560](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508143312560.png)
+![image-20210508143312560](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508143312560.png)
 
 
 
@@ -664,11 +664,11 @@ Mysql从5.0.37版本开始增加了对 show profiles 和 show profile 语句的�
 
 通过 have_profiling 参数，能够看到当前MySQL是否支持profile：
 
-![image-20210508174650345](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508174650345.png)
+![image-20210508174650345](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508174650345.png)
 
 默认profiling是关闭的，可以通过set语句在Session级别开启profiling：
 
-![image-20210508174705005](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508174705005.png)
+![image-20210508174705005](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508174705005.png)
 
 ```sql
 set profiling=1; //开启profiling 开关；
@@ -695,11 +695,11 @@ selec * from emp_logs ;
 
 执行完上述命令之后，再执行show profiles 指令， 来查看SQL语句执行的耗时：
 
-![image-20210508175215538](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508175215538.png)
+![image-20210508175215538](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508175215538.png)
 
 通过show  profile for  query  query_id 语句可以查看到该SQL执行过程中每个线程的状态和消耗的时间：
 
-![image-20210508175722087](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508175722087.png)
+![image-20210508175722087](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508175722087.png)
 
 ```tex
 TIP ：
@@ -711,7 +711,7 @@ TIP ：
 
 在获取到最消耗时间的线程状态后，MySQL支持进一步选择all、cpu、block io 、context switch、page faults等明细类型类查看MySQL在使用什么资源上耗费了过高的时间。例如，选择查看CPU的耗费时间  ：
 
-![image-20210508180230197](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508180230197.png)
+![image-20210508180230197](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508180230197.png)
 
 | 字段       | 含义                           |
 | ---------- | ------------------------------ |
@@ -941,7 +941,7 @@ select * from tb_item where id = 1000000\G;
 
 ```
 
-![image-20210508184946282](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508184946282.png)
+![image-20210508184946282](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508184946282.png)
 
 查询速度很快，因为id为主键， 有索引；
 
@@ -952,11 +952,11 @@ select * from tb_item where title = '497142'\G;
 
 ```
 
-![image-20210508185122147](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185122147.png)
+![image-20210508185122147](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508185122147.png)
 
 查看SQL语句的执行计划 ： 
 
-![image-20210508185228659](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185228659.png)
+![image-20210508185228659](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508185228659.png)
 
 
 
@@ -967,17 +967,17 @@ create index idx_item_title on tb_item(title);
 
 ```
 
-![image-20210508185448354](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185448354.png)
+![image-20210508185448354](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508185448354.png)
 
 
 
 索引创建完成之后，再次进行查询 ： 
 
-![image-20210508185504552](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185504552.png)) 
+![image-20210508185504552](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508185504552.png)) 
 
 通过explain ， 查看执行计划，执行SQL时使用了刚才创建的索引 
 
-![image-20210508185635333](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508185635333.png)
+![image-20210508185635333](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508185635333.png)
 
 ## 4.2 索引的使用
 
@@ -1026,7 +1026,7 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 ```
 
-![image-20210511193408643](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511193408643.png)
+![image-20210511193408643](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511193408643.png)
 
 
 
@@ -1038,7 +1038,7 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 匹配最左前缀法则，走索引：
 
-![image-20210511193942936](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511193942936.png)
+![image-20210511193942936](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511193942936.png)
 
 补充：根据定义的复合索引(name，status，address)，在where条件中只要name作为最左前缀出现(**索引中最左前缀**)，满足最左前缀法则，它可以排在where条件status的后面。
 
@@ -1046,19 +1046,19 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 违法最左前缀法则 ， 索引失效：
 
-![image-20210511194009153](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511194009153.png)
+![image-20210511194009153](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511194009153.png)
 
 
 
 如果符合最左法则，但是出现跳跃某一列，只有最左列索引生效：
 
-![image-20210511194422790](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511194422790.png)
+![image-20210511194422790](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511194422790.png)
 
 
 
 3). 范围查询右边的列，不能使用索引 。
 
-![image-20210511195830399](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511195830399.png)
+![image-20210511195830399](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511195830399.png)
 
 根据前面的两个字段name ， status 查询是走索引的， 但是最后一个条件address 没有用到索引。
 
@@ -1066,15 +1066,15 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 4). 不要在索引列上进行运算操作， 索引将失效。
 
-![image-20210511200202025](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511200202025.png)
+![image-20210511200202025](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511200202025.png)
 
-![image-20210511200340635](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511200340635.png)
+![image-20210511200340635](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511200340635.png)
 
 
 
 5). 字符串不加单引号，造成索引失效。
 
-![image-20210511200448006](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511200448006.png)
+![image-20210511200448006](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511200448006.png)
 
 由于，在查询是，没有对字符串加单引号 ，没有走status的索引	  MySQL的查询优化器，会自动的进行类型转换，s 造成索引失效。
 
@@ -1084,11 +1084,11 @@ explain select * from tb_seller where name='小米科技' and status='1' and add
 
 尽量使用覆盖索引（只访问索引的查询（索引列完全包含查询列）），减少select * 。
 
-![image-20210511201442456](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511201442456.png)
+![image-20210511201442456](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511201442456.png)
 
 如果查询列，超出索引列，也会降低性能。
 
-![image-20210511201530431](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511201530431.png)
+![image-20210511201530431](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511201530431.png)
 
 ```
 TIP : 
@@ -1114,7 +1114,7 @@ explain select name, status from tb_seller where name = '小米科技' or nickna
 
 ```
 
-![image-20210511202407884](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511202407884.png)
+![image-20210511202407884](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511202407884.png)
 
 
 
@@ -1122,27 +1122,27 @@ explain select name, status from tb_seller where name = '小米科技' or nickna
 
 如果仅仅是尾部模糊匹配，索引不会失效。如果是头部模糊匹配，索引失效。
 
-![image-20210511203458336](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511203458336.png)
+![image-20210511203458336](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511203458336.png)
 
 解决方案 ： 
 
 通过覆盖索引来解决 
 
-![image-20210511203546417](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511203546417.png)
+![image-20210511203546417](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511203546417.png)
 
 
 
 9). 如果MySQL评估使用索引比全表更慢，则不使用索引。
 
-![image-20210511204310707](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210511204310707.png)
+![image-20210511204310707](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210511204310707.png)
 
 10). is  NULL ， is NOT NULL  <font color='red'>有时</font>索引失效。
 
-![image-20210515100241927](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515100241927.png)
+![image-20210515100241927](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515100241927.png)
 
 例如：上图中address中的数据，is NULL占据很少的数据量，当我们使用is NULL索引查询时，索引没有失效。is NOT NULL 占据绝大多数数据时， is NOT NULL 的索引便失效了，Mysql采用全表查询。
 
-![image-20210515095148911](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515095148911.png)
+![image-20210515095148911](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515095148911.png)
 
 反之亦然，因此所占数据量的多少决定 is NULL 、is NOT NULL 索引是否失效。
 
@@ -1150,9 +1150,9 @@ explain select name, status from tb_seller where name = '小米科技' or nickna
 
 11). in 走索引， not in 索引失效。（定义的索引）
 
-![image-20210515093325977](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515093325977.png)
+![image-20210515093325977](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515093325977.png)
 
-![image-20210515093410680](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515093410680.png)
+![image-20210515093410680](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515093410680.png)
 
 
 
@@ -1184,7 +1184,7 @@ create index idx_seller_address on tb_seller(address);
 
 ```
 
-![image-20210515094325018](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515094325018.png)
+![image-20210515094325018](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515094325018.png)
 
 数据库会选择一个最优的索引（辨识度最高索引）来使用，并不会使用全部索引 。
 
@@ -1199,7 +1199,7 @@ show global status like 'Handler_read%';
 
 ```
 
-![image-20210515101009201](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515101009201.png)
+![image-20210515101009201](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515101009201.png)
 
 ```
 Handler_read_first：索引中第一条被读的次数。如果较高，表示服务器正执行大量全索引扫描（这个值越低越好）。
@@ -1276,7 +1276,7 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 当使用load 命令导入数据的时候，适当的设置可以提高导入的效率。
 
-![image-20210515103746696](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515103746696.png)
+![image-20210515103746696](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515103746696.png)
 
 对于 InnoDB 类型的表，有以下几种方式可以提高导入的效率：
 
@@ -1293,11 +1293,11 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 插入ID顺序排列数据：
 
-![1555771750567](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555771750567.png) 
+![1555771750567](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1555771750567.png) 
 
 插入ID无序排列数据：
 
- ![1555771959734](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555771959734.png) 
+ ![1555771959734](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1555771959734.png) 
 
 
 
@@ -1309,7 +1309,7 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 在导入数据前执行 SET UNIQUE_CHECKS=0，关闭唯一性校验，在导入结束后执行SET UNIQUE_CHECKS=1，恢复唯一性校验，可以提高导入的效率。
 
- ![1555772132736](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555772132736.png) 
+ ![1555772132736](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1555772132736.png) 
 
 
 
@@ -1317,7 +1317,7 @@ load data local infile '/root/sql2.log' into table 'tb_user_1' fields terminated
 
 如果应用使用自动提交的方式，建议在导入前执行 SET AUTOCOMMIT=0，关闭自动提交，导入结束后再执行 SET AUTOCOMMIT=1，打开自动提交，也可以提高导入的效率。
 
-![1555772351208](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1555772351208.png) 
+![1555772351208](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1555772351208.png) 
 
 
 
@@ -1412,23 +1412,23 @@ create index idx_emp_age_salary on emp(age,salary);
 
 1). 第一种是通过对返回数据进行排序，也就是通常说的 filesort 排序，所有不是通过索引直接返回排序结果的排序都叫 FileSort 排序。
 
-![image-20210515113230744](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515113230744.png)
+![image-20210515113230744](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515113230744.png)
 
 2). 第二种通过有序索引顺序扫描直接返回有序数据，这种情况即为 using index，不需要额外排序，操作效率高。
 
-![image-20210515114056869](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515114056869.png)
+![image-20210515114056869](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515114056869.png)
 
-![image-20210515114238902](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515114238902.png)
+![image-20210515114238902](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515114238902.png)
 
 多字段排序
 
-![image-20210515114510913](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515114510913.png)
+![image-20210515114510913](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515114510913.png)
 
 
 
 了解了MySQL的排序方式，优化目标就清晰了：尽量减少额外的排序，通过索引直接(**Using index**)返回有序数据。where 条件和Order by 使用相同的索引，并且Order By 的顺序和索引顺序相同， 并且Order  by 的字段都是升序，或者都是降序。否则肯定需要额外的操作，这样就会出现FileSort。
 
-![image-20210515114803025](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515114803025.png)
+![image-20210515114803025](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515114803025.png)
 
 
 
@@ -1451,7 +1451,7 @@ show variables like 'sort_buffer_size';
 show variables like 'max_length_for_sort_data';
 ```
 
-![image-20210515115344845](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515115344845.png) 
+![image-20210515115344845](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515115344845.png) 
 
 ## 5.4 优化group by 语句
 
@@ -1466,7 +1466,7 @@ explain select age,count(*) from emp group by age;
 
 ```
 
-![image-20210515120025034](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515120025034.png)
+![image-20210515120025034](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515120025034.png)
 
 优化后
 
@@ -1475,7 +1475,7 @@ explain select age,count(*) from emp group by age order by null;
 
 ```
 
-![image-20210515120127567](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515120127567.png)
+![image-20210515120127567](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515120127567.png)
 
 从上面的例子可以看出，第一个SQL语句需要进行"filesort"，而第二个SQL由于order  by  null 不需要进行 "filesort"， 而上文提过Filesort往往非常耗费时间。
 
@@ -1488,7 +1488,7 @@ create index idx_emp_age_salary on emp(age,salary);
 
 ```
 
-![image-20210515120353775](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515120353775.png)
+![image-20210515120353775](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515120353775.png)
 
 
 
@@ -1505,7 +1505,7 @@ Mysql4.1版本之后，开始支持SQL的子查询。这个技术可以使用SEL
 
 执行计划为 : 
 
-![image-20210515132457607](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515132457607.png)
+![image-20210515132457607](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515132457607.png)
 
 
 
@@ -1516,7 +1516,7 @@ explain select * from t_user u , user_role ur where u.id = ur.user_id;
 
 ```
 
-![image-20210515132818434](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515132818434.png)
+![image-20210515132818434](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515132818434.png)
 
 
 
@@ -1530,9 +1530,9 @@ explain select * from t_user u , user_role ur where u.id = ur.user_id;
 
 获取 emp 表中的所有的索引 ： 
 
-![image-20210515133000365](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515133000365.png)
+![image-20210515133000365](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515133000365.png)
 
-![image-20210515133157431](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515133157431.png)
+![image-20210515133157431](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515133157431.png)
 
 示例 ： 
 
@@ -1540,13 +1540,13 @@ explain select * from t_user u , user_role ur where u.id = ur.user_id;
 explain select * from emp where id = 1 or name = 'Tom';
 ```
 
-![image-20210515133846581](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515133846581.png)
+![image-20210515133846581](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515133846581.png)
 
-![image-20210515135011670](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515135011670.png)
+![image-20210515135011670](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515135011670.png)
 
 建议使用 union 替换 or ： 
 
-![image-20210515134448898](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515134448898.png)
+![image-20210515134448898](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515134448898.png)
 
 我们来比较下重要指标，发现主要差别是 type 和 ref 这两项
 
@@ -1569,25 +1569,25 @@ UNION 语句的 ref 值为 const，OR 语句的 type 值为 null，const 表示�
 
 一般分页查询时，通过创建覆盖索引能够比较好地提高性能。一个常见又非常头疼的问题就是 limit 400000,10  ，此时需要MySQL排序前400010 记录，仅仅返回400000- 400010 的记录，其他记录丢弃，查询排序的代价非常大 。
 
-![image-20210515135624914](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515135624914.png)
+![image-20210515135624914](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515135624914.png)
 
 ### 5.7.1 优化思路一
 
 在索引上完成排序分页操作，最后根据主键关联回原表查询所需要的其他列内容。
 
-![image-20210515140334331](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515140334331.png)
+![image-20210515140334331](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515140334331.png)
 
-![image-20210515140834149](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515140834149.png)
+![image-20210515140834149](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515140834149.png)
 
-![image-20210515141012324](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515141012324.png)
+![image-20210515141012324](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515141012324.png)
 
 ### 5.7.2 优化思路二
 
 该方案适用于主键自增的表，可以把Limit 查询转换成某个位置的查询 。
 
-![image-20210515141348621](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515141348621.png)
+![image-20210515141348621](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515141348621.png)
 
-![image-20210515141427931](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515141427931.png)
+![image-20210515141427931](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515141427931.png)
 
 
 
@@ -1604,9 +1604,9 @@ SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQ
 
 ```
 
-![image-20210515142857015](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515142857015.png)
+![image-20210515142857015](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515142857015.png)
 
-![image-20210515143702203](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515143702203.png)
+![image-20210515143702203](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515143702203.png)
 
 ### 5.8.2 IGNORE INDEX
 
@@ -1617,7 +1617,7 @@ SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQ
 
 ```
 
-![image-20210515143145037](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515143145037.png)
+![image-20210515143145037](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515143145037.png)
 
 ### 5.8.3 FORCE INDEX
 
@@ -1628,7 +1628,7 @@ explain select * from  tb_seller force index(idx_seller_address)  where address 
 
 ```
 
-![image-20210515143739544](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210515143739544.png)
+![image-20210515143739544](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515143739544.png)
 
 
 

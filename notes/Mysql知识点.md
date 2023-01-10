@@ -14,7 +14,7 @@
 
     下载网址: https://dev.mysql.com/downloads/ 
 
-   ![image-20210507143524518](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507143524518.png)
+   ![image-20210507143524518](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507143524518.png)
 
 2. 更换镜像源(阿里源)
 
@@ -22,7 +22,7 @@
    sudo vim /etc/apt/sources.list
    ```
 
-   ![image-20210507144316534](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507144316534.png)
+   ![image-20210507144316534](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507144316534.png)
 
    ```
    deb [by-hash=force] https://mirrors.aliyun.com/deepin apricot main contrib non-free
@@ -37,7 +37,7 @@
 
 4. cd到apt包的路径下
 
-   ![image-20210507143849810](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507143849810.png)
+   ![image-20210507143849810](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507143849810.png)
 
    ```
    安装命令
@@ -48,7 +48,7 @@
 
    进入当前页面，选择mysql版本
 
-   ![image-20210507145109763](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507145109763.png)
+   ![image-20210507145109763](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507145109763.png)
 
    
 
@@ -58,7 +58,7 @@
    sudo apt-get update
    ```
 
-   ![image-20210507144828393](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507144828393.png)
+   ![image-20210507144828393](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507144828393.png)
 
 5. 安装Mysql的server和client
 
@@ -68,9 +68,9 @@
 
     设置mysql登陆密码： 
 
-   ![image-20210507145300412](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507145300412.png)
+   ![image-20210507145300412](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507145300412.png)
 
-   ![image-20210507145322238](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507145322238.png)
+   ![image-20210507145322238](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507145322238.png)
 
    
 
@@ -80,7 +80,7 @@
    mysql -u root -p
    ```
 
-   ![image-20210507145446465](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507145446465.png)
+   ![image-20210507145446465](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507145446465.png)
 
 
 
@@ -112,9 +112,9 @@
 
 4. 测试连接
 
-   ![image-20210507150208800](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507150208800.png)
+   ![image-20210507150208800](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507150208800.png)
 
-   ![image-20210507150218225](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507150218225.png)
+   ![image-20210507150218225](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507150218225.png)
 
 ## 2.索引
 
@@ -122,7 +122,7 @@
 
 官方术语：MySQL官方对索引的定义为：索引（index）帮助MySQL高效获取数据的数据结构（有序）。在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据， 这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。如下面示意图所示 : 
 
-![image-20210507150410767](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210507150410767.png)
+![image-20210507150410767](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210507150410767.png)
 
 索引：**就是一种指向数据的数据结构，能够高效获取数据**。
 
@@ -195,13 +195,13 @@ BTree又叫多路平衡搜索树（**B-树**），一颗m叉的BTree特性如下
 
 插入前的顺序是混乱的，在插入时按照字母顺序插入，如下图
 
-![image-20210508105821324](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105821324.png)
+![image-20210508105821324](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105821324.png)
 
 2). 插入H，H应该放在G之后，n>4，key的位置不够了，中间元素G字母向上分裂到新的节点
 
 
 
-![image-20210508105809711](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105809711.png) 
+![image-20210508105809711](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105809711.png) 
 
 3). 插入E，K，Q不需要分裂，原因是：key最大值为4，下面的位置都能够放下
 
@@ -211,29 +211,29 @@ BTree又叫多路平衡搜索树（**B-树**），一颗m叉的BTree特性如下
 
 一个指针指向小于G的数据块，另一个指针指向大于G的数据块
 
-![image-20210508105835885](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105835885.png)
+![image-20210508105835885](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105835885.png)
 
 4). 插入M，M插入到K和N的中间，n>4,key的位置不够，中间元素M字母向上分裂到父节点G，原来的四个数据分裂两个单独的数据块
 
 M放到G的后面，key+1，指针数+1，key:2,指针数:3
 
-![image-20210508105905801](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105905801.png)
+![image-20210508105905801](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105905801.png)
 
 5). 插入F，W，L，T不需要分裂
 
-![image-20210508105922505](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105922505.png)
+![image-20210508105922505](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105922505.png)
 
 6). 插入Z，中间元素T向上分裂到父节点中 
 
-![image-20210508105934092](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105934092.png)
+![image-20210508105934092](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105934092.png)
 
 7). 插入D，中间元素D向上分裂到父节点中。然后插入P，R，X，Y不需要分裂
 
-![image-20210508105947385](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105947385.png)
+![image-20210508105947385](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105947385.png)
 
 8). 最后插入S，NPQR节点n>5，中间节点Q向上分裂，但分裂后父节点DGMT的n>5，中间节点M向上分裂
 
-![image-20210508105958881](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508105958881.png)
+![image-20210508105958881](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508105958881.png)
 
 到此，该BTREE树就已经构建完成了， BTREE树 和 二叉树 相比， 查询数据的效率更高， 因为对于相同的数据量来说，BTREE的层级结构比二叉树小（**深度浅**），因此搜索速度快。
 
@@ -249,7 +249,7 @@ B+Tree为BTree的变种，B+Tree与BTree的区别为：
 
 3). 所有的非叶子节点都可以看作是key的索引部分。
 
- ![image-20210508110038186](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508110038186.png)
+ ![image-20210508110038186](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508110038186.png)
 
 由于B+Tree只有叶子节点保存key信息，查询任何key都要从root走到叶子。所以B+Tree的查询效率更加稳定。
 
@@ -261,7 +261,7 @@ MySql索引数据结构对经典的B+Tree进行了优化。在原B+Tree的基础
 
 MySQL中的 B+Tree 索引结构示意图: 
 
-![image-20210508110053843](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210508110053843.png)
+![image-20210508110053843](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508110053843.png)
 
 
 
@@ -323,11 +323,11 @@ MySQL中的 B+Tree 索引结构示意图:
 
   使用**UUId（随机ID）**作为主键，使数据存储稀疏。
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924143426346.png" alt="image-20210924143426346" style="zoom: 80%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924143426346.png" alt="image-20210924143426346" style="zoom: 80%;" />
 
   **建议使用int的auto_increment作为主键进行顺序插入**
 
-  <img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924143546919.png" alt="image-20210924143546919" style="zoom:80%;" />
+  <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924143546919.png" alt="image-20210924143546919" style="zoom:80%;" />
 
   主键的值是顺序的，所以 InnoDB 把每一条记录都存储在上一条记录的后面。当达到页的最大填充因子时（**InnoDB 默认的最大填充因子是页大小的 15/16，留出部分空间用于以后修改**），下一条记录就会写入新的页中。一旦数据按照这种顺序的方式加载，主键页就会近似于被顺序的记录填满（二级索引页可能是不一样的）
 
@@ -335,7 +335,7 @@ MySQL中的 B+Tree 索引结构示意图:
 
 **InnoDB和MyISAM的数据分布对比**
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924142055879.png" alt="image-20210924142055879" style="zoom: 67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924142055879.png" alt="image-20210924142055879" style="zoom: 67%;" />
 
 InnoDB中采用**聚簇索引**搜索，将主键放到**B+树**结果的数据中，行数据就位于叶子节点上，通过主键索引一次检索就可以找到对应位置上的行数据
 
@@ -415,7 +415,7 @@ index_col_name : column_name[(length)][ASC | DESC]
 
 示例 ： 为city表中的city_name字段创建索引 ；
 
-![1551438009843](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551438009843.png)	  
+![1551438009843](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551438009843.png)	  
 
 ​	
 
@@ -429,9 +429,9 @@ show index  from  table_name;
 
 示例：查看city表中的索引信息；
 
-![1551440511890](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551440511890.png)
+![1551440511890](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551440511890.png)
 
-![1551440544483](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551440544483.png)
+![1551440544483](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551440544483.png)
 
 ### 2.5.3 删除索引
 
@@ -443,7 +443,7 @@ DROP  INDEX  index_name  ON  tbl_name;
 
 示例 ： 想要删除city表上的索引idx_city_name，可以操作如下：
 
-![1551438238293](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551438238293.png) 
+![1551438238293](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551438238293.png) 
 
 
 
@@ -555,7 +555,7 @@ select t.*,c.country_name from country c , city t where c.country_id = t.country
 
 查询视图 : 
 
-![1551503428635](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551503428635.png)
+![1551503428635](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551503428635.png)
 
 
 
@@ -563,15 +563,15 @@ select t.*,c.country_name from country c , city t where c.country_id = t.country
 
 	从 MySQL 5.1 版本开始，使用 SHOW TABLES 命令的时候不仅显示表的名字，同时也会显示视图的名字，而不存在单独显示视图的 SHOW VIEWS 命令。
 
-![1551537565159](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551537565159.png)
+![1551537565159](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551537565159.png)
 
 同样，在使用 SHOW TABLE STATUS 命令的时候，不但可以显示表的信息，同时也可以显示视图的信息。	
 
-![1551537646323](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551537646323.png)
+![1551537646323](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551537646323.png)
 
 如果需要查询某个视图的定义，可以使用 SHOW CREATE VIEW 命令进行查看 ： 
 
-![1551588962944](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1551588962944.png)
+![1551588962944](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1551588962944.png)
 
 ### 3.4 删除视图
 
@@ -788,7 +788,7 @@ delimiter ;
 
 调用结果为 : 
 
-![1552057035580](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//1552057035580.png)
+![1552057035580](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/1552057035580.png)
 
 
 
@@ -1384,7 +1384,7 @@ show triggers ；
 
 保证表格中的每一列都是原子列，不可以再分更小的数据单元
 
-![image-20210924161716580](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924161716580.png)
+![image-20210924161716580](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924161716580.png)
 
 上图中地址列，不符合第一范式的规定，可以进行再分。
 
@@ -1394,7 +1394,7 @@ show triggers ；
 
 **保证每个表格只表述一件事情**
 
-![image-20210924161952941](https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924161952941.png)
+![image-20210924161952941](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924161952941.png)
 
 上图中价格非主键列对于主键订单编号不存在依赖关系，因此需要分表。
 
@@ -1404,7 +1404,7 @@ show triggers ；
 
 在满足第二范式的基础上，保证表格中的**列不存在对非主键的传递依赖关系**。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210924162846580.png" alt="image-20210924162846580" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210924162846580.png" alt="image-20210924162846580" style="zoom:80%;" />
 
 上图中出现了顾客姓名依赖于非主键列的顾客编号。
 
@@ -1424,9 +1424,9 @@ show triggers ；
 
 ​    **所谓反范式**，故名思义，跟范式所要求的正好相反，在反范式的设计模式，我们可以允许适当的数据的冗余，用这个冗余去取操作数据时间的缩短。**也就是利用空间来换取时间**,把数据冗余在多个表中，当查询时可以减少或者是避免表之间的关联；
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210925162604202.png" alt="image-20210925162604202" style="zoom: 80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210925162604202.png" alt="image-20210925162604202" style="zoom: 80%;" />
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210925162615008.png" alt="image-20210925162615008" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210925162615008.png" alt="image-20210925162615008" style="zoom:80%;" />
 
 字段冗余设计，在订单表中直接加入商品名称，避免了每次查询都要关联订单表和商品表。
 
@@ -1462,7 +1462,7 @@ show triggers ；
 
 存储项目**数据定义表、商品定义表、用户数据表、日志数据表**等。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210925152139776.png" alt="image-20210925152139776" style="zoom:80%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210925152139776.png" alt="image-20210925152139776" style="zoom:80%;" />
 
 #### 垂直分表
 
@@ -1475,7 +1475,7 @@ show triggers ；
 1. Mysql底层中通过**数据页**来存储数据的，若字段较长的没有被划分出去，所有的数据都在一张表中，达到了单页的最大程度，就会进行页分裂，会占用新的空间，造成额外的开销。
 2. 将不常用的字段和字段长度较大的划分出去之后，原表格中剩下的都是访问频率较高和长度较短的字段，单页中能够加载更多的数据，查询效率上也会高很多，减少io消耗，提升数据库的性能。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210925153035492.png" alt="image-20210925153035492" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210925153035492.png" alt="image-20210925153035492" style="zoom:67%;" />
 
 **总结**
 
@@ -1500,7 +1500,7 @@ show triggers ；
 
 水平切分是根据表内数据内在的逻辑关系，将同一个表按照不同的条件分散到多个数据库中或多个表格中，每个表中只包含一部分数据，这就可以将单个过于庞大数据表单，分散到各个地方，使得单个表的数据量变小，达到分布式的效果。
 
-<img src="https://gitee.com/zhanghui2233/image-storage-warehouse/raw/master/img//image-20210925154544139.png" alt="image-20210925154544139" style="zoom:67%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210925154544139.png" alt="image-20210925154544139" style="zoom:67%;" />
 
 根据上面描述的，将单个庞大的数据表单，分散大到各个表中，这些还是在同一个库中，这就是**库内分表**。
 
