@@ -2,7 +2,12 @@
 
 之前都是使用Typora这个软件作为读书笔记，以前都是把图片放到本地中，后来我把笔记都上传到github上，发现本地图片没办法加载，于是采用了将图片上传到github上的想法，后来改成了gitee上，因为github在国内不稳定，就算我上传上去了，可能会出现加载过慢或者失败的情况。
 
+**注释：原来的gitee已经无法提供服务，现在已经换成阿里云oss，附上连接：[Typora+PicGo+阿里云OSS搭建博客图床（超详细）](https://blog.csdn.net/muxuen/article/details/122441469#comments_20603646)**
 
+**补充【2022-6-17】：因为gitee在今年加了防盗链接，在本地Typora中无法加载上传到gitee上的图片，因此本人不再使用gitee图床，改用了阿里云oss,整个移植过程也是比较简单的，下面附上链接。**
+
+> https://blog.csdn.net/muxuen/article/details/123868113
+> https://blog.csdn.net/weixin_43164309?type=blog
 
 ## 创建一个gitee仓库
 
