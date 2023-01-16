@@ -1379,10 +1379,6 @@ public class Hero {
 //say()方法被标注为过时
 ```
 
-@**Override**
-
- 子类要复写父类中被 @Override 修饰的方法 
-
 @**SuppressWarnings**
 
 阻止警告的意思。之前说过调用被 @Deprecated 注解的方法后，编译器会警告提醒，而有时候开发者会忽略这种警告，他们可以在调用的地方通过 @SuppressWarnings 达到目的。
@@ -1396,6 +1392,10 @@ public void test1(){
 }
 //编辑器不会发出say()的过时警告
 ```
+
+@**Override**
+
+ 子类要复写父类中被 @Override 修饰的方法 
 
 
 
@@ -1546,7 +1546,7 @@ inner.print();
 
 **部类定义静态变量，那么成员内部类的静态变量初始化顺序是有歧义的。** 
 
-补充：成员内部类本身可以访问外围类的所有资源。
+补充：成员内部类本身可以访问外围类的所有资源。ee
 
 ```java
 public class innerClass {
@@ -1778,7 +1778,7 @@ class Point<T1, T2>{
 
  定义了一个泛型方法 printPoint()，既有普通参数，也有类型参数，类型参数需要放在修饰符后面、返回值类型前面。一旦定义了类型参数，就可以在参数列表、方法体和返回值类型中使用了。 
 
-和泛型类相比，泛型方法在调用时不需要指出明确的参数类型，会根据出入的参数编译器自动识别，和普通方法调用是一致的。
+和泛型类相比，泛型方法在调用时不需要指出明确的参数类型，会根据输入的参数编译器自动识别，和普通方法调用是一致的。
 
 
 
@@ -2177,8 +2177,6 @@ java中一个类实现java.io.Serializable 接口，那么它就可以被序列�
 
 ![image-20210711141733071](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210711141733071.png)
 
- ![img](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs1.knowsky.com%2F20151016%2Fgmnpryqpvw454.png&refer=http%3A%2F%2Fs1.knowsky.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1628576130&t=36f4b36880e3c0a0a6783a7d29578d4b) 
-
 ------
 
 先来说说Collection接口中的集合
@@ -2224,7 +2222,7 @@ public class ArrayList<E> extends AbstractList<E>
 {
     //默认容量位10
     private static final int DEFAULT_CAPACITY = 10;
-    //定一个空数组
+    //定义一个空数组
     private static final Object[] EMPTY_ELEMENTDATA = {};
     //默认实例化一个空数组
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
@@ -3327,8 +3325,8 @@ HashMap中put方法
 2. 根据键值key计算hash值位于哈希桶数组的位置，如果当前table[i]为空，直接建立新节点条件，跳转到步骤6，如果table[i]不为空，跳转到步骤3
 3. 判断table[i]的首位key是否和传入的key一致，若一致(hashCode和equals)直接覆盖value，否则跳转到步骤4，
 4. 判断table[i]是否为treeNode(**红黑树**)，若是则将键值对插入到红黑树中，若不是则跳转步骤5
-5. 遍历table[i],判断当前链表的长度，若长度**大于8，还要HashMap中的数组长度大于64，将链表树化成红黑树。也就是如果HashMap长度小于64，链表长度大于8是不会转化为红黑树的，而是直接扩容。**，（**补充：避免单条链表过长而影响查询效率，提高查询效率**）在红黑树中插入键值对，否则在链表中插入键值对，判断链表中是否存在和key一致的数据，有就直接覆盖value。
-6. 插入成功后，判断sieze(键值对数目)是否大于**阈值(threshold)**,若大于进行扩容
+5. 遍历table[i],判断当前链表的长度，若长度**大于8，还要HashMap中的数组长度大于64，将链表树化成红黑树。也就是如果HashMap长度小于64，链表长度大于8是不会转化为红黑树的，而是直接扩容。**（**补充：避免单条链表过长而影响查询效率，提高查询效率**）在红黑树中插入键值对，否则在链表中插入键值对，判断链表中是否存在和key一致的数据，有就直接覆盖value。
+6. 插入成功后，判断size(键值对数目)是否大于**阈值(threshold)**,若大于进行扩容
 
 ```java
  1 public V put(K key, V value) {
