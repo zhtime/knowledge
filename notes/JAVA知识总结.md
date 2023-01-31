@@ -4433,7 +4433,7 @@ NIO的组成包括：**Channel(通道)、 Buffer(缓冲区)、Selector**。
 
 **不管是文件读写还是网络发送接收，信息的最小存储单元都是字节，那为什么I/O流操作要分为字节流操作和字符流操作呢？**
 
-字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是⾮常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就⼲脆提供了⼀个直接操作字符的接⼝⽅便我们平时对字符进⾏流操作。
+字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是⾮常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就⼲脆提供了⼀个直接操作字符的接⼝⽅便我们平时对字符流进行操作。
 
 ------
 
@@ -4682,7 +4682,7 @@ JVM中提供了三种类加载器：
 
   从JVM角度来看一个对象已经产生，从java程序角度来看，创建对象才开始，执行构造方法，按照意愿将对象初始化数据之后这个对象才能够真正得到使用。
 
-<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720160753504.png" alt="image-20210720160753504" style="zoom:150%;" />
+<img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210720160753504.png" alt="image-20210720160753504"  />
 
 图上有点小错误:**分配内存中：采用指针碰撞是复制算法，不是标记整理**
 
@@ -4814,7 +4814,7 @@ myThread1.start();
 
 **实现Runnable接口**
 
-Runnable接口提供唯一的run方法，如何实现该接口的类都需要重写run方法。
+Runnable接口提供唯一的run方法，如果实现该接口的类都需要重写run方法。
 
 多个线程共同处理数据
 
@@ -4950,6 +4950,39 @@ public class MyRunnable implements Runnable {
 
 - **Interrupt()方法结束线程**
 
+  **线程中断(interrupt)**
+
+  中断一个线程，但是**interrupt方法本身并不是改变线程的状态**，而是给对应**线程设置一个中断标志位**，通过这个中断标志位来判断是否需要中断线程。
+
+  **running状态**
+
+  如果一个线程处于运行状态，使用方法Thread.interrupt()只是将这个线程的中断标志位设置为**true**，此时线程还是处于running状态，在线程的run方法中合适的位置检查中断标志位，若为true，说明需要进行中断响应处理，若为false，说明不需要进行中断处理。
+
+  例如：
+
+  ```java
+  public class InterruptRunnableDemo extends Thread {
+      @Override
+      public void run() {
+          //若为true，进行中断，若为false，执行while()循环体
+          while (!Thread.currentThread().isInterrupted()) {
+              // ... 单次循环代码
+          }
+          System.out.println("done ");
+      }
+      public static void main(String[] args) throws InterruptedException {
+          Thread thread = new InterruptRunnableDemo();
+          thread.start();
+          Thread.sleep(1000);
+          thread.interrupt();//true
+      }
+  }
+  /*
+  interrupt()设置thread线程的中断标志位为true
+  isInterrupted()方法判断当前线程的中断标志为是否为true，
+  */
+  ```
+
   - **线程处于阻塞状态时**
 
     使用sleep()、同步方法wait（）等方法，进入阻塞状态。
@@ -5055,7 +5088,7 @@ public class TestMain {
 
 **线程等待(wait)**
 
-当前拥有**对象监视器**的线程调用wait方法，会释放对象监视器的所有权，进入等待队列。
+当前拥有**对象监视器(锁资源)**的线程调用wait方法，会释放对象监视器的所有权，进入等待队列。
 
 只能等待其他**拥有该对象监视器的线程唤醒或者被中断**，该线程重新获取对象监视器的所有权后才开始执行。
 
@@ -5067,7 +5100,7 @@ public class TestMain {
 
 **线程睡眠(Sleep)**
 
-线程调用sleep方法进入睡眠状态，与wait方法不同之处在于sleep方法**不会让线程释放所占有的对象锁**，线程进入**Time_Waiting状态**，
+线程调用sleep方法进入睡眠状态，与wait方法不同之处在于sleep方法**不会让线程释放所占有的对象锁**，线程进入**Timed_Waiting状态**，
 
 wait方法让线程进入**Waiting状态**。
 
@@ -5080,43 +5113,6 @@ wait方法让线程进入**Waiting状态**。
 **线程让步(yield)**
 
 yield让线程让出当前所持有的cpu资源，和其他线程一起重新争取cpu资源。一般情况下，优先级高的线程有更大的概率获取到cpu资源，但这不是绝对的，不同操作系统对线程优先级有着不同的敏感度。
-
-
-
-**线程中断(interrupt)**
-
-中断一个线程，但是**interrupt方法本身并不是改变线程的状态**，而是给对应**线程设置一个中断标志位**，通过这个中断标志位来判断是否需要中断线程。
-
-**runnable状态**
-
-如果一个线程处于运行状态，使用方法Thread.interrupt()只是将这个线程的中断标志位设置为**true**，此时线程还是处于runnable状态，
-
-具体在线程的run方法中合使的位置检查中断标志位，若为true，说明需要进行中断响应处理，若为false，说明不需要进行中断处理。
-
-例如：
-
-```java
-public class InterruptRunnableDemo extends Thread {
-    @Override
-    public void run() {
-        //若为true，进行中断，若为false，执行while()循环体
-        while (!Thread.currentThread().isInterrupted()) {
-            // ... 单次循环代码
-        }
-        System.out.println("done ");
-    }
-    public static void main(String[] args) throws InterruptedException {
-        Thread thread = new InterruptRunnableDemo();
-        thread.start();
-        Thread.sleep(1000);
-        thread.interrupt();//true
-    }
-}
-/*
-interrupt()设置thread线程的中断标志位为true
-isInterrupted()方法判断当前线程的中断标志为是否为true，
-*/
-```
 
 
 
@@ -5153,7 +5149,7 @@ t.interrupt();//置为true
 
 join()方法：调用join方法的线程获取cpu资源，其他线程被迫阻塞，只有等当前调用join方法的线程结束释放cpu资源后，其他线程才可以运行。
 
-若在当前线程中的子线程调用join方法，当前线程需要等待子线程运行完后，才可以运行，因此join方法也称为：**等待其他线程终止**。
+若在当前线程中的子线程调用join方法，当前线程需要等待子线程运行完后，才可以运行，join方法的主要作用就是**同步**，**它可以使得线程之间的并行执行变为串行执行**。在A线程中调用了B线程的join()方法时，表示只有当B线程执行完毕时，A线程才能继续执行。因此join方法也称为：**等待其他线程终止**。
 
 很典型的主线程中有子线程，子线程调用join方法，主线程就需要等待调用join的线程运行终。
 
@@ -5166,6 +5162,8 @@ public static void main(String[] args){
     System.out.println("这时 thread1 执行完毕之后才能执行主线程");
 }
 ```
+
+补充：**join方法必须在线程start方法调用之后调用才有意义。**
 
 
 
@@ -5308,7 +5306,7 @@ JDK1. 6中变为默认开启，并且引入了自适应的自旋锁（**适应�
 
 1.6之前的自旋锁的次数一定程度是写死的，之后的自适应锁次数不在固定，是**由上一次在同一个锁上的自旋时间以及锁的拥有者的状态来决定的**。
 
-如果对于同一个锁对象，自旋等待并且成功在自选周期内获得了锁资源，线程成功执行，那么JVM认为下一次这个自旋的过程很可能成功，因此会把自旋的周期持续相对更长的时间。反之，自旋过程很少获取锁资源，JVM认为这个自旋执行效率可能不高，可能考虑取消自旋进入阻塞状态，避免资源的浪费。
+如果对于同一个锁对象，自旋等待并且成功在自旋周期内获得了锁资源，线程成功执行，那么JVM认为下一次这个自旋的过程很可能成功，因此会把自旋的周期持续相对更长的时间。反之，自旋过程很少获取锁资源，JVM认为这个自旋执行效率可能不高，可能考虑取消自旋进入阻塞状态，避免资源的浪费。
 
 
 
