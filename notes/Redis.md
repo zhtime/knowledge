@@ -497,7 +497,7 @@ lrem key count value
 
 - 新的存储要求：存储大量的数据，在查询方面提供更高的效率
 - 需要的存储结构：能够保存大量的数据，高效的内部存储机制，便于查询
-- set类型：**与hash存储结构完成相同，不同之处在于key用来存值，而value不存值（nil）**，并且值是不允许重复的。
+- set类型：**与hash存储结构完全相同，不同之处在于key用来存值，而value不存值（nil）**，并且值是不允许重复的。
 
 ![image-20210715141512836](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210715141512836.png)
 
@@ -686,9 +686,9 @@ zrevrangebyscore key max min [withscore] [limit offset count]
 zremrangebyrank key start stop
 zremrangebysocre key min max
 
-   注意：min于max用于限定搜索查询的条件
+   注意：min与max用于限定搜索查询的条件
     	start与stop用于限定查询范围，作用于索引，表示开始和结束索引
-    	offset于count用于限定查询范围，作用于查询结果，表示开始位置和数据总量
+    	offset与count用于限定查询范围，作用于查询结果，表示开始位置和数据总量
     
     
 //按照从大到小的顺序移除count个值
@@ -2186,7 +2186,7 @@ maxmemory-policy volatile-lru
 
 <img src="https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210902150647625.png" alt="image-20210902150647625" style="zoom:50%;" />
 
-按位存储数据，存入某些 数据的状态：性别、是否为党员等等
+按位存储数据，存入某些数据的状态：性别、是否为党员等等
 
 操作过程也是按照二进制(01)的形式，**相比于原来的基本数据类型，这并不是一个新的数据类型，可以理解为操作原基本数据二进制的形式**
 
@@ -2899,7 +2899,7 @@ sentinel failover-timeout mymaster 180000
 
 **集群架构**
 
-- 集群就是使用网络将若干台计算机**联通**起来，并提供**统一的管理方式**，使其对外呈现单机的服务效果
+- 集群就是使用**网络**将若干台计算机**联通**起来，并提供**统一的管理方式**，使其对外呈现单机的服务效果
 
 ![image-20210725141126715](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210725141126715.png)
 
@@ -3221,7 +3221,7 @@ cluster failover
 #### **缓存穿透**
 
 1. 系统平稳运行过程中
-2. 应用服务器流量随时间增量较大3
+2. 应用服务器流量随时间增量变大
 3. Redis服务器命中率随时间逐步降低
 4. Redis内存平稳，内存无压力
 5. Redis服务器CPU占用激增
@@ -3236,10 +3236,9 @@ cluster failover
 **问题分析**
 
 - 获取的数据在数据库中也不存在,数据库查询未得到对应数据
-- Redis获取到null数据未进行持久化，直接返回‘
+- Redis获取到null数据未进行持久化，直接返回
 - 下次此类数据到达重复上述过程
 - 出现黑客攻击服务器
-- 
 
 **解决方案(术)**
 
@@ -3249,7 +3248,10 @@ cluster failover
 2. 白名单策略
 
    - 提前预热各种分类数据id对应的bitmaps，id作为bitmaps的offset，相当于设置了数据白名单。当加载正常数据时，放行，加载异常数据时直接拦截(效率偏低)
+
    - 使用**布隆过滤器**(有关布隆过滤器的命中问题对当前状况可以忽略)
+
+     [(96条消息) 布隆(Bloom Filter)过滤器——全面讲解，建议收藏_李子捌的博客-CSDN博客_bloom filter](https://blog.csdn.net/qq_41125219/article/details/119982158)
 
 3. 实施监控
 
