@@ -325,8 +325,6 @@ binlog_format=STATEMENT
 
 ```
 mysqlbinlog log-file；
-
-
 ```
 
 
@@ -466,8 +464,6 @@ select * from tb_book;
 select * from tb_book where id = 1;
 update tb_book set name = 'lucene入门指南' where id = 5;
 select * from tb_book where id < 8;
-
-
 ```
 
 

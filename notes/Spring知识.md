@@ -62,7 +62,7 @@ Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core �
 
 1. 导入Spring开发的基本包坐标(Maven)
 2. 编写Dao接口和实现类
-3. 创建配置文件
+3. 创建配置文件(applicationContext.xml)
 4. 在配置文件中配置实现类
 5. 使用Spring中API获取Bean实例
 
@@ -137,7 +137,7 @@ Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core �
 
 #### bean
 
-- 类型：**标签**·
+- 类型：**标签**
 - 归属：beans标签
 - 作用：定义spring中的资源，受此标签定义的资源将受到spring控制
 - 格式：
@@ -753,7 +753,7 @@ Spring原始注解主要是**替代Bean的配置**
 | @Controller    | 使用在web层类上用于实例化Bean                   |
 | @Service       | 使用在service层类上用于实例化Bean               |
 | @Repository    | 使用在dao层类上用于实例化Bean                   |
-| @Autowired     | 使用在字段上上用于根据类型依赖注入              |
+| @Autowired     | 使用在字段上用于根据类型依赖注入                |
 | @Qualifier     | 结合@Autowired一起使用用于根据名称进行依赖注入  |
 | @Resource      | 相当于@Autowired + @Qualifier，按照名称进行注入 |
 | @Value         | 注入普通属性                                    |
@@ -1183,6 +1183,14 @@ app.getBean("id");
 
 
 
+@RunWith就是一个**运行器**
+
+@RunWith(JUnit4.class)就是指用JUnit4来运行
+
+@RunWith(SpringJUnit4ClassRunner.class),让**测试运行于Spring测试环境**
+
+@RunWith(Suite.class)的话就是一套测试集合
+
 使用`@RunWith`注解替换原来的运行期
 
 ```java
@@ -1432,7 +1440,7 @@ Spring的AOP实现底层就是对上面的动态代理的代码进行了封装�
 
    - 编写核心业务代码(目标类的目标方法)
    - **编写切面类，**切面类中通知(增强功能方法)
-   - 在配置文件中，配置织入关系，即将哪些通知与哪些连接点进行结合
+   - 在配置文件中，**配置织入关系**，即将哪些通知与哪些连接点进行结合
 
 2. **AOP技术实现的内容**
 
@@ -1555,7 +1563,7 @@ public class test2 {
    execut ion (public void com.ithema.aop.Target.method())
    execution(void com.itheima.aop.Target.*(..))
    //Target类下的 void类型的任意方法任意参数
-   execution(* com. itheima.aop.*.*(..))
+   execution(* com.itheima.aop.*.*(..))
    //aop包下的任意类中任意方法任意参数都是切点
    execution(* com.itheima.aop..*.*(..))
     //aop包以及子包下的任意类中任意方法任意参数都是切点

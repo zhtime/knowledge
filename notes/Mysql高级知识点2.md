@@ -21,7 +21,7 @@
 
 2） 服务层
 
-第二层架构主要完成大多数的核心服务功能，如SQL接口，并完成缓存的查询，SQL的分析和优化，部分内置函数的执行。所有跨存储引擎的功能也在这一层实现，如 过程、函数等。在该层，服务器会解析查询并创建相应的内部解析树，并对其完成相应的优化如确定表的查询的顺序，是否利用索引等， 最后生成相应的执行操作。如果是select语句，服务器还会查询内部的缓存，如果缓存空间足够大，这样在解决大量读操作的环境中能够很好的提升系统的性能。
+第二层架构主要完成大多数的核心服务功能，如SQL接口，并完成缓存的查询，SQL的分析和优化，部分内置函数的执行。所有跨存储引擎的功能也在这一层实现，如 存储过程、函数等。在该层，服务器会解析查询并创建相应的内部解析树，并对其完成相应的优化如确定表的查询的顺序，是否利用索引等， 最后生成相应的执行操作。如果是select语句，服务器还会查询内部的缓存，如果缓存空间足够大，这样在解决大量读操作的环境中能够很好的提升系统的性能。
 
 3） 引擎层
 
@@ -550,7 +550,6 @@ id 字段是 select查询的序列号，是一组数字，表示的是查询中�
 
 ```
 explain select * from t_role r, t_user u, user_role ur where r.id = ur.role_id and u.id = ur.user_id ;
-
 ```
 
 ![image-20210508142900434](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508142900434.png)
@@ -559,7 +558,6 @@ explain select * from t_role r, t_user u, user_role ur where r.id = ur.role_id a
 
 ``` SQL
 EXPLAIN SELECT * FROM t_role WHERE id = (SELECT role_id FROM user_role WHERE user_id = (SELECT id FROM t_user WHERE username = 'stu1'))
-
 ```
 
 ![image-20210508143135624](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210508143135624.png)
@@ -656,7 +654,7 @@ key_len : 表示索引中使用的字节数， 该值为索引字段最大可能
 | using  temporary | 使用了临时表保存中间结果，MySQL在对查询结果排序时使用临时表。常见于 order by 和 group by； 效率低 |
 | using  index     | 表示相应的select操作使用了覆盖索引， 避免访回表的数据行， 效率不错。 |
 
-
+![image-20230216144536762](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/202302161445926.png)
 
 ## 3.4 show profile分析SQL
 
@@ -1629,50 +1627,5 @@ explain select * from  tb_seller force index(idx_seller_address)  where address 
 ```
 
 ![image-20210515143739544](https://picturebedzhanghui.oss-cn-hangzhou.aliyuncs.com/img/image-20210515143739544.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

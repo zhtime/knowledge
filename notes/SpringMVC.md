@@ -267,11 +267,11 @@ http://localhost:8081/SpringMVC1_war_exploded/quick
 
     用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。
 
-2. **处理器映射器：HandlerMapping**
+2. **处理器映射：HandlerMapping**
 
     HandlerMapping 负责根据用户请求找到 Handler 即处理器，SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
 
-3. **处理器适配器：HandlerAdapter**
+3. **处理器适配：HandlerAdapter**
 
     通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
 
@@ -491,12 +491,17 @@ public class UserController {
 
     注解：@ResponseBody
 
+    @ResponseBody的作用其实是将java对象转为json格式的数据。
+    
+    @responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到response对象的body区，通常用来返回JSON数据或者是XML数据。
+    注意：在使用此注解之后不会再走视图处理器，而是直接将数据写入到输入流中，他的效果等同于通过response对象输出指定格式的数据。
+    
     ```java
         @ResponseBody
         @RequestMapping("quick6")
         public String save5()  {
-    
-           return "不进行页面条件，这里进行数据回写通过@ResponseBody注解来标识告知框架";
+    /*在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。@RequestBody 将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。*/
+           return "不进行页面跳转，这里进行数据回写通过@ResponseBody注解来标识告知框架";
         }
     ```
 
@@ -608,7 +613,7 @@ RequestMappingHandlerAdapter(处理适配器），可用在Spring-xml.xml配置�
 
   
 
-- **POJO类型参数**
+- **POJO（普通Java对象）类型参数**
 
   ```
   http://localhost:8081/user/quick9?name=zhang&age=12
