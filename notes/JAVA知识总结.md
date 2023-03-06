@@ -984,6 +984,10 @@ final byte b5 =4,b6=6;
 
 
 
+## 不可变类的实现
+
+[Java-不可变类的实现 - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1477123)
+
 
 
 ## Java异常
@@ -5713,7 +5717,7 @@ JIT优化中最重要的一个就是**逃逸分析**。
 
 逃逸分析：当一个对象被定义在方法中时，该对象是一个局部变量，若它作为参数传递到了其他的方法中时(**被外部方法所引用**)，就称为**方法逃逸**。
 
-
+[锁消除 - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1487112)
 
 append方法被synchronized锁修饰
 
@@ -6336,7 +6340,7 @@ class MyThread extends Thread{
 本来是想要实现Mutex互斥，因为多释放了一个信号量，导致Semaphore中premit动态增加变成了2，允许两个线程同时运行导致，没法实现互斥，导致了上述结果
 */
 /*
-去掉一个mutex.release();就是先了互斥：
+去掉一个mutex.release();就是成了互斥：
 当前线程Thread-0
 0 1 2 3 4 5 6 7 8 9 
 当前线程Thread-1
