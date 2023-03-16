@@ -6,7 +6,7 @@
 
 核心:**IOC(Inverse Of Control 控制反转)**和**AOP(Aspect Oriented Programming  面向切面编程)**
 
-
+[(107条消息) Spring框架中常用的设计模式详解_spring中的设计模式_chao09_01的博客-CSDN博客](https://blog.csdn.net/chao821/article/details/92400186)
 
 ##  优势
 
@@ -17,6 +17,10 @@
 - 方便集成各种优秀框架
 - 降低JAVAEE API的使用难度
 - Java源码经典学习范例
+
+
+
+[基于springboot自定义注解+redis实现分布式锁 - 苗大王 - 博客园 (cnblogs.com)](https://www.cnblogs.com/miao-sir/p/15793001.html)
 
 
 
@@ -202,7 +206,7 @@ name：bean的名称，可以通过name值获取bean，用于多人配合时给b
 
 ### Bean生命周期配置
 
-
+ spring的bean的生命周期主要是创建bean的过程，一个bean的生命周期主要是4个步骤， 实例化，属性注入，初始化，销毁
 
 #### init-method：
 
